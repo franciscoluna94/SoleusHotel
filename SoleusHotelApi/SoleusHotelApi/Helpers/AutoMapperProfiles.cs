@@ -10,7 +10,9 @@ namespace SoleusHotelApi.Helpers
         {
             CreateMap<CreateHotelUserDto, HotelUser>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.RoomNumber));
-            CreateMap<HotelUser, HotelUserDto>();
+            CreateMap<HotelUser, HotelUserDto>().ReverseMap();
+            CreateMap<HotelUser, CreatedHotelUserDto>()
+                .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
         }
         
     }

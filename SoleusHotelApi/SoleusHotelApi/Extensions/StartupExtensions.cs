@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Data;
+using SoleusHotelApi.Data.Repositories;
+using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Services;
 using SoleusHotelApi.Services.Contracts;
@@ -12,6 +14,7 @@ namespace SoleusHotelApi.Extensions
         {
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IHotelUserRepository, HotelUserRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IHotelUserService, HotelUserService>();

@@ -20,7 +20,9 @@ namespace SoleusHotelApi.Extensions
                 .AddRoleManager<RoleManager<HotelRole>>()
                 .AddSignInManager<SignInManager<HotelUser>>()
                 .AddRoleValidator<RoleValidator<HotelRole>>()
-                .AddEntityFrameworkStores<DataContext>();
+                .AddEntityFrameworkStores<DataContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<HotelUser>>(TokenOptions.DefaultProvider);
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -37,6 +39,7 @@ namespace SoleusHotelApi.Extensions
             services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("AdminLevel", policy => policy.RequireRole("Admin"));
+                opt.AddPolicy("GuestLevel", policy => policy.RequireRole("Admin", "Guest"));
                 opt.AddPolicy("EmployeeLevel", policy => policy.RequireRole("Admin", "Maintenance", "Housekeeping", "Reception"));
                 opt.AddPolicy("ReceptionLevel", policy => policy.RequireRole("Admin", "Reception"));
                 opt.AddPolicy("BackofficeLevel", policy => policy.RequireRole("Admin", "Maintenance", "Housekeeping"));
