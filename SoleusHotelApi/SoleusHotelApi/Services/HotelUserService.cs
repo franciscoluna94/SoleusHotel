@@ -92,6 +92,12 @@ namespace SoleusHotelApi.Services
         {
             ServiceResponse<LoggedUserDto> response = new();
 
+            if (loginHotelUserDto is null)
+            {
+                response.Errors.Add("Please enter a room number and a password");
+                return response;
+            }
+
             HotelUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.RoomNumber == loginHotelUserDto.RoomNumber.ToUpper());
 
             if (user is null)

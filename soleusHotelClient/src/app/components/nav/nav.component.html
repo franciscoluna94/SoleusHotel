@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-primary min-vh-100">
+                <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-primary text-decoration-none">
+                    <span class="fs-2 d-none d-sm-inline">Soleus</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
+                    <li class="nav-item">
+                        <a class="nav-link align-middle px-0" routerLink="dashboard">
+                            <i class="fs-4 fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="isCollapsed = !isCollapsed"
+                            [attr.aria-expanded]="!isCollapsed" 
+                            aria-controls="collapseBasic"
+                            class="nav-link px-0 align-middle" type="button">
+                            <i class="fs-4 fa fa-archive"></i> <span class="ms-1 d-none d-sm-inline">Room Requests</span> </a>
+                        <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+                            <hr>
+                            <ul class="collapse show nav flex-column ms-1">
+                                <li class="w-100">
+                                    <a class="nav-link px-0"> <i class="fs-5 fa fa-edit"></i> <span class="ms-1 d-none d-sm-inline">Create</span></a>
+                                </li>
+                                <li>
+                                    <a  class="nav-link px-0" routerLink="roomrequests"> <i class="fs-5 fa fa-exclamation-circle"></i> <span class="ms-2 d-none d-sm-inline">Pending</span> </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link px-0" routerLink="roomrequests"> <i class="fs-5 fa fa-check"> </i><span class="ms-1 d-none d-sm-inline">Ended</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link align-middle px-0" routerLink="guests" routerLinkActive="active">
+                            <i class="fs-4 fa fa-hotel"></i> <span class="ms-1 d-none d-sm-inline" >Guests</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div type="button" class="dropdown pb-4 " dropdown [dropup]="isDropup">
+                    <a class="d-flex align-items-center text-primary text-decoration-none dropdown-toggle"  dropdownToggle aria-controls="dropdown-dropup">
+                        <i class="fs-1 fa fa-user"> </i>
+                        <span class="fs-5 ms-2 d-none d-sm-inline mx-1">{{user.roomNumber}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light text-small text-primary shadow" id="dropdown-dropup" *dropdownMenu role="menu" aria-labelledby="button-dropup">
+                        <li><a class="dropdown-item" href="#">Edit Password</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+

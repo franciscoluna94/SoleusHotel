@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+.text-primary {
+    color: #5472D3 !important;
+}
+
+.active{
+    background-color:#5472D3 ;
+}
+
+.nav-link{
+    color: #5472D3;
+}
+
+.btn-primary{
+    background-color: #5472D3;
+}
+
+.bg-light {
+    background-color: #F5F5F6 !important;
+}
+
+a, i, span, h2 {
+    color: #5472D3 !important;
+}
+
+.dropdown-item {
+    color: #5472D3 !important;
+}
