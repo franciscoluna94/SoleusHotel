@@ -191,17 +191,11 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto, string userRoomNumber)
+        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto)
         {
             ServiceResponse<LoggedUserDto> response = new();
 
-            if (userPasswordForgotDto.RoomNumber != userRoomNumber)
-            {
-                response.Errors.Add("Unable to modify other room password");
-                return response;
-            }
-
-            HotelUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == userRoomNumber);
+            HotelUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == userPasswordForgotDto.RoomNumber);
 
             if (user is null)
             {
@@ -209,6 +203,21 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+
+            if (!roles.Contains("Guest"))
+            {
+                response.Errors.Add("Unable to modify this room password, please contact your administrator");
+                return response;
+            }
+
+            if (userPasswordForgotDto.RoomNumber != user.RoomNumber)
+            {
+                response.Errors.Add("Unable to modify other room password");
+                return response;
+            }            
+
+           
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
                 response.Errors.Add("The guest name provided is not correct");

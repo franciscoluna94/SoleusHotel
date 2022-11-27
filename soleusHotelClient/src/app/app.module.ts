@@ -14,6 +14,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { WorkerDashboardComponent } from './components/worker-dashboard/worker-dashboard.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { WorkerDashboardComponent } from './components/worker-dashboard/worker-d
     UserListComponent,
     RequestListComponent,
     ForgotPasswordComponent,
-    WorkerDashboardComponent
+    WorkerDashboardComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,

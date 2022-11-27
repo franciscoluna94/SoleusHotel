@@ -11,7 +11,7 @@ namespace SoleusHotelApi.Services.Contracts
         Task<ServiceResponse<LoggedUserDto>> LoginHotelUser(LoginHotelUserDto loginHotelUserDto);
         Task<ServiceResponse<CreatedHotelUserDto>> EditUser(CreateHotelUserDto editUser);
         Task<ServiceResponse<HotelUserDto>> EditGuestUser(HotelUserDto editUser);        
-        Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto, string userRoomNumber);
+        Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto);
         Task<ServiceResponse<HotelUserPasswordUpdatesDto>> GenerateUserPassword(string roomNumber);
         Task<ServiceResponse<List<string>>> ResetGuestsPasswords(string password);
         Task<ServiceResponse<List<HotelRoleDto>>> GetUsersWithRolesAsync();

@@ -72,7 +72,6 @@ namespace SoleusHotelApi.Controllers
             return Ok(response.Data);
         }
 
-        [Authorize(Policy = "GuestLevel")]
         [HttpPatch("forgot-password")]
         public async Task<ActionResult<LoggedUserDto>> UpdateUserPassword([FromBody] HotelUserPasswordUpdatesDto passwordUpdate)
         {
@@ -81,8 +80,7 @@ namespace SoleusHotelApi.Controllers
                 return BadRequest();
             }
 
-            string roomNumber = User.GetRoomNumber();
-            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate, roomNumber);
+            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate);
 
             if (!response.IsValid)
             {

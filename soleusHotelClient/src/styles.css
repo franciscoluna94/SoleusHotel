@@ -1,3 +1,10 @@
+.bg-home {
+    background: linear-gradient(-45deg, #0077c2, #0c47a1, #89a0ff);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
 .text-primary {
     color: #5472D3 !important;
 }
@@ -24,4 +31,20 @@ a, i, span, h2 {
 
 .dropdown-item {
     color: #5472D3 !important;
+}
+
+.bg-dark {
+    color: #0c47a1;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

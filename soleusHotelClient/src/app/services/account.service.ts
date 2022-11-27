@@ -26,6 +26,17 @@ export class AccountService {
     )
   }
 
+  forgotPassword(model: any){
+    return this.http.patch<User>(this.baseUrl + 'hoteluser/forgot-password', model).pipe(
+      map((response: User) => {
+        const user = response;
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    )
+  }
+
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
