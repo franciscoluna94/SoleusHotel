@@ -5,28 +5,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
+import { WorkerNavComponent } from './components/worker-nav/worker-nav.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { GuestDashboardComponent} from './components/guest-dashboard/guest-dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { WorkerDashboardComponent } from './components/worker-dashboard/worker-dashboard.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { GuestNavComponent } from './components/guest-nav/guest-nav.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
+    WorkerNavComponent,
     HomeComponent,
-    UserDashboardComponent,
+    GuestDashboardComponent,
     UserListComponent,
     RequestListComponent,
     ForgotPasswordComponent,
     WorkerDashboardComponent,
-    UserCardComponent
+    UserCardComponent,
+    GuestNavComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,10 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     ReactiveFormsModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

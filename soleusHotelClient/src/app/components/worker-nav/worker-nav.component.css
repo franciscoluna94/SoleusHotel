@@ -1,0 +1,11 @@
+.nav-link{
+    color: #5472D3;
+}
+
+a, i, span, h2 {
+    color: #5472D3 !important;
+}
+
+.dropdown-item {
+    color: #5472D3 !important;
+}

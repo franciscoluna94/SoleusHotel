@@ -5,37 +5,45 @@
 	height: 100vh;
 }
 
+.btn-back {
+	background-color: #F5F5F6;
+}
+
+.btn-back:hover {
+	background-color:#5472D3;
+	color: white;
+	transition: 0.7s;
+}
+
 .text-primary {
     color: #5472D3 !important;
 }
 
-.active{
-    background-color:#5472D3 ;
-}
-
-.nav-link{
-    color: #5472D3;
+.text-white {
+    color: white !important;
 }
 
 .btn-primary{
     background-color: #5472D3;
 }
 
+.bg-white {
+	background-color: white !important;
+}
+
 .bg-light {
-    background-color: #F5F5F6 !important;
+	background-color: #F5F5F6 !important;
 }
 
-a, i, span, h2 {
-    color: #5472D3 !important;
-}
-
-.dropdown-item {
+h2 {
     color: #5472D3 !important;
 }
 
 .bg-dark {
     color: #0c47a1;
 }
+
+
 
 @keyframes gradient {
 	0% {

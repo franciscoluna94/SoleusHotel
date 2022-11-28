@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -19,7 +19,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
   exports: [
     BsDropdownModule,
     CollapseModule,
-    ToastrModule,
+    ToastrModule
   ]
 })
 export class SharedModule { }

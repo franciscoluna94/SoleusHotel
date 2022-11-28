@@ -1,0 +1,11 @@
+.bg-guest-nav{
+	background-color: #89a0ff !important;
+}
+
+a, i, span, h2 {
+    color: white !important;
+}
+
+.dropdown-item {
+    color: #5472D3 !important;
+}

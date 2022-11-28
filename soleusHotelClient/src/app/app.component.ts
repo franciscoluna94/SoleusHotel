@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     if (this.user.roles.includes("Guest")){
       route = "/guest";
     } else {
-      route = "/worker";
+      route = "/worker/dashboard";
     }
     this.router.navigateByUrl(route);
   }
