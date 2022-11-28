@@ -9,3 +9,7 @@ a, i, span, h2 {
 .dropdown-item {
     color: #5472D3 !important;
 }
+
+.worker-content{
+    padding: 0 !important;
+}

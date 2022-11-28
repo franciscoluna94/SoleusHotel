@@ -9,6 +9,18 @@
 	background-color: #F5F5F6;
 }
 
+.btn-edit {
+	background-color: #5472D3;
+	color: white;
+	width: 30px;
+	height: 30px;
+	padding: 0px 0px;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 1.42857;
+}
+
 .btn-back:hover {
 	background-color:#5472D3;
 	color: white;

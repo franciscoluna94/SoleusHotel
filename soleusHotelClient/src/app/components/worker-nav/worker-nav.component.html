@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white shadow">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-primary min-vh-100">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-primary text-decoration-none">
                     <span class="fs-2 d-none d-sm-inline">Soleus</span>
@@ -34,8 +34,8 @@
                         
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link align-middle px-0" routerLink="guests" routerLinkActive="active">
-                            <i class="fs-4 fa fa-bed"></i> <span class="ms-1 d-none d-sm-inline" >Guests</span>
+                        <a class="nav-link align-middle px-0" routerLink="rooms">
+                            <i class="fs-4 fa fa-bed"></i> <span class="ms-1 d-none d-sm-inline" >Rooms</span>
                         </a>
                     </li>
                 </ul>
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3  bg-light">
+        <div class="col bg-light worker-content" >
             <router-outlet></router-outlet>
         </div>
     </div>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SoleusHotelApi.DTOs.HotelUser;
+using SoleusHotelApi.DTOs.Room;
 using SoleusHotelApi.Entities;
 
 namespace SoleusHotelApi.Helpers
@@ -13,6 +14,7 @@ namespace SoleusHotelApi.Helpers
             CreateMap<HotelUser, HotelUserDto>().ReverseMap();
             CreateMap<HotelUser, CreatedHotelUserDto>()
                 .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
+            CreateMap<HotelUser, Room>().ForMember(dest => dest.RoomRequests, opt => opt.MapFrom(src => src.RoomRequests.Count()));
         }
         
     }

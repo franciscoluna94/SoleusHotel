@@ -1,16 +1,36 @@
 .card-title {
     font-size: 2.3rem;
-}
+}  
 
 .request-card {
     background-color: #5472D3;
     color: white;
 }
 
-.card-text {
-    opacity: 0.7;
-}
-
 .card {
     max-width: 17rem;
 }
+
+.card-success {
+    background: rgb(129,199,132);
+    background: linear-gradient(90deg, rgba(129,199,132,1) 35%, rgba(178,250,180,1) 100%);
+}
+
+.card-warning {
+    background: rgb(255,183,77);
+    background: linear-gradient(90deg, rgba(255,183,77,1) 35%, rgba(255,233,125,1) 100%);
+}
+
+.card-danger {
+    background: rgb(229,115,115);
+    background: linear-gradient(90deg, rgba(229,115,115,1) 35%, rgba(255,164,162,1) 100%);
+}
+
+.card-info {
+    background: rgb(137,160,255);
+    background: linear-gradient(90deg, rgba(137,160,255,1) 35%, rgba(189,209,255,1) 100%);
+}
+
+
+
+

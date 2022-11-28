@@ -57,7 +57,6 @@ namespace SoleusHotelApi.Controllers
             return Ok(response.Data);
         }
 
-        [Authorize]
         [Authorize(Policy = "ReceptionLevel")]
         [HttpPatch("edit-guest")]
         public async Task<ActionResult<HotelUserDto>> EditGuests([FromBody] HotelUserDto editUser)

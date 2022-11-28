@@ -1,0 +1,33 @@
+<div class="bg-white ">
+    <h2 class="ms-3 pt-2">Rooms</h2>
+</div>
+
+<div class="container-fluid mt-5">
+    <table class="table bg-white">
+        <thead>
+          <tr>
+            <th scope="col">Room Number</th>
+            <th scope="col">Guest Name</th>
+            <th scope="col">Check-In</th>
+            <th scope="col">Check-Out</th>
+            <th scope="col">Room Requests</th>
+            <th *ngIf="user.roles.includes('Reception')"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let room of rooms">
+            <td>{{room.roomNumber}}</td>
+            <td>{{room.guestName}}</td>
+            <td>{{room.checkInDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{room.checkOutDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{room.roomRequests}}</td>
+            <td *ngIf="user.roles.includes('Reception')">
+              <button class="btn btn-edit "
+                routerLink="./{{room.roomNumber}}">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

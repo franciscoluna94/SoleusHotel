@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { HotelUser } from '../models/hotelUser';
 import { User } from '../models/user';
 
 @Injectable({
@@ -26,6 +27,11 @@ export class AccountService {
     )
   }
 
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+  }
+
   forgotPassword(model: any){
     return this.http.patch<User>(this.baseUrl + 'hoteluser/forgot-password', model).pipe(
       map((response: User) => {
@@ -37,9 +43,12 @@ export class AccountService {
     )
   }
 
-  logout() {
-    localStorage.removeItem('user');
-    this.currentUserSource.next(null);
+  getUser(roomNumber: string) {
+    return this.http.get<HotelUser>(this.baseUrl + 'hoteluser/' + roomNumber)
+  }
+
+  editUser(model: any){
+    return this.http.patch<HotelUser>(this.baseUrl + 'edit/guest', model);
   }
 
   setCurrentUser(user: User) {

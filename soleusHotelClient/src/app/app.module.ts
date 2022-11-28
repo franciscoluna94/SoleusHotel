@@ -18,6 +18,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { GuestNavComponent } from './components/guest-nav/guest-nav.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TextInputComponent } from './components/forms/text-input/text-input.component';
+import { RoomListComponent } from './components/room-list/room-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     ForgotPasswordComponent,
     WorkerDashboardComponent,
     UserCardComponent,
-    GuestNavComponent
+    GuestNavComponent,
+    TextInputComponent,
+    RoomListComponent
   ],
   imports: [
     BrowserModule,
