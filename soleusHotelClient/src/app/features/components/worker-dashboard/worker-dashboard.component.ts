@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { AccountService } from 'src/app/services/account.service';
+import { User } from 'src/app/core/models/user';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-worker-dashboard',

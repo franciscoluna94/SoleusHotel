@@ -9,7 +9,7 @@ import { AccountService } from '../services/account.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private accountService: AccountService, public router: Router) {}
+  constructor(private accountService: AccountService, private router: Router) {}
 
  canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(

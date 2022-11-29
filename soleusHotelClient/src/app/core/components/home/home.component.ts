@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { AccountService } from 'src/app/services/account.service';
+import { User } from 'src/app/core/models/user';
+import { AccountService } from 'src/app/core/services/account.service';
+import { RolesConstants } from '../../constants/rolesConstants';
 
 @Component({
   selector: 'app-home',
@@ -32,11 +33,11 @@ export class HomeComponent implements OnInit {
   login() {
     this.accountService.login(this.loginForm.value).subscribe(() => {
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
-      if (this.user.roles.includes("Guest")){
+      if (this.user.roles.includes(RolesConstants.guest)){
         this.router.navigateByUrl("/guest");
-      } else {
-        this.router.navigateByUrl("/worker/dashboard");
-      }      
+      } else if (this.user.roles.some(role => RolesConstants.employees.includes(role))) {
+        this.router.navigateByUrl("/hotel/dashboard");
+      } 
     });
   }
 

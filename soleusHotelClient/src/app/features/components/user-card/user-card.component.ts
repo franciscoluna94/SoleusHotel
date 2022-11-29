@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HotelUser } from 'src/app/models/hotelUser';
-import { User } from 'src/app/models/user';
-import { AccountService } from 'src/app/services/account.service';
+import { HotelUser } from 'src/app/core/models/hotelUser';
+import { User } from 'src/app/core/models/user';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-user-card',

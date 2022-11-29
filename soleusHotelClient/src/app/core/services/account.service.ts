@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ApiRoutesConstant } from '../constants/apiRoutesConstants';
 import { HotelUser } from '../models/hotelUser';
 import { Room } from '../models/room';
 import { User } from '../models/user';
@@ -18,7 +19,7 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'hoteluser/login', model).pipe(
+    return this.http.post<User>(this.baseUrl + ApiRoutesConstant.login, model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
@@ -34,7 +35,7 @@ export class AccountService {
   }
 
   forgotPassword(model: any){
-    return this.http.patch<User>(this.baseUrl + 'hoteluser/forgot-password', model).pipe(
+    return this.http.patch<User>(this.baseUrl + ApiRoutesConstant.forgotPassword, model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
@@ -45,19 +46,19 @@ export class AccountService {
   }
 
   getUser(roomNumber: string) {
-    return this.http.get<HotelUser>(this.baseUrl + 'hoteluser/' + roomNumber)
+    return this.http.get<HotelUser>(this.baseUrl + ApiRoutesConstant.hotelUser + roomNumber)
   }
 
   getRooms(){
-    return this.http.get<Room[]>(this.baseUrl + 'hoteluser/rooms');
+    return this.http.get<Room[]>(this.baseUrl + ApiRoutesConstant.roomList);
   }
 
   editUser(model: any){
-    return this.http.patch<HotelUser>(this.baseUrl + 'hoteluser/edit-guest', model);
+    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.editGuest, model);
   }
 
   generatePassword(roomNumber: string){
-    return this.http.patch<HotelUser>(this.baseUrl + 'hoteluser/generate-password/' + roomNumber, {});
+    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.generatePassword + roomNumber, {});
   }
 
   setCurrentUser(user: User) {

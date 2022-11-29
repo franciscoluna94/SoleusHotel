@@ -5,22 +5,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WorkerNavComponent } from './components/worker-nav/worker-nav.component';
-import { HomeComponent } from './components/home/home.component';
+import { WorkerNavComponent } from './core/components/worker-nav/worker-nav.component';
+import { HomeComponent } from './core/components/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SharedModule } from './modules/shared/shared.module';
-import { GuestDashboardComponent} from './components/guest-dashboard/guest-dashboard.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { RequestListComponent } from './components/request-list/request-list.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { WorkerDashboardComponent } from './components/worker-dashboard/worker-dashboard.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { GuestNavComponent } from './components/guest-nav/guest-nav.component';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { TextInputComponent } from './components/forms/text-input/text-input.component';
-import { RoomListComponent } from './components/room-list/room-list.component';
-import { DateInputComponent } from './components/forms/date-input/date-input.component';
+import { SharedModule } from './shared/shared.module';
+import { GuestDashboardComponent} from './features/components/guest-dashboard/guest-dashboard.component';
+import { UserListComponent } from './features/components/user-list/user-list.component';
+import { RequestListComponent } from './features/components/request-list/request-list.component';
+import { ForgotPasswordComponent } from './features/components/forgot-password/forgot-password.component';
+import { WorkerDashboardComponent } from './features/components/worker-dashboard/worker-dashboard.component';
+import { UserCardComponent } from './features/components/user-card/user-card.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { GuestNavComponent } from './core/components/guest-nav/guest-nav.component';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { TextInputComponent } from './shared/components/text-input/text-input.component';
+import { RoomListComponent } from './features/components/room-list/room-list.component';
+import { DateInputComponent } from './shared/components/date-input/date-input.component';
+import { RoleDirective } from './core/directives/role.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DateInputComponent } from './components/forms/date-input/date-input.com
     GuestNavComponent,
     TextInputComponent,
     RoomListComponent,
-    DateInputComponent
+    DateInputComponent,
+    RoleDirective
   ],
   imports: [
     BrowserModule,

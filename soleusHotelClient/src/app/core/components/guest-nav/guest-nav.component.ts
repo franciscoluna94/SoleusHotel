@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { User } from 'src/app/models/user';
-import { AccountService } from 'src/app/services/account.service';
+import { User } from 'src/app/core/models/user';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './worker-nav.component.html',
-  styleUrls: ['./worker-nav.component.css']
+  selector: 'app-guest-nav',
+  templateUrl: './guest-nav.component.html',
+  styleUrls: ['./guest-nav.component.css']
 })
-export class WorkerNavComponent implements OnInit {
+export class GuestNavComponent implements OnInit {
   isDropup = true;
   isCollapsed = false;
   user: User;
@@ -25,5 +25,4 @@ export class WorkerNavComponent implements OnInit {
     this.accountService.logout();
     this.router.navigateByUrl("/");
   }
-
 }

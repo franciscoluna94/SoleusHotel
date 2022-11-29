@@ -30,12 +30,16 @@
                                     <a class="nav-link px-0" routerLink="roomrequests"> <i class="fs-5 fa fa-check"> </i><span class="ms-1 d-none d-sm-inline">Ended</span> </a>
                                 </li>
                             </ul>
-                        </div>
-                        
+                        </div>                        
                     </li>
                     <li class="nav-item">
                         <a class="nav-link align-middle px-0" routerLink="rooms">
                             <i class="fs-4 fa fa-bed"></i> <span class="ms-1 d-none d-sm-inline" >Rooms</span>
+                        </a>
+                    </li>
+                    <li *appRole="['Admin']"class="nav-item">
+                        <a  class="nav-link align-middle px-0" routerLink="dashboard">
+                            <i class="fs-4 fa-solid fa-users"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
                         </a>
                     </li>
                 </ul>

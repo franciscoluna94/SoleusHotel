@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { User } from './models/user';
-import { AccountService } from './services/account.service';
+import { RolesConstants } from './core/constants/rolesConstants';
+import { User } from './core/models/user';
+import { AccountService } from './core/services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -36,10 +35,10 @@ export class AppComponent implements OnInit {
       return;
     }
     let route;
-    if (this.user.roles.includes("Guest")){
+    if (this.user.roles.includes(RolesConstants.guest)){
       route = "/guest";
     } else {
-      route = "/worker/dashboard";
+      route = "/hotel/dashboard";
     }
     this.router.navigateByUrl(route);
   }
