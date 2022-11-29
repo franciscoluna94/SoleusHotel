@@ -27,6 +27,16 @@
 	transition: 0.7s;
 }
 
+.readonly {
+	background-color: #F5F5F6;
+}
+
+.readonly:focus {
+	background-color: #F5F5F6;
+	box-shadow: none;
+	border: none;
+}
+
 .text-primary {
     color: #5472D3 !important;
 }

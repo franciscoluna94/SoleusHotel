@@ -1,11 +1,11 @@
-﻿namespace SoleusHotelApi.DTOs.Room
+﻿namespace SoleusHotelApi.DTOs.HotelUser
 {
-    public class Room
+    public class HotelUserWithRequestsDto
     {
         public string RoomNumber { get; set; }
         public string GuestName { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public int RoomRequests { get; set;}
+        public int RoomRequests { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace SoleusHotelApi.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IHotelUserRepository, HotelUserRepository>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IHotelUserService, HotelUserService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

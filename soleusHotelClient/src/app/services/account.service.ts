@@ -4,6 +4,7 @@ import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HotelUser } from '../models/hotelUser';
+import { Room } from '../models/room';
 import { User } from '../models/user';
 
 @Injectable({
@@ -47,8 +48,16 @@ export class AccountService {
     return this.http.get<HotelUser>(this.baseUrl + 'hoteluser/' + roomNumber)
   }
 
+  getRooms(){
+    return this.http.get<Room[]>(this.baseUrl + 'hoteluser/rooms');
+  }
+
   editUser(model: any){
-    return this.http.patch<HotelUser>(this.baseUrl + 'edit/guest', model);
+    return this.http.patch<HotelUser>(this.baseUrl + 'hoteluser/edit-guest', model);
+  }
+
+  generatePassword(roomNumber: string){
+    return this.http.patch<HotelUser>(this.baseUrl + 'hoteluser/generate-password/' + roomNumber, {});
   }
 
   setCurrentUser(user: User) {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Data.Repositories.Contracts;
+using SoleusHotelApi.DTOs;
 using SoleusHotelApi.DTOs.HotelUser;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Helpers;
@@ -44,6 +45,17 @@ namespace SoleusHotelApi.Services
             {
                 IsValid = true,
                 Data = await _userRepository.GetHotelUserDtoAsync(roomNumber)
+            };
+        }
+
+        public async Task<ServiceResponse<List<HotelUserWithRequestsDto>>> GetHotelUserWithRequests()
+        {
+            List<HotelUser> guests = await _userRepository.GetAllGuests();
+
+            return new ServiceResponse<List<HotelUserWithRequestsDto>>
+            {
+                IsValid = true,
+                Data = _mapper.Map<List<HotelUserWithRequestsDto>>(guests)
             };
         }
 
@@ -215,9 +227,9 @@ namespace SoleusHotelApi.Services
             {
                 response.Errors.Add("Unable to modify other room password");
                 return response;
-            }            
+            }
 
-           
+
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
                 response.Errors.Add("The guest name provided is not correct");
@@ -244,9 +256,9 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<HotelUserPasswordUpdatesDto>> GenerateUserPassword(string roomNumber)
+        public async Task<ServiceResponse<GenerateHotelUserPasswordDto>> GenerateUserPassword(string roomNumber)
         {
-            ServiceResponse<HotelUserPasswordUpdatesDto> response = new();
+            ServiceResponse<GenerateHotelUserPasswordDto> response = new();
 
             HotelUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber);
 
@@ -274,24 +286,22 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
+            GenerateHotelUserPasswordDto generatedPasswordUser = _mapper.Map<GenerateHotelUserPasswordDto>(user);
+            generatedPasswordUser.Password = generatedPassword;
+
             response.IsValid = true;
-            response.Data = new HotelUserPasswordUpdatesDto
-            {
-                RoomNumber = user.RoomNumber,
-                GuestName = user.GuestName,
-                Password = generatedPassword
-            };
+            response.Data = generatedPasswordUser;
             return response;
-        }       
+        }
 
         public async Task<ServiceResponse<List<string>>> ResetGuestsPasswords(string password)
         {
             ServiceResponse<List<string>> response = new();
             List<string> failedUserChanges = new();
 
-            List<HotelUser> users = await _userRepository.GetAllGuests();            
+            List<HotelUser> users = await _userRepository.GetAllGuests();
 
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
                 IdentityResult result = await _userManager.ResetPasswordAsync(user, passwordResetToken, password);
@@ -301,7 +311,7 @@ namespace SoleusHotelApi.Services
                 }
             }
 
-            if(failedUserChanges.Count > 0)
+            if (failedUserChanges.Count > 0)
             {
                 response.Errors.AddRange(failedUserChanges);
             }

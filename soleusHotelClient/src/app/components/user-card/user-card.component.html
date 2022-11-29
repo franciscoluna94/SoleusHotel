@@ -1,4 +1,49 @@
 <div class="bg-white ">
     <h2 class="ms-3 pt-2">Rooms</h2>
 </div>
-<p>{{hotelUser.roomNumber}}</p>
+<div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-white text-primary" style="border-radius: 1rem;">
+          <div class="card-body p-3 text-center">
+
+            <form class=" mt-md-4 pb-3" (ngSubmit)="editUser()" autocomplete="off">
+
+                <button class="ms-3 btn btn-primary btn-lg px-5 mb-4" type="button" (click)="generatePassword()">Generate Password</button>
+                
+                <input 
+                    type="text"
+                    [formControl]="$any(editUserForm.controls['roomNumber'])" 
+                    class="form-control form-control-lg readonly  mb-4"
+                    [readonly]="!this.isEditable"
+                    value="{{hotelUser.roomNumber}}">
+                  
+                <app-text-input [formControl]="$any(editUserForm.controls['guestName'])" 
+                    [label]="'Guest Name'"></app-text-input>
+  
+                <input 
+                    type="text"
+                    class="form-control form-control-lg readonly  mb-4"
+                    [readonly]="!this.isEditable"
+                    value={{generatedPassword}}>
+
+                <app-date-input [formControl]="$any(editUserForm.controls['checkInDate'])" 
+                      [label]="'Check-In'"></app-date-input>
+                <app-date-input [formControl]="$any(editUserForm.controls['checkOutDate'])" 
+                      [label]="'Check-Out'"></app-date-input>  
+              
+                
+  
+                <button class="btn btn-primary btn-lg px-5" [disabled]="!editUserForm.valid || !editUserForm.dirty" type="submit">Send</button>
+
+            </form> 
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  

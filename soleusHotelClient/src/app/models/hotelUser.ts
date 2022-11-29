@@ -3,4 +3,5 @@ export interface HotelUser {
     guestName: string;
     checkInDate: Date;
     checkOutDate: Date;
+    password: string;
 }

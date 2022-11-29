@@ -20,6 +20,7 @@ import { GuestNavComponent } from './components/guest-nav/guest-nav.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { TextInputComponent } from './components/forms/text-input/text-input.component';
 import { RoomListComponent } from './components/room-list/room-list.component';
+import { DateInputComponent } from './components/forms/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RoomListComponent } from './components/room-list/room-list.component';
     UserCardComponent,
     GuestNavComponent,
     TextInputComponent,
-    RoomListComponent
+    RoomListComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,

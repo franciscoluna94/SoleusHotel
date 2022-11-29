@@ -1,0 +1,15 @@
+<div class="form-outline form-white mb-4">
+    <input 
+        type="text"
+        [class.is-invalid]="ngControl.touched && ngControl.invalid"
+        class="form-control form-control-lg"
+        [formControl]="control"
+        placeholder="{{label}}"
+        bsDatepicker
+        [bsConfig]="bsConfig"
+        [minDate]="minDate">
+
+    <div *ngIf="ngControl.control.errors?.['required']" class="invalid-feedback">
+        The {{label}} is required
+    </div>
+</div>

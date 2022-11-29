@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SoleusHotelApi.DTOs;
 using SoleusHotelApi.DTOs.HotelUser;
-using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -35,6 +35,20 @@ namespace SoleusHotelApi.Controllers
         {
             ServiceResponse<List<HotelUserDto>> response = await _hotelUserService.GetHotelUsers();
            
+            if (!response.IsValid)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            return Ok(response.Data);
+        }
+
+        [Authorize(Policy = "EmployeeLevel")]
+        [HttpGet("rooms")]
+        public async Task<ActionResult<List<HotelUserWithRequestsDto>>> GetHotelUserWithRequestsNumber()
+        {
+            ServiceResponse<List<HotelUserWithRequestsDto>> response = await _hotelUserService.GetHotelUserWithRequests();
+
             if (!response.IsValid)
             {
                 return BadRequest(response.Errors);
@@ -91,9 +105,9 @@ namespace SoleusHotelApi.Controllers
 
         [Authorize(Policy = "ReceptionLevel")]
         [HttpPatch("generate-password/{roomNumber}")]
-        public async Task<ActionResult<HotelUserPasswordUpdatesDto>> GenerateUserPassword(string roomNumber)
+        public async Task<ActionResult<GenerateHotelUserPasswordDto>> GenerateUserPassword(string roomNumber)
         {            
-            ServiceResponse<HotelUserPasswordUpdatesDto> response = await _hotelUserService.GenerateUserPassword(roomNumber);
+            ServiceResponse<GenerateHotelUserPasswordDto> response = await _hotelUserService.GenerateUserPassword(roomNumber);
 
             if (!response.IsValid)
             {
