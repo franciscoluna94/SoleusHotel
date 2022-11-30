@@ -4,7 +4,7 @@ import { ForgotPasswordComponent } from './features/components/forgot-password/f
 import { HomeComponent } from './core/components/home/home.component';
 import { WorkerNavComponent } from './core/components/worker-nav/worker-nav.component';
 import { RequestListComponent } from './features/components/request-list/request-list.component';
-import { UserCardComponent } from './features/components/user-card/user-card.component';
+import { RoomCardComponent } from './features/components/room-card/room-card.component';
 import { GuestDashboardComponent } from './features/components/guest-dashboard/guest-dashboard.component';
 import { UserListComponent } from './features/components/user-list/user-list.component';
 import { WorkerDashboardComponent } from './features/components/worker-dashboard/worker-dashboard.component';
@@ -14,6 +14,10 @@ import { RoomListComponent } from './features/components/room-list/room-list.com
 import { RoomResolver } from './core/resolvers/room.resolver';
 import { EmployeeGuard } from './core/guards/employee.guard';
 import { GuestGuard } from './core/guards/guest.guard';
+import { UserCreateComponent } from './features/components/user-create/user-create.component';
+import { AdminGuard } from './core/guards/admin.guard';
+import { UserCardComponent } from './features/components/user-card/user-card.component';
+import { UserResolver } from './core/resolvers/user.resolver';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,8 +32,11 @@ const routes: Routes = [
       {path: 'dashboard', component: WorkerDashboardComponent},
       {path: 'roomrequests', component: RequestListComponent},
       {path: 'rooms', component: RoomListComponent},
-      {path: 'rooms/:roomNumber', component: UserCardComponent,  resolve: {hotelUser: RoomResolver}},        
-      {path: 'guests', component: UserListComponent},
+      {path: 'rooms/:roomNumber', component: RoomCardComponent,  resolve: {hotelUser: RoomResolver}},        
+      {path: 'users', component: UserListComponent, canActivate: [AdminGuard]},
+      {path: 'users/:roomNumber', component: UserCardComponent, resolve: {hotelUserWithRoles: UserResolver}, canActivate: [AdminGuard]},
+      {path: 'users/create', component: UserCreateComponent, canActivate: [AdminGuard]},
+      
       
     ]},
     {path: 'guest', component: GuestNavComponent, canActivate:[GuestGuard], children: [

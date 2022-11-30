@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Data.Repositories.Contracts;
-using SoleusHotelApi.DTOs;
 using SoleusHotelApi.DTOs.HotelUser;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Helpers;
@@ -30,13 +29,21 @@ namespace SoleusHotelApi.Services
         }
 
         #region Public Methods
-        public async Task<ServiceResponse<List<HotelUserDto>>> GetHotelUsers()
+        public async Task<ServiceResponse<List<HotelUserWithRolesDto>>> GetHotelUsers()
         {
-            return new ServiceResponse<List<HotelUserDto>>
+            ServiceResponse<List<HotelUserWithRolesDto>> response = new();
+
+            List<HotelUser> userList = await _userRepository.GetAllUsers();
+            List<HotelUserWithRolesDto> usersWithRoles = _mapper.Map<List<HotelUserWithRolesDto>>(userList);
+            foreach (var user in usersWithRoles)
             {
-                IsValid = true,
-                Data = await _userRepository.GetAllHotelUsersDto()
-            };
+                HotelUser userInDb = userList.First(room => room.RoomNumber == user.RoomNumber);
+                user.UserRoles = await _userManager.GetRolesAsync(userInDb);
+            }
+
+            response.IsValid = true;
+            response.Data = usersWithRoles;
+            return response;
         }
 
         public async Task<ServiceResponse<HotelUserDto>> GetHotelUser(string roomNumber)
@@ -46,6 +53,27 @@ namespace SoleusHotelApi.Services
                 IsValid = true,
                 Data = await _userRepository.GetHotelUserDtoAsync(roomNumber)
             };
+        }
+
+        public async Task<ServiceResponse<HotelUserWithRolesDto>> GetHotelUserWithRoles(string roomNumber)
+        {
+            ServiceResponse<HotelUserWithRolesDto> response = new();
+
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber);
+
+            if (user is null)
+            {
+                response.Errors.Add("User not found");
+                return response;
+            }
+
+            HotelUserWithRolesDto userWithRolesDto = _mapper.Map<HotelUserWithRolesDto>(user);
+            userWithRolesDto.UserRoles = await _userManager.GetRolesAsync(user);
+
+            response.IsValid = true;
+            response.Data = userWithRolesDto;
+
+            return response;
         }
 
         public async Task<ServiceResponse<List<HotelUserWithRequestsDto>>> GetHotelUserWithRequests()
@@ -59,9 +87,9 @@ namespace SoleusHotelApi.Services
             };
         }
 
-        public async Task<ServiceResponse<CreatedHotelUserDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
+        public async Task<ServiceResponse<HotelUserWithRolesDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
         {
-            ServiceResponse<CreatedHotelUserDto> response = new();
+            ServiceResponse<HotelUserWithRolesDto> response = new();
 
             if (await UserExists(createHotelUserDto.RoomNumber))
             {
@@ -91,7 +119,7 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            CreatedHotelUserDto createdHotelUser = _mapper.Map<CreatedHotelUserDto>(hotelUser);
+            HotelUserWithRolesDto createdHotelUser = _mapper.Map<HotelUserWithRolesDto>(hotelUser);
             createdHotelUser.UserRoles = await _userManager.GetRolesAsync(hotelUser);
 
             response.IsValid = true;
@@ -137,9 +165,9 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<CreatedHotelUserDto>> EditUser(CreateHotelUserDto editUser)
+        public async Task<ServiceResponse<HotelUserWithRolesDto>> EditUser(EditHotelUserDto editUser)
         {
-            ServiceResponse<CreatedHotelUserDto> response = new();
+            ServiceResponse<HotelUserWithRolesDto> response = new();
 
             HotelUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.RoomNumber == editUser.RoomNumber);
 
@@ -149,7 +177,15 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            await EditUserRoles(user.RoomNumber, editUser.Role);
+            editUser.GuestName = editUser.GuestName.ToUpper();
+
+            ServiceResponse<bool> editRolesResponse = await EditUserRoles(user, editUser.Role);
+
+            if (!editRolesResponse.IsValid)
+            {
+                response.Errors = editRolesResponse.Errors;
+                return response;
+            }
 
             _mapper.Map(editUser, user);
 
@@ -161,7 +197,19 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            CreatedHotelUserDto updatedUser = _mapper.Map<CreatedHotelUserDto>(user);
+            if (editUser.Password is not null)
+            {
+                string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                IdentityResult result = await _userManager.ResetPasswordAsync(user, passwordResetToken, editUser.Password);
+
+                if (!result.Succeeded)
+                {
+                    response.Errors.Add("User partially updated: Unable update the password");
+                    return response;
+                }
+            }            
+
+            HotelUserWithRolesDto updatedUser = _mapper.Map<HotelUserWithRolesDto>(user);
             updatedUser.UserRoles = await _userManager.GetRolesAsync(user);
 
             response.IsValid = true;
@@ -187,6 +235,8 @@ namespace SoleusHotelApi.Services
                 response.Errors.Add("You don't have the permission to modify this user");
                 return response;
             }
+
+            editUser.GuestName = editUser.GuestName.ToUpper();
 
             _mapper.Map(editUser, user);
 
@@ -341,43 +391,7 @@ namespace SoleusHotelApi.Services
 
             return response;
         }
-
-        public async Task<ServiceResponse<IList<string>>> EditUserRoles(string roomNumber, string roles)
-        {
-            ServiceResponse<IList<string>> response = new();
-
-            string[] selectedRoles = roles.Split(",").ToArray();
-
-            HotelUser user = await _userManager.FindByNameAsync(roomNumber);
-
-            if (user is null)
-            {
-                response.Errors.Add("Unable to find the user");
-                return response;
-            }
-
-            IList<string> userRoles = await _userManager.GetRolesAsync(user);
-
-            IdentityResult result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
-
-            if (!result.Succeeded)
-            {
-                response.Errors.Add("Unable to modufy roles");
-                return response;
-            }
-
-            result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
-
-            if (!result.Succeeded)
-            {
-                response.Errors.Add("Failed to remove roles");
-            }
-
-            response.IsValid = true;
-            response.Data = await _userManager.GetRolesAsync(user);
-            return response;
-        }
-
+        
         public async Task<ServiceResponse<bool>> DeleteHotelUser(string roomNumber)
         {
             ServiceResponse<bool> response = new();
@@ -407,6 +421,34 @@ namespace SoleusHotelApi.Services
         private async Task<bool> UserExists(string roomNumber)
         {
             return await _userManager.Users.AnyAsync(x => x.RoomNumber == roomNumber.ToUpper());
+        }
+
+        private async Task<ServiceResponse<bool>> EditUserRoles(HotelUser user, string roles)
+        {
+            ServiceResponse<bool> response = new();
+
+            string[] selectedRoles = roles.Split(",").ToArray();
+
+            IList<string> userRoles = await _userManager.GetRolesAsync(user);
+
+            IdentityResult result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
+
+            if (!result.Succeeded)
+            {
+                response.Errors.Add("Unable to modify roles");
+                return response;
+            }
+
+            result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
+
+            if (!result.Succeeded)
+            {
+                response.Errors.Add("Failed to remove roles");
+            }
+
+            response.IsValid = true;
+            response.Data = true;
+            return response;
         }
         #endregion
     }

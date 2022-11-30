@@ -27,6 +27,12 @@
 	transition: 0.7s;
 }
 
+.btn-primary:hover {
+	background-color: #0c47a1;
+	border: #0c47a1;
+	transition: 0.7s;
+}
+
 .readonly {
 	background-color: #F5F5F6;
 }
@@ -47,6 +53,7 @@
 
 .btn-primary{
     background-color: #5472D3;
+	border: #5472D3;
 }
 
 .bg-white {

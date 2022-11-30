@@ -27,9 +27,9 @@ namespace SoleusHotelApi.Data.Repositories
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<List<HotelUserDto>> GetAllHotelUsersDto()
+        public async Task<List<HotelUser>> GetAllUsers()
         {
-            return await _mapper.ProjectTo<HotelUserDto>(_dataContext.Users).ToListAsync();
+            return await _dataContext.Users.OrderByDescending(x => x.RoomNumber.Length).ThenBy(x => x.RoomNumber).ToListAsync();
         }
 
         public async Task<List<HotelUser>> GetAllGuests()

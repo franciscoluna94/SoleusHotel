@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApiRoutesConstant } from '../constants/apiRoutesConstants';
 import { HotelUser } from '../models/hotelUser';
+import { HotelUserWithRoles } from '../models/hotelUserWithRoles';
 import { Room } from '../models/room';
 import { User } from '../models/user';
 
@@ -45,16 +46,28 @@ export class AccountService {
     )
   }
 
+  getUsers() {
+    return this.http.get<HotelUserWithRoles[]>(this.baseUrl + ApiRoutesConstant.userList);
+  }
+
   getUser(roomNumber: string) {
     return this.http.get<HotelUser>(this.baseUrl + ApiRoutesConstant.hotelUser + roomNumber)
+  }
+
+  getUserWithRoles(roomNumber: string) {
+    return this.http.get<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.userWithRoles + roomNumber)
   }
 
   getRooms(){
     return this.http.get<Room[]>(this.baseUrl + ApiRoutesConstant.roomList);
   }
 
-  editUser(model: any){
+  editGuest(model: any){
     return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.editGuest, model);
+  }
+
+  editUser(model: any){
+    return this.http.put<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.editUser, model);
   }
 
   generatePassword(roomNumber: string){

@@ -1,1 +1,27 @@
-<button routerLink="../guests/guest">dep</button>
+<div class="bg-white ">
+    <h2 class="ms-3 pt-2">Users</h2>
+</div>
+
+<div class="container-fluid mt-5">
+    <table class="table  bg-white">
+      <thead>
+        <tr>
+          <th scope="col">Room Number</th>
+          <th scope="col">Guest Name</th>
+          <th scope="col">Check-In</th>
+          <th scope="col">Check-Out</th>
+          <th scope="col">Roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" routerLink="./{{user.roomNumber}}">
+          <td>{{user.roomNumber}}</td>
+          <td>{{user.guestName}}</td>
+          <td>{{user.checkInDate | date: 'dd/MM/yyyy'}}</td>
+          <td>{{user.checkOutDate | date: 'dd/MM/yyyy'}}</td>
+          <td>{{user.userRoles}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    

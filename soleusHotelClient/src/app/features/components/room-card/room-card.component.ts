@@ -1,96 +1,68 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
-import { RolesConstants } from 'src/app/core/constants/rolesConstants';
-import { HotelUserWithRoles } from 'src/app/core/models/hotelUserWithRoles';
+import { HotelUser } from 'src/app/core/models/hotelUser';
 import { User } from 'src/app/core/models/user';
 import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-user-card',
-  templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.css']
+  templateUrl: './room-card.component.html',
+  styleUrls: ['./room-card.component.css']
 })
-export class UserCardComponent implements OnInit {
-  hotelUser: HotelUserWithRoles;
-  roles: string[];
-  editRoles: string[] = [];
+export class RoomCardComponent implements OnInit {
+  hotelUser: HotelUser;
   user: User;
   editUserForm: FormGroup = new FormGroup({});
   validationErrors: string[] | undefined;
+  generatedPassword = "******";
   checkInOriginalDate: string;
   checkOutOriginalDate: string;
 
 
   constructor(private route: ActivatedRoute, private accountService: AccountService, private router: Router,
-     private fb: FormBuilder, private toastr: ToastrService, private renderer: Renderer2) {
+     private fb: FormBuilder, private toastr: ToastrService) {
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
    }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      this.hotelUser = data['hotelUserWithRoles'];
-      this.roles = RolesConstants.all;
-      this.editRoles = this.editRoles.concat(this.hotelUser.userRoles);
+      this.hotelUser = data['hotelUser'];
     });
     this.formatOriginalDates();
     this.initializeForm();
-    console.log(this.editRoles);
   }
 
-  editUser(){
+  editGuest(){
     this.setDateFormat();
-
-    
-    this.editUserForm.patchValue({formRoles: this.editRoles});
-
-    this.accountService.editUser(this.editUserForm.value).subscribe(response => {
+    this.accountService.editGuest(this.editUserForm.value).subscribe(response => {
       this.hotelUser = response;
-      this.toastr.success("User updated successfully");
+      this.toastr.success("Information updated successfully");
     })
-    this.editUserForm.clearValidators();   
+    this.editUserForm.clearValidators();
+    
 
+  }
+
+  generatePassword(){
+    this.accountService.generatePassword(this.hotelUser.roomNumber).subscribe(response => {
+      this.hotelUser = response;
+      this.generatedPassword = this.hotelUser.password;
+      this.initializeForm();
+    })
   }
 
   initializeForm() {   
 
     this.editUserForm = this.fb.group({
       roomNumber: [this.hotelUser.roomNumber, Validators.required],
-      password: ['', [Validators.minLength(4), Validators.maxLength(8)]],
-      formRoles: [this.editRoles, Validators.minLength(1)],     
-      guestName: [this.hotelUser.guestName, Validators.required],
+      guestName: [this.hotelUser.guestName, Validators.required],     
       checkInDate: [this.checkInOriginalDate, Validators.required],
       checkOutDate: [this.checkOutOriginalDate, Validators.required]
     });
-  }
-
-  toggleClass(event: any, className: string, role: string) {
-    const hasClass = event.target.classList.contains(className);
-    this.editUserForm.markAsDirty();
-
-    if (hasClass) {
-        this.renderer.removeClass(event.target, className);
-        this.removeRole(role);
-    } else {
-        this.renderer.addClass(event.target, className);
-        if (!this.editRoles.includes(role)){
-          this.editRoles.push(role);
-        }        
-    }
-    console.log(this.editRoles);
-  }
-
-  private removeRole(role) {
-    
-    let i = this.editRoles.length;  
-    while (i--) {
-      if (this.editRoles[i] === role) {
-        this.editRoles.splice(i, 1);
-      }
-    }
   }
 
   private formatOriginalDates() {

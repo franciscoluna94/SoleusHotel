@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SoleusHotelApi.DTOs;
 using SoleusHotelApi.DTOs.HotelUser;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
@@ -27,21 +26,7 @@ namespace SoleusHotelApi.Controllers
             }
 
             return Ok(response.Data);
-        }
-
-        [Authorize(Policy = "EmployeeLevel")]
-        [HttpGet("list")]
-        public async Task<ActionResult<List<HotelUserDto>>> GetHotelUsers()
-        {
-            ServiceResponse<List<HotelUserDto>> response = await _hotelUserService.GetHotelUsers();
-           
-            if (!response.IsValid)
-            {
-                return BadRequest(response.Errors);
-            }
-
-            return Ok(response.Data);
-        }
+        }        
 
         [Authorize(Policy = "EmployeeLevel")]
         [HttpGet("rooms")]

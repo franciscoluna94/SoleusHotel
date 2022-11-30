@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelUserWithRoles } from 'src/app/core/models/hotelUserWithRoles';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-user-list',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  users: HotelUserWithRoles[];
+  roles: string;
 
-  constructor() { }
+  constructor(private accountService: AccountService) {
+   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.getUsers();
+    
+  }
+
+  getUsers(){
+    this.accountService.getUsers().subscribe(users => {
+      this.users = users;
+    })
   }
 
 }

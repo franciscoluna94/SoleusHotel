@@ -14,7 +14,7 @@ import { UserListComponent } from './features/components/user-list/user-list.com
 import { RequestListComponent } from './features/components/request-list/request-list.component';
 import { ForgotPasswordComponent } from './features/components/forgot-password/forgot-password.component';
 import { WorkerDashboardComponent } from './features/components/worker-dashboard/worker-dashboard.component';
-import { UserCardComponent } from './features/components/user-card/user-card.component';
+import { RoomCardComponent } from './features/components/room-card/room-card.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { GuestNavComponent } from './core/components/guest-nav/guest-nav.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
@@ -22,6 +22,8 @@ import { TextInputComponent } from './shared/components/text-input/text-input.co
 import { RoomListComponent } from './features/components/room-list/room-list.component';
 import { DateInputComponent } from './shared/components/date-input/date-input.component';
 import { RoleDirective } from './core/directives/role.directive';
+import { UserCreateComponent } from './features/components/user-create/user-create.component';
+import { UserCardComponent } from './features/components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { RoleDirective } from './core/directives/role.directive';
     RequestListComponent,
     ForgotPasswordComponent,
     WorkerDashboardComponent,
-    UserCardComponent,
+    RoomCardComponent,
     GuestNavComponent,
     TextInputComponent,
     RoomListComponent,
     DateInputComponent,
-    RoleDirective
+    RoleDirective,
+    UserCreateComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,

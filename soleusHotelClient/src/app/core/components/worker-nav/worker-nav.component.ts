@@ -11,7 +11,8 @@ import { AccountService } from 'src/app/core/services/account.service';
 })
 export class WorkerNavComponent implements OnInit {
   isDropup = true;
-  isCollapsed = false;
+  isCollapsedRoomRequests = true;
+  isCollapsedUsers = true;
   user: User;
 
   constructor(private accountService: AccountService, private router: Router) {
