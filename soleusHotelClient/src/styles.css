@@ -5,8 +5,15 @@
 	height: 100vh;
 }
 
-.btn-back {
+.btn-not-selected {
 	background-color: #F5F5F6;
+}
+
+.btn-back {
+	background-color: white;
+	color: #0c47a1;
+	border: #0c47a1 1px;
+
 }
 
 .btn-edit {

@@ -179,7 +179,7 @@ namespace SoleusHotelApi.Services
 
             editUser.GuestName = editUser.GuestName.ToUpper();
 
-            ServiceResponse<bool> editRolesResponse = await EditUserRoles(user, editUser.Role);
+            ServiceResponse<bool> editRolesResponse = await EditUserRoles(user, editUser.Roles);
 
             if (!editRolesResponse.IsValid)
             {
@@ -197,14 +197,14 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            if (editUser.Password is not null)
+            if (!String.IsNullOrEmpty(editUser.Password))
             {
                 string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
                 IdentityResult result = await _userManager.ResetPasswordAsync(user, passwordResetToken, editUser.Password);
 
                 if (!result.Succeeded)
                 {
-                    response.Errors.Add("User partially updated: Unable update the password");
+                    response.Errors.Add("User partially updated: Unable to update the password");
                     return response;
                 }
             }            
@@ -423,11 +423,9 @@ namespace SoleusHotelApi.Services
             return await _userManager.Users.AnyAsync(x => x.RoomNumber == roomNumber.ToUpper());
         }
 
-        private async Task<ServiceResponse<bool>> EditUserRoles(HotelUser user, string roles)
+        private async Task<ServiceResponse<bool>> EditUserRoles(HotelUser user, List<string> selectedRoles)
         {
             ServiceResponse<bool> response = new();
-
-            string[] selectedRoles = roles.Split(",").ToArray();
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
 

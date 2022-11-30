@@ -31,7 +31,7 @@
                   [ngClass]="{'selected-role': hotelUser.userRoles.includes(role)}"
                   type="button"
                   (click)="toggleClass($event, 'selected-role', role)" 
-                  class="btn btn-primary btn-md px-5 ms-3 mb-4">{{role}}</button>
+                  class="btn btn-primary btn-sm px-5 ms-3 mb-4">{{role}}</button>
                 
                 <app-date-input [formControl]="$any(editUserForm.controls['checkInDate'])" 
                       [label]="'Check-In'"></app-date-input>

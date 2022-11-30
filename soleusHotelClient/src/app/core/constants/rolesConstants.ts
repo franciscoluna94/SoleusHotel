@@ -8,6 +8,6 @@ export class RolesConstants {
     public static readonly employees = [this.admin, this.reception, this.housekeeping, this.maintenance];
     public static readonly receptionAndAdmin = [this.admin, this.reception];
     public static readonly guestAndAdmin = [this.admin, this.guest]; 
-    public static readonly all = [this.guest, this.admin, this.reception, this.housekeeping, this.maintenance];
+    public static readonly all = [this.admin, this.reception, this.housekeeping, this.maintenance, this.guest];
 
 }

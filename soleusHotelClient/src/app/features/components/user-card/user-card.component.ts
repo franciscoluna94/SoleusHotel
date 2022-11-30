@@ -45,7 +45,7 @@ export class UserCardComponent implements OnInit {
     this.setDateFormat();
 
     
-    this.editUserForm.patchValue({formRoles: this.editRoles});
+    this.editUserForm.patchValue({roles: this.editRoles});
 
     this.accountService.editUser(this.editUserForm.value).subscribe(response => {
       this.hotelUser = response;
@@ -60,7 +60,7 @@ export class UserCardComponent implements OnInit {
     this.editUserForm = this.fb.group({
       roomNumber: [this.hotelUser.roomNumber, Validators.required],
       password: ['', [Validators.minLength(4), Validators.maxLength(8)]],
-      formRoles: [this.editRoles, Validators.minLength(1)],     
+      roles: [[], Validators.minLength(1)],     
       guestName: [this.hotelUser.guestName, Validators.required],
       checkInDate: [this.checkInOriginalDate, Validators.required],
       checkOutDate: [this.checkOutOriginalDate, Validators.required]
@@ -80,7 +80,6 @@ export class UserCardComponent implements OnInit {
           this.editRoles.push(role);
         }        
     }
-    console.log(this.editRoles);
   }
 
   private removeRole(role) {
