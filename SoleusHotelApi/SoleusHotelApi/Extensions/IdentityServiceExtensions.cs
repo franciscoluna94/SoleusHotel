@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data;
 using SoleusHotelApi.Entities;
 using System.Text;
@@ -38,11 +39,12 @@ namespace SoleusHotelApi.Extensions
 
             services.AddAuthorization(opt =>
             {
-                opt.AddPolicy("AdminLevel", policy => policy.RequireRole("Admin"));
-                opt.AddPolicy("GuestLevel", policy => policy.RequireRole("Admin", "Guest"));
-                opt.AddPolicy("EmployeeLevel", policy => policy.RequireRole("Admin", "Maintenance", "Housekeeping", "Reception"));
-                opt.AddPolicy("ReceptionLevel", policy => policy.RequireRole("Admin", "Reception"));
-                opt.AddPolicy("BackofficeLevel", policy => policy.RequireRole("Admin", "Maintenance", "Housekeeping"));
+                opt.AddPolicy("AdminLevel", policy => policy.RequireRole(Roles.Admin));
+                opt.AddPolicy("UserLevel", policy => policy.RequireRole(Roles.Admin, Roles.Maintenance, Roles.Housekeeping, Roles.Guest));
+                opt.AddPolicy("GuestLevel", policy => policy.RequireRole(Roles.Admin, Roles.Guest));
+                opt.AddPolicy("EmployeeLevel", policy => policy.RequireRole(Roles.Admin, Roles.Maintenance, Roles.Housekeeping, Roles.Reception));
+                opt.AddPolicy("ReceptionLevel", policy => policy.RequireRole(Roles.Admin, Roles.Reception));
+                opt.AddPolicy("BackofficeLevel", policy => policy.RequireRole(Roles.Admin, Roles.Maintenance, Roles.Housekeeping));
             });
 
             return services;

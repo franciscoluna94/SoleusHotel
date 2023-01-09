@@ -34,8 +34,9 @@ const routes: Routes = [
       {path: 'rooms', component: RoomListComponent},
       {path: 'rooms/:roomNumber', component: RoomCardComponent,  resolve: {hotelUser: RoomResolver}},        
       {path: 'users', component: UserListComponent, canActivate: [AdminGuard]},
-      {path: 'users/:roomNumber', component: UserCardComponent, resolve: {hotelUserWithRoles: UserResolver}, canActivate: [AdminGuard]},
       {path: 'users/create', component: UserCreateComponent, canActivate: [AdminGuard]},
+      {path: 'users/:roomNumber', component: UserCardComponent, resolve: {hotelUserWithRoles: UserResolver}, canActivate: [AdminGuard]},
+      
       
       
     ]},

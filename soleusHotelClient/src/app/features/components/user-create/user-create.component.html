@@ -1,1 +1,54 @@
-<p>user-create works!</p>
+<div class="bg-white ">
+    <h2 class="ms-3 pt-2">New User</h2>
+</div>
+<div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-white text-primary" style="border-radius: 1rem;">
+          <div class="card-body p-3 text-center">
+
+            <form class=" mt-md-4 pb-3" (ngSubmit)="createUser()" autocomplete="off">
+              
+                
+                <input 
+                    type="text"
+                    [formControl]="$any(createUserForm.controls['roomNumber'])" 
+                    class="form-control form-control-lg mb-4"
+                    placeholder="Room Number">
+                  
+                <app-text-input [formControl]="$any(createUserForm.controls['guestName'])"
+                    [label]="'Guest Name'"></app-text-input>
+  
+                <input 
+                    type="text"
+                    [formControl]="$any(createUserForm.controls['password'])" 
+                    class="form-control form-control-lg mb-4"
+                    placeholder="Password">    
+
+
+                <button *ngFor="let role of roles" 
+                  type="button"
+                  (click)="toggleClass($event, 'selected-role', role)" 
+                  class="btn btn-primary btn-sm px-5 ms-3 mb-4">{{role}}</button>
+                
+                <app-date-input [formControl]="$any(createUserForm.controls['checkInDate'])" 
+                      [label]="'Check-In'"></app-date-input>
+                <app-date-input [formControl]="$any(createUserForm.controls['checkOutDate'])" 
+                      [label]="'Check-Out'"></app-date-input>  
+              
+                
+  
+                <button class="btn btn-primary btn-lg px-5" 
+                  [disabled]="!createUserForm.valid || !createUserForm.dirty || editRoles.length < 1" type="submit">Create</button>
+
+            </form> 
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  

@@ -38,7 +38,6 @@ export class UserCardComponent implements OnInit {
     });
     this.formatOriginalDates();
     this.initializeForm();
-    console.log(this.editRoles);
   }
 
   editUser(){
