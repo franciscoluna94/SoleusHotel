@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUser;
 using SoleusHotelApi.Entities;
@@ -111,13 +112,16 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            IdentityResult roleResult = await _userManager.AddToRoleAsync(hotelUser, createHotelUserDto.Role);
-
-            if (!roleResult.Succeeded)
+            foreach(var role in createHotelUserDto.Roles)
             {
-                response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
-                return response;
-            }
+                IdentityResult roleResult = await _userManager.AddToRoleAsync(hotelUser, role);
+
+                if (!roleResult.Succeeded)
+                {
+                    response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
+                    return response;
+                }
+            }            
 
             HotelUserWithRolesDto createdHotelUser = _mapper.Map<HotelUserWithRolesDto>(hotelUser);
             createdHotelUser.UserRoles = await _userManager.GetRolesAsync(hotelUser);
@@ -230,7 +234,7 @@ namespace SoleusHotelApi.Services
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
-            if (userRoles.Any(x => x != "Guest"))
+            if (userRoles.Any(x => x != Roles.Guest))
             {
                 response.Errors.Add("You don't have the permission to modify this user");
                 return response;
@@ -267,7 +271,7 @@ namespace SoleusHotelApi.Services
 
             IList<string> roles = await _userManager.GetRolesAsync(user);
 
-            if (!roles.Contains("Guest"))
+            if (!roles.Contains(Roles.Guest))
             {
                 response.Errors.Add("Unable to modify this room password, please contact your administrator");
                 return response;
@@ -319,7 +323,7 @@ namespace SoleusHotelApi.Services
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
-            if (userRoles.Any(x => x != "Guest"))
+            if (userRoles.Any(x => x != Roles.Guest))
             {
                 response.Errors.Add("You don't have the permission to modify this user");
                 return response;
@@ -404,6 +408,12 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
+            if (await IsLastAdmin(user))
+            {
+                response.Errors.Add("Unable to delete the last admin user");
+                return response;
+            }
+
             IdentityResult result = await _userManager.DeleteAsync(user);
             if (!result.Succeeded)
             {
@@ -447,6 +457,25 @@ namespace SoleusHotelApi.Services
             response.IsValid = true;
             response.Data = true;
             return response;
+        }
+
+        private async Task<bool> IsLastAdmin(HotelUser user)
+        {
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+
+            if (!roles.Contains(Roles.Admin))
+            {
+                return false;
+            }
+
+            IList<HotelUser> adminUsers = await _userManager.GetUsersInRoleAsync(Roles.Admin);
+
+            if (adminUsers.Count() > 1)
+            {
+                return false;
+            }
+
+            return true;
         }
         #endregion
     }

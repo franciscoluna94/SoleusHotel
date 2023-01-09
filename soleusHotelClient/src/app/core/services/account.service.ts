@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { environment } from 'src/environments/environment';
 import { ApiRoutesConstant } from '../constants/apiRoutesConstants';
 import { HotelUser } from '../models/hotelUser';
@@ -51,7 +52,7 @@ export class AccountService {
   }
 
   getUser(roomNumber: string) {
-    return this.http.get<HotelUser>(this.baseUrl + ApiRoutesConstant.hotelUser + roomNumber)
+    return this.http.get<HotelUser>(this.baseUrl + ApiRoutesConstant.hotelUser + roomNumber);
   }
 
   getUserWithRoles(roomNumber: string) {
@@ -66,8 +67,16 @@ export class AccountService {
     return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.editGuest, model);
   }
 
+  createUser(model: any) {
+    return this.http.post<HotelUser>(this.baseUrl + ApiRoutesConstant.createUser, model);
+  }
+
   editUser(model: any){
     return this.http.put<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.editUser, model);
+  }
+
+  deleteUser(roomNumber: string){
+    return this.http.delete(this.baseUrl + ApiRoutesConstant.deleteUser + roomNumber);
   }
 
   generatePassword(roomNumber: string){

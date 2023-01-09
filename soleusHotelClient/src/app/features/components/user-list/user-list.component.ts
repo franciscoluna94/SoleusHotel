@@ -25,4 +25,8 @@ export class UserListComponent implements OnInit {
     })
   }
 
+  deleteUser(roomNumber: string){
+    this.accountService.deleteUser(roomNumber).subscribe();
+  }
+
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUser;
 using SoleusHotelApi.Entities;
@@ -34,7 +35,7 @@ namespace SoleusHotelApi.Data.Repositories
 
         public async Task<List<HotelUser>> GetAllGuests()
         {
-            return await _dataContext.Users.Where(x => x.UserRoles.Any(x => x.Role.Name == "Guest")).ToListAsync();
+            return await _dataContext.Users.Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).ToListAsync();
         }
 
         public void Update(HotelUser user)

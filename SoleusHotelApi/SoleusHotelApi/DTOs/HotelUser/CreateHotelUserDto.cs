@@ -9,7 +9,7 @@ namespace SoleusHotelApi.DTOs.HotelUser
         [StringLength(40)]
         public string GuestName { get; set; }
         [Required]
-        public string Role { get; set; }
+        public List<string> Roles { get; set; }
         [Required]
         public DateTime CheckInDate { get; set; }
         [Required]

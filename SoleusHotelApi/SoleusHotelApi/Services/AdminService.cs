@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SoleusHotelApi.Constants;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
@@ -29,7 +30,7 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            List<string> rolesList = new() { "Admin", "Housekeeping", "Maintenance", "Reception", "Guest" };
+            List<string> rolesList = new() { Roles.Admin, Roles.Housekeeping, Roles.Maintenance, Roles.Reception, Roles.Guest };
 
             foreach (var role in rolesList)
             {
@@ -55,7 +56,7 @@ namespace SoleusHotelApi.Services
 
             if (result.Succeeded)
             {
-                _ = await _userManager.AddToRoleAsync(superUser, "Admin");
+                _ = await _userManager.AddToRoleAsync(superUser, Roles.Admin);
             }
 
             response.IsValid = true;
