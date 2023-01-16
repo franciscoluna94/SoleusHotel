@@ -1,12 +1,11 @@
-﻿using SoleusHotelApi.Entities;
-
-namespace SoleusHotelApi.DTOs.HotelUser
+﻿namespace SoleusHotelApi.DTOs.HotelUserDtos
 {
-    public class HotelUserDto
+    public class HotelUserWithRolesDto
     {
         public string RoomNumber { get; set; }
         public string GuestName { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
+        public ICollection<string> UserRoles { get; set; }
     }
 }

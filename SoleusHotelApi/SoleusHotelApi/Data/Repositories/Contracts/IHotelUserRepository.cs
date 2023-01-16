@@ -1,4 +1,4 @@
-﻿using SoleusHotelApi.DTOs.HotelUser;
+﻿using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
 
 namespace SoleusHotelApi.Data.Repositories.Contracts

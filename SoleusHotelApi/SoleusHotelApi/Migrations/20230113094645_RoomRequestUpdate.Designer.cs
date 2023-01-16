@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoleusHotelApi.Data;
 
@@ -11,9 +12,10 @@ using SoleusHotelApi.Data;
 namespace SoleusHotelApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230113094645_RoomRequestUpdate")]
+    partial class RoomRequestUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,7 +244,7 @@ namespace SoleusHotelApi.Migrations
                     b.Property<DateTime?>("DateEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateStart")
+                    b.Property<DateTime>("DateStart")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
@@ -278,7 +280,7 @@ namespace SoleusHotelApi.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("RoomRequests");
+                    b.ToTable("PendingRoomRequests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

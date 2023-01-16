@@ -1,5 +1,4 @@
-﻿using SoleusHotelApi.DTOs.HotelUser;
-using SoleusHotelApi.Models;
+﻿using SoleusHotelApi.Models;
 
 namespace SoleusHotelApi.Services.Contracts
 {

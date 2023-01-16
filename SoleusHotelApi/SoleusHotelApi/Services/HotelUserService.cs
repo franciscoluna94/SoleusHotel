@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data.Repositories.Contracts;
-using SoleusHotelApi.DTOs.HotelUser;
+using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
@@ -348,9 +348,9 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<List<string>>> ResetGuestsPasswords(string password)
+        public async Task<ServiceResponse<bool>> ResetGuestsPasswords(string password)
         {
-            ServiceResponse<List<string>> response = new();
+            ServiceResponse<bool> response = new();
             List<string> failedUserChanges = new();
 
             List<HotelUser> users = await _userRepository.GetAllGuests();

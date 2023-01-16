@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SoleusHotelApi.DTOs.HotelUser;
+using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 

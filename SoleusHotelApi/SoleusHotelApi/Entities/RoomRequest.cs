@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SoleusHotelApi.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace SoleusHotelApi.Entities
 {
-    public class PendingRoomRequest
+    public class RoomRequest
     {
         public int Id { get; set; }
         [Required]
@@ -18,9 +19,11 @@ namespace SoleusHotelApi.Entities
         public string Description { get; set; }
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.Now;
-        public DateTime DateStart { get; set; }
         [Required]
-        public bool IsCompleted { get; set; } = false;
+        public RoomRequestStatus RequestStatus { get; set; }
+        public DateTime? DateStart { get; set; }
+        public DateTime? DateEnd { get; set; } = null;
+        public TimeSpan? Duration { get; set; } = null;
         public ICollection<Photo> Photos { get; set; }
     }
 }

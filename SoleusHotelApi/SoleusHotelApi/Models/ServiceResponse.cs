@@ -1,6 +1,4 @@
-﻿using SoleusHotelApi.DTOs.HotelUser;
-
-namespace SoleusHotelApi.Models
+﻿namespace SoleusHotelApi.Models
 {
     public class ServiceResponse<T>
     {

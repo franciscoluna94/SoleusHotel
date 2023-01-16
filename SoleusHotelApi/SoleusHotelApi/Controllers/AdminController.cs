@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SoleusHotelApi.DTOs.HotelUser;
+using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -73,7 +73,7 @@ namespace SoleusHotelApi.Controllers
         [HttpPost("reset-passwords")]
         public async Task<ActionResult> ResetGuestPasswords([FromBody] string password)
         {
-            ServiceResponse<List<string>> response = await _hotelUserService.ResetGuestsPasswords(password);
+            ServiceResponse<bool> response = await _hotelUserService.ResetGuestsPasswords(password);
 
             if (!response.IsValid)
             {

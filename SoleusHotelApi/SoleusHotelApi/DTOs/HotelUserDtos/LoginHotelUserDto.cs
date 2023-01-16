@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SoleusHotelApi.DTOs.HotelUser
+namespace SoleusHotelApi.DTOs.HotelUserDtos
 {
     public class LoginHotelUserDto
     {

@@ -8,7 +8,7 @@ namespace SoleusHotelApi.Entities
         public string GuestName { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
-        public ICollection<PendingRoomRequest> RoomRequests { get; set; }
+        public ICollection<RoomRequest> RoomRequests { get; set; }
         public ICollection<HotelUserRole> UserRoles { get; set; }
     }
 }

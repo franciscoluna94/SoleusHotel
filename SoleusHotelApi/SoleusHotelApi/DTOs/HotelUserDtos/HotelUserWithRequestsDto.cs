@@ -1,4 +1,4 @@
-﻿namespace SoleusHotelApi.DTOs.HotelUser
+﻿namespace SoleusHotelApi.DTOs.HotelUserDtos
 {
     public class HotelUserWithRequestsDto
     {

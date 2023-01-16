@@ -1,5 +1,5 @@
 ﻿using SoleusHotelApi.DTOs;
-using SoleusHotelApi.DTOs.HotelUser;
+using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Models;
 
 namespace SoleusHotelApi.Services.Contracts
@@ -16,7 +16,7 @@ namespace SoleusHotelApi.Services.Contracts
         Task<ServiceResponse<HotelUserDto>> EditGuestUser(HotelUserDto editUser);        
         Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto);
         Task<ServiceResponse<GenerateHotelUserPasswordDto>> GenerateUserPassword(string roomNumber);
-        Task<ServiceResponse<List<string>>> ResetGuestsPasswords(string password);
+        Task<ServiceResponse<bool>> ResetGuestsPasswords(string password);
         Task<ServiceResponse<List<HotelRoleDto>>> GetUsersWithRolesAsync();
         Task<ServiceResponse<bool>> DeleteHotelUser(string roomNumber);
     }

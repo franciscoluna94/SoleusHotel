@@ -14,8 +14,7 @@ namespace SoleusHotelApi.Data
 
         }
 
-        public DbSet<PendingRoomRequest> PendingRoomRequests { get; set; }
-        public DbSet<EndedRoomRequest> EndedRoomRequests { get; set; }
+        public DbSet<RoomRequest> RoomRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
