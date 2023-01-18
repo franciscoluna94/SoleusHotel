@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoleusHotelApi.DTOs.HotelUserDtos;
+using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -15,6 +16,7 @@ namespace SoleusHotelApi.Controllers
             _hotelUserService = hotelUserService;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<LoggedUserDto>> Login([FromBody] LoginHotelUserDto loginHotelUserDto)
         {
@@ -78,7 +80,7 @@ namespace SoleusHotelApi.Controllers
                 return BadRequest();
             }
 
-            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate);
+            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate, User.GetRoomNumber());
 
             if (!response.IsValid)
             {

@@ -15,6 +15,8 @@ namespace SoleusHotelApi.Data
         }
 
         public DbSet<RoomRequest> RoomRequests { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -30,7 +32,17 @@ namespace SoleusHotelApi.Data
                                           .Ignore(c => c.PhoneNumberConfirmed)
                                           .Ignore(c => c.TwoFactorEnabled);
 
-            builder.Entity<HotelUser>().HasIndex(u => u.RoomNumber).IsUnique();
+            builder.Entity<HotelUser>()
+                .HasOne(u => u.Room)
+                .WithOne(h => h.User)
+                .HasForeignKey<Room>(h => h.UserId);
+
+            builder.Entity<Room>()
+              .HasOne(u => u.User)
+              .WithOne(h => h.Room)
+              .HasForeignKey<HotelUser>(h => h.RoomId);
+
+            builder.Entity<Room>().HasIndex(u => u.RoomNumber).IsUnique();
 
             builder.Entity<HotelUser>().ToTable("HotelUsers");
 

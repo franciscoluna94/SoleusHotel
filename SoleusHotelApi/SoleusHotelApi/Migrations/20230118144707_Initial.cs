@@ -25,24 +25,19 @@ namespace SoleusHotelApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HotelUsers",
+                name: "Rooms",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GuestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HotelUsers", x => x.Id);
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,6 +59,30 @@ namespace SoleusHotelApi.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HotelUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GuestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomId = table.Column<int>(type: "int", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HotelUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HotelUsers_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -152,7 +171,7 @@ namespace SoleusHotelApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EndedRoomRequests",
+                name: "RoomRequests",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -163,43 +182,24 @@ namespace SoleusHotelApi.Migrations
                     Subject = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(280)", maxLength: 280, nullable: true),
                     RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "time", nullable: false)
+                    RequestStatus = table.Column<int>(type: "int", nullable: false),
+                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Duration = table.Column<TimeSpan>(type: "time", nullable: true),
+                    AssignedToId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EndedRoomRequests", x => x.Id);
+                    table.PrimaryKey("PK_RoomRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EndedRoomRequests_HotelUsers_RoomId",
-                        column: x => x.RoomId,
+                        name: "FK_RoomRequests_HotelUsers_AssignedToId",
+                        column: x => x.AssignedToId,
                         principalTable: "HotelUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PendingRoomRequests",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomId = table.Column<int>(type: "int", nullable: false),
-                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Topic = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(280)", maxLength: 280, nullable: true),
-                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsCompleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PendingRoomRequests", x => x.Id);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_PendingRoomRequests_HotelUsers_RoomId",
+                        name: "FK_RoomRequests_Rooms_RoomId",
                         column: x => x.RoomId,
-                        principalTable: "HotelUsers",
+                        principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -212,21 +212,15 @@ namespace SoleusHotelApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PublicId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoomRequestId = table.Column<int>(type: "int", nullable: true),
-                    EndedRoomRequestId = table.Column<int>(type: "int", nullable: true)
+                    RoomRequestId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Photos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photos_EndedRoomRequests_EndedRoomRequestId",
-                        column: x => x.EndedRoomRequestId,
-                        principalTable: "EndedRoomRequests",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Photos_PendingRoomRequests_RoomRequestId",
+                        name: "FK_Photos_RoomRequests_RoomRequestId",
                         column: x => x.RoomRequestId,
-                        principalTable: "PendingRoomRequests",
+                        principalTable: "RoomRequests",
                         principalColumn: "Id");
                 });
 
@@ -258,9 +252,11 @@ namespace SoleusHotelApi.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EndedRoomRequests_RoomId",
-                table: "EndedRoomRequests",
-                column: "RoomId");
+                name: "IX_HotelUsers_RoomId",
+                table: "HotelUsers",
+                column: "RoomId",
+                unique: true,
+                filter: "[RoomId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -270,19 +266,25 @@ namespace SoleusHotelApi.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PendingRoomRequests_RoomId",
-                table: "PendingRoomRequests",
-                column: "RoomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Photos_EndedRoomRequestId",
-                table: "Photos",
-                column: "EndedRoomRequestId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Photos_RoomRequestId",
                 table: "Photos",
                 column: "RoomRequestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomRequests_AssignedToId",
+                table: "RoomRequests",
+                column: "AssignedToId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomRequests_RoomId",
+                table: "RoomRequests",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rooms_RoomNumber",
+                table: "Rooms",
+                column: "RoomNumber",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -309,13 +311,13 @@ namespace SoleusHotelApi.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "EndedRoomRequests");
-
-            migrationBuilder.DropTable(
-                name: "PendingRoomRequests");
+                name: "RoomRequests");
 
             migrationBuilder.DropTable(
                 name: "HotelUsers");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SoleusHotelApi.Entities
     {
         public int Id { get; set; }
         [Required]
-        public HotelUser Room { get; set; }
+        public Room Room { get; set; }
         [Required]
         public string Department { get; set; }
         [Required]
@@ -24,6 +24,7 @@ namespace SoleusHotelApi.Entities
         public DateTime? DateStart { get; set; }
         public DateTime? DateEnd { get; set; } = null;
         public TimeSpan? Duration { get; set; } = null;
+        public HotelUser AssignedTo { get; set; } = null;
         public ICollection<Photo> Photos { get; set; }
     }
 }

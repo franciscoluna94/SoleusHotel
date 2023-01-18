@@ -16,10 +16,12 @@ namespace SoleusHotelApi.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IHotelUserRepository, HotelUserRepository>();
             services.AddScoped<IRoomRequestRepository, RoomRequestRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IHotelUserService, HotelUserService>();
             services.AddScoped<IRoomRequestService, RoomRequestService>();
+            services.AddScoped<IRoomService, RoomService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             return services;

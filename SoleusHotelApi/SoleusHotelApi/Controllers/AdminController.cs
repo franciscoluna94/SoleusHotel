@@ -58,7 +58,7 @@ namespace SoleusHotelApi.Controllers
         }
 
         [HttpPut("edit-user")]
-        public async Task<ActionResult<HotelUserWithRolesDto>> EditUser([FromBody] EditHotelUserDto editHotelUser)
+        public async Task<ActionResult<HotelUserWithRolesDto>> EditUser([FromBody] CreateHotelUserDto editHotelUser)
         {
             ServiceResponse<HotelUserWithRolesDto> response = await _hotelUserService.EditUser(editHotelUser);
 

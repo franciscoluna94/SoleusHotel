@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Constants;
+using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
@@ -11,12 +12,14 @@ namespace SoleusHotelApi.Services
     {
         private readonly UserManager<HotelUser> _userManager;
         private readonly RoleManager<HotelRole> _roleManager;
+        private readonly IRoomRepository _roomRepository;
         private readonly IConfiguration _configuration;
 
-        public AdminService(UserManager<HotelUser> userManager, RoleManager<HotelRole> roleManager, IConfiguration configuration)
+        public AdminService(UserManager<HotelUser> userManager, RoleManager<HotelRole> roleManager, IRoomRepository roomRepository , IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _roomRepository = roomRepository;
             _configuration = configuration;
         }
 
@@ -24,7 +27,7 @@ namespace SoleusHotelApi.Services
         {
             ServiceResponse<string> response = new();
 
-            if (await _userManager.Users.AnyAsync(x => x.RoomNumber == _configuration["SuperUser:RoomNumber"]))
+            if (await _userManager.Users.AnyAsync(x => x.Room.RoomNumber == _configuration["SuperUser:RoomNumber"]))
             {
                 response.Errors.Add("Your setup had been already done before");
                 return response;
@@ -42,13 +45,23 @@ namespace SoleusHotelApi.Services
                 }
             }
 
-            HotelUser superUser = new()
+            Room superUserRoom = new()
             {
                 RoomNumber = _configuration["SuperUser:RoomNumber"],
-                UserName = _configuration["SuperUser:RoomNumber"],
                 CheckInDate = DateTime.Now,
                 CheckOutDate = DateTime.Now.AddYears(100)
             };
+
+            await _roomRepository.AddRoom(superUserRoom);
+
+            HotelUser superUser = new()
+            {
+                Room = superUserRoom,
+                GuestName = _configuration["SuperUser:RoomNumber"],
+                UserName = _configuration["SuperUser:RoomNumber"]
+            };
+
+            superUserRoom.UserId = superUser.Id;
 
             string superUserPass = _configuration["SuperUser:Password"];
 
@@ -59,7 +72,9 @@ namespace SoleusHotelApi.Services
                 _ = await _userManager.AddToRoleAsync(superUser, Roles.Admin);
             }
 
-            response.IsValid = true;
+            await _roomRepository.SaveAllAsync();
+
+            response.IsValid = true;            
             response.Data = "Your setup has been completed";
             return response;
         }

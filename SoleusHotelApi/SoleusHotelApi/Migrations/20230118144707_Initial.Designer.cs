@@ -12,8 +12,8 @@ using SoleusHotelApi.Data;
 namespace SoleusHotelApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230116091114_NullableDate")]
-    partial class NullableDate
+    [Migration("20230118144707_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -150,12 +150,6 @@ namespace SoleusHotelApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CheckInDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CheckOutDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -170,8 +164,8 @@ namespace SoleusHotelApi.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoomNumber")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -187,9 +181,9 @@ namespace SoleusHotelApi.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("RoomNumber")
+                    b.HasIndex("RoomId")
                         .IsUnique()
-                        .HasFilter("[RoomNumber] IS NOT NULL");
+                        .HasFilter("[RoomId] IS NOT NULL");
 
                     b.ToTable("HotelUsers", (string)null);
                 });
@@ -233,6 +227,35 @@ namespace SoleusHotelApi.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("SoleusHotelApi.Entities.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CheckOutDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoomNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomNumber")
+                        .IsUnique();
+
+                    b.ToTable("Rooms");
+                });
+
             modelBuilder.Entity("SoleusHotelApi.Entities.RoomRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -240,6 +263,9 @@ namespace SoleusHotelApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AssignedToId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DateEnd")
                         .HasColumnType("datetime2");
@@ -277,6 +303,8 @@ namespace SoleusHotelApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssignedToId");
 
                     b.HasIndex("RoomId");
 
@@ -319,6 +347,15 @@ namespace SoleusHotelApi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SoleusHotelApi.Entities.HotelUser", b =>
+                {
+                    b.HasOne("SoleusHotelApi.Entities.Room", "Room")
+                        .WithOne("User")
+                        .HasForeignKey("SoleusHotelApi.Entities.HotelUser", "RoomId");
+
+                    b.Navigation("Room");
+                });
+
             modelBuilder.Entity("SoleusHotelApi.Entities.HotelUserRole", b =>
                 {
                     b.HasOne("SoleusHotelApi.Entities.HotelRole", "Role")
@@ -349,11 +386,17 @@ namespace SoleusHotelApi.Migrations
 
             modelBuilder.Entity("SoleusHotelApi.Entities.RoomRequest", b =>
                 {
-                    b.HasOne("SoleusHotelApi.Entities.HotelUser", "Room")
+                    b.HasOne("SoleusHotelApi.Entities.HotelUser", "AssignedTo")
+                        .WithMany("AssignedRoomRequests")
+                        .HasForeignKey("AssignedToId");
+
+                    b.HasOne("SoleusHotelApi.Entities.Room", "Room")
                         .WithMany("RoomRequests")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AssignedTo");
 
                     b.Navigation("Room");
                 });
@@ -365,9 +408,16 @@ namespace SoleusHotelApi.Migrations
 
             modelBuilder.Entity("SoleusHotelApi.Entities.HotelUser", b =>
                 {
-                    b.Navigation("RoomRequests");
+                    b.Navigation("AssignedRoomRequests");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("SoleusHotelApi.Entities.Room", b =>
+                {
+                    b.Navigation("RoomRequests");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SoleusHotelApi.Entities.RoomRequest", b =>

@@ -22,21 +22,21 @@ namespace SoleusHotelApi.Data.Repositories
         public async Task<HotelUserDto> GetHotelUserDtoAsync(string roomNumber)
         {
             return await _dataContext.Users
-                .Where(x => x.RoomNumber == roomNumber)
-                .OrderBy(x => x.RoomNumber)
+                .Include(r => r.Room)
+                .Where(x => x.Room.RoomNumber == roomNumber)
+                .OrderBy(x => x.Room.RoomNumber)
                 .ProjectTo<HotelUserDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
 
         public async Task<List<HotelUser>> GetAllUsers()
         {
-            return await _dataContext.Users.OrderByDescending(x => x.RoomNumber.Length).ThenBy(x => x.RoomNumber).ToListAsync();
+            return await _dataContext.Users.Include(r => r.Room).OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber).ToListAsync();
         }
 
         public async Task<List<HotelUser>> GetAllGuests()
         {
-            return await _dataContext.Users.Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest))
-                .Include(r => r.RoomRequests).ToListAsync();
+            return await _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).ToListAsync();
         }
 
         public void Update(HotelUser user)

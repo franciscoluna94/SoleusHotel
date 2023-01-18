@@ -13,18 +13,22 @@ namespace SoleusHotelApi.Services
 {
     public class HotelUserService : IHotelUserService
     {
+        private readonly IRoomService _roomService;
         private readonly UserManager<HotelUser> _userManager;
         private readonly SignInManager<HotelUser> _signInManager;
         private readonly IHotelUserRepository _userRepository;
+        private readonly IRoomRepository _roomRepository;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
 
-        public HotelUserService(UserManager<HotelUser> userManager, SignInManager<HotelUser> signInManager, IHotelUserRepository userRepository,
-            ITokenService tokenService, IMapper mapper)
+        public HotelUserService(IRoomService roomService, UserManager<HotelUser> userManager, SignInManager<HotelUser> signInManager, IHotelUserRepository userRepository,
+            IRoomRepository roomRepository, ITokenService tokenService, IMapper mapper)
         {
+            _roomService = roomService;
             _userManager = userManager;
             _signInManager = signInManager;
             _userRepository = userRepository;
+            _roomRepository = roomRepository;
             _tokenService = tokenService;
             _mapper = mapper;
         }
@@ -38,7 +42,7 @@ namespace SoleusHotelApi.Services
             List<HotelUserWithRolesDto> usersWithRoles = _mapper.Map<List<HotelUserWithRolesDto>>(userList);
             foreach (var user in usersWithRoles)
             {
-                HotelUser userInDb = userList.First(room => room.RoomNumber == user.RoomNumber);
+                HotelUser userInDb = userList.First(room => room.Room.RoomNumber == user.RoomNumber);
                 user.UserRoles = await _userManager.GetRolesAsync(userInDb);
             }
 
@@ -60,7 +64,7 @@ namespace SoleusHotelApi.Services
         {
             ServiceResponse<HotelUserWithRolesDto> response = new();
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber);
+            var user = await _userManager.Users.Include(r => r.Room).FirstOrDefaultAsync(x => x.Room.RoomNumber == roomNumber);
 
             if (user is null)
             {
@@ -94,15 +98,15 @@ namespace SoleusHotelApi.Services
 
             if (await UserExists(createHotelUserDto.RoomNumber))
             {
-                response.Errors.Add("This room already has an user");
+                response.Errors.Add("This user already exists");
                 return response;
             }
 
             createHotelUserDto.RoomNumber = createHotelUserDto.RoomNumber.ToUpper();
             createHotelUserDto.GuestName = createHotelUserDto.GuestName.ToUpper();
 
+
             HotelUser hotelUser = _mapper.Map<HotelUser>(createHotelUserDto);
-            hotelUser.UserName = hotelUser.RoomNumber;
 
             IdentityResult createUserResult = await _userManager.CreateAsync(hotelUser, createHotelUserDto.Password);
 
@@ -112,7 +116,7 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            foreach(var role in createHotelUserDto.Roles)
+            foreach (var role in createHotelUserDto.Roles)
             {
                 IdentityResult roleResult = await _userManager.AddToRoleAsync(hotelUser, role);
 
@@ -121,13 +125,26 @@ namespace SoleusHotelApi.Services
                     response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
                     return response;
                 }
-            }            
+            }
 
-            HotelUserWithRolesDto createdHotelUser = _mapper.Map<HotelUserWithRolesDto>(hotelUser);
-            createdHotelUser.UserRoles = await _userManager.GetRolesAsync(hotelUser);
+            ServiceResponse<bool> userAddedToRoom = await _roomService.AddUserToRoom(hotelUser, createHotelUserDto);
+
+            if (!userAddedToRoom.IsValid)
+            {
+                userAddedToRoom.Errors.Add("User created correctly");
+                response.Errors.Append(userAddedToRoom.Errors.First());
+            }
+
+            Room userRoom = await _roomRepository.GetRoomByRoomNumber(createHotelUserDto.RoomNumber);
+            hotelUser.RoomId = userRoom.Id;
+            await _userManager.UpdateAsync(hotelUser);
+
+
+            HotelUserWithRolesDto createdHotelUserDto = _mapper.Map<HotelUserWithRolesDto>(hotelUser);
+            createdHotelUserDto.UserRoles = await _userManager.GetRolesAsync(hotelUser);
 
             response.IsValid = true;
-            response.Data = createdHotelUser;
+            response.Data = createdHotelUserDto;
 
             return response;
         }
@@ -142,7 +159,8 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            HotelUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.RoomNumber == loginHotelUserDto.RoomNumber.ToUpper());
+            HotelUser user = await _userManager.Users.Include(r => r.Room)
+                .SingleOrDefaultAsync(x => x.Room.RoomNumber == loginHotelUserDto.RoomNumber.ToUpper());
 
             if (user is null)
             {
@@ -161,7 +179,7 @@ namespace SoleusHotelApi.Services
             response.IsValid = true;
             response.Data = new LoggedUserDto
             {
-                RoomNumber = user.RoomNumber,
+                RoomNumber = user.Room.RoomNumber,
                 GuestName = user.GuestName,
                 Token = await _tokenService.CreateToken(user)
             };
@@ -169,11 +187,11 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<HotelUserWithRolesDto>> EditUser(EditHotelUserDto editUser)
+        public async Task<ServiceResponse<HotelUserWithRolesDto>> EditUser(CreateHotelUserDto editUser)
         {
             ServiceResponse<HotelUserWithRolesDto> response = new();
 
-            HotelUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.RoomNumber == editUser.RoomNumber);
+            HotelUser user = await _userManager.Users.Include(r => r.Room).SingleOrDefaultAsync(x => x.Room.RoomNumber == editUser.RoomNumber);
 
             if (user is null)
             {
@@ -211,7 +229,13 @@ namespace SoleusHotelApi.Services
                     response.Errors.Add("User partially updated: Unable to update the password");
                     return response;
                 }
-            }            
+            }
+
+            if (! await IsTheRoomUpdated(editUser))
+            {
+                response.Errors.Add($"Unable to update the dates of the room {editUser.RoomNumber}");
+                return response;
+            }
 
             HotelUserWithRolesDto updatedUser = _mapper.Map<HotelUserWithRolesDto>(user);
             updatedUser.UserRoles = await _userManager.GetRolesAsync(user);
@@ -225,7 +249,7 @@ namespace SoleusHotelApi.Services
         {
             ServiceResponse<HotelUserDto> response = new();
 
-            HotelUser user = await _userManager.Users.SingleOrDefaultAsync(x => x.RoomNumber == editUser.RoomNumber);
+            HotelUser user = await _userManager.Users.Include(r => r.Room).SingleOrDefaultAsync(x => x.Room.RoomNumber == editUser.RoomNumber);
 
             if (user is null)
             {
@@ -240,9 +264,7 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            editUser.GuestName = editUser.GuestName.ToUpper();
-
-            _mapper.Map(editUser, user);
+            user.GuestName = editUser.GuestName.ToUpper();
 
             _userRepository.Update(user);
 
@@ -251,17 +273,23 @@ namespace SoleusHotelApi.Services
                 response.Errors.Add("Unable to save your changes");
                 return response;
             }
+                      
+            if (!await IsTheRoomUpdated(_mapper.Map<CreateHotelUserDto>(editUser)))
+            {
+                response.Errors.Add($"Unable to update the dates of the room {editUser.RoomNumber}");
+                return response;
+            }
 
             response.IsValid = true;
             response.Data = _mapper.Map<HotelUserDto>(user);
             return response;
         }
 
-        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto)
+        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto, string userRoomNumber)
         {
             ServiceResponse<LoggedUserDto> response = new();
 
-            HotelUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == userPasswordForgotDto.RoomNumber);
+            HotelUser user = await _userManager.Users.Include(r => r.Room).FirstOrDefaultAsync(x => x.Room.RoomNumber == userPasswordForgotDto.RoomNumber);
 
             if (user is null)
             {
@@ -277,7 +305,7 @@ namespace SoleusHotelApi.Services
                 return response;
             }
 
-            if (userPasswordForgotDto.RoomNumber != user.RoomNumber)
+            if (userPasswordForgotDto.RoomNumber != userRoomNumber)
             {
                 response.Errors.Add("Unable to modify other room password");
                 return response;
@@ -303,7 +331,7 @@ namespace SoleusHotelApi.Services
             response.IsValid = true;
             response.Data = new LoggedUserDto
             {
-                RoomNumber = user.RoomNumber,
+                RoomNumber = user.Room.RoomNumber,
                 GuestName = user.GuestName,
                 Token = await _tokenService.CreateToken(user)
             };
@@ -314,7 +342,7 @@ namespace SoleusHotelApi.Services
         {
             ServiceResponse<GenerateHotelUserPasswordDto> response = new();
 
-            HotelUser user = await _userManager.Users.FirstOrDefaultAsync(x => x.RoomNumber == roomNumber);
+            HotelUser user = await _userManager.Users.Include(r => r.Room).FirstOrDefaultAsync(x => x.Room.RoomNumber == roomNumber);
 
             if (user is null)
             {
@@ -361,7 +389,7 @@ namespace SoleusHotelApi.Services
                 IdentityResult result = await _userManager.ResetPasswordAsync(user, passwordResetToken, password);
                 if (!result.Succeeded)
                 {
-                    failedUserChanges.Add(user.RoomNumber);
+                    failedUserChanges.Add(user.Room.RoomNumber);
                 }
             }
 
@@ -381,11 +409,11 @@ namespace SoleusHotelApi.Services
             var users = await _userManager.Users
                .Include(r => r.UserRoles)
                .ThenInclude(r => r.Role)
-               .OrderBy(u => u.RoomNumber)
+               .OrderBy(u => u.Room)
                .Select(u => new HotelRoleDto
                {
                    Id = u.Id,
-                   RoomNumber = u.RoomNumber,
+                   RoomNumber = u.Room.RoomNumber,
                    Roles = u.UserRoles.Select(r => r.Role.Name).ToList()
                })
                 .ToListAsync();
@@ -395,12 +423,12 @@ namespace SoleusHotelApi.Services
 
             return response;
         }
-        
+
         public async Task<ServiceResponse<bool>> DeleteHotelUser(string roomNumber)
         {
             ServiceResponse<bool> response = new();
 
-            HotelUser user = _userManager.Users.FirstOrDefault(x => x.RoomNumber == roomNumber);
+            HotelUser user = _userManager.Users.FirstOrDefault(x => x.Room.RoomNumber == roomNumber);
 
             if (user is null)
             {
@@ -430,7 +458,7 @@ namespace SoleusHotelApi.Services
         #region Private Methods
         private async Task<bool> UserExists(string roomNumber)
         {
-            return await _userManager.Users.AnyAsync(x => x.RoomNumber == roomNumber.ToUpper());
+            return await _userManager.Users.AnyAsync(x => x.Room.RoomNumber == roomNumber.ToUpper());
         }
 
         private async Task<ServiceResponse<bool>> EditUserRoles(HotelUser user, List<string> selectedRoles)
@@ -457,6 +485,18 @@ namespace SoleusHotelApi.Services
             response.IsValid = true;
             response.Data = true;
             return response;
+        }
+
+        private async Task<bool> IsTheRoomUpdated(CreateHotelUserDto editUser)
+        {
+            ServiceResponse<bool> IsTheRoomUpdated = await _roomService.UpdateRoom(editUser);
+
+            if (!IsTheRoomUpdated.IsValid)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private async Task<bool> IsLastAdmin(HotelUser user)

@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Data.Repositories.Contracts;
-using SoleusHotelApi.DTOs.GuestRoomRequestDto;
+using SoleusHotelApi.DTOs.RoomRequestDtos;
 using SoleusHotelApi.Entities;
 
 namespace SoleusHotelApi.Data.Repositories
@@ -23,17 +23,33 @@ namespace SoleusHotelApi.Data.Repositories
             _dataContext.RoomRequests.Add(roomRequest);
         }
 
-        public async Task<List<GuestRoomRequestDto>> GetGuestRoomRequests(string roomNumber)
+        public async Task<List<BaseRoomRequestDto>> GetGuestRoomRequestsDtoByRoomNumber(string roomNumber)
         {
             return await _dataContext.RoomRequests
-                .Where(r => r.Room.RoomNumber.Equals(roomNumber))
-                .Where(d => d.RequestDate >= d.Room.CheckInDate && d.RequestDate <= d.Room.CheckOutDate)
-                .ProjectTo<GuestRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
+               .Where(r => r.Room.RoomNumber.Equals(roomNumber))
+               .Where(d => d.RequestDate >= d.Room.CheckInDate && d.RequestDate <= d.Room.CheckOutDate)
+               .Where(s => s.RequestStatus == Enums.RoomRequestStatus.New || s.RequestStatus == Enums.RoomRequestStatus.InProgress)
+               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public RoomRequest GetRoomRequestById(int id)
+        {
+            return _dataContext.RoomRequests.Include(r => r.Room).SingleOrDefault(r => r.Id == id);
+        }
+
+        public RoomRequestDto GetRoomRequestDtoById(int id)
+        {
+            return _mapper.Map<RoomRequestDto>(_dataContext.RoomRequests.Include(r => r.Room).SingleOrDefault(r => r.Id == id));
+        }
+
+        public void DeleteRoomRequestById(RoomRequest roomRequest)
+        {
+            _dataContext.RoomRequests.Remove(roomRequest);
         }
 
         public async Task<bool> SaveAllAsync()
         {
             return await _dataContext.SaveChangesAsync() > 0;
-        }
+        }       
     }
 }
