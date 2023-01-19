@@ -3,7 +3,7 @@ using IdentityModel;
 
 namespace SoleusHotelApi.Helpers
 {
-    public class PasswordGenerator
+    public static class PasswordGenerator
     {
         public static string GeneratePassword()
         {
@@ -30,7 +30,7 @@ namespace SoleusHotelApi.Helpers
 
             for (int i = 0; i <=3; i++)
             {
-                chars.Insert(rand.Next(0, chars.Count()),
+                chars.Insert(rand.Next(0, chars.Count),
                 randomChars[i][rand.Next(0, randomChars[i].Length)]);
             }
             

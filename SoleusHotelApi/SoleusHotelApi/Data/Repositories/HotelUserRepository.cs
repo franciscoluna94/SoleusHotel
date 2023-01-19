@@ -29,6 +29,11 @@ namespace SoleusHotelApi.Data.Repositories
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<HotelUser> GetHotelUserWithRoomByRoomNumber(string roomNumber)
+        {
+            return await _dataContext.Users.Include(r => r.Room).SingleOrDefaultAsync(x => x.Room.RoomNumber == roomNumber);
+        }
+
         public async Task<List<HotelUser>> GetAllUsers()
         {
             return await _dataContext.Users.Include(r => r.Room).OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber).ToListAsync();

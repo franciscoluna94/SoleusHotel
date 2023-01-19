@@ -45,9 +45,9 @@ namespace SoleusHotelApi.Controllers
         }
 
         [HttpPost("create-user")]
-        public async Task<ActionResult<HotelUserWithRolesDto>> CreateUser([FromBody] CreateHotelUserDto createHotelUserDto)
+        public async Task<ActionResult<CreatedHotelUserDto>> CreateUser([FromBody] CreateHotelUserDto createHotelUserDto)
         {
-            ServiceResponse<HotelUserWithRolesDto> response = await _hotelUserService.CreateHotelUser(createHotelUserDto);
+            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.CreateHotelUser(createHotelUserDto);
 
             if (!response.IsValid)
             {
@@ -58,9 +58,9 @@ namespace SoleusHotelApi.Controllers
         }
 
         [HttpPut("edit-user")]
-        public async Task<ActionResult<HotelUserWithRolesDto>> EditUser([FromBody] CreateHotelUserDto editHotelUser)
+        public async Task<ActionResult<CreatedHotelUserDto>> EditUser([FromBody] CreateHotelUserDto editHotelUser)
         {
-            ServiceResponse<HotelUserWithRolesDto> response = await _hotelUserService.EditUser(editHotelUser);
+            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.EditUser(editHotelUser);
 
             if (!response.IsValid)
             {

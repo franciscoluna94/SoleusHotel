@@ -18,11 +18,11 @@ namespace SoleusHotelApi.Helpers
                 .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.Room.CheckInDate))
                 .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.Room.CheckOutDate))
                 .ReverseMap();
-            CreateMap<HotelUser, HotelUserWithRolesDto>()
+            CreateMap<HotelUser, CreatedHotelUserDto>()
                 .ForMember(dest => dest.UserRoles, opt => opt.Ignore())
                 .ForMember(dest => dest.RoomNumber, opt => opt.MapFrom(src => src.Room.RoomNumber));
             CreateMap<HotelUser, HotelUserWithRequestsDto>()
-                .ForMember(dest => dest.RoomRequests, opt => opt.MapFrom(src => src.Room.RoomRequests.Count()))
+                .ForMember(dest => dest.RoomRequests, opt => opt.MapFrom(src => src.Room.RoomRequests.Count))
                 .ForMember(dest => dest.RoomNumber, opt => opt.MapFrom(src => src.Room.RoomNumber))
                 .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.Room.CheckInDate))
                 .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.Room.CheckOutDate));
@@ -31,6 +31,11 @@ namespace SoleusHotelApi.Helpers
                 .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.Room.CheckInDate))
                 .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.Room.CheckOutDate))
                 .ForMember(dest => dest.Password, opt => opt.Ignore());
+            CreateMap<HotelUser, HotelUserWithRolesDto>()
+                .ForMember(dest => dest.RoomNumber, opt => opt.MapFrom(src => src.Room.RoomNumber))
+                .ForMember(dest => dest.CheckInDate, opt => opt.MapFrom(src => src.Room.CheckInDate))
+                .ForMember(dest => dest.CheckOutDate, opt => opt.MapFrom(src => src.Room.CheckOutDate))
+                .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
             CreateMap<HotelUserDto, CreateHotelUserDto>();
             #endregion
 
@@ -38,7 +43,9 @@ namespace SoleusHotelApi.Helpers
             CreateMap<CreateRoomRequestDto, RoomRequest>();
             CreateMap<RoomRequest, BaseRoomRequestDto>()
                 .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.RoomNumber));
-            CreateMap<RoomRequest, RoomRequestDto>();
+            CreateMap<RoomRequest, RoomRequestDto>()
+                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.RoomNumber));
+
             #endregion
 
             #region Photo

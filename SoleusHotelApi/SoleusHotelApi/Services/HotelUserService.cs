@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Constants;
+using SoleusHotelApi.Constants.ErrorMessages;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
@@ -68,7 +69,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("User not found");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
@@ -92,13 +93,13 @@ namespace SoleusHotelApi.Services
             };
         }
 
-        public async Task<ServiceResponse<HotelUserWithRolesDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
+        public async Task<ServiceResponse<CreatedHotelUserDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
         {
-            ServiceResponse<HotelUserWithRolesDto> response = new();
+            ServiceResponse<CreatedHotelUserDto> response = new();
 
             if (await UserExists(createHotelUserDto.RoomNumber))
             {
-                response.Errors.Add("This user already exists");
+                response.Errors.Add(HotelUserServiceError.UserAlreadyExists);
                 return response;
             }
 
@@ -131,8 +132,7 @@ namespace SoleusHotelApi.Services
 
             if (!userAddedToRoom.IsValid)
             {
-                userAddedToRoom.Errors.Add("User created correctly");
-                response.Errors.Append(userAddedToRoom.Errors.First());
+                response.Errors.Add(userAddedToRoom.Errors.First() + HotelUserServiceError.UserCreated);
             }
 
             Room userRoom = await _roomRepository.GetRoomByRoomNumber(createHotelUserDto.RoomNumber);
@@ -140,7 +140,7 @@ namespace SoleusHotelApi.Services
             await _userManager.UpdateAsync(hotelUser);
 
 
-            HotelUserWithRolesDto createdHotelUserDto = _mapper.Map<HotelUserWithRolesDto>(hotelUser);
+            CreatedHotelUserDto createdHotelUserDto = _mapper.Map<CreatedHotelUserDto>(hotelUser);
             createdHotelUserDto.UserRoles = await _userManager.GetRolesAsync(hotelUser);
 
             response.IsValid = true;
@@ -155,7 +155,7 @@ namespace SoleusHotelApi.Services
 
             if (loginHotelUserDto is null)
             {
-                response.Errors.Add("Please enter a room number and a password");
+                response.Errors.Add(HotelUserServiceError.NullPasswordAndUserName);
                 return response;
             }
 
@@ -164,7 +164,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("Invalid username");
+                response.Errors.Add(HotelUserServiceError.InvalidUserName);
                 return response;
             }
 
@@ -172,7 +172,7 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
-                response.Errors.Add("Invalid password");
+                response.Errors.Add(HotelUserServiceError.InvalidPassword);
                 return response;
             }
 
@@ -187,15 +187,15 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<HotelUserWithRolesDto>> EditUser(CreateHotelUserDto editUser)
+        public async Task<ServiceResponse<CreatedHotelUserDto>> EditUser(CreateHotelUserDto editUser)
         {
-            ServiceResponse<HotelUserWithRolesDto> response = new();
+            ServiceResponse<CreatedHotelUserDto> response = new();
 
             HotelUser user = await _userManager.Users.Include(r => r.Room).SingleOrDefaultAsync(x => x.Room.RoomNumber == editUser.RoomNumber);
 
             if (user is null)
             {
-                response.Errors.Add("This user doesn't exist");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
@@ -215,7 +215,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
-                response.Errors.Add("Unable to save your changes");
+                response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
                 return response;
             }
 
@@ -226,18 +226,18 @@ namespace SoleusHotelApi.Services
 
                 if (!result.Succeeded)
                 {
-                    response.Errors.Add("User partially updated: Unable to update the password");
+                    response.Errors.Add(HotelUserServiceError.UserEditedButPassword);
                     return response;
                 }
             }
 
             if (! await IsTheRoomUpdated(editUser))
             {
-                response.Errors.Add($"Unable to update the dates of the room {editUser.RoomNumber}");
+                response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
                 return response;
             }
 
-            HotelUserWithRolesDto updatedUser = _mapper.Map<HotelUserWithRolesDto>(user);
+            CreatedHotelUserDto updatedUser = _mapper.Map<CreatedHotelUserDto>(user);
             updatedUser.UserRoles = await _userManager.GetRolesAsync(user);
 
             response.IsValid = true;
@@ -253,14 +253,14 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("This user doesn't exist");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
-                response.Errors.Add("You don't have the permission to modify this user");
+                response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
                 return response;
             }
 
@@ -270,13 +270,13 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
-                response.Errors.Add("Unable to save your changes");
+                response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
                 return response;
             }
                       
             if (!await IsTheRoomUpdated(_mapper.Map<CreateHotelUserDto>(editUser)))
             {
-                response.Errors.Add($"Unable to update the dates of the room {editUser.RoomNumber}");
+                response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
                 return response;
             }
 
@@ -293,7 +293,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("User not found");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
@@ -301,20 +301,20 @@ namespace SoleusHotelApi.Services
 
             if (!roles.Contains(Roles.Guest))
             {
-                response.Errors.Add("Unable to modify this room password, please contact your administrator");
+                response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeRole);
                 return response;
             }
 
             if (userPasswordForgotDto.RoomNumber != userRoomNumber)
             {
-                response.Errors.Add("Unable to modify other room password");
+                response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeWrongRoom);
                 return response;
             }
 
 
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
-                response.Errors.Add("The guest name provided is not correct");
+                response.Errors.Add(HotelUserServiceError.WrongGuestName);
                 return response;
             }
 
@@ -346,14 +346,14 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("The user doesn't exist");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
-                response.Errors.Add("You don't have the permission to modify this user");
+                response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
                 return response;
             }
 
@@ -432,13 +432,13 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.Errors.Add("This user doesn't exist");
+                response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
             if (await IsLastAdmin(user))
             {
-                response.Errors.Add("Unable to delete the last admin user");
+                response.Errors.Add(HotelUserServiceError.LastAdmin);
                 return response;
             }
 
@@ -510,7 +510,7 @@ namespace SoleusHotelApi.Services
 
             IList<HotelUser> adminUsers = await _userManager.GetUsersInRoleAsync(Roles.Admin);
 
-            if (adminUsers.Count() > 1)
+            if (adminUsers.Count > 1)
             {
                 return false;
             }

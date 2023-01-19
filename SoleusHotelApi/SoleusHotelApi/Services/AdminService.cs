@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Constants;
+using SoleusHotelApi.Constants.ErrorMessages;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
@@ -29,7 +30,7 @@ namespace SoleusHotelApi.Services
 
             if (await _userManager.Users.AnyAsync(x => x.Room.RoomNumber == _configuration["SuperUser:RoomNumber"]))
             {
-                response.Errors.Add("Your setup had been already done before");
+                response.Errors.Add(AdminServiceError.ConfigurationDone);
                 return response;
             }
 

@@ -1,4 +1,5 @@
-﻿using SoleusHotelApi.Data.Repositories.Contracts;
+﻿using SoleusHotelApi.Constants.ErrorMessages;
+using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
@@ -22,7 +23,7 @@ namespace SoleusHotelApi.Services
 
             if (room is null)
             {
-                response.Errors.Add("The room does'nt exist");
+                response.Errors.Add(RoomServiceError.RoomNotFound);
                 return response;
             }
 
@@ -33,7 +34,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
-                response.Errors.Add($"Unable to update the dates of the room {room.RoomNumber}");
+                response.Errors.Add(RoomServiceError.UnableToChangeDates + room.RoomNumber);
                 return response;
             }
 
@@ -62,7 +63,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
-                response.Errors.Add($"Unable to add an user to the room {room.RoomNumber}");
+                response.Errors.Add(RoomServiceError.UnableToAddUser + room.RoomNumber);
                 return response;
             }
 

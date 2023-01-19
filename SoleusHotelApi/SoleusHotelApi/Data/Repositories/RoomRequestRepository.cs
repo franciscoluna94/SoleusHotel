@@ -18,9 +18,14 @@ namespace SoleusHotelApi.Data.Repositories
             _mapper = mapper;
         }
 
-        public void AddRoomRequest(RoomRequest roomRequest)
+        public async Task AddRoomRequest(RoomRequest roomRequest)
         {
-            _dataContext.RoomRequests.Add(roomRequest);
+            await _dataContext.RoomRequests.AddAsync(roomRequest);
+        }
+
+        public void Update(RoomRequest roomRequest)
+        {
+            _dataContext.Entry(roomRequest).State = EntityState.Modified;
         }
 
         public async Task<List<BaseRoomRequestDto>> GetGuestRoomRequestsDtoByRoomNumber(string roomNumber)
@@ -32,14 +37,14 @@ namespace SoleusHotelApi.Data.Repositories
                .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public RoomRequest GetRoomRequestById(int id)
+        public async Task<RoomRequest> GetRoomRequestById(int id)
         {
-            return _dataContext.RoomRequests.Include(r => r.Room).SingleOrDefault(r => r.Id == id);
+            return await _dataContext.RoomRequests.Include(r => r.Room).Include(u => u.AssignedTo).SingleOrDefaultAsync(r => r.Id == id);
         }
 
-        public RoomRequestDto GetRoomRequestDtoById(int id)
+        public async Task<RoomRequestDto> GetRoomRequestDtoById(int id)
         {
-            return _mapper.Map<RoomRequestDto>(_dataContext.RoomRequests.Include(r => r.Room).SingleOrDefault(r => r.Id == id));
+            return _mapper.Map<RoomRequestDto>(await _dataContext.RoomRequests.Include(r => r.Room).SingleOrDefaultAsync(r => r.Id == id));
         }
 
         public void DeleteRoomRequestById(RoomRequest roomRequest)
@@ -50,6 +55,6 @@ namespace SoleusHotelApi.Data.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _dataContext.SaveChangesAsync() > 0;
-        }       
+        }
     }
 }

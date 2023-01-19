@@ -29,7 +29,7 @@ namespace SoleusHotelApi.Extensions
                                 Id="Bearer"
                             }
                         },
-                        new string[]{}
+                        Array.Empty<string>()
                     }
                  });
             });
