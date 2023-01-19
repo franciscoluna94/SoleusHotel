@@ -29,10 +29,38 @@ namespace SoleusHotelApi.Controllers
             return NoContent();
         }
 
-        [HttpGet("guest-requests")]
-        public async Task<ActionResult<BaseRoomRequestDto>> GetMyRequests()
+        [Authorize(Policy = "EmployeeLevel")]
+        [HttpGet("today-requests")]
+        public async Task<ActionResult<BaseRoomRequestDto>> GetTodayRoomRequests()
         {
-            ServiceResponse<List<BaseRoomRequestDto>> serviceResponse = await _roomRequestService.GetGuestRoomRequests(User.GetRoomNumber());
+            ServiceResponse<List<BaseRoomRequestDto>> serviceResponse = await _roomRequestService.GetTodayRoomRequests();
+
+            if (!serviceResponse.IsValid)
+            {
+                return BadRequest(serviceResponse.Errors);
+            }
+
+            return Ok(serviceResponse.Data);
+        }
+
+        [HttpGet("own-requests")]
+        public async Task<ActionResult<BaseRoomRequestDto>> GetMyRoomRequests()
+        {
+            ServiceResponse<List<BaseRoomRequestDto>> serviceResponse = await _roomRequestService.GetMyRoomRequests(User.GetRoomNumber());
+
+            if (!serviceResponse.IsValid)
+            {
+                return BadRequest(serviceResponse.Errors);
+            }
+
+            return Ok(serviceResponse.Data);
+        }
+
+        [Authorize(Policy = "EmployeeLevel")]
+        [HttpGet("employee-requests")]
+        public async Task<ActionResult<BaseRoomRequestDto>> GetAssignedRoomRequests()
+        {
+            ServiceResponse<List<BaseRoomRequestDto>> serviceResponse = await _roomRequestService.GetMyAssignedRequests(User.GetRoomNumber());
 
             if (!serviceResponse.IsValid)
             {
@@ -81,6 +109,20 @@ namespace SoleusHotelApi.Controllers
             }
 
             return NoContent();
+        }
+
+        [Authorize(Policy = "EmployeeLevel")]
+        [HttpGet("average")]
+        public async Task<ActionResult> EndedRoomRequestsAverageDuration()
+        {
+            ServiceResponse<TimeSpan> response = await _roomRequestService.AverageTimeAssignedRoomRequests(User.GetRoomNumber());
+
+            if (!response.IsValid)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            return Ok(response.Data);
         }
 
         [HttpDelete("{roomRequestId}")]

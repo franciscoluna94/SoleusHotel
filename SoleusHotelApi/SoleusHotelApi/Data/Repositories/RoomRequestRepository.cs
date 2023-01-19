@@ -28,12 +28,25 @@ namespace SoleusHotelApi.Data.Repositories
             _dataContext.Entry(roomRequest).State = EntityState.Modified;
         }
 
+        public async Task<List<BaseRoomRequestDto>> GetTodayRoomRequestsDto()
+        {
+            return await _dataContext.RoomRequests
+               .Where(d => d.RequestDate.Day == DateTime.Today.Day)
+               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
         public async Task<List<BaseRoomRequestDto>> GetGuestRoomRequestsDtoByRoomNumber(string roomNumber)
         {
             return await _dataContext.RoomRequests
                .Where(r => r.Room.RoomNumber.Equals(roomNumber))
                .Where(d => d.RequestDate >= d.Room.CheckInDate && d.RequestDate <= d.Room.CheckOutDate)
-               .Where(s => s.RequestStatus == Enums.RoomRequestStatus.New || s.RequestStatus == Enums.RoomRequestStatus.InProgress)
+               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<List<BaseRoomRequestDto>> GetRoomRequestsByAssigned(HotelUser assignedUser)
+        {
+            return await _dataContext.RoomRequests
+               .Where(u => u.AssignedTo == assignedUser)
                .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
@@ -45,6 +58,14 @@ namespace SoleusHotelApi.Data.Repositories
         public async Task<RoomRequestDto> GetRoomRequestDtoById(int id)
         {
             return _mapper.Map<RoomRequestDto>(await _dataContext.RoomRequests.Include(r => r.Room).SingleOrDefaultAsync(r => r.Id == id));
+        }
+
+        public async Task<List<TimeSpan>> GetRoomRequestsDuration(HotelUser assignedUser)
+        {
+            return await _dataContext.RoomRequests
+                .Where(u => u.AssignedTo == assignedUser)
+                .Where(s => s.RequestStatus == Enums.RoomRequestStatus.Ended)
+                .Select(d => d.Duration.Value).ToListAsync();
         }
 
         public void DeleteRoomRequestById(RoomRequest roomRequest)

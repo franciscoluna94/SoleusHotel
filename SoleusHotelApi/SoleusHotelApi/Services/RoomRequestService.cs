@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Constants;
 using SoleusHotelApi.Constants.ErrorMessages;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.RoomRequestDtos;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Enums;
+using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -54,7 +53,16 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<List<BaseRoomRequestDto>>> GetGuestRoomRequests(string userRoomNumber)
+        public async Task<ServiceResponse<List<BaseRoomRequestDto>>> GetTodayRoomRequests()
+        {
+            return new ServiceResponse<List<BaseRoomRequestDto>>()
+            {
+                Data = await _roomRequestRepository.GetTodayRoomRequestsDto(),
+                IsValid = true
+            };
+        }
+
+        public async Task<ServiceResponse<List<BaseRoomRequestDto>>> GetMyRoomRequests(string userRoomNumber)
         {
             ServiceResponse<List<BaseRoomRequestDto>> response = new();
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
@@ -67,6 +75,22 @@ namespace SoleusHotelApi.Services
 
             response.IsValid = true;
             response.Data = await _roomRequestRepository.GetGuestRoomRequestsDtoByRoomNumber(user.Room.RoomNumber);
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<BaseRoomRequestDto>>> GetMyAssignedRequests(string userRoomNumber)
+        {
+            ServiceResponse<List<BaseRoomRequestDto>> response = new();
+            HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
+
+            if (user is null)
+            {
+                response.Errors.Add(RoomRequestServiceError.UserNotFound);
+                return response;
+            }
+
+            response.IsValid = true;
+            response.Data = await _roomRequestRepository.GetRoomRequestsByAssigned(user);
             return response;
         }
 
@@ -88,7 +112,7 @@ namespace SoleusHotelApi.Services
             {
                 response.Errors.Add(RoomRequestServiceError.UserNotFound);
                 return response;
-            }            
+            }
 
             if (roomRequest.Room.RoomNumber != user.Room.RoomNumber && !IsEmployee(userRoles))
             {
@@ -111,15 +135,15 @@ namespace SoleusHotelApi.Services
             {
                 response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
                 return response;
-            }          
-            
+            }
+
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
             if (user is null)
             {
                 response.Errors.Add(RoomRequestServiceError.UserNotFound);
                 return response;
-            }    
+            }
 
             if (!IsCorrectRole(userRoles, roomRequest.Department))
             {
@@ -196,6 +220,25 @@ namespace SoleusHotelApi.Services
 
             response.IsValid = response.Data = true;
 
+            return response;
+        }
+
+        public async Task<ServiceResponse<TimeSpan>> AverageTimeAssignedRoomRequests(string userRoomNumber)
+        {
+            ServiceResponse<TimeSpan> response = new();
+
+            HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
+
+            if (user is null)
+            {
+                response.Errors.Add(RoomRequestServiceError.UserNotFound);
+                return response;
+            }
+
+            List<TimeSpan> durations = await _roomRequestRepository.GetRoomRequestsDuration(user);
+            
+            response.IsValid = true;
+            response.Data = durations.Mean();
             return response;
         }
 

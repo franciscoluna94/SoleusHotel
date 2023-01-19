@@ -12,6 +12,6 @@
         public const string UnableToEnd = "Unable to end the request";
         public const string UnableToDeleteRequestStatus = "Unable to delete this request. Status: ";
         public const string UnableToDeleteRequest = "Unable to delete this request";
-
+        public const string NoEndedRequests = "This user has no ended requests";
     }
 }
