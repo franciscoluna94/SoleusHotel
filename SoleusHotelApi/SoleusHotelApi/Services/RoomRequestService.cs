@@ -38,7 +38,7 @@ namespace SoleusHotelApi.Services
 
             RoomRequest request = _mapper.Map<RoomRequest>(createRoomRequestDto);
 
-            request.RequestStatus = Enums.RoomRequestStatus.New;
+            request.RequestStatus = RoomRequestStatus.New;
             request.Room = user.Room;
 
             await _roomRequestRepository.AddRoomRequest(request);

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Extensions;
+using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -32,16 +33,19 @@ namespace SoleusHotelApi.Controllers
 
         [Authorize(Policy = "EmployeeLevel")]
         [HttpGet("rooms")]
-        public async Task<ActionResult<List<HotelUserWithRequestsDto>>> GetHotelUserWithRequestsNumber()
+        public async Task<ActionResult<List<HotelUserWithRequestsDto>>> GetHotelUsersWithRequestsNumber([FromQuery] HotelUserParams hotelUserParams)
         {
-            ServiceResponse<List<HotelUserWithRequestsDto>> response = await _hotelUserService.GetHotelUserWithRequests();
+            ServiceResponse<PagedList<HotelUserWithRequestsDto>> serviceResponse = await _hotelUserService.GetHotelUsersWithCreatedRoomRequests(hotelUserParams);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return BadRequest(serviceResponse.Errors);
             }
 
-            return Ok(response.Data);
+            Response.AddPaginationHeader(serviceResponse.Data.CurrentPage, serviceResponse.Data.PageSize,
+                serviceResponse.Data.TotalCount, serviceResponse.Data.TotalPages);
+
+            return Ok(serviceResponse.Data);
         }
 
         [Authorize(Policy = "EmployeeLevel")]
@@ -59,7 +63,7 @@ namespace SoleusHotelApi.Controllers
         }
 
         [Authorize(Policy = "ReceptionLevel")]
-        [HttpPatch("edit-guest")]
+        [HttpPatch("rooms")]
         public async Task<ActionResult<HotelUserDto>> EditGuests([FromBody] HotelUserDto editUser)
         {
             ServiceResponse<HotelUserDto> response = await _hotelUserService.EditGuestUser(editUser);
@@ -72,15 +76,16 @@ namespace SoleusHotelApi.Controllers
             return Ok(response.Data);
         }
 
-        [HttpPatch("forgot-password")]
-        public async Task<ActionResult<LoggedUserDto>> UpdateUserPassword([FromBody] HotelUserPasswordUpdatesDto passwordUpdate)
+        [AllowAnonymous]
+        [HttpPatch("passwords")]
+        public async Task<ActionResult<LoggedUserDto>> ForgotPassword([FromBody] HotelUserPasswordUpdatesDto passwordUpdate)
         {
             if (passwordUpdate is null)
             {
                 return BadRequest();
             }
 
-            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate, User.GetRoomNumber());
+            ServiceResponse<LoggedUserDto> response = await _hotelUserService.ForgotPassword(passwordUpdate);
 
             if (!response.IsValid)
             {
@@ -91,7 +96,7 @@ namespace SoleusHotelApi.Controllers
         }
 
         [Authorize(Policy = "ReceptionLevel")]
-        [HttpPatch("generate-password/{roomNumber}")]
+        [HttpPatch("passwords/{roomNumber}")]
         public async Task<ActionResult<GenerateHotelUserPasswordDto>> GenerateUserPassword(string roomNumber)
         {            
             ServiceResponse<GenerateHotelUserPasswordDto> response = await _hotelUserService.GenerateUserPassword(roomNumber);

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoleusHotelApi.DTOs.HotelUserDtos;
+using SoleusHotelApi.Extensions;
+using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
 
@@ -18,10 +20,10 @@ namespace SoleusHotelApi.Controllers
             _adminService = adminService;
         }
 
-        [HttpGet("users")]
-        public async Task<ActionResult<List<HotelUserWithRolesDto>>> GetHotelUsers()
+        [HttpPost("users")]
+        public async Task<ActionResult<CreatedHotelUserDto>> CreateUser([FromBody] CreateHotelUserDto createHotelUserDto)
         {
-            ServiceResponse<List<HotelUserWithRolesDto>> response = await _hotelUserService.GetHotelUsers();
+            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.CreateHotelUser(createHotelUserDto);
 
             if (!response.IsValid)
             {
@@ -29,6 +31,22 @@ namespace SoleusHotelApi.Controllers
             }
 
             return Ok(response.Data);
+        }
+
+        [HttpGet("users")]
+        public async Task<ActionResult<PagedList<HotelUserWithRolesDto>>> GetHotelUsers([FromQuery] HotelUserParams hotelUserParams1)
+        {
+            ServiceResponse<PagedList<HotelUserWithRolesDto>> serviceResponse = await _hotelUserService.GetHotelUsers(hotelUserParams1);
+
+            if (!serviceResponse.IsValid)
+            {
+                return BadRequest(serviceResponse.Errors);
+            }
+
+            Response.AddPaginationHeader(serviceResponse.Data.CurrentPage, serviceResponse.Data.PageSize,
+                serviceResponse.Data.TotalCount, serviceResponse.Data.TotalPages);
+
+            return Ok(serviceResponse.Data);
         }
 
         [HttpGet("users/{roomNumber}")]
@@ -44,20 +62,7 @@ namespace SoleusHotelApi.Controllers
             return Ok(response.Data);
         }
 
-        [HttpPost("create-user")]
-        public async Task<ActionResult<CreatedHotelUserDto>> CreateUser([FromBody] CreateHotelUserDto createHotelUserDto)
-        {
-            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.CreateHotelUser(createHotelUserDto);
-
-            if (!response.IsValid)
-            {
-                return BadRequest(response.Errors);
-            }
-
-            return Ok(response.Data);
-        }
-
-        [HttpPut("edit-user")]
+        [HttpPut("users")]
         public async Task<ActionResult<CreatedHotelUserDto>> EditUser([FromBody] CreateHotelUserDto editHotelUser)
         {
             ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.EditUser(editHotelUser);
@@ -70,7 +75,7 @@ namespace SoleusHotelApi.Controllers
             return Ok(response.Data);
         }
 
-        [HttpPost("reset-passwords")]
+        [HttpPost("passwords")]
         public async Task<ActionResult> ResetGuestPasswords([FromBody] string password)
         {
             ServiceResponse<bool> response = await _hotelUserService.ResetGuestsPasswords(password);
@@ -83,7 +88,7 @@ namespace SoleusHotelApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("remove-user/{roomNumber}")]
+        [HttpDelete("users/{roomNumber}")]
         public async Task<ActionResult> DeleteUser(string roomNumber)
         {
             ServiceResponse<bool> response = await _hotelUserService.DeleteHotelUser(roomNumber);
@@ -94,15 +99,7 @@ namespace SoleusHotelApi.Controllers
             }
 
             return Ok();
-        }        
-
-        [HttpGet("users-roles")]
-        public async Task<ActionResult<List<HotelRoleDto>>> GetUsersWithRoles()
-        {
-            ServiceResponse<List<HotelRoleDto>> response = await _hotelUserService.GetUsersWithRolesAsync();
-
-            return Ok(response.Data);
-        }
+        }     
 
         [AllowAnonymous]
         [HttpGet("initial-setup")]

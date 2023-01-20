@@ -6,9 +6,11 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { environment } from 'src/environments/environment';
 import { ApiRoutesConstant } from '../constants/apiRoutesConstants';
 import { HotelUser } from '../models/hotelUser';
+import { HotelUserParams } from '../models/hotelUserParams';
 import { HotelUserWithRoles } from '../models/hotelUserWithRoles';
 import { Room } from '../models/room';
 import { User } from '../models/user';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,11 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
+  userParams: HotelUserParams;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.userParams = new HotelUserParams();
+  }
 
   login(model: any) {
     return this.http.post<User>(this.baseUrl + ApiRoutesConstant.login, model).pipe(
@@ -37,7 +42,7 @@ export class AccountService {
   }
 
   forgotPassword(model: any){
-    return this.http.patch<User>(this.baseUrl + ApiRoutesConstant.forgotPassword, model).pipe(
+    return this.http.patch<User>(this.baseUrl + ApiRoutesConstant.passwords, model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
@@ -47,8 +52,13 @@ export class AccountService {
     )
   }
 
-  getUsers() {
-    return this.http.get<HotelUserWithRoles[]>(this.baseUrl + ApiRoutesConstant.userList);
+  getUsers(userParams: HotelUserParams) {
+
+    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+
+    params = params.append('orderBy', userParams.orderBy);
+
+    return getPaginatedResult<HotelUserWithRoles[]>(this.baseUrl + ApiRoutesConstant.adminUsers, params, this.http);    
   }
 
   getUser(roomNumber: string) {
@@ -56,31 +66,48 @@ export class AccountService {
   }
 
   getUserWithRoles(roomNumber: string) {
-    return this.http.get<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.userWithRoles + roomNumber)
+    return this.http.get<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.adminUsers + roomNumber)
   }
 
-  getRooms(){
-    return this.http.get<Room[]>(this.baseUrl + ApiRoutesConstant.roomList);
+  getRooms(userParams: HotelUserParams){
+    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+
+    params = params.append('orderBy', userParams.orderBy);
+
+    return getPaginatedResult<Room[]>(this.baseUrl + ApiRoutesConstant.rooms, params, this.http);
   }
 
   editGuest(model: any){
-    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.editGuest, model);
+    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.rooms, model);
   }
 
   createUser(model: any) {
-    return this.http.post<HotelUser>(this.baseUrl + ApiRoutesConstant.createUser, model);
+    return this.http.post<HotelUser>(this.baseUrl + ApiRoutesConstant.adminUsers, model);
   }
 
   editUser(model: any){
-    return this.http.put<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.editUser, model);
+    return this.http.put<HotelUserWithRoles>(this.baseUrl + ApiRoutesConstant.adminUsers, model);
   }
 
   deleteUser(roomNumber: string){
-    return this.http.delete(this.baseUrl + ApiRoutesConstant.deleteUser + roomNumber);
+    return this.http.delete(this.baseUrl + ApiRoutesConstant.adminUsers + roomNumber);
   }
 
   generatePassword(roomNumber: string){
-    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.generatePassword + roomNumber, {});
+    return this.http.patch<HotelUser>(this.baseUrl + ApiRoutesConstant.passwords + roomNumber, {});
+  }
+
+  getHotelUserParams(){
+    return this.userParams;
+  }
+
+  setHotelUserParams(userParams: HotelUserParams){
+    this.userParams = userParams;
+  }
+
+  resetHotelUserParams() {
+    this.userParams = new HotelUserParams();
+    return this.userParams;
   }
 
   setCurrentUser(user: User) {

@@ -84,6 +84,20 @@ namespace SoleusHotelApi.Controllers
         }
 
         [Authorize(Policy = "EmployeeLevel")]
+        [HttpGet("average")]
+        public async Task<ActionResult> EndedRoomRequestsAverageDuration()
+        {
+            ServiceResponse<TimeSpan> response = await _roomRequestService.AverageTimeAssignedRoomRequests(User.GetRoomNumber());
+
+            if (!response.IsValid)
+            {
+                return BadRequest(response.Errors);
+            }
+
+            return Ok(response.Data);
+        }
+
+        [Authorize(Policy = "EmployeeLevel")]
         [HttpPatch("{roomRequestId}/start")]
         public async Task<ActionResult> StartRoomRequest(int roomRequestId)
         {
@@ -109,20 +123,6 @@ namespace SoleusHotelApi.Controllers
             }
 
             return NoContent();
-        }
-
-        [Authorize(Policy = "EmployeeLevel")]
-        [HttpGet("average")]
-        public async Task<ActionResult> EndedRoomRequestsAverageDuration()
-        {
-            ServiceResponse<TimeSpan> response = await _roomRequestService.AverageTimeAssignedRoomRequests(User.GetRoomNumber());
-
-            if (!response.IsValid)
-            {
-                return BadRequest(response.Errors);
-            }
-
-            return Ok(response.Data);
         }
 
         [HttpDelete("{roomRequestId}")]

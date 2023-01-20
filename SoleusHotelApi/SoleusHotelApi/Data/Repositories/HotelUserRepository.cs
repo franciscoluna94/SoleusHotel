@@ -5,6 +5,7 @@ using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Helpers;
 
 namespace SoleusHotelApi.Data.Repositories
 {
@@ -19,6 +20,39 @@ namespace SoleusHotelApi.Data.Repositories
             _mapper = mapper;
         }
 
+        public async Task<PagedList<HotelUserWithRolesDto>> GetAllHotelUsers(HotelUserParams hotelUserParams)
+        {
+            var query = _dataContext.Users.Include(r => r.Room).AsQueryable();
+
+            query = hotelUserParams.OrderBy switch
+            {
+                "checkin" => query.OrderByDescending(x => x.Room.CheckInDate),
+                "checkout" => query.OrderByDescending(x => x.Room.CheckOutDate),
+                "name" => query.OrderBy(x => x.GuestName),
+                _ => query.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
+            };
+
+            return await PagedList<HotelUserWithRolesDto>.CreateAsync(query.ProjectTo<HotelUserWithRolesDto>(_mapper.ConfigurationProvider).AsNoTracking(),
+                hotelUserParams.PageNumber, hotelUserParams.PageSize);
+        }
+
+        public async Task<PagedList<HotelUserWithRequestsDto>> GetAllGuestsWithRoomRequests(HotelUserParams hotelUserParams)
+        {
+            var query = _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).AsQueryable();
+
+            query = hotelUserParams.OrderBy switch
+            {
+                "checkin" => query.OrderByDescending(x => x.Room.CheckInDate),
+                "checkout" => query.OrderByDescending(x => x.Room.CheckOutDate),
+                "requests" => query.OrderByDescending(x => x.Room.RoomRequests.Count),
+                "name" => query.OrderBy(x => x.GuestName),
+                _ => query.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
+            };
+
+            return await PagedList<HotelUserWithRequestsDto>.CreateAsync(query.ProjectTo<HotelUserWithRequestsDto>(_mapper.ConfigurationProvider).AsNoTracking(),
+                hotelUserParams.PageNumber, hotelUserParams.PageSize);
+        }
+
         public async Task<HotelUserDto> GetHotelUserDtoAsync(string roomNumber)
         {
             return await _dataContext.Users
@@ -29,19 +63,14 @@ namespace SoleusHotelApi.Data.Repositories
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<List<HotelUser>> GetHotelUsersByRole(string role)
+        {
+            return await _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == role)).ToListAsync();
+        }
+
         public async Task<HotelUser> GetHotelUserWithRoomByRoomNumber(string roomNumber)
         {
             return await _dataContext.Users.Include(r => r.Room).SingleOrDefaultAsync(x => x.Room.RoomNumber == roomNumber);
-        }
-
-        public async Task<List<HotelUser>> GetAllUsers()
-        {
-            return await _dataContext.Users.Include(r => r.Room).OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber).ToListAsync();
-        }
-
-        public async Task<List<HotelUser>> GetAllGuests()
-        {
-            return await _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).ToListAsync();
         }
 
         public void Update(HotelUser user)

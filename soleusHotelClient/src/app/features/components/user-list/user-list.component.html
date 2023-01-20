@@ -5,14 +5,15 @@
 <div class="container-fluid mt-5">
     <table class="table  bg-white">
       <thead>
-        <tr>
-          <th scope="col">Room Number</th>
-          <th scope="col">Guest Name</th>
-          <th scope="col">Check-In</th>
-          <th scope="col">Check-Out</th>
-          <th scope="col">Roles</th>
-          <th scope="col">Actions</th>
-        </tr>
+          <tr>
+            <th scope="col" class="tableFilter" (click)="setSort(0)">Room Number</th>
+            <th scope="col" class="tableFilter" (click)="setSort(1)">Guest Name</th>
+            <th scope="col" class="tableFilter" (click)="setSort(2)">Check-In</th>
+            <th scope="col" class="tableFilter" (click)="setSort(3)">Check-Out</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Actions</th>
+          </tr>
+        
       </thead>
       <tbody>
         <tr *ngFor="let user of users" routerLink="./{{user.roomNumber}}">

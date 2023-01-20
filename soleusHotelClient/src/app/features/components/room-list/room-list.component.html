@@ -6,11 +6,11 @@
     <table class="table  bg-white">
       <thead>
         <tr>
-          <th scope="col">Room Number</th>
-          <th scope="col">Guest Name</th>
-          <th scope="col">Check-In</th>
-          <th scope="col">Check-Out</th>
-          <th scope="col">Room Requests</th>
+          <th scope="col" class="tableFilter" (click)="setSort(0)">Room Number</th>
+          <th scope="col" class="tableFilter" (click)="setSort(1)">Guest Name</th>
+          <th scope="col" class="tableFilter" (click)="setSort(2)">Check-In</th>
+          <th scope="col" class="tableFilter" (click)="setSort(3)">Check-Out</th>
+          <th scope="col" class="tableFilter" (click)="setSort(4)">Room Requests</th>
         </tr>
       </thead>
       <tbody>

@@ -35,21 +35,29 @@ namespace SoleusHotelApi.Services
         }
 
         #region Public Methods
-        public async Task<ServiceResponse<List<HotelUserWithRolesDto>>> GetHotelUsers()
+        public async Task<ServiceResponse<PagedList<HotelUserWithRolesDto>>> GetHotelUsers(HotelUserParams hotelUserParams)
         {
-            ServiceResponse<List<HotelUserWithRolesDto>> response = new();
+            ServiceResponse<PagedList<HotelUserWithRolesDto>> response = new();
 
-            List<HotelUser> userList = await _userRepository.GetAllUsers();
-            List<HotelUserWithRolesDto> usersWithRoles = _mapper.Map<List<HotelUserWithRolesDto>>(userList);
-            foreach (var user in usersWithRoles)
+            PagedList<HotelUserWithRolesDto> userList = await _userRepository.GetAllHotelUsers(hotelUserParams);
+            foreach (var user in userList)
             {
-                HotelUser userInDb = userList.First(room => room.Room.RoomNumber == user.RoomNumber);
+                HotelUser userInDb = await _userRepository.GetHotelUserWithRoomByRoomNumber(user.RoomNumber);
                 user.UserRoles = await _userManager.GetRolesAsync(userInDb);
             }
 
             response.IsValid = true;
-            response.Data = usersWithRoles;
+            response.Data = userList;
             return response;
+        }
+
+        public async Task<ServiceResponse<PagedList<HotelUserWithRequestsDto>>> GetHotelUsersWithCreatedRoomRequests(HotelUserParams hotelUserParams)
+        {
+            return new ServiceResponse<PagedList<HotelUserWithRequestsDto>>
+            {
+                IsValid = true,
+                Data = await _userRepository.GetAllGuestsWithRoomRequests(hotelUserParams)
+            };
         }
 
         public async Task<ServiceResponse<HotelUserDto>> GetHotelUser(string roomNumber)
@@ -80,17 +88,6 @@ namespace SoleusHotelApi.Services
             response.Data = userWithRolesDto;
 
             return response;
-        }
-
-        public async Task<ServiceResponse<List<HotelUserWithRequestsDto>>> GetHotelUserWithRequests()
-        {
-            List<HotelUser> guests = await _userRepository.GetAllGuests();
-
-            return new ServiceResponse<List<HotelUserWithRequestsDto>>
-            {
-                IsValid = true,
-                Data = _mapper.Map<List<HotelUserWithRequestsDto>>(guests)
-            };
         }
 
         public async Task<ServiceResponse<CreatedHotelUserDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
@@ -149,44 +146,6 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<LoggedUserDto>> LoginHotelUser(LoginHotelUserDto loginHotelUserDto)
-        {
-            ServiceResponse<LoggedUserDto> response = new();
-
-            if (loginHotelUserDto is null)
-            {
-                response.Errors.Add(HotelUserServiceError.NullPasswordAndUserName);
-                return response;
-            }
-
-            HotelUser user = await _userManager.Users.Include(r => r.Room)
-                .SingleOrDefaultAsync(x => x.Room.RoomNumber == loginHotelUserDto.RoomNumber.ToUpper());
-
-            if (user is null)
-            {
-                response.Errors.Add(HotelUserServiceError.InvalidUserName);
-                return response;
-            }
-
-            SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, loginHotelUserDto.Password, false);
-
-            if (!result.Succeeded)
-            {
-                response.Errors.Add(HotelUserServiceError.InvalidPassword);
-                return response;
-            }
-
-            response.IsValid = true;
-            response.Data = new LoggedUserDto
-            {
-                RoomNumber = user.Room.RoomNumber,
-                GuestName = user.GuestName,
-                Token = await _tokenService.CreateToken(user)
-            };
-
-            return response;
-        }
-
         public async Task<ServiceResponse<CreatedHotelUserDto>> EditUser(CreateHotelUserDto editUser)
         {
             ServiceResponse<CreatedHotelUserDto> response = new();
@@ -231,7 +190,7 @@ namespace SoleusHotelApi.Services
                 }
             }
 
-            if (! await IsTheRoomUpdated(editUser))
+            if (!await IsTheRoomUpdated(editUser))
             {
                 response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
                 return response;
@@ -273,7 +232,7 @@ namespace SoleusHotelApi.Services
                 response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
                 return response;
             }
-                      
+
             if (!await IsTheRoomUpdated(_mapper.Map<CreateHotelUserDto>(editUser)))
             {
                 response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
@@ -285,7 +244,45 @@ namespace SoleusHotelApi.Services
             return response;
         }
 
-        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto, string userRoomNumber)
+        public async Task<ServiceResponse<LoggedUserDto>> LoginHotelUser(LoginHotelUserDto loginHotelUserDto)
+        {
+            ServiceResponse<LoggedUserDto> response = new();
+
+            if (loginHotelUserDto is null)
+            {
+                response.Errors.Add(HotelUserServiceError.NullPasswordAndUserName);
+                return response;
+            }
+
+            HotelUser user = await _userManager.Users.Include(r => r.Room)
+                .SingleOrDefaultAsync(x => x.Room.RoomNumber == loginHotelUserDto.RoomNumber.ToUpper());
+
+            if (user is null)
+            {
+                response.Errors.Add(HotelUserServiceError.InvalidUserName);
+                return response;
+            }
+
+            SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, loginHotelUserDto.Password, false);
+
+            if (!result.Succeeded)
+            {
+                response.Errors.Add(HotelUserServiceError.InvalidPassword);
+                return response;
+            }
+
+            response.IsValid = true;
+            response.Data = new LoggedUserDto
+            {
+                RoomNumber = user.Room.RoomNumber,
+                GuestName = user.GuestName,
+                Token = await _tokenService.CreateToken(user)
+            };
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto)
         {
             ServiceResponse<LoggedUserDto> response = new();
 
@@ -304,13 +301,6 @@ namespace SoleusHotelApi.Services
                 response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeRole);
                 return response;
             }
-
-            if (userPasswordForgotDto.RoomNumber != userRoomNumber)
-            {
-                response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeWrongRoom);
-                return response;
-            }
-
 
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
@@ -381,7 +371,7 @@ namespace SoleusHotelApi.Services
             ServiceResponse<bool> response = new();
             List<string> failedUserChanges = new();
 
-            List<HotelUser> users = await _userRepository.GetAllGuests();
+            List<HotelUser> users = await _userRepository.GetHotelUsersByRole(Roles.Guest);
 
             foreach (var user in users)
             {
@@ -399,28 +389,6 @@ namespace SoleusHotelApi.Services
             }
 
             response.IsValid = true;
-            return response;
-        }
-
-        public async Task<ServiceResponse<List<HotelRoleDto>>> GetUsersWithRolesAsync()
-        {
-            ServiceResponse<List<HotelRoleDto>> response = new();
-
-            var users = await _userManager.Users
-               .Include(r => r.UserRoles)
-               .ThenInclude(r => r.Role)
-               .OrderBy(u => u.Room)
-               .Select(u => new HotelRoleDto
-               {
-                   Id = u.Id,
-                   RoomNumber = u.Room.RoomNumber,
-                   Roles = u.UserRoles.Select(r => r.Role.Name).ToList()
-               })
-                .ToListAsync();
-
-            response.IsValid = true;
-            response.Data = users;
-
             return response;
         }
 

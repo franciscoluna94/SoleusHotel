@@ -12,18 +12,18 @@
       },
       "results": [
         {
-          "ruleId": "S2699",
+          "ruleId": "S3267",
           "level": "warning",
-          "message": "Add at least one assertion to this test case.",
+          "message": "Loop should be simplified by calling Select(item => item.Ticks))",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///C:/Users/34626/source/repos/SoleusHotel/SoleusHotelApi/SoleusHotelApi.UnitTests/UnitTest1.cs",
+                "uri": "file:///C:/Users/34626/source/repos/SoleusHotel/SoleusHotelApi/SoleusHotelApi/Extensions/TimeSpanExtensions.cs",
                 "region": {
-                  "startLine": 6,
-                  "startColumn": 21,
-                  "endLine": 6,
-                  "endColumn": 26
+                  "startLine": 13,
+                  "startColumn": 34,
+                  "endLine": 13,
+                  "endColumn": 40
                 }
               }
             }
@@ -34,18 +34,18 @@
         }
       ],
       "rules": {
-        "S2699": {
-          "id": "S2699",
-          "shortDescription": "Tests should include assertions",
-          "fullDescription": "A test case without assertions ensures only that no exceptions are thrown. Beyond basic runnability, it ensures nothing about the behavior of the code under test.",
+        "S3267": {
+          "id": "S3267",
+          "shortDescription": "Loops should be simplified with \"LINQ\" expressions",
+          "fullDescription": "When a loop is filtering, selecting or aggregating, those functions can be handled with a clearer, more concise LINQ expression instead.",
           "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2699",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3267",
           "properties": {
-            "category": "Blocker Code Smell",
+            "category": "Minor Code Smell",
             "isEnabledByDefault": true,
             "tags": [
               "C#",
-              "TestSourceScope",
+              "MainSourceScope",
               "SonarWay"
             ]
           }
