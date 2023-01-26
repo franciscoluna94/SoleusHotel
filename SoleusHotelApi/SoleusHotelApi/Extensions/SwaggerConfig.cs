@@ -32,6 +32,7 @@ namespace SoleusHotelApi.Extensions
                         Array.Empty<string>()
                     }
                  });
+                opt.EnableAnnotations();
             });
 
             return services;

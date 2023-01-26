@@ -395,543 +395,1158 @@ XC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Constants
 ;
  
 } 
-} ÄL
-dC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controllers\AdminController.cs
-	namespace		 	
-SoleusHotelApi		
+} ¿
+ÇC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Constants\SwaggerDescriptions\AdminControllerDescriptions.cs
+	namespace 	
+SoleusHotelApi
  
-.		 
-Controllers		 $
-{
+. 
+	Constants "
+." #
+SwaggerDescriptions# 6
+{ 
+public 
+
+static 
+class '
+AdminControllerDescriptions 3
+{ 
+public 
+const 
+string 
+CreateUser200Ok +
+=, -
+$str. c
+;c d
+public 
+const 
+string !
+CreateUser409Conflict 1
+=2 3
+$str4 M
+;M N
+public 
+const 
+string 
+GetHotelUsers200Ok .
+=/ 0
+$str1 L
+;L M
+public 
+const 
+string 
+GetHotelUser200Ok -
+=. /
+$str0 T
+;T U
+public		 
+const		 
+string		 %
+UserNotFound400BadRequest		 5
+=		6 7
+$str		8 H
+;		H I
+public
 
- 
-[ 
-	Authorize 
-( 
-Policy 
-= 
-$str $
-)$ %
-]% &
-public 
-
-class 
-AdminController  
-:! "
-BaseApiController# 4
-{ 
-private 
-readonly 
-IHotelUserService *
-_hotelUserService+ <
-;< =
-private 
-readonly 
-IAdminService &
-_adminService' 4
-;4 5
-public 
-AdminController 
-( 
-IHotelUserService 0
-hotelUserService1 A
-,A B
-IAdminServiceC P
-adminServiceQ ]
-)] ^
-{ 	
-_hotelUserService 
-= 
-hotelUserService  0
-;0 1
-_adminService 
-= 
-adminService (
-;( )
-} 	
-[ 	
-HttpPost	 
-( 
-$str 
-) 
-] 
-public 
-async 
-Task 
-< 
-ActionResult &
-<& '
-CreatedHotelUserDto' :
->: ;
->; <
+ 
+const
+
+ 
+string
+
+ 
+EditHotelUser200Ok
+
+ .
+=
+
+/ 0
+$str
+
+1 p
+;
+
+p q
+public 
+const 
+string +
+ResetGuestPasswords204NoContent ;
+=< =
+$str> o
+;o p
+public 
+const 
+string "
+DeleteUser204NoContent 2
+=3 4
+$str5 c
+;c d
+public 
+const 
+string "
+DeleteUser409NoContent 2
+=3 4
+$str5 d
+;d e
+public 
+const 
+string 
+InitialSetup200Ok -
+=. /
+$str0 a
+;a b
+public 
+const 
+string #
+InitialSetup409Conflict 3
+=4 5
+$str6 ^
+;^ _
+} 
+} Á
+ÜC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Constants\SwaggerDescriptions\HotelUserControllerDescriptions.cs
+	namespace 	
+SoleusHotelApi
+ 
+. 
+	Constants "
+." #
+SwaggerDescriptions# 6
+{ 
+public 
+
+static 
+class +
+HotelUserControllerDescriptions 7
+{ 
+public 
+const 
+string 
 
-CreateUser= G
-(G H
-[H I
-FromBodyI Q
-]Q R
-CreateHotelUserDtoS e
-createHotelUserDtof x
-)x y
-{ 	
-ServiceResponse 
-< 
-CreatedHotelUserDto /
->/ 0
-response1 9
-=: ;
-await< A
-_hotelUserServiceB S
-.S T
-CreateHotelUserT c
-(c d
-createHotelUserDtod v
-)v w
-;w x
-if 
-( 
-! 
-response 
-. 
-IsValid !
-)! "
-{ 
-return 
-
-BadRequest !
-(! "
-response" *
-.* +
-Errors+ 1
-)1 2
-;2 3
-} 
-return!! 
-Ok!! 
-(!! 
-response!! 
-.!! 
-Data!! #
-)!!# $
-;!!$ %
-}"" 	
-[$$ 	
-HttpGet$$	 
-($$ 
-$str$$ 
-)$$ 
-]$$ 
-public%% 
-async%% 
-Task%% 
-<%% 
-ActionResult%% &
-<%%& '
-	PagedList%%' 0
-<%%0 1!
-HotelUserWithRolesDto%%1 F
->%%F G
->%%G H
->%%H I
-GetHotelUsers%%J W
-(%%W X
-[%%X Y
-	FromQuery%%Y b
-]%%b c
-HotelUserParams%%d s
-hotelUserParams1	%%t Ñ
-)
-%%Ñ Ö
-{&& 	
-ServiceResponse'' 
-<'' 
-	PagedList'' %
-<''% &!
-HotelUserWithRolesDto''& ;
->''; <
->''< =
-serviceResponse''> M
-=''N O
-await''P U
-_hotelUserService''V g
-.''g h
-GetHotelUsers''h u
-(''u v
-hotelUserParams1	''v Ü
-)
-''Ü á
+Login200Ok &
+=' (
+$str) X
+;X Y
+public 
+const 
+string 
+Login400BadRequest .
+=/ 0
+$str1 `
+;` a
+public 
+const 
+string 0
+$GetHotelUsersWithRequestsNumber200Ok @
+=A B
+$strC ]
+;] ^
+public 
+const 
+string 
+GetHotel200Ok )
+=* +
+$str, H
+;H I
+public		 
+const		 
+string		 
+EditGuest200Ok		 *
+=		+ ,
+$str		- F
+;		F G
+public
+
+ 
+const
+
+ 
+string
+
+ !
+EditGuest403Forbidden
+
+ 1
+=
+
+2 3
+$str
+
+4 U
+;
+
+U V
+public 
+const 
+string %
+UserNotFound400BadRequest 5
+=6 7
+$str8 H
+;H I
+public 
+const 
+string 
+ForgotPassword200Ok /
+=0 1
+$str2 g
+;g h
+public 
+const 
+string '
+ForgotPassword400BadRequest 7
+=8 9
+$str: `
+;` a
+public 
+const 
+string '
+ForgotPassword403Fordbidden 7
+=8 9
+$str: q
+;q r
+public 
+const 
+string %
+GenerateUserPassword200Ok 5
+=6 7
+$str8 q
+;q r
+public 
+const 
+string ,
+ GenerateUserPassword403Forbidden <
+== >
+$str? b
+;b c
+} 
+} ó
+àC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Constants\SwaggerDescriptions\RoomRequestControllerDescriptions.cs
+	namespace 	
+SoleusHotelApi
+ 
+. 
+	Constants "
+." #
+SwaggerDescriptions# 6
+{ 
+public 
+
+static 
+class -
+!RoomRequestControllerDescriptions 9
+{ 
+public 
+const 
+string %
+UserNotFound400BadRequest 5
+=6 7
+$str8 H
+;H I
+public 
+const 
+string 2
+&UserOrRoomRequestNotFound404BadRequest B
+=C D
+$strE e
+;e f
+public 
+const 
+string '
+GetFilteredRoomRequest200Ok 7
+=8 9
+$str: x
+;x y
+public 
+const 
+string "
+GetMyRoomRequests200Ok 2
+=3 4
+$str5 d
+;d e
+public		 
+const		 
+string		 (
+GetAssignedRoomRequests200Ok		 8
+=		9 :
+$str		; k
+;		k l
+public
+
+ 
+const
+
+ 
+string
+
+ 
+GetRoomRequest200Ok
+
+ /
+=
+
+0 1
+$str
+
+2 T
+;
+
+T U
+public 
+const 
+string &
+GetRoomRequest403Forbidden 6
+=7 8
+$str9 y
+;y z
+public 
+const 
+string 1
+%EndedRoomRequestsAverageDuration200Ok A
+=B C
+$str	D á
 ;
-''á à
-if)) 
-()) 
-!)) 
-serviceResponse))  
-.))  !
-IsValid))! (
-)))( )
-{** 
-return++ 
+á à
+public 
+const 
+string (
+StartRoomRequest204NoContent 8
+=9 :
+$str; s
+;s t
+public 
+const 
+string (
+StartRoomRequest403Forbidden 8
+=9 :
+$str; x
+;x y
+public 
+const 
+string '
+StartRoomRequest409Conflict 7
+=8 9
+$str: j
+;j k
+public 
+const 
+string &
+EndRoomRequest204NoContent 6
+=7 8
+$str9 j
+;j k
+public 
+const 
+string &
+EndRoomRequest403Forbidden 6
+=7 8
+$str9 x
+;x y
+public 
+const 
+string %
+EndRoomRequest409Conflict 5
+=6 7
+$str8 ]
+;] ^
+public 
+const 
+string )
+DeleteRoomRequest204NoContent 9
+=: ;
+$str< h
+;h i
+public 
+const 
+string )
+DeleteRoomRequest403Forbidden 9
+=: ;
+$str	< í
+;
+í ì
+public 
+const 
+string (
+DeleteRoomRequest409Conflict 8
+=9 :
+$str; l
+;l m
+} 
+} “p
+dC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controllers\AdminController.cs
+	namespace 	
+SoleusHotelApi
+ 
+. 
+Controllers $
+{ 
+[ 
+	Authorize 
+( 
+Policy 
+= 
+$str $
+)$ %
+]% &
+public 
+
+class 
+AdminController  
+:! "
+BaseApiController# 4
+{ 
+private 
+readonly 
+IHotelUserService *
+_hotelUserService+ <
+;< =
+private 
+readonly 
+IAdminService &
+_adminService' 4
+;4 5
+public 
+AdminController 
+( 
+IHotelUserService 0
+hotelUserService1 A
+,A B
+IAdminServiceC P
+adminServiceQ ]
+)] ^
+{ 	
+_hotelUserService 
+= 
+hotelUserService  0
+;0 1
+_adminService 
+= 
+adminService (
+;( )
+} 	
+[ 	
+HttpPost	 
+( 
+$str 
+) 
+] 
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status200OK% 0
+,0 1'
+AdminControllerDescriptions2 M
+.M N
+CreateUser200OkN ]
+,] ^
+typeof_ e
+(e f
+CreatedHotelUserDtof y
+)y z
+)z {
+]{ |
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status409Conflict% 6
+,6 7'
+AdminControllerDescriptions8 S
+.S T!
+CreateUser409ConflictT i
+)i j
+]j k
+public 
+async 
+Task 
+< 
+ActionResult &
+<& '
+CreatedHotelUserDto' :
+>: ;
+>; <
 
-BadRequest++ !
-(++! "
-serviceResponse++" 1
-.++1 2
-Errors++2 8
-)++8 9
-;++9 :
-},, 
-Response.. 
-... 
-AddPaginationHeader.. (
-(..( )
-serviceResponse..) 8
-...8 9
-Data..9 =
-...= >
-CurrentPage..> I
-,..I J
-serviceResponse..K Z
-...Z [
-Data..[ _
-..._ `
-PageSize..` h
-,..h i
-serviceResponse// 
-.//  
-Data//  $
-.//$ %
+CreateUser= G
+(G H
+[H I
+FromBodyI Q
+]Q R
+CreateHotelUserDtoS e
+createHotelUserDtof x
+)x y
+{ 	
+ServiceResponse 
+< 
+CreatedHotelUserDto /
+>/ 0
+serviceResponse1 @
+=A B
+awaitC H
+_hotelUserServiceI Z
+.Z [
+CreateHotelUser[ j
+(j k
+createHotelUserDtok }
+)} ~
+;~ 
+if!! 
+(!! 
+!!! 
+serviceResponse!!  
+.!!  !
+IsValid!!! (
+)!!( )
+{"" 
+return## 
 
-TotalCount//% /
-,/// 0
-serviceResponse//1 @
-.//@ A
-Data//A E
-.//E F
+StatusCode## !
+(##! "
+serviceResponse##" 1
+.##1 2
 
-TotalPages//F P
-)//P Q
-;//Q R
-return11 
-Ok11 
-(11 
-serviceResponse11 %
-.11% &
-Data11& *
-)11* +
-;11+ ,
-}22 	
-[44 	
-HttpGet44	 
-(44 
-$str44 %
-)44% &
-]44& '
-public55 
-async55 
-Task55 
-<55 
-ActionResult55 &
-<55& '!
-HotelUserWithRolesDto55' <
->55< =
->55= >
-GetHotelUsers55? L
-(55L M
-string55M S
+StatusCode##2 <
+,##< =
+serviceResponse##> M
+.##M N
+Errors##N T
+)##T U
+;##U V
+}$$ 
+return&& 
+Ok&& 
+(&& 
+serviceResponse&& %
+.&&% &
+Data&&& *
+)&&* +
+;&&+ ,
+}'' 	
+[)) 	
+HttpGet))	 
+()) 
+$str)) 
+))) 
+])) 
+[** 	
+SwaggerResponse**	 
+(** 
+StatusCodes** $
+.**$ %
+Status200OK**% 0
+,**0 1'
+AdminControllerDescriptions**2 M
+.**M N
+GetHotelUsers200Ok**N `
+,**` a
+typeof**b h
+(**h i
+	PagedList**i r
+<**r s"
+HotelUserWithRolesDto	**s à
+>
+**à â
+)
+**â ä
+)
+**ä ã
+]
+**ã å
+public++ 
+async++ 
+Task++ 
+<++ 
+ActionResult++ &
+<++& '
+	PagedList++' 0
+<++0 1!
+HotelUserWithRolesDto++1 F
+>++F G
+>++G H
+>++H I
+GetHotelUsers++J W
+(++W X
+[++X Y
+	FromQuery++Y b
+]++b c
+HotelUserParams++d s
+hotelUserParams1	++t Ñ
+)
+++Ñ Ö
+{,, 	
+ServiceResponse-- 
+<-- 
+	PagedList-- %
+<--% &!
+HotelUserWithRolesDto--& ;
+>--; <
+>--< =
+serviceResponse--> M
+=--N O
+await--P U
+_hotelUserService--V g
+.--g h
+GetHotelUsers--h u
+(--u v
+hotelUserParams1	--v Ü
+)
+--Ü á
+;
+--á à
+if// 
+(// 
+!// 
+serviceResponse//  
+.//  !
+IsValid//! (
+)//( )
+{00 
+return11 
 
-roomNumber55T ^
-)55^ _
-{66 	
-ServiceResponse77 
-<77 !
-HotelUserWithRolesDto77 1
->771 2
-response773 ;
-=77< =
-await77> C
-_hotelUserService77D U
-.77U V!
-GetHotelUserWithRoles77V k
-(77k l
+StatusCode11 !
+(11! "
+serviceResponse11" 1
+.111 2
 
-roomNumber77l v
-)77v w
-;77w x
-if99 
-(99 
-!99 
-response99 
-.99 
-IsValid99 !
-)99! "
-{:: 
-return;; 
+StatusCode112 <
+,11< =
+serviceResponse11> M
+.11M N
+Errors11N T
+)11T U
+;11U V
+}22 
+Response44 
+.44 
+AddPaginationHeader44 (
+(44( )
+serviceResponse44) 8
+.448 9
+Data449 =
+.44= >
+CurrentPage44> I
+,44I J
+serviceResponse44K Z
+.44Z [
+Data44[ _
+.44_ `
+PageSize44` h
+,44h i
+serviceResponse55 
+.55  
+Data55  $
+.55$ %
 
-BadRequest;; !
-(;;! "
-response;;" *
-.;;* +
-Errors;;+ 1
-);;1 2
-;;;2 3
-}<< 
-return>> 
-Ok>> 
-(>> 
-response>> 
-.>> 
-Data>> #
-)>># $
-;>>$ %
-}?? 	
-[AA 	
-HttpPutAA	 
-(AA 
-$strAA 
-)AA 
-]AA 
-publicBB 
-asyncBB 
-TaskBB 
-<BB 
-ActionResultBB &
-<BB& '
-CreatedHotelUserDtoBB' :
->BB: ;
->BB; <
-EditUserBB= E
-(BBE F
-[BBF G
-FromBodyBBG O
-]BBO P
-CreateHotelUserDtoBBQ c
-editHotelUserBBd q
-)BBq r
-{CC 	
-ServiceResponseDD 
-<DD 
-CreatedHotelUserDtoDD /
->DD/ 0
-responseDD1 9
-=DD: ;
-awaitDD< A
-_hotelUserServiceDDB S
-.DDS T
-EditUserDDT \
-(DD\ ]
-editHotelUserDD] j
-)DDj k
-;DDk l
-ifFF 
-(FF 
-!FF 
-responseFF 
-.FF 
-IsValidFF !
-)FF! "
-{GG 
-returnHH 
+TotalCount55% /
+,55/ 0
+serviceResponse551 @
+.55@ A
+Data55A E
+.55E F
 
-BadRequestHH !
-(HH! "
-responseHH" *
-.HH* +
-ErrorsHH+ 1
-)HH1 2
-;HH2 3
-}II 
-returnKK 
-OkKK 
-(KK 
-responseKK 
-.KK 
-DataKK #
-)KK# $
-;KK$ %
-}LL 	
-[NN 	
-HttpPostNN	 
-(NN 
-$strNN 
-)NN 
-]NN 
-publicOO 
-asyncOO 
-TaskOO 
-<OO 
-ActionResultOO &
->OO& '
-ResetGuestPasswordsOO( ;
-(OO; <
-[OO< =
-FromBodyOO= E
-]OOE F
-stringOOG M
-passwordOON V
-)OOV W
-{PP 	
-ServiceResponseQQ 
-<QQ 
-boolQQ  
->QQ  !
-responseQQ" *
-=QQ+ ,
-awaitQQ- 2
-_hotelUserServiceQQ3 D
-.QQD E 
-ResetGuestsPasswordsQQE Y
-(QQY Z
-passwordQQZ b
-)QQb c
-;QQc d
-ifSS 
-(SS 
-!SS 
-responseSS 
-.SS 
-IsValidSS !
-)SS! "
-{TT 
-returnUU 
+TotalPages55F P
+)55P Q
+;55Q R
+return77 
+Ok77 
+(77 
+serviceResponse77 %
+.77% &
+Data77& *
+)77* +
+;77+ ,
+}88 	
+[:: 	
+HttpGet::	 
+(:: 
+$str:: %
+)::% &
+]::& '
+[;; 	
+SwaggerResponse;;	 
+(;; 
+StatusCodes;; $
+.;;$ %
+Status200OK;;% 0
+,;;0 1'
+AdminControllerDescriptions;;2 M
+.;;M N
+GetHotelUser200Ok;;N _
+,;;_ `
+typeof;;a g
+(;;g h!
+HotelUserWithRolesDto;;h }
+);;} ~
+);;~ 
+]	;; Ä
+[<< 	
+SwaggerResponse<<	 
+(<< 
+StatusCodes<< $
+.<<$ %
+Status400BadRequest<<% 8
+,<<8 9'
+AdminControllerDescriptions<<: U
+.<<U V%
+UserNotFound400BadRequest<<V o
+)<<o p
+]<<p q
+public== 
+async== 
+Task== 
+<== 
+ActionResult== &
+<==& '!
+HotelUserWithRolesDto==' <
+>==< =
+>=== >
+GetHotelUser==? K
+(==K L
+string==L R
 
-BadRequestUU !
-(UU! "
-responseUU" *
-.UU* +
-ErrorsUU+ 1
-)UU1 2
-;UU2 3
-}VV 
-returnXX 
-	NoContentXX 
-(XX 
+roomNumber==S ]
+)==] ^
+{>> 	
+ServiceResponse?? 
+<?? !
+HotelUserWithRolesDto?? 1
+>??1 2
+serviceResponse??3 B
+=??C D
+await??E J
+_hotelUserService??K \
+.??\ ]!
+GetHotelUserWithRoles??] r
+(??r s
+
+roomNumber??s }
+)??} ~
+;??~ 
+ifAA 
+(AA 
+!AA 
+serviceResponseAA  
+.AA  !
+IsValidAA! (
+)AA( )
+{BB 
+returnCC 
+
+StatusCodeCC !
+(CC! "
+serviceResponseCC" 1
+.CC1 2
+
+StatusCodeCC2 <
+,CC< =
+serviceResponseCC> M
+.CCM N
+ErrorsCCN T
+)CCT U
+;CCU V
+}DD 
+returnFF 
+OkFF 
+(FF 
+serviceResponseFF %
+.FF% &
+DataFF& *
+)FF* +
+;FF+ ,
+}GG 	
+[II 	
+HttpPutII	 
+(II 
+$strII 
+)II 
+]II 
+[JJ 	
+SwaggerResponseJJ	 
+(JJ 
+StatusCodesJJ $
+.JJ$ %
+Status200OKJJ% 0
+,JJ0 1'
+AdminControllerDescriptionsJJ2 M
+.JJM N
+EditHotelUser200OkJJN `
+,JJ` a
+typeofJJb h
+(JJh i
+CreatedHotelUserDtoJJi |
+)JJ| }
+)JJ} ~
+]JJ~ 
+[KK 	
+SwaggerResponseKK	 
+(KK 
+StatusCodesKK $
+.KK$ %
+Status400BadRequestKK% 8
+,KK8 9'
+AdminControllerDescriptionsKK: U
+.KKU V%
+UserNotFound400BadRequestKKV o
+)KKo p
+]KKp q
+publicLL 
+asyncLL 
+TaskLL 
+<LL 
+ActionResultLL &
+<LL& '
+CreatedHotelUserDtoLL' :
+>LL: ;
+>LL; <
+EditUserLL= E
+(LLE F
+[LLF G
+FromBodyLLG O
+]LLO P
+CreateHotelUserDtoLLQ c
+editHotelUserLLd q
+)LLq r
+{MM 	
+ServiceResponseNN 
+<NN 
+CreatedHotelUserDtoNN /
+>NN/ 0
+serviceResponseNN1 @
+=NNA B
+awaitNNC H
+_hotelUserServiceNNI Z
+.NNZ [
+EditUserNN[ c
+(NNc d
+editHotelUserNNd q
+)NNq r
+;NNr s
+ifPP 
+(PP 
+!PP 
+serviceResponsePP  
+.PP  !
+IsValidPP! (
+)PP( )
+{QQ 
+returnRR 
+
+StatusCodeRR !
+(RR! "
+serviceResponseRR" 1
+.RR1 2
+
+StatusCodeRR2 <
+,RR< =
+serviceResponseRR> M
+.RRM N
+ErrorsRRN T
+)RRT U
+;RRU V
+}SS 
+returnUU 
+OkUU 
+(UU 
+serviceResponseUU %
+.UU% &
+DataUU& *
+)UU* +
+;UU+ ,
+}VV 	
+[XX 	
+HttpPostXX	 
+(XX 
+$strXX 
 )XX 
-;XX 
-}YY 	
-[[[ 	
+]XX 
+[YY 	
+SwaggerResponseYY	 
+(YY 
+StatusCodesYY $
+.YY$ %
+Status204NoContentYY% 7
+,YY7 8'
+AdminControllerDescriptionsYY9 T
+.YYT U+
+ResetGuestPasswords204NoContentYYU t
+)YYt u
+]YYu v
+publicZZ 
+asyncZZ 
+TaskZZ 
+<ZZ 
+ActionResultZZ &
+>ZZ& '
+ResetGuestPasswordsZZ( ;
+(ZZ; <
+[ZZ< =
+FromBodyZZ= E
+]ZZE F
+stringZZG M
+passwordZZN V
+)ZZV W
+{[[ 	
+ServiceResponse\\ 
+<\\ 
+bool\\  
+>\\  !
+serviceResponse\\" 1
+=\\2 3
+await\\4 9
+_hotelUserService\\: K
+.\\K L 
+ResetGuestsPasswords\\L `
+(\\` a
+password\\a i
+)\\i j
+;\\j k
+if^^ 
+(^^ 
+!^^ 
+serviceResponse^^  
+.^^  !
+IsValid^^! (
+)^^( )
+{__ 
+return`` 
 
-HttpDelete[[	 
-([[ 
-$str[[ (
-)[[( )
-][[) *
-public\\ 
-async\\ 
-Task\\ 
-<\\ 
-ActionResult\\ &
->\\& '
+StatusCode`` !
+(``! "
+serviceResponse``" 1
+.``1 2
 
-DeleteUser\\( 2
-(\\2 3
-string\\3 9
+StatusCode``2 <
+,``< =
+serviceResponse``> M
+.``M N
+Errors``N T
+)``T U
+;``U V
+}aa 
+returncc 
+	NoContentcc 
+(cc 
+)cc 
+;cc 
+}dd 	
+[ff 	
 
-roomNumber\\: D
-)\\D E
-{]] 	
-ServiceResponse^^ 
-<^^ 
-bool^^  
->^^  !
-response^^" *
-=^^+ ,
-await^^- 2
-_hotelUserService^^3 D
-.^^D E
-DeleteHotelUser^^E T
-(^^T U
-
-roomNumber^^U _
-)^^_ `
-;^^` a
-if`` 
-(`` 
-!`` 
-response`` 
-.`` 
-IsValid`` !
-)``! "
-{aa 
-returnbb 
-
-BadRequestbb !
-(bb! "
-responsebb" *
-.bb* +
-Errorsbb+ 1
-)bb1 2
-;bb2 3
-}cc 
-returnee 
-Okee 
-(ee 
-)ee 
-;ee 
-}ff 	
-[hh 	
-AllowAnonymoushh	 
-]hh 
-[ii 	
-HttpGetii	 
-(ii 
-$strii  
-)ii  !
-]ii! "
+HttpDeleteff	 
+(ff 
+$strff (
+)ff( )
+]ff) *
+[gg 	
+SwaggerResponsegg	 
+(gg 
+StatusCodesgg $
+.gg$ %
+Status204NoContentgg% 7
+,gg7 8'
+AdminControllerDescriptionsgg9 T
+.ggT U"
+DeleteUser204NoContentggU k
+)ggk l
+]ggl m
+[hh 	
+SwaggerResponsehh	 
+(hh 
+StatusCodeshh $
+.hh$ %
+Status400BadRequesthh% 8
+,hh8 9'
+AdminControllerDescriptionshh: U
+.hhU V%
+UserNotFound400BadRequesthhV o
+)hho p
+]hhp q
+[ii 	
+SwaggerResponseii	 
+(ii 
+StatusCodesii $
+.ii$ %
+Status409Conflictii% 6
+,ii6 7'
+AdminControllerDescriptionsii8 S
+.iiS T"
+DeleteUser409NoContentiiT j
+)iij k
+]iik l
 publicjj 
 asyncjj 
 Taskjj 
 <jj 
 ActionResultjj &
-<jj& '
-stringjj' -
->jj- .
->jj. /
-InitialSetupjj0 <
-(jj< =
-)jj= >
+>jj& '
+
+DeleteUserjj( 2
+(jj2 3
+stringjj3 9
+
+roomNumberjj: D
+)jjD E
 {kk 	
 ServiceResponsell 
-<ll 
-stringll "
->ll" #
-responsell$ ,
-=ll- .
-awaitll/ 4
-_adminServicell5 B
-.llB C
-InitialSetupllC O
-(llO P
-)llP Q
-;llQ R
+<ll 
+boolll  
+>ll  !
+serviceResponsell" 1
+=ll2 3
+awaitll4 9
+_hotelUserServicell: K
+.llK L
+DeleteHotelUserllL [
+(ll[ \
+
+roomNumberll\ f
+)llf g
+;llg h
 ifnn 
 (nn 
-!nn 
-responsenn 
-.nn 
-IsValidnn !
-)nn! "
+!nn 
+serviceResponsenn  
+.nn  !
+IsValidnn! (
+)nn( )
 {oo 
 returnpp 
 
-BadRequestpp !
-(pp! "
-responsepp" *
-.pp* +
-Errorspp+ 1
-)pp1 2
-;pp2 3
+StatusCodepp !
+(pp! "
+serviceResponsepp" 1
+.pp1 2
+
+StatusCodepp2 <
+,pp< =
+serviceResponsepp> M
+.ppM N
+ErrorsppN T
+)ppT U
+;ppU V
 }qq 
-returnss 
-Okss 
-(ss 
-responsess 
-.ss 
-Datass #
-)ss# $
-;ss$ %
+returnss 
+	NoContentss 
+(ss 
+)ss 
+;ss 
 }tt 	
-}uu 
-}xx π
+[vv 	
+AllowAnonymousvv	 
+]vv 
+[ww 	
+HttpGetww	 
+(ww 
+$strww  
+)ww  !
+]ww! "
+[xx 	
+SwaggerResponsexx	 
+(xx 
+StatusCodesxx $
+.xx$ %
+Status200OKxx% 0
+,xx0 1'
+AdminControllerDescriptionsxx2 M
+.xxM N
+InitialSetup200OkxxN _
+)xx_ `
+]xx` a
+[yy 	
+SwaggerResponseyy	 
+(yy 
+StatusCodesyy $
+.yy$ %
+Status409Conflictyy% 6
+,yy6 7'
+AdminControllerDescriptionsyy8 S
+.yyS T#
+InitialSetup409ConflictyyT k
+)yyk l
+]yyl m
+publiczz 
+asynczz 
+Taskzz 
+<zz 
+ActionResultzz &
+<zz& '
+stringzz' -
+>zz- .
+>zz. /
+InitialSetupzz0 <
+(zz< =
+)zz= >
+{{{ 	
+ServiceResponse|| 
+<|| 
+string|| "
+>||" #
+serviceResponse||$ 3
+=||4 5
+await||6 ;
+_adminService||< I
+.||I J
+InitialSetup||J V
+(||V W
+)||W X
+;||X Y
+if~~ 
+(~~ 
+!~~ 
+serviceResponse~~  
+.~~  !
+IsValid~~! (
+)~~( )
+{ 
+return
+ÄÄ 
+
+StatusCode
+ÄÄ !
+(
+ÄÄ! "
+serviceResponse
+ÄÄ" 1
+.
+ÄÄ1 2
+
+StatusCode
+ÄÄ2 <
+,
+ÄÄ< =
+serviceResponse
+ÄÄ> M
+.
+ÄÄM N
+Errors
+ÄÄN T
+)
+ÄÄT U
+;
+ÄÄU V
+}
+ÅÅ 
+return
+ÉÉ 
+Ok
+ÉÉ 
+(
+ÉÉ 
+serviceResponse
+ÉÉ %
+.
+ÉÉ% &
+Data
+ÉÉ& *
+)
+ÉÉ* +
+;
+ÉÉ+ ,
+}
+ÑÑ 	
+}
+ÖÖ 
+}àà π
 fC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controllers\BaseApiController.cs
 	namespace 	
 SoleusHotelApi
@@ -963,849 +1578,1169 @@ fC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controlle
 
  
 } 
-} œI
+} ©o
 hC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controllers\HotelUserController.cs
-	namespace		 	
-SoleusHotelApi		
+	namespace 	
+SoleusHotelApi
  
-.		 
-Controllers		 $
-{
-
- 
-public 
+. 
+Controllers $
+{ 
+public 
 
-class 
-HotelUserController $
-:% &
-BaseApiController' 8
-{ 
-private 
-readonly 
-IHotelUserService *
-_hotelUserService+ <
-;< =
-public 
-HotelUserController "
-(" #
-IHotelUserService# 4
-hotelUserService5 E
-)E F
-{ 	
-_hotelUserService 
-= 
-hotelUserService  0
-;0 1
-} 	
-[ 	
-AllowAnonymous	 
-] 
-[ 	
-HttpPost	 
-( 
-$str 
-) 
-] 
-public 
-async 
-Task 
-< 
-ActionResult &
-<& '
-LoggedUserDto' 4
->4 5
->5 6
-Login7 <
-(< =
-[= >
-FromBody> F
-]F G
-LoginHotelUserDtoH Y
-loginHotelUserDtoZ k
-)k l
-{ 	
-ServiceResponse 
-< 
-LoggedUserDto )
->) *
-response+ 3
-=4 5
-await6 ;
-_hotelUserService< M
-.M N
-LoginHotelUserN \
-(\ ]
-loginHotelUserDto] n
-)n o
-;o p
-if 
-( 
-! 
-response 
-. 
-IsValid !
-)! "
-{ 
-return 
-Unauthorized #
-(# $
-response$ ,
-., -
-Errors- 3
-)3 4
-;4 5
-} 
-return 
-Ok 
-( 
-response 
-. 
-Data #
-)# $
-;$ %
-}   	
-["" 	
-	Authorize""	 
-("" 
-Policy"" 
-="" 
-$str"" +
-)""+ ,
-]"", -
-[## 	
-HttpGet##	 
-(## 
-$str## 
-)## 
-]## 
-public$$ 
-async$$ 
-Task$$ 
-<$$ 
-ActionResult$$ &
-<$$& '
-List$$' +
-<$$+ ,$
-HotelUserWithRequestsDto$$, D
->$$D E
->$$E F
->$$F G+
-GetHotelUsersWithRequestsNumber$$H g
-($$g h
-[$$h i
-	FromQuery$$i r
-]$$r s
-HotelUserParams	$$t É
-hotelUserParams
-$$Ñ ì
+class 
+HotelUserController $
+:% &
+BaseApiController' 8
+{ 
+private 
+readonly 
+IHotelUserService *
+_hotelUserService+ <
+;< =
+public 
+HotelUserController "
+(" #
+IHotelUserService# 4
+hotelUserService5 E
+)E F
+{ 	
+_hotelUserService 
+= 
+hotelUserService  0
+;0 1
+} 	
+[ 	
+AllowAnonymous	 
+] 
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status200OK% 0
+,0 1+
+HotelUserControllerDescriptions2 Q
+.Q R
+
+Login200OkR \
+,\ ]
+typeof^ d
+(d e
+LoggedUserDtoe r
+)r s
+)s t
+]t u
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status400BadRequest% 8
+,8 9+
+HotelUserControllerDescriptions: Y
+.Y Z
+Login400BadRequestZ l
+)l m
+]m n
+[ 	
+HttpPost	 
+( 
+$str 
+) 
+] 
+public 
+async 
+Task 
+< 
+ActionResult &
+<& '
+LoggedUserDto' 4
+>4 5
+>5 6
+Login7 <
+(< =
+[= >
+FromBody> F
+]F G
+LoginHotelUserDtoH Y
+loginHotelUserDtoZ k
+)k l
+{ 	
+ServiceResponse 
+< 
+LoggedUserDto )
+>) *
+serviceResponse+ :
+=; <
+await= B
+_hotelUserServiceC T
+.T U
+LoginHotelUserU c
+(c d
+loginHotelUserDtod u
+)u v
+;v w
+if 
+( 
+! 
+serviceResponse  
+.  !
+IsValid! (
+)( )
+{ 
+return   
+
+StatusCode   !
+(  ! "
+serviceResponse  " 1
+.  1 2
+
+StatusCode  2 <
+,  < =
+serviceResponse  > M
+.  M N
+Errors  N T
+)  T U
+;  U V
+}!! 
+return## 
+Ok## 
+(## 
+serviceResponse## %
+.##% &
+Data##& *
+)##* +
+;##+ ,
+}$$ 	
+[&& 	
+	Authorize&&	 
+(&& 
+Policy&& 
+=&& 
+$str&& +
+)&&+ ,
+]&&, -
+['' 	
+HttpGet''	 
+('' 
+$str'' 
+)'' 
+]'' 
+[(( 	
+SwaggerResponse((	 
+((( 
+StatusCodes(( $
+.(($ %
+Status200OK((% 0
+,((0 1+
+HotelUserControllerDescriptions((2 Q
+.((Q R0
+$GetHotelUsersWithRequestsNumber200Ok((R v
+,((v w
+typeof((x ~
+(((~ 
+	PagedList	(( à
+<
+((à â&
+HotelUserWithRequestsDto
+((â °
+>
+((° ¢
 )
-$$ì î
-{%% 	
-ServiceResponse&& 
-<&& 
-	PagedList&& %
-<&&% &$
-HotelUserWithRequestsDto&&& >
->&&> ?
->&&? @
-serviceResponse&&A P
-=&&Q R
-await&&S X
-_hotelUserService&&Y j
-.&&j k1
-$GetHotelUsersWithCreatedRoomRequests	&&k è
+((¢ £
+)
+((£ §
+]
+((§ •
+public)) 
+async)) 
+Task)) 
+<)) 
+ActionResult)) &
+<))& '
+	PagedList))' 0
+<))0 1$
+HotelUserWithRequestsDto))1 I
+>))I J
+>))J K
+>))K L+
+GetHotelUsersWithRequestsNumber))M l
+())l m
+[))m n
+	FromQuery))n w
+]))w x
+HotelUserParams	))y à
+hotelUserParams
+))â ò
+)
+))ò ô
+{** 	
+ServiceResponse++ 
+<++ 
+	PagedList++ %
+<++% &$
+HotelUserWithRequestsDto++& >
+>++> ?
+>++? @
+serviceResponse++A P
+=++Q R
+await++S X
+_hotelUserService++Y j
+.++j k1
+$GetHotelUsersWithCreatedRoomRequests	++k è
 (
-&&è ê
+++è ê
 hotelUserParams
-&&ê ü
+++ê ü
 )
-&&ü †
+++ü †
 ;
-&&† °
-if(( 
-((( 
-!(( 
-serviceResponse((  
-.((  !
-IsValid((! (
-)((( )
-{)) 
-return** 
+++† °
+if-- 
+(-- 
+!-- 
+serviceResponse--  
+.--  !
+IsValid--! (
+)--( )
+{.. 
+return// 
 
-BadRequest** !
-(**! "
-serviceResponse**" 1
-.**1 2
-Errors**2 8
-)**8 9
-;**9 :
-}++ 
-Response-- 
-.-- 
-AddPaginationHeader-- (
-(--( )
-serviceResponse--) 8
-.--8 9
-Data--9 =
-.--= >
-CurrentPage--> I
-,--I J
-serviceResponse--K Z
-.--Z [
-Data--[ _
-.--_ `
-PageSize--` h
-,--h i
-serviceResponse.. 
-...  
-Data..  $
-...$ %
+StatusCode// !
+(//! "
+serviceResponse//" 1
+.//1 2
 
-TotalCount..% /
-,../ 0
-serviceResponse..1 @
-...@ A
-Data..A E
-...E F
+StatusCode//2 <
+,//< =
+serviceResponse//> M
+.//M N
+Errors//N T
+)//T U
+;//U V
+}00 
+Response22 
+.22 
+AddPaginationHeader22 (
+(22( )
+serviceResponse22) 8
+.228 9
+Data229 =
+.22= >
+CurrentPage22> I
+,22I J
+serviceResponse22K Z
+.22Z [
+Data22[ _
+.22_ `
+PageSize22` h
+,22h i
+serviceResponse33 
+.33  
+Data33  $
+.33$ %
 
-TotalPages..F P
-)..P Q
-;..Q R
-return00 
-Ok00 
-(00 
-serviceResponse00 %
-.00% &
-Data00& *
-)00* +
-;00+ ,
-}11 	
-[33 	
-	Authorize33	 
-(33 
-Policy33 
-=33 
-$str33 +
-)33+ ,
-]33, -
-[44 	
-HttpGet44	 
-(44 
-$str44 
-)44  
-]44  !
-public55 
-async55 
-Task55 
-<55 
-ActionResult55 &
-<55& '
-HotelUserDto55' 3
->553 4
->554 5
-GetHotelUser556 B
-(55B C
-string55C I
+TotalCount33% /
+,33/ 0
+serviceResponse331 @
+.33@ A
+Data33A E
+.33E F
 
-roomNumber55J T
-)55T U
-{66 	
-ServiceResponse77 
-<77 
-HotelUserDto77 (
->77( )
-response77* 2
-=773 4
-await775 :
-_hotelUserService77; L
-.77L M
-GetHotelUser77M Y
-(77Y Z
+TotalPages33F P
+)33P Q
+;33Q R
+return55 
+Ok55 
+(55 
+serviceResponse55 %
+.55% &
+Data55& *
+)55* +
+;55+ ,
+}66 	
+[88 	
+	Authorize88	 
+(88 
+Policy88 
+=88 
+$str88 +
+)88+ ,
+]88, -
+[99 	
+HttpGet99	 
+(99 
+$str99 
+)99  
+]99  !
+[:: 	
+SwaggerResponse::	 
+(:: 
+StatusCodes:: $
+.::$ %
+Status200OK::% 0
+,::0 1+
+HotelUserControllerDescriptions::2 Q
+.::Q R
+GetHotel200Ok::R _
+,::_ `
+typeof::a g
+(::g h
+HotelUserDto::h t
+)::t u
+)::u v
+]::v w
+public;; 
+async;; 
+Task;; 
+<;; 
+ActionResult;; &
+<;;& '
+HotelUserDto;;' 3
+>;;3 4
+>;;4 5
+GetHotelUser;;6 B
+(;;B C
+string;;C I
 
-roomNumber77Z d
-)77d e
-;77e f
-if99 
-(99 
-!99 
-response99 
-.99 
-IsValid99 !
-)99! "
-{:: 
-return;; 
+roomNumber;;J T
+);;T U
+{<< 	
+ServiceResponse== 
+<== 
+HotelUserDto== (
+>==( )
+serviceResponse==* 9
+===: ;
+await==< A
+_hotelUserService==B S
+.==S T
+GetHotelUser==T `
+(==` a
 
-BadRequest;; !
-(;;! "
-response;;" *
-.;;* +
-Errors;;+ 1
-);;1 2
-;;;2 3
-}<< 
-return>> 
-Ok>> 
-(>> 
-response>> 
-.>> 
-Data>> #
-)>># $
-;>>$ %
-}?? 	
-[AA 	
-	AuthorizeAA	 
-(AA 
-PolicyAA 
-=AA 
-$strAA ,
-)AA, -
-]AA- .
-[BB 	
-	HttpPatchBB	 
-(BB 
-$strBB 
-)BB 
-]BB 
-publicCC 
-asyncCC 
-TaskCC 
-<CC 
-ActionResultCC &
-<CC& '
-HotelUserDtoCC' 3
->CC3 4
->CC4 5
+roomNumber==a k
+)==k l
+;==l m
+if?? 
+(?? 
+!?? 
+serviceResponse??  
+.??  !
+IsValid??! (
+)??( )
+{@@ 
+returnAA 
 
-EditGuestsCC6 @
-(CC@ A
-[CCA B
-FromBodyCCB J
-]CCJ K
-HotelUserDtoCCL X
-editUserCCY a
-)CCa b
-{DD 	
-ServiceResponseEE 
-<EE 
-HotelUserDtoEE (
->EE( )
-responseEE* 2
-=EE3 4
-awaitEE5 :
-_hotelUserServiceEE; L
-.EEL M
-EditGuestUserEEM Z
-(EEZ [
-editUserEE[ c
-)EEc d
-;EEd e
-ifGG 
-(GG 
-!GG 
-responseGG 
-.GG 
-IsValidGG !
-)GG! "
-{HH 
-returnII 
+StatusCodeAA !
+(AA! "
+serviceResponseAA" 1
+.AA1 2
 
-BadRequestII !
-(II! "
-responseII" *
-.II* +
-ErrorsII+ 1
-)II1 2
-;II2 3
-}JJ 
-returnLL 
-OkLL 
-(LL 
-responseLL 
-.LL 
-DataLL #
-)LL# $
-;LL$ %
-}MM 	
-[OO 	
-AllowAnonymousOO	 
-]OO 
-[PP 	
-	HttpPatchPP	 
-(PP 
-$strPP 
-)PP 
-]PP  
-publicQQ 
-asyncQQ 
-TaskQQ 
-<QQ 
-ActionResultQQ &
-<QQ& '
-LoggedUserDtoQQ' 4
->QQ4 5
->QQ5 6
-ForgotPasswordQQ7 E
-(QQE F
-[QQF G
-FromBodyQQG O
-]QQO P'
-HotelUserPasswordUpdatesDtoQQQ l
-passwordUpdateQQm {
-)QQ{ |
-{RR 	
-ifSS 
-(SS 
-passwordUpdateSS 
-isSS !
-nullSS" &
-)SS& '
-{TT 
-returnUU 
+StatusCodeAA2 <
+,AA< =
+serviceResponseAA> M
+.AAM N
+ErrorsAAN T
+)AAT U
+;AAU V
+}BB 
+returnDD 
+OkDD 
+(DD 
+serviceResponseDD %
+.DD% &
+DataDD& *
+)DD* +
+;DD+ ,
+}EE 	
+[GG 	
+	AuthorizeGG	 
+(GG 
+PolicyGG 
+=GG 
+$strGG ,
+)GG, -
+]GG- .
+[HH 	
+	HttpPatchHH	 
+(HH 
+$strHH 
+)HH 
+]HH 
+[II 	
+SwaggerResponseII	 
+(II 
+StatusCodesII $
+.II$ %
+Status200OKII% 0
+,II0 1+
+HotelUserControllerDescriptionsII2 Q
+.IIQ R
+EditGuest200OkIIR `
+,II` a
+typeofIIb h
+(IIh i
+HotelUserDtoIIi u
+)IIu v
+)IIv w
+]IIw x
+[JJ 	
+SwaggerResponseJJ	 
+(JJ 
+StatusCodesJJ $
+.JJ$ %
+Status403ForbiddenJJ% 7
+,JJ7 8+
+HotelUserControllerDescriptionsJJ9 X
+.JJX Y!
+EditGuest403ForbiddenJJY n
+)JJn o
+]JJo p
+[KK 	
+SwaggerResponseKK	 
+(KK 
+StatusCodesKK $
+.KK$ %
+Status404NotFoundKK% 6
+,KK6 7+
+HotelUserControllerDescriptionsKK8 W
+.KKW X%
+UserNotFound400BadRequestKKX q
+)KKq r
+]KKr s
+publicLL 
+asyncLL 
+TaskLL 
+<LL 
+ActionResultLL &
+<LL& '
+HotelUserDtoLL' 3
+>LL3 4
+>LL4 5
+	EditGuestLL6 ?
+(LL? @
+[LL@ A
+FromBodyLLA I
+]LLI J
+HotelUserDtoLLK W
+editUserLLX `
+)LL` a
+{MM 	
+ServiceResponseNN 
+<NN 
+HotelUserDtoNN (
+>NN( )
+serviceResponseNN* 9
+=NN: ;
+awaitNN< A
+_hotelUserServiceNNB S
+.NNS T
+EditGuestUserNNT a
+(NNa b
+editUserNNb j
+)NNj k
+;NNk l
+ifPP 
+(PP 
+!PP 
+serviceResponsePP  
+.PP  !
+IsValidPP! (
+)PP( )
+{QQ 
+returnRR 
 
-BadRequestUU !
-(UU! "
-)UU" #
-;UU# $
-}VV 
-ServiceResponseXX 
-<XX 
-LoggedUserDtoXX )
->XX) *
-responseXX+ 3
-=XX4 5
-awaitXX6 ;
-_hotelUserServiceXX< M
-.XXM N
-ForgotPasswordXXN \
-(XX\ ]
-passwordUpdateXX] k
-)XXk l
-;XXl m
-ifZZ 
-(ZZ 
-!ZZ 
-responseZZ 
-.ZZ 
-IsValidZZ !
-)ZZ! "
-{[[ 
-return\\ 
+StatusCodeRR !
+(RR! "
+serviceResponseRR" 1
+.RR1 2
 
-BadRequest\\ !
-(\\! "
-response\\" *
-.\\* +
-Errors\\+ 1
-)\\1 2
-;\\2 3
-}]] 
-return__ 
-Ok__ 
-(__ 
-response__ 
-.__ 
-Data__ #
-)__# $
-;__$ %
-}`` 	
-[bb 	
-	Authorizebb	 
-(bb 
-Policybb 
-=bb 
-$strbb ,
-)bb, -
-]bb- .
-[cc 	
-	HttpPatchcc	 
-(cc 
-$strcc +
-)cc+ ,
-]cc, -
-publicdd 
-asyncdd 
-Taskdd 
-<dd 
-ActionResultdd &
-<dd& '(
-GenerateHotelUserPasswordDtodd' C
->ddC D
->ddD E 
-GenerateUserPasswordddF Z
-(ddZ [
-stringdd[ a
+StatusCodeRR2 <
+,RR< =
+serviceResponseRR> M
+.RRM N
+ErrorsRRN T
+)RRT U
+;RRU V
+}SS 
+returnUU 
+OkUU 
+(UU 
+serviceResponseUU %
+.UU% &
+DataUU& *
+)UU* +
+;UU+ ,
+}VV 	
+[XX 	
+AllowAnonymousXX	 
+]XX 
+[YY 	
+	HttpPatchYY	 
+(YY 
+$strYY 
+)YY 
+]YY  
+[ZZ 	
+SwaggerResponseZZ	 
+(ZZ 
+StatusCodesZZ $
+.ZZ$ %
+Status200OKZZ% 0
+,ZZ0 1+
+HotelUserControllerDescriptionsZZ2 Q
+.ZZQ R
+ForgotPassword200OkZZR e
+,ZZe f
+typeofZZg m
+(ZZm n
+LoggedUserDtoZZn {
+)ZZ{ |
+)ZZ| }
+]ZZ} ~
+[[[ 	
+SwaggerResponse[[	 
+([[ 
+StatusCodes[[ $
+.[[$ %
+Status400BadRequest[[% 8
+,[[8 9+
+HotelUserControllerDescriptions[[: Y
+.[[Y Z'
+ForgotPassword400BadRequest[[Z u
+)[[u v
+][[v w
+[\\ 	
+SwaggerResponse\\	 
+(\\ 
+StatusCodes\\ $
+.\\$ %
+Status403Forbidden\\% 7
+,\\7 8+
+HotelUserControllerDescriptions\\9 X
+.\\X Y'
+ForgotPassword403Fordbidden\\Y t
+)\\t u
+]\\u v
+[]] 	
+SwaggerResponse]]	 
+(]] 
+StatusCodes]] $
+.]]$ %
+Status404NotFound]]% 6
+,]]6 7+
+HotelUserControllerDescriptions]]8 W
+.]]W X%
+UserNotFound400BadRequest]]X q
+)]]q r
+]]]r s
+public^^ 
+async^^ 
+Task^^ 
+<^^ 
+ActionResult^^ &
+<^^& '
+LoggedUserDto^^' 4
+>^^4 5
+>^^5 6
+ForgotPassword^^7 E
+(^^E F
+[^^F G
+FromBody^^G O
+]^^O P'
+HotelUserPasswordUpdatesDto^^Q l
+passwordUpdate^^m {
+)^^{ |
+{__ 	
+ServiceResponse`` 
+<`` 
+LoggedUserDto`` )
+>``) *
+serviceResponse``+ :
+=``; <
+await``= B
+_hotelUserService``C T
+.``T U
+ForgotPassword``U c
+(``c d
+passwordUpdate``d r
+)``r s
+;``s t
+ifbb 
+(bb 
+!bb 
+serviceResponsebb  
+.bb  !
+IsValidbb! (
+)bb( )
+{cc 
+returndd 
 
-roomNumberddb l
-)ddl m
-{ee 	
-ServiceResponseff 
-<ff (
-GenerateHotelUserPasswordDtoff 8
->ff8 9
-responseff: B
-=ffC D
-awaitffE J
-_hotelUserServiceffK \
-.ff\ ] 
-GenerateUserPasswordff] q
-(ffq r
+StatusCodedd !
+(dd! "
+serviceResponsedd" 1
+.dd1 2
 
-roomNumberffr |
-)ff| }
-;ff} ~
-ifhh 
-(hh 
-!hh 
-responsehh 
-.hh 
-IsValidhh !
-)hh! "
-{ii 
-returnjj 
+StatusCodedd2 <
+,dd< =
+serviceResponsedd> M
+.ddM N
+ErrorsddN T
+)ddT U
+;ddU V
+}ee 
+returngg 
+Okgg 
+(gg 
+serviceResponsegg %
+.gg% &
+Datagg& *
+)gg* +
+;gg+ ,
+}hh 	
+[jj 	
+	Authorizejj	 
+(jj 
+Policyjj 
+=jj 
+$strjj ,
+)jj, -
+]jj- .
+[kk 	
+	HttpPatchkk	 
+(kk 
+$strkk +
+)kk+ ,
+]kk, -
+[ll 	
+SwaggerResponsell	 
+(ll 
+StatusCodesll $
+.ll$ %
+Status200OKll% 0
+,ll0 1+
+HotelUserControllerDescriptionsll2 Q
+.llQ R%
+GenerateUserPassword200OkllR k
+,llk l
+typeofllm s
+(lls t
+LoggedUserDto	llt Å
+)
+llÅ Ç
+)
+llÇ É
+]
+llÉ Ñ
+[mm 	
+SwaggerResponsemm	 
+(mm 
+StatusCodesmm $
+.mm$ %
+Status403Forbiddenmm% 7
+,mm7 8+
+HotelUserControllerDescriptionsmm9 X
+.mmX Y,
+ GenerateUserPassword403ForbiddenmmY y
+)mmy z
+]mmz {
+[nn 	
+SwaggerResponsenn	 
+(nn 
+StatusCodesnn $
+.nn$ %
+Status404NotFoundnn% 6
+,nn6 7+
+HotelUserControllerDescriptionsnn8 W
+.nnW X%
+UserNotFound400BadRequestnnX q
+)nnq r
+]nnr s
+publicoo 
+asyncoo 
+Taskoo 
+<oo 
+ActionResultoo &
+<oo& '(
+GenerateHotelUserPasswordDtooo' C
+>ooC D
+>ooD E 
+GenerateUserPasswordooF Z
+(ooZ [
+stringoo[ a
 
-BadRequestjj !
-(jj! "
-responsejj" *
-.jj* +
-Errorsjj+ 1
-)jj1 2
-;jj2 3
-}kk 
-returnmm 
-Okmm 
-(mm 
-responsemm 
-.mm 
-Datamm #
-)mm# $
-;mm$ %
-}nn 	
-}oo 
-}pp ∑c
+roomNumberoob l
+)ool m
+{pp 	
+ServiceResponseqq 
+<qq (
+GenerateHotelUserPasswordDtoqq 8
+>qq8 9
+serviceResponseqq: I
+=qqJ K
+awaitqqL Q
+_hotelUserServiceqqR c
+.qqc d 
+GenerateUserPasswordqqd x
+(qqx y
+
+roomNumber	qqy É
+)
+qqÉ Ñ
+;
+qqÑ Ö
+ifss 
+(ss 
+!ss 
+serviceResponsess  
+.ss  !
+IsValidss! (
+)ss( )
+{tt 
+returnuu 
+
+StatusCodeuu !
+(uu! "
+serviceResponseuu" 1
+.uu1 2
+
+StatusCodeuu2 <
+,uu< =
+serviceResponseuu> M
+.uuM N
+ErrorsuuN T
+)uuT U
+;uuU V
+}vv 
+returnxx 
+Okxx 
+(xx 
+serviceResponsexx %
+.xx% &
+Dataxx& *
+)xx* +
+;xx+ ,
+}yy 	
+}zz 
+}{{ ›π
 jC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Controllers\RoomRequestController.cs
-	namespace 	
-SoleusHotelApi
+	namespace 	
+SoleusHotelApi
  
-. 
-Controllers $
-{		 
-public
-
- 
+. 
+Controllers $
+{ 
+public 
 
-class
-
- !
-RoomRequestController
-
- &
-:
-
-' (
-BaseApiController
-
-) :
-{ 
-private 
-readonly 
-IRoomRequestService ,
-_roomRequestService- @
-;@ A
-public !
-RoomRequestController $
-($ %
-IRoomRequestService% 8
-roomRequestService9 K
-)K L
-{ 	
-_roomRequestService 
-=  !
-roomRequestService" 4
-;4 5
-} 	
-[ 	
-HttpPost	 
-( 
-$str "
-)" #
-]# $
-public 
-async 
-Task 
-< 
-ActionResult &
-<& '
-bool' +
->+ ,
->, -
-CreateRoomRequest. ?
-(? @
-[@ A
-FromBodyA I
-]I J 
-CreateRoomRequestDtoK _
-createRoomRequest` q
-)q r
-{ 	
-ServiceResponse 
-< 
-bool  
->  !
-serviceResponse" 1
-=2 3
-await4 9
-_roomRequestService: M
-.M N
-CreateRoomRequestN _
-(_ `
-createRoomRequest` q
-,q r
-Users w
-.w x
-GetRoomNumber	x Ö
+class !
+RoomRequestController &
+:' (
+BaseApiController) :
+{ 
+private 
+readonly 
+IRoomRequestService ,
+_roomRequestService- @
+;@ A
+public !
+RoomRequestController $
+($ %
+IRoomRequestService% 8
+roomRequestService9 K
+)K L
+{ 	
+_roomRequestService 
+=  !
+roomRequestService" 4
+;4 5
+} 	
+[ 	
+HttpPost	 
+( 
+) 
+] 
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status204NoContent% 7
+)7 8
+]8 9
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status404NotFound% 6
+,6 7-
+!RoomRequestControllerDescriptions8 Y
+.Y Z%
+UserNotFound400BadRequestZ s
+)s t
+]t u
+public 
+async 
+Task 
+< 
+ActionResult &
+<& '
+bool' +
+>+ ,
+>, -
+CreateRoomRequest. ?
+(? @
+[@ A
+FromBodyA I
+]I J 
+CreateRoomRequestDtoK _
+createRoomRequest` q
+)q r
+{ 	
+ServiceResponse 
+< 
+bool  
+>  !
+serviceResponse" 1
+=2 3
+await4 9
+_roomRequestService: M
+.M N
+CreateRoomRequestN _
+(_ `
+createRoomRequest` q
+,q r
+Users w
+.w x
+GetRoomNumber	x Ö
 (
-Ö Ü
+Ö Ü
 )
-Ü á
+Ü á
 )
-á à
+á à
 ;
-à â
-if 
-( 
-! 
-serviceResponse  
-.  !
-IsValid! (
-)( )
-{ 
-return 
+à â
+if 
+( 
+! 
+serviceResponse  
+.  !
+IsValid! (
+)( )
+{ 
+return 
 
-BadRequest !
-(! "
-serviceResponse" 1
-.1 2
-Errors2 8
-)8 9
-;9 :
-} 
-return 
-	NoContent 
-( 
-) 
-; 
-} 	
-[   	
-	Authorize  	 
-(   
-Policy   
-=   
-$str   +
-)  + ,
-]  , -
-[!! 	
-HttpGet!!	 
-(!! 
-$str!! !
-)!!! "
-]!!" #
-public"" 
-async"" 
-Task"" 
-<"" 
-ActionResult"" &
-<""& '
-BaseRoomRequestDto""' 9
->""9 :
->"": ; 
-GetTodayRoomRequests""< P
-(""P Q
-)""Q R
-{## 	
-ServiceResponse$$ 
-<$$ 
-List$$  
-<$$  !
-BaseRoomRequestDto$$! 3
->$$3 4
->$$4 5
-serviceResponse$$6 E
-=$$F G
-await$$H M
-_roomRequestService$$N a
-.$$a b 
-GetTodayRoomRequests$$b v
-($$v w
-)$$w x
-;$$x y
-if&& 
-(&& 
-!&& 
-serviceResponse&&  
-.&&  !
-IsValid&&! (
-)&&( )
-{'' 
-return(( 
+StatusCode !
+(! "
+serviceResponse" 1
+.1 2
 
-BadRequest(( !
-(((! "
-serviceResponse((" 1
-.((1 2
-Errors((2 8
-)((8 9
-;((9 :
-})) 
-return++ 
-Ok++ 
-(++ 
-serviceResponse++ %
-.++% &
-Data++& *
-)++* +
-;+++ ,
-},, 	
-[.. 	
-HttpGet..	 
-(.. 
-$str.. 
-)..  
-]..  !
-public// 
-async// 
-Task// 
-<// 
-ActionResult// &
-<//& '
-BaseRoomRequestDto//' 9
->//9 :
->//: ;
-GetMyRoomRequests//< M
-(//M N
-)//N O
-{00 	
-ServiceResponse11 
-<11 
-List11  
-<11  !
-BaseRoomRequestDto11! 3
->113 4
->114 5
-serviceResponse116 E
-=11F G
-await11H M
-_roomRequestService11N a
-.11a b
-GetMyRoomRequests11b s
-(11s t
-User11t x
-.11x y
-GetRoomNumber	11y Ü
+StatusCode2 <
+,< =
+serviceResponse> M
+.M N
+ErrorsN T
+)T U
+;U V
+}   
+return"" 
+	NoContent"" 
+("" 
+)"" 
+;"" 
+}## 	
+[%% 	
+	Authorize%%	 
+(%% 
+Policy%% 
+=%% 
+$str%% +
+)%%+ ,
+]%%, -
+[&& 	
+HttpGet&&	 
+(&& 
+)&& 
+]&& 
+['' 	
+SwaggerResponse''	 
+('' 
+StatusCodes'' $
+.''$ %
+Status200OK''% 0
+,''0 1-
+!RoomRequestControllerDescriptions''2 S
+.''S T'
+GetFilteredRoomRequest200Ok''T o
+,''o p
+typeof''q w
+(''w x
+	PagedList	''x Å
+<
+''Å Ç 
+BaseRoomRequestDto
+''Ç î
+>
+''î ï
+)
+''ï ñ
+)
+''ñ ó
+]
+''ó ò
+public(( 
+async(( 
+Task(( 
+<(( 
+ActionResult(( &
+<((& '
+	PagedList((' 0
+<((0 1
+BaseRoomRequestDto((1 C
+>((C D
+>((D E
+>((E F#
+GetFilteredRoomRequests((G ^
+(((^ _
+[((_ `
+	FromQuery((` i
+]((i j
+RoomRequestParams((k |
+roomRequestParams	((} é
+)
+((é è
+{)) 	
+ServiceResponse** 
+<** 
+	PagedList** %
+<**% &
+BaseRoomRequestDto**& 8
+>**8 9
+>**9 :
+serviceResponse**; J
+=**K L
+await**M R
+_roomRequestService**S f
+.**f g#
+GetFilteredRoomRequests**g ~
+(**~ 
+roomRequestParams	** ê
+)
+**ê ë
+;
+**ë í
+if,, 
+(,, 
+!,, 
+serviceResponse,,  
+.,,  !
+IsValid,,! (
+),,( )
+{-- 
+return.. 
+
+StatusCode.. !
+(..! "
+serviceResponse.." 1
+...1 2
+
+StatusCode..2 <
+,..< =
+serviceResponse..> M
+...M N
+Errors..N T
+)..T U
+;..U V
+}// 
+Response11 
+.11 
+AddPaginationHeader11 (
+(11( )
+serviceResponse11) 8
+.118 9
+Data119 =
+.11= >
+CurrentPage11> I
+,11I J
+serviceResponse11K Z
+.11Z [
+Data11[ _
+.11_ `
+PageSize11` h
+,11h i
+serviceResponse22 
+.22 
+Data22 #
+.22# $
+
+TotalCount22$ .
+,22. /
+serviceResponse220 ?
+.22? @
+Data22@ D
+.22D E
+
+TotalPages22E O
+)22O P
+;22P Q
+return44 
+Ok44 
+(44 
+serviceResponse44 %
+.44% &
+Data44& *
+)44* +
+;44+ ,
+}55 	
+[77 	
+HttpGet77	 
+(77 
+$str77 
+)77 
+]77 
+[88 	
+SwaggerResponse88	 
+(88 
+StatusCodes88 $
+.88$ %
+Status200OK88% 0
+,880 1-
+!RoomRequestControllerDescriptions882 S
+.88S T"
+GetMyRoomRequests200Ok88T j
+,88j k
+typeof88l r
+(88r s
+	PagedList88s |
+<88| }
+BaseRoomRequestDto	88} è
+>
+88è ê
+)
+88ê ë
+)
+88ë í
+]
+88í ì
+[99 	
+SwaggerResponse99	 
+(99 
+StatusCodes99 $
+.99$ %
+Status404NotFound99% 6
+,996 7-
+!RoomRequestControllerDescriptions998 Y
+.99Y Z%
+UserNotFound400BadRequest99Z s
+)99s t
+]99t u
+public:: 
+async:: 
+Task:: 
+<:: 
+ActionResult:: &
+<::& '
+	PagedList::' 0
+<::0 1
+BaseRoomRequestDto::1 C
+>::C D
+>::D E
+>::E F
+GetMyRoomRequests::G X
+(::X Y
+[::Y Z
+	FromQuery::Z c
+]::c d
+RoomRequestParams::e v
+roomRequestParams	::w à
+)
+::à â
+{;; 	
+ServiceResponse<< 
+<<< 
+	PagedList<< %
+<<<% &
+BaseRoomRequestDto<<& 8
+><<8 9
+><<9 :
+serviceResponse<<; J
+=<<K L
+await<<M R
+_roomRequestService<<S f
+.<<f g
+GetMyRoomRequests<<g x
+(<<x y
+User<<y }
+.<<} ~
+GetRoomNumber	<<~ ã
 (
-11Ü á
+<<ã å
 )
-11á à
+<<å ç
+,
+<<ç é
+roomRequestParams
+<<è †
 )
-11à â
+<<† °
 ;
-11â ä
-if33 
-(33 
-!33 
-serviceResponse33  
-.33  !
-IsValid33! (
-)33( )
-{44 
-return55 
+<<° ¢
+if>> 
+(>> 
+!>> 
+serviceResponse>>  
+.>>  !
+IsValid>>! (
+)>>( )
+{?? 
+return@@ 
 
-BadRequest55 !
-(55! "
-serviceResponse55" 1
-.551 2
-Errors552 8
-)558 9
-;559 :
-}66 
-return88 
-Ok88 
-(88 
-serviceResponse88 %
-.88% &
-Data88& *
-)88* +
-;88+ ,
-}99 	
-[;; 	
-	Authorize;;	 
-(;; 
-Policy;; 
-=;; 
-$str;; +
-);;+ ,
-];;, -
-[<< 	
-HttpGet<<	 
-(<< 
-$str<< $
-)<<$ %
-]<<% &
-public== 
-async== 
-Task== 
-<== 
-ActionResult== &
-<==& '
-BaseRoomRequestDto==' 9
->==9 :
->==: ;#
-GetAssignedRoomRequests==< S
-(==S T
-)==T U
-{>> 	
-ServiceResponse?? 
-<?? 
-List??  
-<??  !
-BaseRoomRequestDto??! 3
->??3 4
->??4 5
-serviceResponse??6 E
-=??F G
-await??H M
-_roomRequestService??N a
-.??a b!
-GetMyAssignedRequests??b w
-(??w x
-User??x |
-.??| }
-GetRoomNumber	??} ä
-(
-??ä ã
-)
-??ã å
-)
-??å ç
-;
-??ç é
-ifAA 
-(AA 
-!AA 
-serviceResponseAA  
-.AA  !
-IsValidAA! (
-)AA( )
-{BB 
-returnCC 
+StatusCode@@ !
+(@@! "
+serviceResponse@@" 1
+.@@1 2
 
-BadRequestCC !
-(CC! "
-serviceResponseCC" 1
-.CC1 2
-ErrorsCC2 8
-)CC8 9
-;CC9 :
-}DD 
+StatusCode@@2 <
+,@@< =
+serviceResponse@@> M
+.@@M N
+Errors@@N T
+)@@T U
+;@@U V
+}AA 
+ResponseCC 
+.CC 
+AddPaginationHeaderCC (
+(CC( )
+serviceResponseCC) 8
+.CC8 9
+DataCC9 =
+.CC= >
+CurrentPageCC> I
+,CCI J
+serviceResponseCCK Z
+.CCZ [
+DataCC[ _
+.CC_ `
+PageSizeCC` h
+,CCh i
+serviceResponseDD 
+.DD 
+DataDD #
+.DD# $
+
+TotalCountDD$ .
+,DD. /
+serviceResponseDD0 ?
+.DD? @
+DataDD@ D
+.DDD E
+
+TotalPagesDDE O
+)DDO P
+;DDP Q
 returnFF 
 OkFF 
 (FF 
@@ -1815,450 +2750,1106 @@ BadRequestCC !
 )FF* +
 ;FF+ ,
 }GG 	
-[II 	
-HttpGetII	 
-(II 
-$strII "
-)II" #
-]II# $
-publicJJ 
-asyncJJ 
-TaskJJ 
-<JJ 
-ActionResultJJ &
-<JJ& '
-RoomRequestDtoJJ' 5
->JJ5 6
->JJ6 7
-GetRoomRequestJJ8 F
-(JJF G
-intJJG J
-roomRequestIdJJK X
-)JJX Y
-{KK 	
-ServiceResponseLL 
-<LL 
-RoomRequestDtoLL *
->LL* +
-serviceResponseLL, ;
-=LL< =
-awaitLL> C
-_roomRequestServiceLLD W
-.LLW X
-GetRoomRequestLLX f
-(LLf g
-roomRequestIdLLg t
-,LLt u
-UserLLv z
-.LLz {
-GetRoomNumber	LL{ à
-(
-LLà â
+[II 	
+	AuthorizeII	 
+(II 
+PolicyII 
+=II 
+$strII +
+)II+ ,
+]II, -
+[JJ 	
+HttpGetJJ	 
+(JJ 
+$strJJ 
+)JJ 
+]JJ 
+[KK 	
+SwaggerResponseKK	 
+(KK 
+StatusCodesKK $
+.KK$ %
+Status200OKKK% 0
+,KK0 1-
+!RoomRequestControllerDescriptionsKK2 S
+.KKS T(
+GetAssignedRoomRequests200OkKKT p
+,KKp q
+typeofKKr x
+(KKx y
+	PagedList	KKy Ç
+<
+KKÇ É 
+BaseRoomRequestDto
+KKÉ ï
+>
+KKï ñ
 )
-LLâ ä
-,
-LLã å
-User
-LLç ë
-.
-LLë í
-GetRoles
-LLí ö
-(
-LLö õ
+KKñ ó
 )
-LLõ ú
-)
-LLú ù
-;
-LLù û
-ifNN 
-(NN 
-!NN 
-serviceResponseNN  
-.NN  !
-IsValidNN! (
-)NN( )
-{OO 
-returnPP 
-NotFoundPP 
-(PP  
-serviceResponsePP  /
-.PP/ 0
-ErrorsPP0 6
-)PP6 7
-;PP7 8
-}QQ 
-returnSS 
-OkSS 
-(SS 
-serviceResponseSS %
-.SS% &
-DataSS& *
-)SS* +
-;SS+ ,
-}TT 	
-[VV 	
-	AuthorizeVV	 
-(VV 
-PolicyVV 
-=VV 
-$strVV +
-)VV+ ,
-]VV, -
-[WW 	
-HttpGetWW	 
-(WW 
-$strWW 
-)WW 
-]WW 
-publicXX 
-asyncXX 
-TaskXX 
-<XX 
-ActionResultXX &
->XX& ',
- EndedRoomRequestsAverageDurationXX( H
-(XXH I
-)XXI J
-{YY 	
-ServiceResponseZZ 
-<ZZ 
-TimeSpanZZ $
->ZZ$ %
-responseZZ& .
-=ZZ/ 0
-awaitZZ1 6
-_roomRequestServiceZZ7 J
-.ZZJ K+
-AverageTimeAssignedRoomRequestsZZK j
-(ZZj k
-UserZZk o
-.ZZo p
-GetRoomNumberZZp }
-(ZZ} ~
-)ZZ~ 
-)	ZZ Ä
-;
-ZZÄ Å
-if\\ 
-(\\ 
-!\\ 
-response\\ 
-.\\ 
-IsValid\\ !
-)\\! "
-{]] 
-return^^ 
-
-BadRequest^^ !
-(^^! "
-response^^" *
-.^^* +
-Errors^^+ 1
-)^^1 2
-;^^2 3
-}__ 
-returnaa 
-Okaa 
-(aa 
-responseaa 
-.aa 
-Dataaa #
-)aa# $
-;aa$ %
-}bb 	
-[dd 	
-	Authorizedd	 
-(dd 
-Policydd 
-=dd 
-$strdd +
-)dd+ ,
-]dd, -
-[ee 	
-	HttpPatchee	 
-(ee 
-$stree *
-)ee* +
-]ee+ ,
-publicff 
-asyncff 
-Taskff 
-<ff 
-ActionResultff &
->ff& '
-StartRoomRequestff( 8
-(ff8 9
-intff9 <
-roomRequestIdff= J
-)ffJ K
-{gg 	
-ServiceResponsehh 
-<hh 
-boolhh  
->hh  !
-responsehh" *
-=hh+ ,
-awaithh- 2
-_roomRequestServicehh3 F
-.hhF G
-StartRoomRequesthhG W
-(hhW X
-roomRequestIdhhX e
-,hhe f
-Userhhg k
-.hhk l
-GetRoomNumberhhl y
-(hhy z
-)hhz {
-,hh{ |
-User	hh} Å
-.
-hhÅ Ç
-GetRoles
-hhÇ ä
-(
-hhä ã
-)
-hhã å
-)
-hhå ç
-;
-hhç é
-ifjj 
-(jj 
-!jj 
-responsejj 
-.jj 
-IsValidjj !
-)jj! "
-{kk 
-returnll 
-
-BadRequestll !
-(ll! "
-responsell" *
-.ll* +
-Errorsll+ 1
-)ll1 2
-;ll2 3
-}mm 
-returnoo 
-	NoContentoo 
-(oo 
-)oo 
-;oo 
-}pp 	
-[rr 	
-	Authorizerr	 
-(rr 
-Policyrr 
-=rr 
-$strrr +
-)rr+ ,
-]rr, -
-[ss 	
-	HttpPatchss	 
-(ss 
-$strss (
-)ss( )
-]ss) *
-publictt 
-asynctt 
-Tasktt 
-<tt 
-ActionResulttt &
->tt& '
-EndRoomRequesttt( 6
-(tt6 7
-inttt7 :
-roomRequestIdtt; H
-)ttH I
-{uu 	
-ServiceResponsevv 
-<vv 
-boolvv  
->vv  !
-responsevv" *
-=vv+ ,
-awaitvv- 2
-_roomRequestServicevv3 F
-.vvF G
-EndRoomRequestvvG U
-(vvU V
-roomRequestIdvvV c
-,vvc d
-Uservve i
-.vvi j
-GetRoomNumbervvj w
-(vvw x
-)vvx y
-,vvy z
-Uservv{ 
-.	vv Ä
-GetRoles
-vvÄ à
-(
-vvà â
-)
-vvâ ä
-)
-vvä ã
-;
-vvã å
-ifxx 
-(xx 
-!xx 
-responsexx 
-.xx 
-IsValidxx !
-)xx! "
-{yy 
-returnzz 
-
-BadRequestzz !
-(zz! "
-responsezz" *
-.zz* +
-Errorszz+ 1
-)zz1 2
-;zz2 3
-}{{ 
-return}} 
-	NoContent}} 
-(}} 
-)}} 
-;}} 
-}~~ 	
-[
-ÄÄ 	
-
-HttpDelete
-ÄÄ	 
-(
-ÄÄ 
-$str
-ÄÄ %
-)
-ÄÄ% &
+KKó ò
 ]
-ÄÄ& '
-public
-ÅÅ 
-async
-ÅÅ 
-Task
-ÅÅ 
-<
-ÅÅ 
-ActionResult
-ÅÅ &
->
-ÅÅ& '
-DeleteRoomRequest
-ÅÅ( 9
-(
-ÅÅ9 :
-int
-ÅÅ: =
-roomRequestId
-ÅÅ> K
+KKò ô
+[LL 	
+SwaggerResponseLL	 
+(LL 
+StatusCodesLL $
+.LL$ %
+Status404NotFoundLL% 6
+,LL6 7-
+!RoomRequestControllerDescriptionsLL8 Y
+.LLY Z%
+UserNotFound400BadRequestLLZ s
+)LLs t
+]LLt u
+publicMM 
+asyncMM 
+TaskMM 
+<MM 
+ActionResultMM &
+<MM& '
+	PagedListMM' 0
+<MM0 1
+BaseRoomRequestDtoMM1 C
+>MMC D
+>MMD E
+>MME F#
+GetAssignedRoomRequestsMMG ^
+(MM^ _
+[MM_ `
+	FromQueryMM` i
+]MMi j
+RoomRequestParamsMMk |
+roomRequestParams	MM} é
 )
-ÅÅK L
-{
-ÇÇ 	
-ServiceResponse
-ÉÉ 
-<
-ÉÉ 
-bool
-ÉÉ  
->
-ÉÉ  !
-serviceResponse
-ÉÉ" 1
-=
-ÉÉ2 3
-await
-ÉÉ4 9!
-_roomRequestService
-ÉÉ: M
-.
-ÉÉM N#
-SafeDeleteRoomRequest
-ÉÉN c
-(
-ÉÉc d
-roomRequestId
-ÉÉd q
-,
-ÉÉq r
-User
-ÉÉs w
-.
-ÉÉw x
-GetRoomNumberÉÉx Ö
-(ÉÉÖ Ü
-)ÉÉÜ á
-,ÉÉá à
-UserÉÉâ ç
-.ÉÉç é
-GetRolesÉÉé ñ
-(ÉÉñ ó
-)ÉÉó ò
-)ÉÉò ô
-;ÉÉô ö
-if
-ÖÖ 
-(
-ÖÖ 
-!
-ÖÖ 
-serviceResponse
-ÖÖ  
-.
-ÖÖ  !
-IsValid
-ÖÖ! (
-)
-ÖÖ( )
-{
-ÜÜ 
-return
-áá 
+MMé è
+{NN 	
+ServiceResponseOO 
+<OO 
+	PagedListOO %
+<OO% &
+BaseRoomRequestDtoOO& 8
+>OO8 9
+>OO9 :
+serviceResponseOO; J
+=OOK L
+awaitPP 
+_roomRequestServicePP )
+.PP) *!
+GetMyAssignedRequestsPP* ?
+(PP? @
+UserPP@ D
+.PPD E
+GetRoomNumberPPE R
+(PPR S
+)PPS T
+,PPT U
+roomRequestParamsPPV g
+)PPg h
+;PPh i
+ifRR 
+(RR 
+!RR 
+serviceResponseRR  
+.RR  !
+IsValidRR! (
+)RR( )
+{SS 
+returnTT 
 
-BadRequest
-áá !
-(
-áá! "
-serviceResponse
-áá" 1
-.
-áá1 2
-Errors
-áá2 8
+StatusCodeTT !
+(TT! "
+serviceResponseTT" 1
+.TT1 2
+
+StatusCodeTT2 <
+,TT< =
+serviceResponseTT> M
+.TTM N
+ErrorsTTN T
+)TTT U
+;TTU V
+}UU 
+ResponseWW 
+.WW 
+AddPaginationHeaderWW (
+(WW( )
+serviceResponseWW) 8
+.WW8 9
+DataWW9 =
+.WW= >
+CurrentPageWW> I
+,WWI J
+serviceResponseWWK Z
+.WWZ [
+DataWW[ _
+.WW_ `
+PageSizeWW` h
+,WWh i
+serviceResponseXX 
+.XX 
+DataXX #
+.XX# $
+
+TotalCountXX$ .
+,XX. /
+serviceResponseXX0 ?
+.XX? @
+DataXX@ D
+.XXD E
+
+TotalPagesXXE O
+)XXO P
+;XXP Q
+returnZZ 
+OkZZ 
+(ZZ 
+serviceResponseZZ %
+.ZZ% &
+DataZZ& *
+)ZZ* +
+;ZZ+ ,
+}[[ 	
+[]] 	
+HttpGet]]	 
+(]] 
+$str]] "
+)]]" #
+]]]# $
+[^^ 	
+SwaggerResponse^^	 
+(^^ 
+StatusCodes^^ $
+.^^$ %
+Status200OK^^% 0
+,^^0 1-
+!RoomRequestControllerDescriptions^^2 S
+.^^S T
+GetRoomRequest200Ok^^T g
+,^^g h
+typeof^^i o
+(^^o p
+RoomRequestDto^^p ~
+)^^~ 
+)	^^ Ä
+]
+^^Ä Å
+[__ 	
+SwaggerResponse__	 
+(__ 
+StatusCodes__ $
+.__$ %
+Status403Forbidden__% 7
+,__7 8-
+!RoomRequestControllerDescriptions__9 Z
+.__Z [&
+GetRoomRequest403Forbidden__[ u
+)__u v
+]__v w
+[`` 	
+SwaggerResponse``	 
+(`` 
+StatusCodes`` $
+.``$ %
+Status404NotFound``% 6
+,``6 7-
+!RoomRequestControllerDescriptions``8 Y
+.``Y Z3
+&UserOrRoomRequestNotFound404BadRequest	``Z Ä
 )
-áá8 9
+``Ä Å
+]
+``Å Ç
+publicaa 
+asyncaa 
+Taskaa 
+<aa 
+ActionResultaa &
+<aa& '
+RoomRequestDtoaa' 5
+>aa5 6
+>aa6 7
+GetRoomRequestaa8 F
+(aaF G
+intaaG J
+roomRequestIdaaK X
+)aaX Y
+{bb 	
+ServiceResponsecc 
+<cc 
+RoomRequestDtocc *
+>cc* +
+serviceResponsecc, ;
+=cc< =
+awaitcc> C
+_roomRequestServiceccD W
+.ccW X
+GetRoomRequestccX f
+(ccf g
+roomRequestIdccg t
+,cct u
+Userccv z
+.ccz {
+GetRoomNumber	cc{ à
+(
+ccà â
+)
+ccâ ä
+,
+ccã å
+User
+ccç ë
+.
+ccë í
+GetRoles
+ccí ö
+(
+ccö õ
+)
+ccõ ú
+)
+ccú ù
 ;
-áá9 :
-}
+ccù û
+ifee 
+(ee 
+!ee 
+serviceResponseee  
+.ee  !
+IsValidee! (
+)ee( )
+{ff 
+returngg 
+
+StatusCodegg !
+(gg! "
+serviceResponsegg" 1
+.gg1 2
+
+StatusCodegg2 <
+,gg< =
+serviceResponsegg> M
+.ggM N
+ErrorsggN T
+)ggT U
+;ggU V
+}hh 
+returnjj 
+Okjj 
+(jj 
+serviceResponsejj %
+.jj% &
+Datajj& *
+)jj* +
+;jj+ ,
+}kk 	
+[mm 	
+	Authorizemm	 
+(mm 
+Policymm 
+=mm 
+$strmm +
+)mm+ ,
+]mm, -
+[nn 	
+HttpGetnn	 
+(nn 
+$strnn 
+)nn 
+]nn 
+[oo 	
+SwaggerResponseoo	 
+(oo 
+StatusCodesoo $
+.oo$ %
+Status200OKoo% 0
+,oo0 1-
+!RoomRequestControllerDescriptionsoo2 S
+.ooS T1
+%EndedRoomRequestsAverageDuration200OkooT y
+,ooy z
+typeof	oo{ Å
+(
+ooÅ Ç
+TimeSpan
+ooÇ ä
+)
+ooä ã
+)
+ooã å
+]
+ooå ç
+[pp 	
+SwaggerResponsepp	 
+(pp 
+StatusCodespp $
+.pp$ %
+Status404NotFoundpp% 6
+,pp6 7-
+!RoomRequestControllerDescriptionspp8 Y
+.ppY Z3
+&UserOrRoomRequestNotFound404BadRequest	ppZ Ä
+)
+ppÄ Å
+]
+ppÅ Ç
+publicqq 
+asyncqq 
+Taskqq 
+<qq 
+ActionResultqq &
+<qq& '
+TimeSpanqq' /
+>qq/ 0
+>qq0 1,
+ EndedRoomRequestsAverageDurationqq2 R
+(qqR S
+)qqS T
+{rr 	
+ServiceResponsess 
+<ss 
+TimeSpanss $
+>ss$ %
+serviceResponsess& 5
+=ss6 7
+awaitss8 =
+_roomRequestServicess> Q
+.ssQ R+
+AverageTimeAssignedRoomRequestsssR q
+(ssq r
+Userssr v
+.ssv w
+GetRoomNumber	ssw Ñ
+(
+ssÑ Ö
+)
+ssÖ Ü
+)
+ssÜ á
+;
+ssá à
+ifuu 
+(uu 
+!uu 
+serviceResponseuu  
+.uu  !
+IsValiduu! (
+)uu( )
+{vv 
+returnww 
+
+StatusCodeww !
+(ww! "
+serviceResponseww" 1
+.ww1 2
+
+StatusCodeww2 <
+,ww< =
+serviceResponseww> M
+.wwM N
+ErrorswwN T
+)wwT U
+;wwU V
+}xx 
+returnzz 
+Okzz 
+(zz 
+serviceResponsezz %
+.zz% &
+Datazz& *
+)zz* +
+;zz+ ,
+}{{ 	
+[}} 	
+	Authorize}}	 
+(}} 
+Policy}} 
+=}} 
+$str}} +
+)}}+ ,
+]}}, -
+[~~ 	
+	HttpPatch~~	 
+(~~ 
+$str~~ *
+)~~* +
+]~~+ ,
+[ 	
+SwaggerResponse	 
+( 
+StatusCodes $
+.$ %
+Status204NoContent% 7
+,7 8-
+!RoomRequestControllerDescriptions9 Z
+.Z [(
+StartRoomRequest204NoContent[ w
+)w x
+]x y
+[
+ÄÄ 	
+SwaggerResponse
+ÄÄ	 
+(
+ÄÄ 
+StatusCodes
+ÄÄ $
+.
+ÄÄ$ % 
+Status403Forbidden
+ÄÄ% 7
+,
+ÄÄ7 8/
+!RoomRequestControllerDescriptions
+ÄÄ9 Z
+.
+ÄÄZ [*
+StartRoomRequest403Forbidden
+ÄÄ[ w
+)
+ÄÄw x
+]
+ÄÄx y
+[
+ÅÅ 	
+SwaggerResponse
+ÅÅ	 
+(
+ÅÅ 
+StatusCodes
+ÅÅ $
+.
+ÅÅ$ %
+Status404NotFound
+ÅÅ% 6
+,
+ÅÅ6 7/
+!RoomRequestControllerDescriptions
+ÅÅ8 Y
+.
+ÅÅY Z5
+&UserOrRoomRequestNotFound404BadRequestÅÅZ Ä
+)ÅÅÄ Å
+]ÅÅÅ Ç
+[
+ÇÇ 	
+SwaggerResponse
+ÇÇ	 
+(
+ÇÇ 
+StatusCodes
+ÇÇ $
+.
+ÇÇ$ %
+Status409Conflict
+ÇÇ% 6
+,
+ÇÇ6 7/
+!RoomRequestControllerDescriptions
+ÇÇ8 Y
+.
+ÇÇY Z)
+StartRoomRequest409Conflict
+ÇÇZ u
+)
+ÇÇu v
+]
+ÇÇv w
+public
+ÉÉ 
+async
+ÉÉ 
+Task
+ÉÉ 
+<
+ÉÉ 
+ActionResult
+ÉÉ &
+>
+ÉÉ& '
+StartRoomRequest
+ÉÉ( 8
+(
+ÉÉ8 9
+int
+ÉÉ9 <
+roomRequestId
+ÉÉ= J
+)
+ÉÉJ K
+{
+ÑÑ 	
+ServiceResponse
+ÖÖ 
+<
+ÖÖ 
+bool
+ÖÖ  
+>
+ÖÖ  !
+serviceResponse
+ÖÖ" 1
+=
+ÖÖ2 3
+await
+ÖÖ4 9!
+_roomRequestService
+ÖÖ: M
+.
+ÖÖM N
+StartRoomRequest
+ÖÖN ^
+(
+ÖÖ^ _
+roomRequestId
+ÖÖ_ l
+,
+ÖÖl m
+User
+ÖÖn r
+.
+ÖÖr s
+GetRoomNumberÖÖs Ä
+(ÖÖÄ Å
+)ÖÖÅ Ç
+,ÖÖÇ É
+UserÖÖÑ à
+.ÖÖà â
+GetRolesÖÖâ ë
+(ÖÖë í
+)ÖÖí ì
+)ÖÖì î
+;ÖÖî ï
+if
+áá 
+(
+áá 
+!
+áá 
+serviceResponse
+áá  
+.
+áá  !
+IsValid
+áá! (
+)
+áá( )
+{
 àà 
 return
-ää 
-	NoContent
-ää 
+ââ 
+
+StatusCode
+ââ !
 (
-ää 
+ââ! "
+serviceResponse
+ââ" 1
+.
+ââ1 2
+
+StatusCode
+ââ2 <
+,
+ââ< =
+serviceResponse
+ââ> M
+.
+ââM N
+Errors
+ââN T
 )
-ää 
+ââT U
 ;
-ää 
+ââU V
 }
-ãã 	
+ää 
+return
+åå 
+	NoContent
+åå 
+(
+åå 
+)
+åå 
+;
+åå 
 }
-åå 
-}çç Û3
+çç 	
+[
+èè 	
+	Authorize
+èè	 
+(
+èè 
+Policy
+èè 
+=
+èè 
+$str
+èè +
+)
+èè+ ,
+]
+èè, -
+[
+êê 	
+	HttpPatch
+êê	 
+(
+êê 
+$str
+êê (
+)
+êê( )
+]
+êê) *
+[
+ëë 	
+SwaggerResponse
+ëë	 
+(
+ëë 
+StatusCodes
+ëë $
+.
+ëë$ % 
+Status204NoContent
+ëë% 7
+,
+ëë7 8/
+!RoomRequestControllerDescriptions
+ëë9 Z
+.
+ëëZ [(
+EndRoomRequest204NoContent
+ëë[ u
+)
+ëëu v
+]
+ëëv w
+[
+íí 	
+SwaggerResponse
+íí	 
+(
+íí 
+StatusCodes
+íí $
+.
+íí$ % 
+Status403Forbidden
+íí% 7
+,
+íí7 8/
+!RoomRequestControllerDescriptions
+íí9 Z
+.
+ííZ [(
+EndRoomRequest403Forbidden
+íí[ u
+)
+ííu v
+]
+íív w
+[
+ìì 	
+SwaggerResponse
+ìì	 
+(
+ìì 
+StatusCodes
+ìì $
+.
+ìì$ %
+Status404NotFound
+ìì% 6
+,
+ìì6 7/
+!RoomRequestControllerDescriptions
+ìì8 Y
+.
+ììY Z5
+&UserOrRoomRequestNotFound404BadRequestììZ Ä
+)ììÄ Å
+]ììÅ Ç
+[
+îî 	
+SwaggerResponse
+îî	 
+(
+îî 
+StatusCodes
+îî $
+.
+îî$ %
+Status409Conflict
+îî% 6
+,
+îî6 7/
+!RoomRequestControllerDescriptions
+îî8 Y
+.
+îîY Z'
+EndRoomRequest409Conflict
+îîZ s
+)
+îîs t
+]
+îît u
+public
+ïï 
+async
+ïï 
+Task
+ïï 
+<
+ïï 
+ActionResult
+ïï &
+>
+ïï& '
+EndRoomRequest
+ïï( 6
+(
+ïï6 7
+int
+ïï7 :
+roomRequestId
+ïï; H
+)
+ïïH I
+{
+ññ 	
+ServiceResponse
+óó 
+<
+óó 
+bool
+óó  
+>
+óó  !
+serviceResponse
+óó" 1
+=
+óó2 3
+await
+óó4 9!
+_roomRequestService
+óó: M
+.
+óóM N
+EndRoomRequest
+óóN \
+(
+óó\ ]
+roomRequestId
+óó] j
+,
+óój k
+User
+óól p
+.
+óóp q
+GetRoomNumber
+óóq ~
+(
+óó~ 
+)óó Ä
+,óóÄ Å
+UseróóÇ Ü
+.óóÜ á
+GetRolesóóá è
+(óóè ê
+)óóê ë
+)óóë í
+;óóí ì
+if
+ôô 
+(
+ôô 
+!
+ôô 
+serviceResponse
+ôô  
+.
+ôô  !
+IsValid
+ôô! (
+)
+ôô( )
+{
+öö 
+return
+õõ 
+
+StatusCode
+õõ !
+(
+õõ! "
+serviceResponse
+õõ" 1
+.
+õõ1 2
+
+StatusCode
+õõ2 <
+,
+õõ< =
+serviceResponse
+õõ> M
+.
+õõM N
+Errors
+õõN T
+)
+õõT U
+;
+õõU V
+}
+úú 
+return
+ûû 
+	NoContent
+ûû 
+(
+ûû 
+)
+ûû 
+;
+ûû 
+}
+üü 	
+[
+°° 	
+
+HttpDelete
+°°	 
+(
+°° 
+$str
+°° %
+)
+°°% &
+]
+°°& '
+[
+¢¢ 	
+SwaggerResponse
+¢¢	 
+(
+¢¢ 
+StatusCodes
+¢¢ $
+.
+¢¢$ % 
+Status204NoContent
+¢¢% 7
+,
+¢¢7 8/
+!RoomRequestControllerDescriptions
+¢¢9 Z
+.
+¢¢Z [+
+DeleteRoomRequest204NoContent
+¢¢[ x
+)
+¢¢x y
+]
+¢¢y z
+[
+££ 	
+SwaggerResponse
+££	 
+(
+££ 
+StatusCodes
+££ $
+.
+££$ % 
+Status403Forbidden
+££% 7
+,
+££7 8/
+!RoomRequestControllerDescriptions
+££9 Z
+.
+££Z [+
+DeleteRoomRequest403Forbidden
+££[ x
+)
+££x y
+]
+££y z
+[
+§§ 	
+SwaggerResponse
+§§	 
+(
+§§ 
+StatusCodes
+§§ $
+.
+§§$ %
+Status404NotFound
+§§% 6
+,
+§§6 7/
+!RoomRequestControllerDescriptions
+§§8 Y
+.
+§§Y Z5
+&UserOrRoomRequestNotFound404BadRequest§§Z Ä
+)§§Ä Å
+]§§Å Ç
+[
+•• 	
+SwaggerResponse
+••	 
+(
+•• 
+StatusCodes
+•• $
+.
+••$ %
+Status409Conflict
+••% 6
+,
+••6 7/
+!RoomRequestControllerDescriptions
+••8 Y
+.
+••Y Z*
+DeleteRoomRequest409Conflict
+••Z v
+)
+••v w
+]
+••w x
+public
+¶¶ 
+async
+¶¶ 
+Task
+¶¶ 
+<
+¶¶ 
+ActionResult
+¶¶ &
+>
+¶¶& '
+DeleteRoomRequest
+¶¶( 9
+(
+¶¶9 :
+int
+¶¶: =
+roomRequestId
+¶¶> K
+)
+¶¶K L
+{
+ßß 	
+ServiceResponse
+®® 
+<
+®® 
+bool
+®®  
+>
+®®  !
+serviceResponse
+®®" 1
+=
+®®2 3
+await
+®®4 9!
+_roomRequestService
+®®: M
+.
+®®M N#
+SafeDeleteRoomRequest
+®®N c
+(
+®®c d
+roomRequestId
+®®d q
+,
+®®q r
+User
+®®s w
+.
+®®w x
+GetRoomNumber®®x Ö
+(®®Ö Ü
+)®®Ü á
+,®®á à
+User®®â ç
+.®®ç é
+GetRoles®®é ñ
+(®®ñ ó
+)®®ó ò
+)®®ò ô
+;®®ô ö
+if
+™™ 
+(
+™™ 
+!
+™™ 
+serviceResponse
+™™  
+.
+™™  !
+IsValid
+™™! (
+)
+™™( )
+{
+´´ 
+return
+¨¨ 
+
+StatusCode
+¨¨ !
+(
+¨¨! "
+serviceResponse
+¨¨" 1
+.
+¨¨1 2
+
+StatusCode
+¨¨2 <
+,
+¨¨< =
+serviceResponse
+¨¨> M
+.
+¨¨M N
+Errors
+¨¨N T
+)
+¨¨T U
+;
+¨¨U V
+}
+≠≠ 
+return
+ØØ 
+	NoContent
+ØØ 
+(
+ØØ 
+)
+ØØ 
+;
+ØØ 
+}
+∞∞ 	
+}
+±± 
+}≤≤ Û3
 YC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Data\DataContext.cs
 	namespace 	
 SoleusHotelApi
@@ -2852,147 +4443,114 @@ roomNumber		. 8
 
 ! "
 } 
-} ¢
+} ÷
 {C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Data\Repositories\Contracts\IRoomRequestRepository.cs
-	namespace 	
-SoleusHotelApi
+	namespace 	
+SoleusHotelApi
  
-. 
-Data 
-. 
-Repositories *
-.* +
-	Contracts+ 4
-{ 
-public 
+. 
+Data 
+. 
+Repositories *
+.* +
+	Contracts+ 4
+{ 
+public 
 
-	interface "
-IRoomRequestRepository +
-{ 
-Task 
-AddRoomRequest 
-( 
-RoomRequest '
-roomRequest( 3
-)3 4
-;4 5
-void		 
-Update		 
-(		 
-RoomRequest		 
-roomRequest		  +
-)		+ ,
-;		, -
-Task
+	interface "
+IRoomRequestRepository +
+{ 
+Task		 
+AddRoomRequest		 
+(		 
+RoomRequest		 '
+roomRequest		( 3
+)		3 4
+;		4 5
+void
 
- 
-<
+ 
+Update
 
- 
-List
-
- 
-<
-
- 
-BaseRoomRequestDto
-
- $
->
-
-$ %
->
-
-% &#
-GetTodayRoomRequestsDto
-
-' >
+ 
 (
 
-> ?
+ 
+RoomRequest
+
+ 
+roomRequest
+
+  +
 )
 
-? @
++ ,
 ;
 
-@ A
+, -
 Task 
-< 
-List 
-< 
-BaseRoomRequestDto $
->$ %
->% &/
-#GetGuestRoomRequestsDtoByRoomNumber' J
-(J K
-stringK Q
-
-roomNumberR \
-)\ ]
-;] ^
+< 
+	PagedList 
+< 
+BaseRoomRequestDto )
+>) *
+>* +#
+GetFilteredRoomRequests, C
+(C D
+RoomRequestParamsD U
+roomRequestParamsV g
+)g h
+;h i
 Task 
-< 
-List 
-< 
-BaseRoomRequestDto $
->$ %
->% &%
-GetRoomRequestsByAssigned' @
-(@ A
-	HotelUserA J
-assignedUserK W
-)W X
-;X Y
+< 
+RoomRequest 
+> 
+GetRoomRequestById ,
+(, -
+int- 0
+id1 3
+)3 4
+;4 5
 Task 
-< 
-RoomRequest 
-> 
-GetRoomRequestById ,
-(, -
-int- 0
-id1 3
-)3 4
-;4 5
+< 
+RoomRequestDto 
+> !
+GetRoomRequestDtoById 2
+(2 3
+int3 6
+id7 9
+)9 :
+;: ;
 Task 
-< 
-RoomRequestDto 
-> !
-GetRoomRequestDtoById 2
-(2 3
-int3 6
-id7 9
-)9 :
-;: ;
-Task 
-< 
-List 
-< 
-TimeSpan 
-> 
-> #
-GetRoomRequestsDuration 4
-(4 5
-	HotelUser5 >
-assignedUser? K
-)K L
-;L M
-void !
-DeleteRoomRequestById "
-(" #
-RoomRequest# .
-roomRequest/ :
-): ;
-;; <
-Task 
-< 
-bool 
-> 
-SaveAllAsync 
-(  
-)  !
-;! "
-} 
-} ‹T
+< 
+List 
+< 
+TimeSpan 
+> 
+> #
+GetRoomRequestsDuration 4
+(4 5
+	HotelUser5 >
+assignedUser? K
+)K L
+;L M
+void !
+DeleteRoomRequestById "
+(" #
+RoomRequest# .
+roomRequest/ :
+): ;
+;; <
+Task 
+< 
+bool 
+> 
+SaveAllAsync 
+(  
+)  !
+;! "
+} 
+} ‹T
 nC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Data\Repositories\HotelUserRepository.cs
 	namespace
 
@@ -3791,494 +5349,1088 @@ roomNumberV `
 ;&&< =
 }'' 	
 }(( 
-})) ¨C
+})) ≈É
 pC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Data\Repositories\RoomRequestRepository.cs
-	namespace 	
-SoleusHotelApi
+	namespace		 	
+SoleusHotelApi		
  
-. 
-Data 
-. 
-Repositories *
-{		 
-public
+.		 
+Data		 
+.		 
+Repositories		 *
+{
 
- 
+ 
+public 
 
-class
-
- !
-RoomRequestRepository
-
- &
-:
-
-' ("
-IRoomRequestRepository
-
-) ?
-{ 
-private 
-readonly 
-DataContext $
-_dataContext% 1
-;1 2
+class !
+RoomRequestRepository &
+:' ("
+IRoomRequestRepository) ?
+{ 
 private 
-readonly 
-IMapper  
-_mapper! (
-;( )
-public !
-RoomRequestRepository $
-($ %
-DataContext% 0
-dataContext1 <
-,< =
-IMapper> E
-mapperF L
-)L M
-{ 	
-_dataContext 
-= 
-dataContext &
-;& '
-_mapper 
-= 
-mapper 
-; 
-} 	
-public 
-async 
-Task 
-AddRoomRequest (
-(( )
-RoomRequest) 4
-roomRequest5 @
-)@ A
-{ 	
-await 
-_dataContext 
-. 
-RoomRequests +
-.+ ,
-AddAsync, 4
-(4 5
+readonly 
+DataContext $
+_dataContext% 1
+;1 2
+private 
+readonly 
+IMapper  
+_mapper! (
+;( )
+public !
+RoomRequestRepository $
+($ %
+DataContext% 0
+dataContext1 <
+,< =
+IMapper> E
+mapperF L
+)L M
+{ 	
+_dataContext 
+= 
+dataContext &
+;& '
+_mapper 
+= 
+mapper 
+; 
+} 	
+public 
+async 
+Task 
+AddRoomRequest (
+(( )
+RoomRequest) 4
 roomRequest5 @
 )@ A
-;A B
-} 	
-public 
-void 
-Update 
-( 
-RoomRequest &
-roomRequest' 2
-)2 3
-{ 	
-_dataContext 
-. 
-Entry 
-( 
-roomRequest *
-)* +
-.+ ,
-State, 1
-=2 3
-EntityState4 ?
-.? @
-Modified@ H
-;H I
-} 	
-public 
-async 
-Task 
-< 
-List 
-< 
-BaseRoomRequestDto 1
->1 2
->2 3#
-GetTodayRoomRequestsDto4 K
-(K L
-)L M
-{   	
-return!! 
-await!! 
-_dataContext!! %
-.!!% &
-RoomRequests!!& 2
-."" 
-Where"" 
-("" 
-d"" 
-=>"" 
-d"" 
-."" 
-RequestDate"" (
-.""( )
-Day"") ,
-==""- /
-DateTime""0 8
-.""8 9
-Today""9 >
-.""> ?
-Day""? B
-)""B C
-.## 
-	ProjectTo## 
-<## 
-BaseRoomRequestDto## ,
->##, -
-(##- .
-_mapper##. 5
-.##5 6!
-ConfigurationProvider##6 K
-)##K L
-.##L M
-ToListAsync##M X
-(##X Y
-)##Y Z
-;##Z [
-}$$ 	
-public&& 
-async&& 
-Task&& 
-<&& 
-List&& 
-<&& 
-BaseRoomRequestDto&& 1
->&&1 2
->&&2 3/
-#GetGuestRoomRequestsDtoByRoomNumber&&4 W
-(&&W X
-string&&X ^
+{ 	
+await 
+_dataContext 
+. 
+RoomRequests +
+.+ ,
+AddAsync, 4
+(4 5
+roomRequest5 @
+)@ A
+;A B
+} 	
+public 
+void 
+Update 
+( 
+RoomRequest &
+roomRequest' 2
+)2 3
+{ 	
+_dataContext 
+. 
+Entry 
+( 
+roomRequest *
+)* +
+.+ ,
+State, 1
+=2 3
+EntityState4 ?
+.? @
+Modified@ H
+;H I
+} 	
+public!! 
+async!! 
+Task!! 
+<!! 
+	PagedList!! #
+<!!# $
+BaseRoomRequestDto!!$ 6
+>!!6 7
+>!!7 8#
+GetFilteredRoomRequests!!9 P
+(!!P Q
+RoomRequestParams!!Q b
+roomRequestParams!!c t
+)!!t u
+{"" 	
 
-roomNumber&&_ i
-)&&i j
-{'' 	
-return(( 
-await(( 
-_dataContext(( %
-.((% &
-RoomRequests((& 2
-.)) 
-Where)) 
-()) 
-r)) 
-=>)) 
-r)) 
-.)) 
-Room)) !
-.))! "
-
-RoomNumber))" ,
-.)), -
-Equals))- 3
-())3 4
-
-roomNumber))4 >
-)))> ?
-)))? @
-.** 
-Where** 
-(** 
-d** 
-=>** 
-d** 
-.** 
-RequestDate** (
->=**) +
-d**, -
-.**- .
-Room**. 2
-.**2 3
-CheckInDate**3 >
-&&**? A
-d**B C
-.**C D
-RequestDate**D O
-<=**P R
-d**S T
-.**T U
-Room**U Y
-.**Y Z
-CheckOutDate**Z f
-)**f g
-.++ 
-	ProjectTo++ 
-<++ 
-BaseRoomRequestDto++ ,
->++, -
-(++- .
-_mapper++. 5
-.++5 6!
-ConfigurationProvider++6 K
-)++K L
-.++L M
-ToListAsync++M X
-(++X Y
-)++Y Z
-;++Z [
-},, 	
-public.. 
-async.. 
-Task.. 
-<.. 
-List.. 
-<.. 
-BaseRoomRequestDto.. 1
->..1 2
->..2 3%
-GetRoomRequestsByAssigned..4 M
-(..M N
-	HotelUser..N W
-assignedUser..X d
-)..d e
-{// 	
-return00 
-await00 
-_dataContext00 %
-.00% &
-RoomRequests00& 2
-.11 
-Where11 
-(11 
-u11 
-=>11 
-u11 
-.11 
-
-AssignedTo11 '
-==11( *
-assignedUser11+ 7
-)117 8
-.22 
-	ProjectTo22 
-<22 
-BaseRoomRequestDto22 ,
->22, -
-(22- .
-_mapper22. 5
-.225 6!
-ConfigurationProvider226 K
-)22K L
-.22L M
-ToListAsync22M X
-(22X Y
-)22Y Z
-;22Z [
-}33 	
-public55 
-async55 
-Task55 
-<55 
-RoomRequest55 %
->55% &
-GetRoomRequestById55' 9
-(559 :
-int55: =
-id55> @
-)55@ A
-{66 	
-return77 
-await77 
-_dataContext77 %
-.77% &
-RoomRequests77& 2
-.772 3
-Include773 :
-(77: ;
-r77; <
-=>77= ?
-r77@ A
-.77A B
-Room77B F
-)77F G
-.77G H
-Include77H O
-(77O P
-u77P Q
-=>77R T
-u77U V
-.77V W
-
-AssignedTo77W a
-)77a b
-.77b c 
-SingleOrDefaultAsync77c w
-(77w x
-r77x y
-=>77z |
-r77} ~
-.77~ 
-Id	77 Å
-==
-77Ç Ñ
-id
-77Ö á
+IQueryable## 
+<## 
+RoomRequest## "
+>##" #
+query##$ )
+=##* +
+_dataContext##, 8
+.##8 9
+RoomRequests##9 E
+.$$ 
+Include$$ 
+($$ 
+r$$ 
+=>$$ 
+r$$ 
+.$$  
+Room$$  $
+)$$$ %
+.$$% &
+ThenInclude$$& 1
+($$1 2
+u$$2 3
+=>$$4 6
+u$$7 8
+.$$8 9
+User$$9 =
+)$$= >
+.$$> ?
+AsQueryable$$? J
+($$J K
+)$$K L
+;$$L M
+return&& 
+await&& 
+	PagedList&& "
+<&&" #
+BaseRoomRequestDto&&# 5
+>&&5 6
+.&&6 7
+CreateAsync&&7 B
+(&&B C
+FilterRoomRequests&&C U
+(&&U V
+query&&V [
+,&&[ \
+roomRequestParams&&] n
+)&&n o
+.&&o p
+	ProjectTo&&p y
+<&&y z
+BaseRoomRequestDto	&&z å
+>
+&&å ç
+(
+&&ç é
+_mapper
+&&é ï
+.
+&&ï ñ#
+ConfigurationProvider
+&&ñ ´
 )
-77á à
+&&´ ¨
+.
+&&¨ ≠
+AsNoTracking
+&&≠ π
+(
+&&π ∫
+)
+&&∫ ª
+,
+&&ª º
+roomRequestParams'' !
+.''! "
+
+PageNumber''" ,
+,'', -
+roomRequestParams''. ?
+.''? @
+PageSize''@ H
+)''H I
+;''I J
+}(( 	
+public** 
+async** 
+Task** 
+<** 
+RoomRequest** %
+>**% &
+GetRoomRequestById**' 9
+(**9 :
+int**: =
+id**> @
+)**@ A
+{++ 	
+return,, 
+await,, 
+_dataContext,, %
+.,,% &
+RoomRequests,,& 2
+.,,2 3
+Include,,3 :
+(,,: ;
+r,,; <
+=>,,= ?
+r,,@ A
+.,,A B
+Room,,B F
+),,F G
+.,,G H
+Include,,H O
+(,,O P
+u,,P Q
+=>,,R T
+u,,U V
+.,,V W
+
+AssignedTo,,W a
+),,a b
+.,,b c 
+SingleOrDefaultAsync,,c w
+(,,w x
+r,,x y
+=>,,z |
+r,,} ~
+.,,~ 
+Id	,, Å
+==
+,,Ç Ñ
+id
+,,Ö á
+)
+,,á à
 ;
-77à â
-}88 	
-public:: 
-async:: 
-Task:: 
-<:: 
-RoomRequestDto:: (
->::( )!
-GetRoomRequestDtoById::* ?
-(::? @
-int::@ C
-id::D F
-)::F G
-{;; 	
-return<< 
-_mapper<< 
-.<< 
-Map<< 
-<<< 
-RoomRequestDto<< -
-><<- .
-(<<. /
-await<</ 4
-_dataContext<<5 A
-.<<A B
-RoomRequests<<B N
-.<<N O
-Include<<O V
-(<<V W
-r<<W X
-=><<Y [
-r<<\ ]
-.<<] ^
-Room<<^ b
-)<<b c
-.<<c d 
-SingleOrDefaultAsync<<d x
-(<<x y
-r<<y z
-=><<{ }
-r<<~ 
-.	<< Ä
+,,à â
+}-- 	
+public// 
+async// 
+Task// 
+<// 
+RoomRequestDto// (
+>//( )!
+GetRoomRequestDtoById//* ?
+(//? @
+int//@ C
+id//D F
+)//F G
+{00 	
+return11 
+_mapper11 
+.11 
+Map11 
+<11 
+RoomRequestDto11 -
+>11- .
+(11. /
+await11/ 4
+_dataContext115 A
+.11A B
+RoomRequests11B N
+.11N O
+Include11O V
+(11V W
+r11W X
+=>11Y [
+r11\ ]
+.11] ^
+Room11^ b
+)11b c
+.11c d 
+SingleOrDefaultAsync11d x
+(11x y
+r11y z
+=>11{ }
+r11~ 
+.	11 Ä
 Id
-<<Ä Ç
+11Ä Ç
 ==
-<<É Ö
+11É Ö
 id
-<<Ü à
+11Ü à
 )
-<<à â
+11à â
 )
-<<â ä
+11â ä
 ;
-<<ä ã
-}== 	
-public?? 
-async?? 
-Task?? 
-<?? 
-List?? 
-<?? 
-TimeSpan?? '
->??' (
->??( )#
-GetRoomRequestsDuration??* A
-(??A B
-	HotelUser??B K
-assignedUser??L X
-)??X Y
-{@@ 	
-returnAA 
-awaitAA 
-_dataContextAA %
-.AA% &
-RoomRequestsAA& 2
-.BB 
-WhereBB 
-(BB 
-uBB 
-=>BB 
-uBB 
-.BB 
+11ä ã
+}22 	
+public44 
+async44 
+Task44 
+<44 
+List44 
+<44 
+TimeSpan44 '
+>44' (
+>44( )#
+GetRoomRequestsDuration44* A
+(44A B
+	HotelUser44B K
+assignedUser44L X
+)44X Y
+{55 	
+return66 
+await66 
+_dataContext66 %
+.66% &
+RoomRequests66& 2
+.77 
+Where77 
+(77 
+u77 
+=>77 
+u77 
+.77 
 
-AssignedToBB (
-==BB) +
-assignedUserBB, 8
-)BB8 9
-.CC 
-WhereCC 
-(CC 
-sCC 
-=>CC 
-sCC 
-.CC 
-RequestStatusCC +
-==CC, .
-EnumsCC/ 4
-.CC4 5
-RoomRequestStatusCC5 F
-.CCF G
-EndedCCG L
-)CCL M
-.DD 
-SelectDD 
-(DD 
-dDD 
-=>DD 
-dDD 
-.DD 
-DurationDD '
-.DD' (
-ValueDD( -
-)DD- .
-.DD. /
-ToListAsyncDD/ :
-(DD: ;
-)DD; <
-;DD< =
-}EE 	
-publicGG 
-voidGG !
-DeleteRoomRequestByIdGG )
-(GG) *
-RoomRequestGG* 5
-roomRequestGG6 A
-)GGA B
-{HH 	
-_dataContextII 
-.II 
-RoomRequestsII %
-.II% &
-RemoveII& ,
-(II, -
-roomRequestII- 8
-)II8 9
-;II9 :
-}JJ 	
-publicLL 
-asyncLL 
-TaskLL 
-<LL 
-boolLL 
->LL 
-SaveAllAsyncLL  ,
-(LL, -
-)LL- .
-{MM 	
-returnNN 
-awaitNN 
-_dataContextNN %
-.NN% &
-SaveChangesAsyncNN& 6
-(NN6 7
-)NN7 8
->NN9 :
-$numNN; <
-;NN< =
-}OO 	
-}PP 
-}QQ ¸
+AssignedTo77 (
+==77) +
+assignedUser77, 8
+)778 9
+.88 
+Where88 
+(88 
+s88 
+=>88 
+s88 
+.88 
+RequestStatus88 +
+==88, .
+Enums88/ 4
+.884 5
+RoomRequestStatus885 F
+.88F G
+Ended88G L
+)88L M
+.99 
+Select99 
+(99 
+d99 
+=>99 
+d99 
+.99 
+Duration99 '
+.99' (
+Value99( -
+)99- .
+.99. /
+ToListAsync99/ :
+(99: ;
+)99; <
+;99< =
+}:: 	
+public<< 
+void<< !
+DeleteRoomRequestById<< )
+(<<) *
+RoomRequest<<* 5
+roomRequest<<6 A
+)<<A B
+{== 	
+_dataContext>> 
+.>> 
+RoomRequests>> %
+.>>% &
+Remove>>& ,
+(>>, -
+roomRequest>>- 8
+)>>8 9
+;>>9 :
+}?? 	
+publicAA 
+asyncAA 
+TaskAA 
+<AA 
+boolAA 
+>AA 
+SaveAllAsyncAA  ,
+(AA, -
+)AA- .
+{BB 	
+returnCC 
+awaitCC 
+_dataContextCC %
+.CC% &
+SaveChangesAsyncCC& 6
+(CC6 7
+)CC7 8
+>CC9 :
+$numCC; <
+;CC< =
+}DD 	
+privateHH 
+
+IQueryableHH 
+<HH 
+RoomRequestHH &
+>HH& '
+FilterRoomRequestsHH( :
+(HH: ;
+
+IQueryableHH; E
+<HHE F
+RoomRequestHHF Q
+>HHQ R
+initialQueryHHS _
+,HH_ `
+RoomRequestParamsHHa r
+roomRequestParams	HHs Ñ
+)
+HHÑ Ö
+{II 	
+ifJJ 
+(JJ 
+roomRequestParamsJJ !
+.JJ! "
+RoomJJ" &
+isJJ' )
+notJJ* -
+nullJJ. 2
+)JJ2 3
+{KK 
+initialQueryLL 
+=LL 
+initialQueryLL +
+.LL+ ,
+WhereLL, 1
+(LL1 2
+rLL2 3
+=>LL4 6
+rLL7 8
+.LL8 9
+RoomLL9 =
+.LL= >
+
+RoomNumberLL> H
+==LLI K
+roomRequestParamsLLL ]
+.LL] ^
+RoomLL^ b
+)LLb c
+;LLc d
+}MM 
+ifOO 
+(OO 
+roomRequestParamsOO !
+.OO! "
+
+AssignedToOO" ,
+isOO- /
+notOO0 3
+nullOO4 8
+)OO8 9
+{PP 
+initialQueryQQ 
+=QQ 
+initialQueryQQ +
+.QQ+ ,
+WhereQQ, 1
+(QQ1 2
+rQQ2 3
+=>QQ4 6
+rQQ7 8
+.QQ8 9
+
+AssignedToQQ9 C
+.QQC D
+RoomQQD H
+.QQH I
+
+RoomNumberQQI S
+==QQT V
+roomRequestParamsQQW h
+.QQh i
+
+AssignedToQQi s
+)QQs t
+;QQt u
+}RR 
+ifTT 
+(TT 
+roomRequestParamsTT !
+.TT! "
+MinRequestDateTT" 0
+isTT1 3
+notTT4 7
+nullTT8 <
+)TT< =
+{UU 
+initialQueryVV 
+=VV 
+initialQueryVV +
+.VV+ ,
+WhereVV, 1
+(VV1 2
+rVV2 3
+=>VV4 6
+rVV7 8
+.VV8 9
+RequestDateVV9 D
+.VVD E
+DayVVE H
+>=VVI K
+roomRequestParamsVVL ]
+.VV] ^
+MinRequestDateVV^ l
+.VVl m
+ValueVVm r
+.VVr s
+DayVVs v
+)VVv w
+;VVw x
+}WW 
+ifYY 
+(YY 
+roomRequestParamsYY !
+.YY! "
+MaxRequestDateYY" 0
+isYY1 3
+notYY4 7
+nullYY8 <
+)YY< =
+{ZZ 
+initialQuery[[ 
+=[[ 
+initialQuery[[ +
+.[[+ ,
+Where[[, 1
+([[1 2
+r[[2 3
+=>[[4 6
+r[[7 8
+.[[8 9
+RequestDate[[9 D
+.[[D E
+Day[[E H
+<=[[I K
+roomRequestParams[[L ]
+.[[] ^
+MaxRequestDate[[^ l
+.[[l m
+Value[[m r
+.[[r s
+Day[[s v
+)[[v w
+;[[w x
+}\\ 
+if^^ 
+(^^ 
+roomRequestParams^^ !
+.^^! "
+MinDateStart^^" .
+is^^/ 1
+not^^2 5
+null^^6 :
+)^^: ;
+{__ 
+initialQuery`` 
+=`` 
+initialQuery`` +
+.``+ ,
+Where``, 1
+(``1 2
+r``2 3
+=>``4 6
+r``7 8
+.``8 9
+	DateStart``9 B
+.``B C
+Value``C H
+.``H I
+Day``I L
+>=``M O
+roomRequestParams``P a
+.``a b
+MinDateStart``b n
+.``n o
+Value``o t
+.``t u
+Day``u x
+)``x y
+;``y z
+}aa 
+ifcc 
+(cc 
+roomRequestParamscc !
+.cc! "
+MaxDateStartcc" .
+iscc/ 1
+notcc2 5
+nullcc6 :
+)cc: ;
+{dd 
+initialQueryee 
+=ee 
+initialQueryee +
+.ee+ ,
+Whereee, 1
+(ee1 2
+ree2 3
+=>ee4 6
+ree7 8
+.ee8 9
+	DateStartee9 B
+.eeB C
+ValueeeC H
+.eeH I
+DayeeI L
+<=eeM O
+roomRequestParamseeP a
+.eea b
+MaxDateStarteeb n
+.een o
+Valueeeo t
+.eet u
+Dayeeu x
+)eex y
+;eey z
+}ff 
+ifhh 
+(hh 
+roomRequestParamshh !
+.hh! "
+
+MinDateEndhh" ,
+ishh- /
+nothh0 3
+nullhh4 8
+)hh8 9
+{ii 
+initialQueryjj 
+=jj 
+initialQueryjj +
+.jj+ ,
+Wherejj, 1
+(jj1 2
+rjj2 3
+=>jj4 6
+rjj7 8
+.jj8 9
+DateEndjj9 @
+.jj@ A
+ValuejjA F
+.jjF G
+DayjjG J
+>=jjK M
+roomRequestParamsjjN _
+.jj_ `
+
+MinDateEndjj` j
+.jjj k
+Valuejjk p
+.jjp q
+Dayjjq t
+)jjt u
+;jju v
+}kk 
+ifmm 
+(mm 
+roomRequestParamsmm !
+.mm! "
+
+MaxDateEndmm" ,
+ismm- /
+notmm0 3
+nullmm4 8
+)mm8 9
+{nn 
+initialQueryoo 
+=oo 
+initialQueryoo +
+.oo+ ,
+Whereoo, 1
+(oo1 2
+roo2 3
+=>oo4 6
+roo7 8
+.oo8 9
+DateEndoo9 @
+.oo@ A
+ValueooA F
+.ooF G
+DayooG J
+<=ooK M
+roomRequestParamsooN _
+.oo_ `
+
+MaxDateEndoo` j
+.ooj k
+Valueook p
+.oop q
+Dayooq t
+)oot u
+;oou v
+}pp 
+ifrr 
+(rr 
+roomRequestParamsrr !
+.rr! "
+
+Departmentrr" ,
+isrr- /
+notrr0 3
+nullrr4 8
+)rr8 9
+{ss 
+initialQuerytt 
+=tt 
+initialQuerytt +
+.tt+ ,
+Wherett, 1
+(tt1 2
+rtt2 3
+=>tt4 6
+rtt7 8
+.tt8 9
+
+Departmenttt9 C
+==ttD F
+roomRequestParamsttG X
+.ttX Y
+
+DepartmentttY c
+)ttc d
+;ttd e
+}uu 
+ifww 
+(ww 
+roomRequestParamsww !
+.ww! "
+Topicww" '
+isww( *
+notww+ .
+nullww/ 3
+)ww3 4
+{xx 
+initialQueryyy 
+=yy 
+initialQueryyy +
+.yy+ ,
+Whereyy, 1
+(yy1 2
+ryy2 3
+=>yy4 6
+ryy7 8
+.yy8 9
+Topicyy9 >
+==yy? A
+roomRequestParamsyyB S
+.yyS T
+TopicyyT Y
+)yyY Z
+;yyZ [
+}zz 
+if|| 
+(|| 
+roomRequestParams|| !
+.||! "
+Subject||" )
+is||* ,
+not||- 0
+null||1 5
+)||5 6
+{}} 
+initialQuery~~ 
+=~~ 
+initialQuery~~ +
+.~~+ ,
+Where~~, 1
+(~~1 2
+r~~2 3
+=>~~4 6
+r~~7 8
+.~~8 9
+Subject~~9 @
+==~~A C
+roomRequestParams~~D U
+.~~U V
+Subject~~V ]
+)~~] ^
+;~~^ _
+} 
+if
+ÅÅ 
+(
+ÅÅ 
+roomRequestParams
+ÅÅ !
+.
+ÅÅ! "
+RequestStatus
+ÅÅ" /
+is
+ÅÅ0 2
+not
+ÅÅ3 6
+null
+ÅÅ7 ;
+)
+ÅÅ; <
+{
+ÇÇ 
+initialQuery
+ÉÉ 
+=
+ÉÉ 
+initialQuery
+ÉÉ +
+.
+ÉÉ+ ,
+Where
+ÉÉ, 1
+(
+ÉÉ1 2
+s
+ÉÉ2 3
+=>
+ÉÉ4 6
+roomRequestParams
+ÉÉ7 H
+.
+ÉÉH I
+RequestStatus
+ÉÉI V
+.
+ÉÉV W
+Contains
+ÉÉW _
+(
+ÉÉ_ `
+(
+ÉÉ` a
+int
+ÉÉa d
+)
+ÉÉd e
+s
+ÉÉf g
+.
+ÉÉg h
+RequestStatus
+ÉÉh u
+)
+ÉÉu v
+)
+ÉÉv w
+;
+ÉÉw x
+}
+ÑÑ 
+initialQuery
+ÜÜ 
+=
+ÜÜ 
+OrderRoomRequests
+ÜÜ ,
+(
+ÜÜ, -
+initialQuery
+ÜÜ- 9
+,
+ÜÜ9 :
+roomRequestParams
+ÜÜ; L
+)
+ÜÜL M
+;
+ÜÜM N
+return
+àà 
+initialQuery
+àà 
+;
+àà  
+}
+ââ 	
+private
+ãã 
+
+IQueryable
+ãã 
+<
+ãã 
+RoomRequest
+ãã &
+>
+ãã& '
+OrderRoomRequests
+ãã( 9
+(
+ãã9 :
+
+IQueryable
+ãã: D
+<
+ããD E
+RoomRequest
+ããE P
+>
+ããP Q
+initialQuery
+ããR ^
+,
+ãã^ _
+RoomRequestParams
+ãã` q 
+roomRequestParamsããr É
+)ããÉ Ñ
+{
+åå 	
+initialQuery
+çç 
+=
+çç 
+roomRequestParams
+çç ,
+.
+çç, -
+OrderBy
+çç- 4
+switch
+çç5 ;
+{
+éé 
+$str
+èè 
+=>
+èè 
+initialQuery
+èè &
+.
+èè& '
+OrderByDescending
+èè' 8
+(
+èè8 9
+x
+èè9 :
+=>
+èè; =
+x
+èè> ?
+.
+èè? @
+RequestDate
+èè@ K
+)
+èèK L
+,
+èèL M
+$str
+êê 
+=>
+êê 
+initialQuery
+êê  ,
+.
+êê, -
+OrderByDescending
+êê- >
+(
+êê> ?
+x
+êê? @
+=>
+êêA C
+x
+êêD E
+.
+êêE F
+
+Department
+êêF P
+)
+êêP Q
+,
+êêQ R
+$str
+ëë 
+=>
+ëë 
+initialQuery
+ëë *
+.
+ëë* +
+OrderBy
+ëë+ 2
+(
+ëë2 3
+x
+ëë3 4
+=>
+ëë5 7
+x
+ëë8 9
+.
+ëë9 :
+
+AssignedTo
+ëë: D
+)
+ëëD E
+,
+ëëE F
+_
+íí 
+=>
+íí 
+initialQuery
+íí !
+.
+íí! "
+OrderByDescending
+íí" 3
+(
+íí3 4
+x
+íí4 5
+=>
+íí6 8
+x
+íí9 :
+.
+íí: ;
+Room
+íí; ?
+.
+íí? @
+
+RoomNumber
+íí@ J
+.
+ííJ K
+Length
+ííK Q
+)
+ííQ R
+.
+ííR S
+ThenBy
+ííS Y
+(
+ííY Z
+x
+ííZ [
+=>
+íí\ ^
+x
+íí_ `
+.
+íí` a
+Room
+íía e
+.
+ííe f
+
+RoomNumber
+ííf p
+)
+ííp q
+}
+ìì 
+;
+ìì 
+return
+ïï 
+initialQuery
+ïï 
+;
+ïï  
+}
+ññ 	
+}
+òò 
+}ôô ¸
 oC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\DTOs\HotelUserDtos\CreatedHotelUserDto.cs
 	namespace 	
 SoleusHotelApi
@@ -4953,7 +7105,7 @@ RoomNumber  
 ;$ %
 }& '
 } 
-} ÿ
+} î
 pC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\DTOs\RoomRequestDtos\BaseRoomRequestDto.cs
 	namespace 	
 SoleusHotelApi
@@ -5050,17 +7202,35 @@ Department		  
 set+ .
 ;. /
 }0 1
-public 
-RoomRequestStatus  
-RequestStatus! .
-{/ 0
-get1 4
-;4 5
-set6 9
-;9 :
-}; <
-} 
-} £
+public 
+DateTime 
+	DateStart !
+{" #
+get$ '
+;' (
+set) ,
+;, -
+}. /
+public 
+DateTime 
+DateEnd 
+{  !
+get" %
+;% &
+set' *
+;* +
+}, -
+public 
+RoomRequestStatus  
+RequestStatus! .
+{/ 0
+get1 4
+;4 5
+set6 9
+;9 :
+}; <
+} 
+} £
 rC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\DTOs\RoomRequestDtos\CreateRoomRequestDto.cs
 	namespace 	
 SoleusHotelApi
@@ -5152,7 +7322,7 @@ Department		  
 ;6 7
 }8 9
 } 
-} •
+} È
 lC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\DTOs\RoomRequestDtos\RoomRequestDto.cs
 	namespace 	
 SoleusHotelApi
@@ -5169,40 +7339,20 @@ lC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\DTOs\Room
 :  !
 BaseRoomRequestDto" 4
 { 
-public 
-DateTime 
-	DateStart !
-{" #
-get$ '
-;' (
-set) ,
-;, -
-}. /
-public 
-DateTime 
-DateEnd 
-{  !
-get" %
-;% &
-set' *
-;* +
-}, -
-public		 
-ICollection		 
-<		 
-PhotoDto		 #
->		# $
-Photos		% +
-{		, -
-get		. 1
-;		1 2
-set		3 6
-;		6 7
-}		8 9
-}
-
- 
-} ·
+public 
+ICollection 
+< 
+PhotoDto #
+># $
+Photos% +
+{, -
+get. 1
+;1 2
+set3 6
+;6 7
+}8 9
+} 
+}		 ·
 [C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Entities\HotelRole.cs
 	namespace 	
 SoleusHotelApi
@@ -6469,7 +8619,7 @@ Extensions		 #
 ; 
 } 	
 } 
-} ô
+} Ö
 aC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Extensions\SwaggerConfig.cs
 	namespace 	
 SoleusHotelApi
@@ -6601,16 +8751,22 @@ SwaggerDoc 
 }!! 
 }"" 
 )"" 
-;"" 
-}## 
-)## 
-;## 
-return%% 
-services%% 
-;%% 
-}&& 	
-}'' 
-}(( £
+;"" 
+opt## 
+.## 
+EnableAnnotations## %
+(##% &
+)##& '
+;##' (
+}$$ 
+)$$ 
+;$$ 
+return&& 
+services&& 
+;&& 
+}'' 	
+}(( 
+})) £
 fC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Extensions\TimeSpanExtensions.cs
 	namespace 	
 SoleusHotelApi
@@ -8035,7 +10191,174 @@ bC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Helpers\P
 ;--. /
 }.. 	
 }00 
-}11 Á°
+}11 ±
+hC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Helpers\RoomRequestParamsFilter.cs
+	namespace 	
+SoleusHotelApi
+ 
+. 
+Helpers  
+{ 
+public 
+
+class 
+RoomRequestParams "
+:# $
+PaginationParams% 5
+{ 
+public 
+string 
+Room 
+{ 
+get  
+;  !
+set" %
+;% &
+}' (
+public 
+string 
+
+Department  
+{! "
+get# &
+;& '
+set( +
+;+ ,
+}- .
+public		 
+string		 
+Topic		 
+{		 
+get		 !
+;		! "
+set		# &
+;		& '
+}		( )
+public
+
+ 
+string
+
+ 
+Subject
+
+ 
+{
+
+ 
+get
+
+  #
+;
+
+# $
+set
+
+% (
+;
+
+( )
+}
+
+* +
+public 
+DateTime 
+? 
+MinRequestDate '
+{( )
+get* -
+;- .
+set/ 2
+;2 3
+}4 5
+public 
+DateTime 
+? 
+MaxRequestDate '
+{( )
+get* -
+;- .
+set/ 2
+;2 3
+}4 5
+public 
+List 
+< 
+int 
+> 
+RequestStatus &
+{' (
+get) ,
+;, -
+set. 1
+;1 2
+}3 4
+public 
+DateTime 
+? 
+MinDateStart %
+{& '
+get( +
+;+ ,
+set- 0
+;0 1
+}2 3
+public 
+DateTime 
+? 
+MaxDateStart %
+{& '
+get( +
+;+ ,
+set- 0
+;0 1
+}2 3
+public 
+DateTime 
+? 
+
+MinDateEnd #
+{$ %
+get& )
+;) *
+set+ .
+;. /
+}0 1
+public 
+DateTime 
+? 
+
+MaxDateEnd #
+{$ %
+get& )
+;) *
+set+ .
+;. /
+}0 1
+public 
+string 
+
+AssignedTo  
+{! "
+get# &
+;& '
+set( +
+;+ ,
+}- .
+public 
+string 
+OrderBy 
+{ 
+get  #
+;# $
+set% (
+;( )
+}* +
+=, -
+$str. 4
+;4 5
+} 
+} Á°
 jC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Migrations\20230118144707_Initial.cs
 	namespace 	
 SoleusHotelApi
@@ -11164,7 +13487,7 @@ ForeignKey
 ¡¡ 	
 }
 ¬¬ 
-}√√ Â
+}√√ Ä	
 _C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Models\ServiceResponse.cs
 	namespace 	
 SoleusHotelApi
@@ -11189,38 +13512,50 @@ _C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Models\Se
 set# &
 ;& '
 }( )
-public 
-List 
-< 
-string 
-> 
-Errors "
-{# $
-get% (
-;( )
-set* -
-;- .
-}/ 0
-=1 2
-new3 6
-List7 ;
-<; <
-string< B
->B C
-(C D
-)D E
-;E F
-public 
-T 
-Data 
-{ 
-get 
-; 
-set  
-;  !
-}" #
-} 
-}		 •
+public 
+int 
+
+StatusCode 
+{ 
+get  #
+;# $
+set% (
+;( )
+}* +
+public 
+List 
+< 
+string 
+> 
+Errors "
+{# $
+get% (
+;( )
+set* -
+;- .
+}/ 0
+=1 2
+new3 6
+List7 ;
+<; <
+string< B
+>B C
+(C D
+)D E
+;E F
+public 
+T 
+Data 
+{ 
+get 
+; 
+set  
+;  !
+}" #
+}		 
+}
+
+ •
 PC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Program.cs
 var 
 builder 
@@ -11279,378 +13614,382 @@ PC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Program.c
 ( 
 ) 	
 ;	 
-ô4
+‰5
 ^C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\AdminService.cs
-	namespace
-
- 	
-SoleusHotelApi
-
-
+	namespace 	
+SoleusHotelApi
  
-.
-
- 
-Services
-
- !
-{ 
-public 
+. 
+Services !
+{ 
+public 
 
-class 
-AdminService 
-: 
-IAdminService  -
-{ 
-private 
-readonly 
-UserManager $
-<$ %
-	HotelUser% .
->. /
-_userManager0 <
-;< =
+class 
+AdminService 
+: 
+IAdminService  -
+{ 
 private 
 readonly 
-RoleManager $
+UserManager $
 <$ %
-	HotelRole% .
+	HotelUser% .
 >. /
-_roleManager0 <
+_userManager0 <
 ;< =
 private 
-readonly 
-IRoomRepository (
-_roomRepository) 8
-;8 9
+readonly 
+RoleManager $
+<$ %
+	HotelRole% .
+>. /
+_roleManager0 <
+;< =
 private 
-readonly 
-IConfiguration '
-_configuration( 6
-;6 7
-public 
-AdminService 
-( 
-UserManager '
-<' (
-	HotelUser( 1
->1 2
-userManager3 >
-,> ?
-RoleManager@ K
-<K L
-	HotelRoleL U
->U V
-roleManagerW b
-,b c
-IRoomRepositoryd s
-roomRepository	t Ç
+readonly 
+IRoomRepository (
+_roomRepository) 8
+;8 9
+private 
+readonly 
+IConfiguration '
+_configuration( 6
+;6 7
+public 
+AdminService 
+( 
+UserManager '
+<' (
+	HotelUser( 1
+>1 2
+userManager3 >
+,> ?
+RoleManager@ K
+<K L
+	HotelRoleL U
+>U V
+roleManagerW b
+,b c
+IRoomRepositoryd s
+roomRepository	t Ç
 ,
-É Ñ
+É Ñ
 IConfiguration
-Ö ì
+Ö ì
 configuration
-î °
+î °
 )
-° ¢
-{ 	
-_userManager 
-= 
-userManager &
-;& '
-_roleManager 
+° ¢
+{ 	
+_userManager 
 = 
-roleManager &
-;& '
-_roomRepository 
-= 
-roomRepository ,
-;, -
-_configuration 
-= 
-configuration *
-;* +
-} 	
-public 
-async 
-Task 
-< 
-ServiceResponse )
-<) *
-string* 0
->0 1
->1 2
-InitialSetup3 ?
-(? @
-)@ A
-{ 	
-ServiceResponse 
-< 
-string "
->" #
-response$ ,
-=- .
-new/ 2
-(2 3
-)3 4
-;4 5
-if 
-( 
-await 
-_userManager "
-." #
-Users# (
-.( )
-AnyAsync) 1
-(1 2
-x2 3
-=>4 6
-x7 8
-.8 9
-Room9 =
-.= >
+userManager &
+;& '
+_roleManager 
+= 
+roleManager &
+;& '
+_roomRepository 
+= 
+roomRepository ,
+;, -
+_configuration 
+= 
+configuration *
+;* +
+} 	
+public 
+async 
+Task 
+< 
+ServiceResponse )
+<) *
+string* 0
+>0 1
+>1 2
+InitialSetup3 ?
+(? @
+)@ A
+{ 	
+ServiceResponse 
+< 
+string "
+>" #
+response$ ,
+=- .
+new/ 2
+(2 3
+)3 4
+;4 5
+if   
+(   
+await   
+_userManager   "
+.  " #
+Users  # (
+.  ( )
+AnyAsync  ) 1
+(  1 2
+x  2 3
+=>  4 6
+x  7 8
+.  8 9
+Room  9 =
+.  = >
 
-RoomNumber> H
-==I K
-_configurationL Z
-[Z [
-$str[ q
-]q r
-)r s
-)s t
-{   
-response!! 
-.!! 
-Errors!! 
-.!!  
-Add!!  #
-(!!# $
-AdminServiceError!!$ 5
-.!!5 6
-ConfigurationDone!!6 G
-)!!G H
-;!!H I
-return"" 
-response"" 
-;""  
-}## 
-List%% 
-<%% 
-string%% 
->%% 
-	rolesList%% "
-=%%# $
-new%%% (
-(%%( )
-)%%) *
-{%%+ ,
-Roles%%- 2
-.%%2 3
-Admin%%3 8
-,%%8 9
-Roles%%: ?
-.%%? @
-Housekeeping%%@ L
-,%%L M
-Roles%%N S
-.%%S T
-Maintenance%%T _
-,%%_ `
-Roles%%a f
-.%%f g
-	Reception%%g p
-,%%p q
-Roles%%r w
-.%%w x
-Guest%%x }
-}%%~ 
-;	%% Ä
-foreach'' 
-('' 
-var'' 
-role'' 
-in''  
-	rolesList''! *
-)''* +
-{(( 
-if)) 
-()) 
-!)) 
-await)) 
-_roleManager)) '
-.))' (
-RoleExistsAsync))( 7
-())7 8
-role))8 <
-)))< =
-)))= >
-{** 
-	HotelRole++ 
-newRole++ %
-=++& '
-new++( +
-(+++ ,
-)++, -
-;++- .
-newRole,, 
-.,, 
-Name,,  
-=,,! "
-role,,# '
-;,,' (
-await-- 
-_roleManager-- &
-.--& '
-CreateAsync--' 2
-(--2 3
-newRole--3 :
-)--: ;
-;--; <
-}.. 
-}// 
-Room11 
-superUserRoom11 
-=11  
-new11! $
-(11$ %
-)11% &
-{22 
+RoomNumber  > H
+==  I K
+_configuration  L Z
+[  Z [
+$str  [ q
+]  q r
+)  r s
+)  s t
+{!! 
+response"" 
+."" 
 
-RoomNumber33 
-=33 
-_configuration33 +
-[33+ ,
-$str33, B
-]33B C
-,33C D
-CheckInDate44 
-=44 
-DateTime44 &
-.44& '
-Now44' *
-,44* +
-CheckOutDate55 
-=55 
-DateTime55 '
-.55' (
-Now55( +
-.55+ ,
-AddYears55, 4
-(554 5
-$num555 8
-)558 9
-}66 
-;66 
-await88 
-_roomRepository88 !
-.88! "
-AddRoom88" )
-(88) *
-superUserRoom88* 7
-)887 8
-;888 9
-	HotelUser:: 
-	superUser:: 
-=::  !
-new::" %
-(::% &
-)::& '
-{;; 
-Room<< 
-=<< 
-superUserRoom<< $
-,<<$ %
-	GuestName== 
-=== 
-_configuration== *
-[==* +
-$str==+ A
-]==A B
-,==B C
-UserName>> 
-=>> 
-_configuration>> )
-[>>) *
-$str>>* @
-]>>@ A
-}?? 
-;?? 
-superUserRoomAA 
-.AA 
-UserIdAA  
-=AA! "
-	superUserAA# ,
-.AA, -
-IdAA- /
-;AA/ 0
-stringCC 
-superUserPassCC  
-=CC! "
-_configurationCC# 1
-[CC1 2
-$strCC2 F
-]CCF G
-;CCG H
-IdentityResultEE 
-resultEE !
-=EE" #
-awaitEE$ )
-_userManagerEE* 6
-.EE6 7
-CreateAsyncEE7 B
-(EEB C
-	superUserEEC L
-,EEL M
-superUserPassEEN [
-)EE[ \
-;EE\ ]
-ifGG 
-(GG 
-resultGG 
-.GG 
-	SucceededGG  
-)GG  !
-{HH 
-_II 
-=II 
-awaitII 
-_userManagerII &
-.II& '
-AddToRoleAsyncII' 5
-(II5 6
-	superUserII6 ?
-,II? @
-RolesIIA F
-.IIF G
-AdminIIG L
-)IIL M
-;IIM N
-}JJ 
-awaitLL 
-_roomRepositoryLL !
-.LL! "
-SaveAllAsyncLL" .
-(LL. /
-)LL/ 0
-;LL0 1
-responseNN 
-.NN 
-IsValidNN 
-=NN 
-trueNN #
-;NN# $
-responseOO 
-.OO 
-DataOO 
-=OO 
-$strOO ;
-;OO; <
-returnPP 
-responsePP 
-;PP 
-}QQ 	
-}RR 
-}SS ´
+StatusCode"" #
+=""$ %
+(""& '
+int""' *
+)""* +
+HttpStatusCode"", :
+."": ;
+Conflict""; C
+;""C D
+response## 
+.## 
+Errors## 
+.##  
+Add##  #
+(### $
+AdminServiceError##$ 5
+.##5 6
+ConfigurationDone##6 G
+)##G H
+;##H I
+return$$ 
+response$$ 
+;$$  
+}%% 
+List'' 
+<'' 
+string'' 
+>'' 
+	rolesList'' "
+=''# $
+new''% (
+(''( )
+)'') *
+{''+ ,
+Roles''- 2
+.''2 3
+Admin''3 8
+,''8 9
+Roles'': ?
+.''? @
+Housekeeping''@ L
+,''L M
+Roles''N S
+.''S T
+Maintenance''T _
+,''_ `
+Roles''a f
+.''f g
+	Reception''g p
+,''p q
+Roles''r w
+.''w x
+Guest''x }
+}''~ 
+;	'' Ä
+foreach)) 
+()) 
+var)) 
+role)) 
+in))  
+	rolesList))! *
+)))* +
+{** 
+if++ 
+(++ 
+!++ 
+await++ 
+_roleManager++ '
+.++' (
+RoleExistsAsync++( 7
+(++7 8
+role++8 <
+)++< =
+)++= >
+{,, 
+	HotelRole-- 
+newRole-- %
+=--& '
+new--( +
+(--+ ,
+)--, -
+;--- .
+newRole.. 
+... 
+Name..  
+=..! "
+role..# '
+;..' (
+await// 
+_roleManager// &
+.//& '
+CreateAsync//' 2
+(//2 3
+newRole//3 :
+)//: ;
+;//; <
+}00 
+}11 
+Room33 
+superUserRoom33 
+=33  
+new33! $
+(33$ %
+)33% &
+{44 
+
+RoomNumber55 
+=55 
+_configuration55 +
+[55+ ,
+$str55, B
+]55B C
+,55C D
+CheckInDate66 
+=66 
+DateTime66 &
+.66& '
+Now66' *
+,66* +
+CheckOutDate77 
+=77 
+DateTime77 '
+.77' (
+Now77( +
+.77+ ,
+AddYears77, 4
+(774 5
+$num775 8
+)778 9
+}88 
+;88 
+await:: 
+_roomRepository:: !
+.::! "
+AddRoom::" )
+(::) *
+superUserRoom::* 7
+)::7 8
+;::8 9
+	HotelUser<< 
+	superUser<< 
+=<<  !
+new<<" %
+(<<% &
+)<<& '
+{== 
+Room>> 
+=>> 
+superUserRoom>> $
+,>>$ %
+	GuestName?? 
+=?? 
+_configuration?? *
+[??* +
+$str??+ A
+]??A B
+,??B C
+UserName@@ 
+=@@ 
+_configuration@@ )
+[@@) *
+$str@@* @
+]@@@ A
+}AA 
+;AA 
+superUserRoomCC 
+.CC 
+UserIdCC  
+=CC! "
+	superUserCC# ,
+.CC, -
+IdCC- /
+;CC/ 0
+stringEE 
+superUserPassEE  
+=EE! "
+_configurationEE# 1
+[EE1 2
+$strEE2 F
+]EEF G
+;EEG H
+IdentityResultGG 
+resultGG !
+=GG" #
+awaitGG$ )
+_userManagerGG* 6
+.GG6 7
+CreateAsyncGG7 B
+(GGB C
+	superUserGGC L
+,GGL M
+superUserPassGGN [
+)GG[ \
+;GG\ ]
+ifII 
+(II 
+resultII 
+.II 
+	SucceededII  
+)II  !
+{JJ 
+_KK 
+=KK 
+awaitKK 
+_userManagerKK &
+.KK& '
+AddToRoleAsyncKK' 5
+(KK5 6
+	superUserKK6 ?
+,KK? @
+RolesKKA F
+.KKF G
+AdminKKG L
+)KKL M
+;KKM N
+}LL 
+awaitNN 
+_roomRepositoryNN !
+.NN! "
+SaveAllAsyncNN" .
+(NN. /
+)NN/ 0
+;NN0 1
+responsePP 
+.PP 
+IsValidPP 
+=PP 
+truePP #
+;PP# $
+responseQQ 
+.QQ 
+DataQQ 
+=QQ 
+$strQQ ;
+;QQ; <
+returnRR 
+responseRR 
+;RR 
+}SS 	
+}TT 
+}UU ´
 iC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\Contracts\IAdminService.cs
 	namespace 	
 SoleusHotelApi
@@ -11893,51 +14232,37 @@ roomNumber; E
 )E F
 ;F G
 } 
-} √
+} ∑
 oC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\Contracts\IRoomRequestService.cs
-	namespace 	
-SoleusHotelApi
+	namespace 	
+SoleusHotelApi
  
-. 
-Services !
-.! "
-	Contracts" +
-{ 
-public 
+. 
+Services !
+.! "
+	Contracts" +
+{ 
+public 
 
-	interface 
-IRoomRequestService (
-{ 
-Task 
-< 
-ServiceResponse 
-< 
-bool !
->! "
->" #
-CreateRoomRequest$ 5
-(5 6 
-CreateRoomRequestDto6 J 
-createRoomRequestDtoK _
-,_ `
-stringa g
-userRoomNumberh v
-)v w
-;w x
+	interface 
+IRoomRequestService (
+{ 
 Task		 
 <		 
 ServiceResponse		 
 <		 
-List		 !
-<		! "
-BaseRoomRequestDto		" 4
->		4 5
->		5 6
->		6 7 
-GetTodayRoomRequests		8 L
-(		L M
-)		M N
-;		N O
+bool		 !
+>		! "
+>		" #
+CreateRoomRequest		$ 5
+(		5 6 
+CreateRoomRequestDto		6 J 
+createRoomRequestDto		K _
+,		_ `
+string		a g
+userRoomNumber		h v
+)		v w
+;		w x
 Task
 
  
@@ -11949,162 +14274,188 @@ oC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\
  
 <
 
- 
-List
+ 
+	PagedList
 
- !
+ &
 <
 
-! "
+& '
 BaseRoomRequestDto
 
-" 4
+' 9
 >
 
-4 5
+9 :
 >
 
-5 6
+: ;
 >
 
-6 7
-GetMyRoomRequests
+; <#
+GetFilteredRoomRequests
 
-8 I
+= T
 (
 
-I J
-string
+T U
+RoomRequestParams
 
-J P
-userRoomNumber
+U f
+roomRequestFilter
 
-Q _
+g x
 )
 
-_ `
+x y
 ;
 
-` a
+y z
 Task 
 < 
 ServiceResponse 
-< 
-List !
-<! "
-BaseRoomRequestDto" 4
->4 5
->5 6
->6 7!
-GetMyAssignedRequests8 M
-(M N
-stringN T
-userRoomNumberU c
-)c d
-;d e
+< 
+	PagedList &
+<& '
+BaseRoomRequestDto' 9
+>9 :
+>: ;
+>; <
+GetMyRoomRequests= N
+(N O
+stringO U
+userRoomNumberV d
+,d e
+RoomRequestParamsf w
+roomRequestFilter	x â
+)
+â ä
+;
+ä ã
 Task 
 < 
 ServiceResponse 
-< 
-RoomRequestDto +
->+ ,
->, -
-GetRoomRequest. <
-(< =
-int= @
-roomRequestIdA N
-,N O
-stringP V
-userRoomNumberW e
-,e f
-Listg k
-<k l
-stringl r
->r s
-	userRolest }
-)} ~
-;~ 
+< 
+	PagedList &
+<& '
+BaseRoomRequestDto' 9
+>9 :
+>: ;
+>; <!
+GetMyAssignedRequests= R
+(R S
+stringS Y
+userRoomNumberZ h
+,h i
+RoomRequestParamsj {
+roomRequestFilter	| ç
+)
+ç é
+;
+é è
 Task 
 < 
 ServiceResponse 
-< 
-bool !
->! "
->" #
-StartRoomRequest$ 4
-(4 5
-int5 8
-roomRequestId9 F
-,F G
-stringH N
-userRoomNumberO ]
-,] ^
-List_ c
-<c d
-stringd j
->j k
-	userRolesl u
-)u v
-;v w
+< 
+RoomRequestDto +
+>+ ,
+>, -
+GetRoomRequest. <
+(< =
+int= @
+roomRequestIdA N
+,N O
+stringP V
+userRoomNumberW e
+,e f
+Listg k
+<k l
+stringl r
+>r s
+	userRolest }
+)} ~
+;~ 
 Task 
 < 
 ServiceResponse 
 < 
 bool !
 >! "
->" #
-EndRoomRequest$ 2
-(2 3
-int3 6
-roomRequestId7 D
-,D E
-stringF L
-userRoomNumberM [
-,[ \
-List] a
-<a b
-stringb h
->h i
-	userRolesj s
-)s t
-;t u
+>" #
+StartRoomRequest$ 4
+(4 5
+int5 8
+roomRequestId9 F
+,F G
+stringH N
+userRoomNumberO ]
+,] ^
+List_ c
+<c d
+stringd j
+>j k
+	userRolesl u
+)u v
+;v w
 Task 
 < 
 ServiceResponse 
-< 
-TimeSpan %
->% &
->& '+
-AverageTimeAssignedRoomRequests( G
-(G H
-stringH N
-userRoomNumberO ]
-)] ^
-;^ _
+< 
+bool !
+>! "
+>" #
+EndRoomRequest$ 2
+(2 3
+int3 6
+roomRequestId7 D
+,D E
+stringF L
+userRoomNumberM [
+,[ \
+List] a
+<a b
+stringb h
+>h i
+	userRolesj s
+)s t
+;t u
 Task 
 < 
 ServiceResponse 
-< 
-bool !
->! "
->" #!
-SafeDeleteRoomRequest$ 9
-(9 :
-int: =
-roomRequestId> K
-,K L
-stringM S
-userRoomNumberT b
-,b c
-Listd h
-<h i
-stringi o
->o p
-	userRolesq z
-)z {
-;{ |
-} 
-} £
+< 
+TimeSpan %
+>% &
+>& '+
+AverageTimeAssignedRoomRequests( G
+(G H
+stringH N
+userRoomNumberO ]
+)] ^
+;^ _
+Task 
+< 
+ServiceResponse 
+< 
+bool !
+>! "
+>" #!
+SafeDeleteRoomRequest$ 9
+(9 :
+int: =
+roomRequestId> K
+,K L
+stringM S
+userRoomNumberT b
+,b c
+Listd h
+<h i
+stringi o
+>o p
+	userRolesq z
+)z {
+;{ |
+} 
+} £
 hC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\Contracts\IRoomService.cs
 	namespace 	
 SoleusHotelApi
@@ -12208,2709 +14559,2875 @@ iC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\
 )/ 0
 ;0 1
 } 
-}		 πä
+}		 ⁄ª
 bC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\HotelUserService.cs
-	namespace 	
-SoleusHotelApi
+	namespace 	
+SoleusHotelApi
  
-. 
-Services !
-{ 
-public 
+. 
+Services !
+{ 
+public 
 
-class 
-HotelUserService !
-:" #
-IHotelUserService$ 5
-{ 
-private 
-readonly 
-IRoomService %
-_roomService& 2
-;2 3
+class 
+HotelUserService !
+:" #
+IHotelUserService$ 5
+{ 
 private 
-readonly 
-UserManager $
-<$ %
-	HotelUser% .
->. /
-_userManager0 <
-;< =
+readonly 
+IRoomService %
+_roomService& 2
+;2 3
 private 
-readonly 
-SignInManager &
-<& '
-	HotelUser' 0
->0 1
-_signInManager2 @
-;@ A
+readonly 
+UserManager $
+<$ %
+	HotelUser% .
+>. /
+_userManager0 <
+;< =
 private 
-readonly  
-IHotelUserRepository -
-_userRepository. =
-;= >
+readonly 
+SignInManager &
+<& '
+	HotelUser' 0
+>0 1
+_signInManager2 @
+;@ A
 private 
-readonly 
-IRoomRepository (
-_roomRepository) 8
-;8 9
+readonly  
+IHotelUserRepository -
+_userRepository. =
+;= >
 private 
-readonly 
-ITokenService &
-_tokenService' 4
-;4 5
+readonly 
+IRoomRepository (
+_roomRepository) 8
+;8 9
 private 
-readonly 
-IMapper  
-_mapper! (
-;( )
-public 
-HotelUserService 
-(  
-IRoomService  ,
-roomService- 8
-,8 9
-UserManager: E
-<E F
-	HotelUserF O
->O P
-userManagerQ \
-,\ ]
-SignInManager^ k
-<k l
-	HotelUserl u
->u v
-signInManager	w Ñ
+readonly 
+ITokenService &
+_tokenService' 4
+;4 5
+private 
+readonly 
+IMapper  
+_mapper! (
+;( )
+public 
+HotelUserService 
+(  
+IRoomService  ,
+roomService- 8
+,8 9
+UserManager: E
+<E F
+	HotelUserF O
+>O P
+userManagerQ \
+,\ ]
+SignInManager^ k
+<k l
+	HotelUserl u
+>u v
+signInManager	w Ñ
 ,
-Ñ Ö"
+Ñ Ö"
 IHotelUserRepository
-Ü ö
+Ü ö
 userRepository
-õ ©
+õ ©
 ,
-© ™
-IRoomRepository 
-roomRepository *
-,* +
-ITokenService, 9
-tokenService: F
-,F G
-IMapperH O
-mapperP V
-)V W
-{ 	
-_roomService 
-= 
-roomService &
-;& '
-_userManager 
+© ™
+IRoomRepository 
+roomRepository *
+,* +
+ITokenService, 9
+tokenService: F
+,F G
+IMapperH O
+mapperP V
+)V W
+{ 	
+_roomService 
 = 
-userManager &
-;& '
-_signInManager 
-= 
-signInManager *
-;* +
-_userRepository 
-= 
-userRepository ,
-;, -
-_roomRepository   
+roomService &
+;& '
+_userManager 
+= 
+userManager &
+;& '
+_signInManager 
+= 
+signInManager *
+;* +
+_userRepository   
 =   
-roomRepository   ,
-;  , -
-_tokenService!! 
-=!! 
-tokenService!! (
-;!!( )
-_mapper"" 
-="" 
-mapper"" 
-;"" 
-}## 	
-public&& 
-async&& 
-Task&& 
-<&& 
-ServiceResponse&& )
-<&&) *
-	PagedList&&* 3
-<&&3 4!
-HotelUserWithRolesDto&&4 I
->&&I J
->&&J K
->&&K L
-GetHotelUsers&&M Z
-(&&Z [
-HotelUserParams&&[ j
-hotelUserParams&&k z
-)&&z {
-{'' 	
-ServiceResponse(( 
-<(( 
-	PagedList(( %
-<((% &!
-HotelUserWithRolesDto((& ;
->((; <
->((< =
-response((> F
-=((G H
-new((I L
-(((L M
-)((M N
-;((N O
-	PagedList** 
-<** !
-HotelUserWithRolesDto** +
->**+ ,
-userList**- 5
-=**6 7
-await**8 =
-_userRepository**> M
-.**M N
-GetAllHotelUsers**N ^
-(**^ _
-hotelUserParams**_ n
-)**n o
-;**o p
-foreach++ 
-(++ 
-var++ 
-user++ 
-in++  
-userList++! )
-)++) *
-{,, 
-	HotelUser-- 
-userInDb-- "
-=--# $
-await--% *
-_userRepository--+ :
-.--: ;,
- GetHotelUserWithRoomByRoomNumber--; [
-(--[ \
-user--\ `
-.--` a
+userRepository   ,
+;  , -
+_roomRepository!! 
+=!! 
+roomRepository!! ,
+;!!, -
+_tokenService"" 
+="" 
+tokenService"" (
+;""( )
+_mapper## 
+=## 
+mapper## 
+;## 
+}$$ 	
+public'' 
+async'' 
+Task'' 
+<'' 
+ServiceResponse'' )
+<'') *
+	PagedList''* 3
+<''3 4!
+HotelUserWithRolesDto''4 I
+>''I J
+>''J K
+>''K L
+GetHotelUsers''M Z
+(''Z [
+HotelUserParams''[ j
+hotelUserParams''k z
+)''z {
+{(( 	
+ServiceResponse)) 
+<)) 
+	PagedList)) %
+<))% &!
+HotelUserWithRolesDto))& ;
+>)); <
+>))< =
+response))> F
+=))G H
+new))I L
+())L M
+)))M N
+;))N O
+	PagedList++ 
+<++ !
+HotelUserWithRolesDto++ +
+>+++ ,
+userList++- 5
+=++6 7
+await++8 =
+_userRepository++> M
+.++M N
+GetAllHotelUsers++N ^
+(++^ _
+hotelUserParams++_ n
+)++n o
+;++o p
+foreach,, 
+(,, 
+var,, 
+user,, 
+in,,  
+userList,,! )
+),,) *
+{-- 
+	HotelUser.. 
+userInDb.. "
+=..# $
+await..% *
+_userRepository..+ :
+...: ;,
+ GetHotelUserWithRoomByRoomNumber..; [
+(..[ \
+user..\ `
+...` a
 
-RoomNumber--a k
-)--k l
-;--l m
-user.. 
-... 
-	UserRoles.. 
-=..  
-await..! &
-_userManager..' 3
-...3 4
-GetRolesAsync..4 A
-(..A B
-userInDb..B J
-)..J K
-;..K L
-}// 
-response11 
-.11 
-IsValid11 
-=11 
-true11 #
-;11# $
+RoomNumber..a k
+)..k l
+;..l m
+user// 
+.// 
+	UserRoles// 
+=//  
+await//! &
+_userManager//' 3
+.//3 4
+GetRolesAsync//4 A
+(//A B
+userInDb//B J
+)//J K
+;//K L
+}00 
 response22 
-.22 
-Data22 
-=22 
-userList22 $
-;22$ %
-return33 
-response33 
-;33 
-}44 	
-public66 
-async66 
-Task66 
-<66 
-ServiceResponse66 )
-<66) *
-	PagedList66* 3
-<663 4$
-HotelUserWithRequestsDto664 L
->66L M
->66M N
->66N O0
-$GetHotelUsersWithCreatedRoomRequests66P t
-(66t u
-HotelUserParams	66u Ñ
+.22 
+IsValid22 
+=22 
+true22 #
+;22# $
+response33 
+.33 
+Data33 
+=33 
+userList33 $
+;33$ %
+return44 
+response44 
+;44 
+}55 	
+public77 
+async77 
+Task77 
+<77 
+ServiceResponse77 )
+<77) *
+	PagedList77* 3
+<773 4$
+HotelUserWithRequestsDto774 L
+>77L M
+>77M N
+>77N O0
+$GetHotelUsersWithCreatedRoomRequests77P t
+(77t u
+HotelUserParams	77u Ñ
 hotelUserParams
-66Ö î
+77Ö î
 )
-66î ï
-{77 	
-return88 
-new88 
-ServiceResponse88 &
-<88& '
-	PagedList88' 0
-<880 1$
-HotelUserWithRequestsDto881 I
->88I J
->88J K
-{99 
-IsValid:: 
-=:: 
-true:: 
-,:: 
-Data;; 
-=;; 
-await;; 
-_userRepository;; ,
-.;;, -(
-GetAllGuestsWithRoomRequests;;- I
-(;;I J
-hotelUserParams;;J Y
-);;Y Z
-}<< 
-;<< 
-}== 	
-public?? 
-async?? 
-Task?? 
-<?? 
-ServiceResponse?? )
-<??) *
-HotelUserDto??* 6
->??6 7
->??7 8
-GetHotelUser??9 E
-(??E F
-string??F L
+77î ï
+{88 	
+return99 
+new99 
+ServiceResponse99 &
+<99& '
+	PagedList99' 0
+<990 1$
+HotelUserWithRequestsDto991 I
+>99I J
+>99J K
+{:: 
+IsValid;; 
+=;; 
+true;; 
+,;; 
+Data<< 
+=<< 
+await<< 
+_userRepository<< ,
+.<<, -(
+GetAllGuestsWithRoomRequests<<- I
+(<<I J
+hotelUserParams<<J Y
+)<<Y Z
+}== 
+;== 
+}>> 	
+public@@ 
+async@@ 
+Task@@ 
+<@@ 
+ServiceResponse@@ )
+<@@) *
+HotelUserDto@@* 6
+>@@6 7
+>@@7 8
+GetHotelUser@@9 E
+(@@E F
+string@@F L
 
-roomNumber??M W
-)??W X
-{@@ 	
-returnAA 
-newAA 
-ServiceResponseAA &
-<AA& '
-HotelUserDtoAA' 3
->AA3 4
-{BB 
-IsValidCC 
-=CC 
-trueCC 
-,CC 
-DataDD 
-=DD 
-awaitDD 
-_userRepositoryDD ,
-.DD, - 
-GetHotelUserDtoAsyncDD- A
-(DDA B
+roomNumber@@M W
+)@@W X
+{AA 	
+returnBB 
+newBB 
+ServiceResponseBB &
+<BB& '
+HotelUserDtoBB' 3
+>BB3 4
+{CC 
+IsValidDD 
+=DD 
+trueDD 
+,DD 
+DataEE 
+=EE 
+awaitEE 
+_userRepositoryEE ,
+.EE, - 
+GetHotelUserDtoAsyncEE- A
+(EEA B
 
-roomNumberDDB L
-)DDL M
-}EE 
-;EE 
-}FF 	
-publicHH 
-asyncHH 
-TaskHH 
-<HH 
-ServiceResponseHH )
-<HH) *!
-HotelUserWithRolesDtoHH* ?
->HH? @
->HH@ A!
-GetHotelUserWithRolesHHB W
-(HHW X
-stringHHX ^
+roomNumberEEB L
+)EEL M
+}FF 
+;FF 
+}GG 	
+publicII 
+asyncII 
+TaskII 
+<II 
+ServiceResponseII )
+<II) *!
+HotelUserWithRolesDtoII* ?
+>II? @
+>II@ A!
+GetHotelUserWithRolesIIB W
+(IIW X
+stringIIX ^
 
-roomNumberHH_ i
-)HHi j
-{II 	
-ServiceResponseJJ 
-<JJ !
-HotelUserWithRolesDtoJJ 1
->JJ1 2
-responseJJ3 ;
-=JJ< =
-newJJ> A
-(JJA B
-)JJB C
-;JJC D
-varLL 
-userLL 
-=LL 
-awaitLL 
-_userManagerLL )
-.LL) *
-UsersLL* /
-.LL/ 0
-IncludeLL0 7
-(LL7 8
-rLL8 9
-=>LL: <
-rLL= >
-.LL> ?
-RoomLL? C
-)LLC D
-.LLD E
-FirstOrDefaultAsyncLLE X
-(LLX Y
-xLLY Z
-=>LL[ ]
-xLL^ _
-.LL_ `
-RoomLL` d
-.LLd e
+roomNumberII_ i
+)IIi j
+{JJ 	
+ServiceResponseKK 
+<KK !
+HotelUserWithRolesDtoKK 1
+>KK1 2
+responseKK3 ;
+=KK< =
+newKK> A
+(KKA B
+)KKB C
+;KKC D
+varMM 
+userMM 
+=MM 
+awaitMM 
+_userManagerMM )
+.MM) *
+UsersMM* /
+.MM/ 0
+IncludeMM0 7
+(MM7 8
+rMM8 9
+=>MM: <
+rMM= >
+.MM> ?
+RoomMM? C
+)MMC D
+.MMD E
+FirstOrDefaultAsyncMME X
+(MMX Y
+xMMY Z
+=>MM[ ]
+xMM^ _
+.MM_ `
+RoomMM` d
+.MMd e
 
-RoomNumberLLe o
-==LLp r
+RoomNumberMMe o
+==MMp r
 
-roomNumberLLs }
-)LL} ~
-;LL~ 
-ifNN 
-(NN 
-userNN 
-isNN 
-nullNN 
-)NN 
-{OO 
-responsePP 
-.PP 
-ErrorsPP 
-.PP  
-AddPP  #
-(PP# $!
-HotelUserServiceErrorPP$ 9
-.PP9 :
-UserNotFoundPP: F
-)PPF G
-;PPG H
-returnQQ 
-responseQQ 
-;QQ  
-}RR !
-HotelUserWithRolesDtoTT !
-userWithRolesDtoTT" 2
-=TT3 4
-_mapperTT5 <
-.TT< =
-MapTT= @
-<TT@ A!
-HotelUserWithRolesDtoTTA V
->TTV W
-(TTW X
-userTTX \
-)TT\ ]
-;TT] ^
-userWithRolesDtoUU 
-.UU 
-	UserRolesUU &
-=UU' (
-awaitUU) .
-_userManagerUU/ ;
-.UU; <
-GetRolesAsyncUU< I
-(UUI J
-userUUJ N
-)UUN O
-;UUO P
-responseWW 
-.WW 
-IsValidWW 
-=WW 
-trueWW #
-;WW# $
-responseXX 
-.XX 
-DataXX 
-=XX 
-userWithRolesDtoXX ,
-;XX, -
-returnZZ 
-responseZZ 
-;ZZ 
-}[[ 	
-public]] 
-async]] 
-Task]] 
-<]] 
-ServiceResponse]] )
-<]]) *
-CreatedHotelUserDto]]* =
->]]= >
->]]> ?
-CreateHotelUser]]@ O
-(]]O P
-CreateHotelUserDto]]P b
-createHotelUserDto]]c u
-)]]u v
-{^^ 	
-ServiceResponse__ 
-<__ 
-CreatedHotelUserDto__ /
->__/ 0
-response__1 9
-=__: ;
-new__< ?
-(__? @
-)__@ A
-;__A B
-ifaa 
-(aa 
-awaitaa 
+roomNumberMMs }
+)MM} ~
+;MM~ 
+ifOO 
+(OO 
+userOO 
+isOO 
+nullOO 
+)OO 
+{PP 
+responseQQ 
+.QQ 
 
-UserExistsaa  
-(aa  !
-createHotelUserDtoaa! 3
-.aa3 4
+StatusCodeQQ #
+=QQ$ %
+(QQ& '
+intQQ' *
+)QQ* +
+HttpStatusCodeQQ, :
+.QQ: ;
+NotFoundQQ; C
+;QQC D
+responseRR 
+.RR 
+ErrorsRR 
+.RR  
+AddRR  #
+(RR# $!
+HotelUserServiceErrorRR$ 9
+.RR9 :
+UserNotFoundRR: F
+)RRF G
+;RRG H
+returnSS 
+responseSS 
+;SS  
+}TT !
+HotelUserWithRolesDtoVV !
+userWithRolesDtoVV" 2
+=VV3 4
+_mapperVV5 <
+.VV< =
+MapVV= @
+<VV@ A!
+HotelUserWithRolesDtoVVA V
+>VVV W
+(VVW X
+userVVX \
+)VV\ ]
+;VV] ^
+userWithRolesDtoWW 
+.WW 
+	UserRolesWW &
+=WW' (
+awaitWW) .
+_userManagerWW/ ;
+.WW; <
+GetRolesAsyncWW< I
+(WWI J
+userWWJ N
+)WWN O
+;WWO P
+responseYY 
+.YY 
+IsValidYY 
+=YY 
+trueYY #
+;YY# $
+responseZZ 
+.ZZ 
+DataZZ 
+=ZZ 
+userWithRolesDtoZZ ,
+;ZZ, -
+return\\ 
+response\\ 
+;\\ 
+}]] 	
+public__ 
+async__ 
+Task__ 
+<__ 
+ServiceResponse__ )
+<__) *
+CreatedHotelUserDto__* =
+>__= >
+>__> ?
+CreateHotelUser__@ O
+(__O P
+CreateHotelUserDto__P b
+createHotelUserDto__c u
+)__u v
+{`` 	
+ServiceResponseaa 
+<aa 
+CreatedHotelUserDtoaa /
+>aa/ 0
+responseaa1 9
+=aa: ;
+newaa< ?
+(aa? @
+)aa@ A
+;aaA B
+ifcc 
+(cc 
+awaitcc 
 
-RoomNumberaa4 >
-)aa> ?
-)aa? @
-{bb 
-responsecc 
-.cc 
-Errorscc 
-.cc  
-Addcc  #
-(cc# $!
-HotelUserServiceErrorcc$ 9
-.cc9 :
-UserAlreadyExistscc: K
-)ccK L
-;ccL M
-returndd 
-responsedd 
-;dd  
-}ee 
-createHotelUserDtogg 
-.gg 
+UserExistscc  
+(cc  !
+createHotelUserDtocc! 3
+.cc3 4
 
-RoomNumbergg )
-=gg* +
-createHotelUserDtogg, >
-.gg> ?
+RoomNumbercc4 >
+)cc> ?
+)cc? @
+{dd 
+responseee 
+.ee 
 
-RoomNumbergg? I
-.ggI J
-ToUpperggJ Q
-(ggQ R
-)ggR S
-;ggS T
-createHotelUserDtohh 
-.hh 
-	GuestNamehh (
-=hh) *
-createHotelUserDtohh+ =
-.hh= >
-	GuestNamehh> G
-.hhG H
-ToUpperhhH O
-(hhO P
-)hhP Q
-;hhQ R
-	HotelUserkk 
-	hotelUserkk 
-=kk  !
-_mapperkk" )
-.kk) *
-Mapkk* -
-<kk- .
-	HotelUserkk. 7
->kk7 8
-(kk8 9
-createHotelUserDtokk9 K
-)kkK L
-;kkL M
-IdentityResultmm 
-createUserResultmm +
-=mm, -
-awaitmm. 3
-_userManagermm4 @
-.mm@ A
-CreateAsyncmmA L
-(mmL M
-	hotelUsermmM V
-,mmV W
-createHotelUserDtommX j
-.mmj k
-Passwordmmk s
-)mms t
-;mmt u
-ifoo 
-(oo 
-!oo 
-createUserResultoo !
-.oo! "
-	Succeededoo" +
-)oo+ ,
-{pp 
-responseqq 
-.qq 
-Errorsqq 
-=qq  !
-createUserResultqq" 2
-.qq2 3
-Errorsqq3 9
-.qq9 :
-Selectqq: @
-(qq@ A
-xqqA B
-=>qqC E
-xqqF G
-.qqG H
-DescriptionqqH S
-)qqS T
-.qqT U
-ToListqqU [
-(qq[ \
-)qq\ ]
-;qq] ^
-returnrr 
-responserr 
-;rr  
-}ss 
-foreachuu 
-(uu 
-varuu 
-roleuu 
-inuu  
-createHotelUserDtouu! 3
-.uu3 4
-Rolesuu4 9
-)uu9 :
-{vv 
-IdentityResultww 
+StatusCodeee #
+=ee$ %
+(ee& '
+intee' *
+)ee* +
+HttpStatusCodeee+ 9
+.ee9 :
+Conflictee: B
+;eeB C
+responseff 
+.ff 
+Errorsff 
+.ff  
+Addff  #
+(ff# $!
+HotelUserServiceErrorff$ 9
+.ff9 :
+UserAlreadyExistsff: K
+)ffK L
+;ffL M
+returngg 
+responsegg 
+;gg  
+}hh 
+createHotelUserDtojj 
+.jj 
 
-roleResultww )
-=ww* +
-awaitww, 1
-_userManagerww2 >
-.ww> ?
-AddToRoleAsyncww? M
-(wwM N
-	hotelUserwwN W
-,wwW X
-rolewwY ]
-)ww] ^
-;ww^ _
-ifyy 
-(yy 
-!yy 
+RoomNumberjj )
+=jj* +
+createHotelUserDtojj, >
+.jj> ?
 
-roleResultyy 
-.yy  
-	Succeededyy  )
-)yy) *
-{zz 
-response{{ 
-.{{ 
-Errors{{ #
-={{$ %
-createUserResult{{& 6
-.{{6 7
-Errors{{7 =
-.{{= >
-Select{{> D
-({{D E
-x{{E F
-=>{{G I
-x{{J K
-.{{K L
-Description{{L W
-){{W X
-.{{X Y
-ToList{{Y _
-({{_ `
-){{` a
-;{{a b
-return|| 
-response|| #
-;||# $
-}}} 
-}~~ 
-ServiceResponse
-ÄÄ 
-<
-ÄÄ 
-bool
-ÄÄ  
->
-ÄÄ  !
-userAddedToRoom
-ÄÄ" 1
+RoomNumberjj? I
+.jjI J
+ToUpperjjJ Q
+(jjQ R
+)jjR S
+;jjS T
+createHotelUserDtokk 
+.kk 
+	GuestNamekk (
+=kk) *
+createHotelUserDtokk+ =
+.kk= >
+	GuestNamekk> G
+.kkG H
+ToUpperkkH O
+(kkO P
+)kkP Q
+;kkQ R
+	HotelUsernn 
+	hotelUsernn 
+=nn  !
+_mappernn" )
+.nn) *
+Mapnn* -
+<nn- .
+	HotelUsernn. 7
+>nn7 8
+(nn8 9
+createHotelUserDtonn9 K
+)nnK L
+;nnL M
+IdentityResultpp 
+createUserResultpp +
+=pp, -
+awaitpp. 3
+_userManagerpp4 @
+.pp@ A
+CreateAsyncppA L
+(ppL M
+	hotelUserppM V
+,ppV W
+createHotelUserDtoppX j
+.ppj k
+Passwordppk s
+)pps t
+;ppt u
+ifrr 
+(rr 
+!rr 
+createUserResultrr !
+.rr! "
+	Succeededrr" +
+)rr+ ,
+{ss 
+responsett 
+.tt 
+
+StatusCodett #
+=tt$ %
+(tt& '
+inttt' *
+)tt* +
+HttpStatusCodett, :
+.tt: ;
+InternalServerErrortt; N
+;ttN O
+responseuu 
+.uu 
+Errorsuu 
+=uu  !
+createUserResultuu" 2
+.uu2 3
+Errorsuu3 9
+.uu9 :
+Selectuu: @
+(uu@ A
+xuuA B
+=>uuC E
+xuuF G
+.uuG H
+DescriptionuuH S
+)uuS T
+.uuT U
+ToListuuU [
+(uu[ \
+)uu\ ]
+;uu] ^
+returnvv 
+responsevv 
+;vv  
+}ww 
+foreachyy 
+(yy 
+varyy 
+roleyy 
+inyy  
+createHotelUserDtoyy! 3
+.yy3 4
+Rolesyy4 9
+)yy9 :
+{zz 
+IdentityResult{{ 
+
+roleResult{{ )
+={{* +
+await{{, 1
+_userManager{{2 >
+.{{> ?
+AddToRoleAsync{{? M
+({{M N
+	hotelUser{{N W
+,{{W X
+role{{Y ]
+){{] ^
+;{{^ _
+if}} 
+(}} 
+!}} 
+
+roleResult}} 
+.}}  
+	Succeeded}}  )
+)}}) *
+{~~ 
+response 
+. 
+
+StatusCode '
+=( )
+(* +
+int+ .
+). /
+HttpStatusCode/ =
+.= >
+InternalServerError> Q
+;Q R
+response
+ÄÄ 
+.
+ÄÄ 
+Errors
+ÄÄ #
 =
-ÄÄ2 3
+ÄÄ$ %
+createUserResult
+ÄÄ& 6
+.
+ÄÄ6 7
+Errors
+ÄÄ7 =
+.
+ÄÄ= >
+Select
+ÄÄ> D
+(
+ÄÄD E
+x
+ÄÄE F
+=>
+ÄÄG I
+x
+ÄÄJ K
+.
+ÄÄK L
+Description
+ÄÄL W
+)
+ÄÄW X
+.
+ÄÄX Y
+ToList
+ÄÄY _
+(
+ÄÄ_ `
+)
+ÄÄ` a
+;
+ÄÄa b
+return
+ÅÅ 
+response
+ÅÅ #
+;
+ÅÅ# $
+}
+ÇÇ 
+}
+ÉÉ 
+ServiceResponse
+ÖÖ 
+<
+ÖÖ 
+bool
+ÖÖ  
+>
+ÖÖ  !
+userAddedToRoom
+ÖÖ" 1
+=
+ÖÖ2 3
 await
-ÄÄ4 9
+ÖÖ4 9
 _roomService
-ÄÄ: F
+ÖÖ: F
 .
-ÄÄF G
+ÖÖF G
 AddUserToRoom
-ÄÄG T
+ÖÖG T
 (
-ÄÄT U
+ÖÖT U
 	hotelUser
-ÄÄU ^
+ÖÖU ^
 ,
-ÄÄ^ _ 
+ÖÖ^ _ 
 createHotelUserDto
-ÄÄ` r
+ÖÖ` r
 )
-ÄÄr s
+ÖÖr s
 ;
-ÄÄs t
+ÖÖs t
 if
-ÇÇ 
+áá 
 (
-ÇÇ 
+áá 
 !
-ÇÇ 
+áá 
 userAddedToRoom
-ÇÇ  
+áá  
 .
-ÇÇ  !
+áá  !
 IsValid
-ÇÇ! (
+áá! (
 )
-ÇÇ( )
+áá( )
 {
-ÉÉ 
+àà 
 response
-ÑÑ 
+ââ 
 .
-ÑÑ 
-Errors
-ÑÑ 
-.
-ÑÑ  
-Add
-ÑÑ  #
-(
-ÑÑ# $
+ââ 
+
+StatusCode
+ââ #
+=
+ââ$ %
 userAddedToRoom
-ÑÑ$ 3
+ââ& 5
 .
-ÑÑ3 4
+ââ5 6
+
+StatusCode
+ââ6 @
+;
+ââ@ A
+response
+ää 
+.
+ää 
 Errors
-ÑÑ4 :
+ää 
 .
-ÑÑ: ;
+ää  
+Add
+ää  #
+(
+ää# $
+userAddedToRoom
+ää$ 3
+.
+ää3 4
+Errors
+ää4 :
+.
+ää: ;
 First
-ÑÑ; @
+ää; @
 (
-ÑÑ@ A
+ää@ A
 )
-ÑÑA B
+ääA B
 +
-ÑÑC D#
+ääC D#
 HotelUserServiceError
-ÑÑE Z
+ääE Z
 .
-ÑÑZ [
+ääZ [
 UserCreated
-ÑÑ[ f
+ää[ f
 )
-ÑÑf g
+ääf g
 ;
-ÑÑg h
+ääg h
 }
-ÖÖ 
+ãã 
 Room
-áá 
+çç 
 userRoom
-áá 
+çç 
 =
-áá 
+çç 
 await
-áá !
+çç !
 _roomRepository
-áá" 1
+çç" 1
 .
-áá1 2!
+çç1 2!
 GetRoomByRoomNumber
-áá2 E
+çç2 E
 (
-ááE F 
+ççE F 
 createHotelUserDto
-ááF X
+ççF X
 .
-ááX Y
+ççX Y
 
 RoomNumber
-ááY c
+ççY c
 )
-áác d
+ççc d
 ;
-áád e
+ççd e
 	hotelUser
-àà 
+éé 
 .
-àà 
+éé 
 RoomId
-àà 
+éé 
 =
-àà 
+éé 
 userRoom
-àà '
+éé '
 .
-àà' (
+éé' (
 Id
-àà( *
+éé( *
 ;
-àà* +
+éé* +
 await
-ââ 
+èè 
 _userManager
-ââ 
+èè 
 .
-ââ 
+èè 
 UpdateAsync
-ââ *
+èè *
 (
-ââ* +
+èè* +
 	hotelUser
-ââ+ 4
+èè+ 4
 )
-ââ4 5
+èè4 5
 ;
-ââ5 6!
+èè5 6!
 CreatedHotelUserDto
-åå !
+íí !
 createdHotelUserDto
-åå  3
+íí  3
 =
-åå4 5
+íí4 5
 _mapper
-åå6 =
+íí6 =
 .
-åå= >
+íí= >
 Map
-åå> A
+íí> A
 <
-ååA B!
+ííA B!
 CreatedHotelUserDto
-ååB U
+ííB U
 >
-ååU V
+ííU V
 (
-ååV W
+ííV W
 	hotelUser
-ååW `
+ííW `
 )
-åå` a
+íí` a
 ;
-ååa b!
+íía b!
 createdHotelUserDto
-çç 
+ìì 
 .
-çç  
+ìì  
 	UserRoles
-çç  )
+ìì  )
 =
-çç* +
+ìì* +
 await
-çç, 1
+ìì, 1
 _userManager
-çç2 >
+ìì2 >
 .
-çç> ?
+ìì> ?
 GetRolesAsync
-çç? L
+ìì? L
 (
-ççL M
+ììL M
 	hotelUser
-ççM V
+ììM V
 )
-ççV W
+ììV W
 ;
-ççW X
+ììW X
 response
-èè 
+ïï 
 .
-èè 
+ïï 
 IsValid
-èè 
+ïï 
 =
-èè 
+ïï 
 true
-èè #
+ïï #
 ;
-èè# $
+ïï# $
 response
-êê 
+ññ 
 .
-êê 
+ññ 
 Data
-êê 
+ññ 
 =
-êê !
+ññ !
 createdHotelUserDto
-êê /
+ññ /
 ;
-êê/ 0
+ññ/ 0
 return
-íí 
+òò 
 response
-íí 
+òò 
 ;
-íí 
+òò 
 }
-ìì 	
+ôô 	
 public
-ïï 
+õõ 
 async
-ïï 
+õõ 
 Task
-ïï 
+õõ 
 <
-ïï 
+õõ 
 ServiceResponse
-ïï )
+õõ )
 <
-ïï) *!
+õõ) *!
 CreatedHotelUserDto
-ïï* =
+õõ* =
 >
-ïï= >
+õõ= >
 >
-ïï> ?
+õõ> ?
 EditUser
-ïï@ H
+õõ@ H
 (
-ïïH I 
+õõH I 
 CreateHotelUserDto
-ïïI [
+õõI [
 editUser
-ïï\ d
+õõ\ d
 )
-ïïd e
+õõd e
 {
-ññ 	
+úú 	
 ServiceResponse
-óó 
+ùù 
 <
-óó !
+ùù !
 CreatedHotelUserDto
-óó /
+ùù /
 >
-óó/ 0
+ùù/ 0
 response
-óó1 9
+ùù1 9
 =
-óó: ;
+ùù: ;
 new
-óó< ?
+ùù< ?
 (
-óó? @
+ùù? @
 )
-óó@ A
+ùù@ A
 ;
-óóA B
+ùùA B
 	HotelUser
-ôô 
+üü 
 user
-ôô 
+üü 
 =
-ôô 
+üü 
 await
-ôô "
+üü "
 _userManager
-ôô# /
+üü# /
 .
-ôô/ 0
+üü/ 0
 Users
-ôô0 5
+üü0 5
 .
-ôô5 6
+üü5 6
 Include
-ôô6 =
+üü6 =
 (
-ôô= >
+üü= >
 r
-ôô> ?
+üü> ?
 =>
-ôô@ B
+üü@ B
 r
-ôôC D
+üüC D
 .
-ôôD E
+üüD E
 Room
-ôôE I
+üüE I
 )
-ôôI J
+üüI J
 .
-ôôJ K"
+üüJ K"
 SingleOrDefaultAsync
-ôôK _
+üüK _
 (
-ôô_ `
+üü_ `
 x
-ôô` a
+üü` a
 =>
-ôôb d
+üüb d
 x
-ôôe f
+üüe f
 .
-ôôf g
+üüf g
 Room
-ôôg k
+üüg k
 .
-ôôk l
+üük l
 
 RoomNumber
-ôôl v
+üül v
 ==
-ôôw y
-editUserôôz Ç
-.ôôÇ É
+üüw y
+editUserüüz Ç
+.üüÇ É
 
-RoomNumberôôÉ ç
-)ôôç é
-;ôôé è
+RoomNumberüüÉ ç
+)üüç é
+;üüé è
 if
-õõ 
+°° 
 (
-õõ 
+°° 
 user
-õõ 
+°° 
 is
-õõ 
+°° 
 null
-õõ 
+°° 
 )
-õõ 
+°° 
 {
-úú 
+¢¢ 
 response
-ùù 
+££ 
 .
-ùù 
+££ 
+
+StatusCode
+££ #
+=
+££$ %
+(
+££& '
+int
+££' *
+)
+££* +
+HttpStatusCode
+££+ 9
+.
+££9 :
+NotFound
+££: B
+;
+££B C
+response
+§§ 
+.
+§§ 
 Errors
-ùù 
+§§ 
 .
-ùù  
+§§  
 Add
-ùù  #
+§§  #
 (
-ùù# $#
+§§# $#
 HotelUserServiceError
-ùù$ 9
+§§$ 9
 .
-ùù9 :
+§§9 :
 UserNotFound
-ùù: F
+§§: F
 )
-ùùF G
+§§F G
 ;
-ùùG H
+§§G H
 return
-ûû 
+•• 
 response
-ûû 
+•• 
 ;
-ûû  
+••  
 }
-üü 
-editUser
-°° 
-.
-°° 
-	GuestName
-°° 
-=
-°°  
-editUser
-°°! )
-.
-°°) *
-	GuestName
-°°* 3
-.
-°°3 4
-ToUpper
-°°4 ;
-(
-°°; <
-)
-°°< =
-;
-°°= >
-ServiceResponse
-££ 
-<
-££ 
-bool
-££  
->
-££  !
-editRolesResponse
-££" 3
-=
-££4 5
-await
-££6 ;
-EditUserRoles
-££< I
-(
-££I J
-user
-££J N
-,
-££N O
-editUser
-££P X
-.
-££X Y
-Roles
-££Y ^
-)
-££^ _
-;
-££_ `
-if
-•• 
-(
-•• 
-!
-•• 
-editRolesResponse
-•• "
-.
-••" #
-IsValid
-••# *
-)
-••* +
-{
 ¶¶ 
-response
-ßß 
+editUser
+®® 
 .
-ßß 
-Errors
-ßß 
+®® 
+	GuestName
+®® 
 =
-ßß  !
+®®  
+editUser
+®®! )
+.
+®®) *
+	GuestName
+®®* 3
+.
+®®3 4
+ToUpper
+®®4 ;
+(
+®®; <
+)
+®®< =
+;
+®®= >
+ServiceResponse
+™™ 
+<
+™™ 
+bool
+™™  
+>
+™™  !
 editRolesResponse
-ßß" 3
-.
-ßß3 4
-Errors
-ßß4 :
-;
-ßß: ;
-return
-®® 
-response
-®® 
-;
-®®  
-}
-©© 
-_mapper
-´´ 
-.
-´´ 
-Map
-´´ 
-(
-´´ 
-editUser
-´´  
-,
-´´  !
-user
-´´" &
-)
-´´& '
-;
-´´' (
-_userRepository
-≠≠ 
-.
-≠≠ 
-Update
-≠≠ "
-(
-≠≠" #
-user
-≠≠# '
-)
-≠≠' (
-;
-≠≠( )
-if
-ØØ 
-(
-ØØ 
-!
-ØØ 
+™™" 3
+=
+™™4 5
 await
-ØØ 
-_userRepository
-ØØ &
-.
-ØØ& '
-SaveAllAsync
-ØØ' 3
+™™6 ;
+EditUserRoles
+™™< I
 (
-ØØ3 4
-)
-ØØ4 5
-)
-ØØ5 6
-{
-∞∞ 
-response
-±± 
+™™I J
+user
+™™J N
+,
+™™N O
+editUser
+™™P X
 .
-±± 
-Errors
-±± 
-.
-±±  
-Add
-±±  #
-(
-±±# $#
-HotelUserServiceError
-±±$ 9
-.
-±±9 :
-ChangesUnsaved
-±±: H
+™™X Y
+Roles
+™™Y ^
 )
-±±H I
+™™^ _
 ;
-±±I J
-return
-≤≤ 
-response
-≤≤ 
-;
-≤≤  
-}
-≥≥ 
+™™_ `
 if
-µµ 
+¨¨ 
 (
-µµ 
+¨¨ 
 !
-µµ 
+¨¨ 
+editRolesResponse
+¨¨ "
+.
+¨¨" #
+IsValid
+¨¨# *
+)
+¨¨* +
+{
+≠≠ 
+response
+ÆÆ 
+.
+ÆÆ 
+
+StatusCode
+ÆÆ #
+=
+ÆÆ$ %
+editRolesResponse
+ÆÆ& 7
+.
+ÆÆ7 8
+
+StatusCode
+ÆÆ8 B
+;
+ÆÆB C
+response
+ØØ 
+.
+ØØ 
+Errors
+ØØ 
+=
+ØØ  !
+editRolesResponse
+ØØ" 3
+.
+ØØ3 4
+Errors
+ØØ4 :
+;
+ØØ: ;
+return
+∞∞ 
+response
+∞∞ 
+;
+∞∞  
+}
+±± 
+_mapper
+≥≥ 
+.
+≥≥ 
+Map
+≥≥ 
+(
+≥≥ 
+editUser
+≥≥  
+,
+≥≥  !
+user
+≥≥" &
+)
+≥≥& '
+;
+≥≥' (
+_userRepository
+µµ 
+.
+µµ 
+Update
+µµ "
+(
+µµ" #
+user
+µµ# '
+)
+µµ' (
+;
+µµ( )
+if
+∑∑ 
+(
+∑∑ 
+!
+∑∑ 
+await
+∑∑ 
+_userRepository
+∑∑ &
+.
+∑∑& '
+SaveAllAsync
+∑∑' 3
+(
+∑∑3 4
+)
+∑∑4 5
+)
+∑∑5 6
+{
+∏∏ 
+response
+ππ 
+.
+ππ 
+
+StatusCode
+ππ #
+=
+ππ$ %
+(
+ππ& '
+int
+ππ' *
+)
+ππ* +
+HttpStatusCode
+ππ+ 9
+.
+ππ9 :!
+InternalServerError
+ππ: M
+;
+ππM N
+response
+∫∫ 
+.
+∫∫ 
+Errors
+∫∫ 
+.
+∫∫  
+Add
+∫∫  #
+(
+∫∫# $#
+HotelUserServiceError
+∫∫$ 9
+.
+∫∫9 :
+ChangesUnsaved
+∫∫: H
+)
+∫∫H I
+;
+∫∫I J
+return
+ªª 
+response
+ªª 
+;
+ªª  
+}
+ºº 
+if
+ææ 
+(
+ææ 
+!
+ææ 
 String
-µµ 
+ææ 
 .
-µµ 
+ææ 
 IsNullOrEmpty
-µµ %
+ææ %
 (
-µµ% &
+ææ% &
 editUser
-µµ& .
+ææ& .
 .
-µµ. /
+ææ. /
 Password
-µµ/ 7
+ææ/ 7
 )
-µµ7 8
+ææ7 8
 )
-µµ8 9
+ææ8 9
 {
-∂∂ 
+øø 
 string
-∑∑  
+¿¿  
 passwordResetToken
-∑∑ )
+¿¿ )
 =
-∑∑* +
+¿¿* +
 await
-∑∑, 1
+¿¿, 1
 _userManager
-∑∑2 >
+¿¿2 >
 .
-∑∑> ?-
+¿¿> ?-
 GeneratePasswordResetTokenAsync
-∑∑? ^
+¿¿? ^
 (
-∑∑^ _
+¿¿^ _
 user
-∑∑_ c
+¿¿_ c
 )
-∑∑c d
+¿¿c d
 ;
-∑∑d e
+¿¿d e
 IdentityResult
-∏∏ 
+¡¡ 
 result
-∏∏ %
+¡¡ %
 =
-∏∏& '
+¡¡& '
 await
-∏∏( -
+¡¡( -
 _userManager
-∏∏. :
+¡¡. :
 .
-∏∏: ; 
+¡¡: ; 
 ResetPasswordAsync
-∏∏; M
+¡¡; M
 (
-∏∏M N
+¡¡M N
 user
-∏∏N R
+¡¡N R
 ,
-∏∏R S 
+¡¡R S 
 passwordResetToken
-∏∏T f
+¡¡T f
 ,
-∏∏f g
+¡¡f g
 editUser
-∏∏h p
+¡¡h p
 .
-∏∏p q
+¡¡p q
 Password
-∏∏q y
+¡¡q y
 )
-∏∏y z
+¡¡y z
 ;
-∏∏z {
+¡¡z {
 if
-∫∫ 
+√√ 
 (
-∫∫ 
+√√ 
 !
-∫∫ 
+√√ 
 result
-∫∫ 
+√√ 
 .
-∫∫ 
+√√ 
 	Succeeded
-∫∫ %
+√√ %
 )
-∫∫% &
+√√% &
 {
-ªª 
+ƒƒ 
 response
-ºº 
+≈≈ 
 .
-ºº 
-Errors
-ºº #
-.
-ºº# $
-Add
-ºº$ '
+≈≈ 
+
+StatusCode
+≈≈ '
+=
+≈≈( )
 (
-ºº' (#
-HotelUserServiceError
-ºº( =
+≈≈* +
+int
+≈≈+ .
+)
+≈≈. /
+HttpStatusCode
+≈≈/ =
 .
-ºº= >#
+≈≈= >!
+InternalServerError
+≈≈> Q
+;
+≈≈Q R
+response
+∆∆ 
+.
+∆∆ 
+Errors
+∆∆ #
+.
+∆∆# $
+Add
+∆∆$ '
+(
+∆∆' (#
+HotelUserServiceError
+∆∆( =
+.
+∆∆= >#
 UserEditedButPassword
-ºº> S
+∆∆> S
 )
-ººS T
+∆∆S T
 ;
-ººT U
+∆∆T U
 return
-ΩΩ 
+«« 
 response
-ΩΩ #
+«« #
 ;
-ΩΩ# $
+««# $
 }
-ææ 
+»» 
 }
-øø 
-if
-¡¡ 
-(
-¡¡ 
-!
-¡¡ 
+…… 
+ServiceResponse
+ÀÀ 
+<
+ÀÀ 
+bool
+ÀÀ  
+>
+ÀÀ  !
+isTheRoomUpdated
+ÀÀ" 2
+=
+ÀÀ3 4
 await
-¡¡ 
-IsTheRoomUpdated
-¡¡ '
+ÀÀ5 :
+_roomService
+ÀÀ; G
+.
+ÀÀG H
+
+UpdateRoom
+ÀÀH R
 (
-¡¡' (
+ÀÀR S
 editUser
-¡¡( 0
+ÀÀS [
 )
-¡¡0 1
+ÀÀ[ \
+;
+ÀÀ\ ]
+if
+ÕÕ 
+(
+ÕÕ 
+!
+ÕÕ 
+isTheRoomUpdated
+ÕÕ !
+.
+ÕÕ! "
+IsValid
+ÕÕ" )
 )
-¡¡1 2
+ÕÕ) *
 {
-¬¬ 
+ŒŒ 
 response
-√√ 
+œœ 
 .
-√√ 
+œœ 
+
+StatusCode
+œœ #
+=
+œœ$ %
+isTheRoomUpdated
+œœ& 6
+.
+œœ6 7
+
+StatusCode
+œœ7 A
+;
+œœA B
+response
+–– 
+.
+–– 
 Errors
-√√ 
+–– 
 .
-√√  
+––  
 Add
-√√  #
+––  #
 (
-√√# $#
+––# $#
 HotelUserServiceError
-√√$ 9
+––$ 9
 .
-√√9 :
+––9 :
 RoomDatesUnsaved
-√√: J
+––: J
 +
-√√K L
+––K L
 editUser
-√√M U
+––M U
 .
-√√U V
+––U V
 
 RoomNumber
-√√V `
+––V `
 )
-√√` a
+––` a
 ;
-√√a b
+––a b
 return
-ƒƒ 
+—— 
 response
-ƒƒ 
+—— 
 ;
-ƒƒ  
+——  
 }
-≈≈ !
+““ !
 CreatedHotelUserDto
-«« 
+‘‘ 
 updatedUser
-««  +
+‘‘  +
 =
-««, -
+‘‘, -
 _mapper
-««. 5
+‘‘. 5
 .
-««5 6
+‘‘5 6
 Map
-««6 9
+‘‘6 9
 <
-««9 :!
+‘‘9 :!
 CreatedHotelUserDto
-««: M
+‘‘: M
 >
-««M N
+‘‘M N
 (
-««N O
+‘‘N O
 user
-««O S
+‘‘O S
 )
-««S T
+‘‘S T
 ;
-««T U
+‘‘T U
 updatedUser
-»» 
+’’ 
 .
-»» 
+’’ 
 	UserRoles
-»» !
+’’ !
 =
-»»" #
+’’" #
 await
-»»$ )
+’’$ )
 _userManager
-»»* 6
+’’* 6
 .
-»»6 7
+’’6 7
 GetRolesAsync
-»»7 D
+’’7 D
 (
-»»D E
+’’D E
 user
-»»E I
+’’E I
 )
-»»I J
+’’I J
 ;
-»»J K
+’’J K
 response
-   
+◊◊ 
 .
-   
+◊◊ 
 IsValid
-   
+◊◊ 
 =
-   
+◊◊ 
 true
-   #
+◊◊ #
 ;
-  # $
+◊◊# $
 response
-ÀÀ 
+ÿÿ 
 .
-ÀÀ 
+ÿÿ 
 Data
-ÀÀ 
+ÿÿ 
 =
-ÀÀ 
+ÿÿ 
 updatedUser
-ÀÀ '
+ÿÿ '
 ;
-ÀÀ' (
+ÿÿ' (
 return
-ÃÃ 
+ŸŸ 
 response
-ÃÃ 
+ŸŸ 
 ;
-ÃÃ 
+ŸŸ 
 }
-ÕÕ 	
+⁄⁄ 	
 public
-œœ 
+‹‹ 
 async
-œœ 
+‹‹ 
 Task
-œœ 
+‹‹ 
 <
-œœ 
+‹‹ 
 ServiceResponse
-œœ )
+‹‹ )
 <
-œœ) *
+‹‹) *
 HotelUserDto
-œœ* 6
+‹‹* 6
 >
-œœ6 7
+‹‹6 7
 >
-œœ7 8
+‹‹7 8
 EditGuestUser
-œœ9 F
+‹‹9 F
 (
-œœF G
+‹‹F G
 HotelUserDto
-œœG S
+‹‹G S
 editUser
-œœT \
+‹‹T \
 )
-œœ\ ]
+‹‹\ ]
 {
-–– 	
+›› 	
 ServiceResponse
-—— 
+ﬁﬁ 
 <
-—— 
+ﬁﬁ 
 HotelUserDto
-—— (
+ﬁﬁ (
 >
-——( )
+ﬁﬁ( )
 response
-——* 2
+ﬁﬁ* 2
 =
-——3 4
+ﬁﬁ3 4
 new
-——5 8
+ﬁﬁ5 8
 (
-——8 9
+ﬁﬁ8 9
 )
-——9 :
+ﬁﬁ9 :
 ;
-——: ;
+ﬁﬁ: ;
 	HotelUser
-”” 
+‡‡ 
 user
-”” 
+‡‡ 
 =
-”” 
+‡‡ 
 await
-”” "
+‡‡ "
 _userManager
-””# /
+‡‡# /
 .
-””/ 0
+‡‡/ 0
 Users
-””0 5
+‡‡0 5
 .
-””5 6
+‡‡5 6
 Include
-””6 =
+‡‡6 =
 (
-””= >
+‡‡= >
 r
-””> ?
+‡‡> ?
 =>
-””@ B
+‡‡@ B
 r
-””C D
+‡‡C D
 .
-””D E
+‡‡D E
 Room
-””E I
+‡‡E I
 )
-””I J
+‡‡I J
 .
-””J K"
+‡‡J K"
 SingleOrDefaultAsync
-””K _
+‡‡K _
 (
-””_ `
+‡‡_ `
 x
-””` a
+‡‡` a
 =>
-””b d
+‡‡b d
 x
-””e f
+‡‡e f
 .
-””f g
+‡‡f g
 Room
-””g k
+‡‡g k
 .
-””k l
+‡‡k l
 
 RoomNumber
-””l v
+‡‡l v
 ==
-””w y
-editUser””z Ç
-.””Ç É
+‡‡w y
+editUser‡‡z Ç
+.‡‡Ç É
 
-RoomNumber””É ç
-)””ç é
-;””é è
+RoomNumber‡‡É ç
+)‡‡ç é
+;‡‡é è
 if
-’’ 
+‚‚ 
 (
-’’ 
+‚‚ 
 user
-’’ 
+‚‚ 
 is
-’’ 
+‚‚ 
 null
-’’ 
+‚‚ 
 )
-’’ 
+‚‚ 
 {
-÷÷ 
+„„ 
 response
-◊◊ 
+‰‰ 
 .
-◊◊ 
-Errors
-◊◊ 
-.
-◊◊  
-Add
-◊◊  #
-(
-◊◊# $#
-HotelUserServiceError
-◊◊$ 9
-.
-◊◊9 :
-UserNotFound
-◊◊: F
-)
-◊◊F G
-;
-◊◊G H
-return
-ÿÿ 
-response
-ÿÿ 
-;
-ÿÿ  
-}
-ŸŸ 
-IList
-€€ 
-<
-€€ 
-string
-€€ 
->
-€€ 
-	userRoles
-€€ #
+‰‰ 
+
+StatusCode
+‰‰ #
 =
-€€$ %
-await
-€€& +
-_userManager
-€€, 8
-.
-€€8 9
-GetRolesAsync
-€€9 F
+‰‰$ %
 (
-€€F G
-user
-€€G K
+‰‰& '
+int
+‰‰' *
 )
-€€K L
-;
-€€L M
-if
-‹‹ 
-(
-‹‹ 
-	userRoles
-‹‹ 
+‰‰* +
+HttpStatusCode
+‰‰+ 9
 .
-‹‹ 
+‰‰9 :
+NotFound
+‰‰: B
+;
+‰‰B C
+response
+ÂÂ 
+.
+ÂÂ 
+Errors
+ÂÂ 
+.
+ÂÂ  
+Add
+ÂÂ  #
+(
+ÂÂ# $#
+HotelUserServiceError
+ÂÂ$ 9
+.
+ÂÂ9 :
+UserNotFound
+ÂÂ: F
+)
+ÂÂF G
+;
+ÂÂG H
+return
+ÊÊ 
+response
+ÊÊ 
+;
+ÊÊ  
+}
+ÁÁ 
+IList
+ÈÈ 
+<
+ÈÈ 
+string
+ÈÈ 
+>
+ÈÈ 
+	userRoles
+ÈÈ #
+=
+ÈÈ$ %
+await
+ÈÈ& +
+_userManager
+ÈÈ, 8
+.
+ÈÈ8 9
+GetRolesAsync
+ÈÈ9 F
+(
+ÈÈF G
+user
+ÈÈG K
+)
+ÈÈK L
+;
+ÈÈL M
+if
+ÍÍ 
+(
+ÍÍ 
+	userRoles
+ÍÍ 
+.
+ÍÍ 
 Any
-‹‹ 
+ÍÍ 
 (
-‹‹ 
+ÍÍ 
 x
-‹‹ 
+ÍÍ 
 =>
-‹‹  "
+ÍÍ  "
 x
-‹‹# $
+ÍÍ# $
 !=
-‹‹% '
+ÍÍ% '
 Roles
-‹‹( -
+ÍÍ( -
 .
-‹‹- .
+ÍÍ- .
 Guest
-‹‹. 3
+ÍÍ. 3
 )
-‹‹3 4
+ÍÍ3 4
 )
-‹‹4 5
+ÍÍ4 5
 {
-›› 
+ÎÎ 
 response
-ﬁﬁ 
+ÏÏ 
 .
-ﬁﬁ 
-Errors
-ﬁﬁ 
-.
-ﬁﬁ  
-Add
-ﬁﬁ  #
+ÏÏ 
+
+StatusCode
+ÏÏ #
+=
+ÏÏ$ %
 (
-ﬁﬁ# $#
-HotelUserServiceError
-ﬁﬁ$ 9
+ÏÏ& '
+int
+ÏÏ' *
+)
+ÏÏ* +
+HttpStatusCode
+ÏÏ+ 9
 .
-ﬁﬁ9 :%
+ÏÏ9 :
+	Forbidden
+ÏÏ: C
+;
+ÏÏC D
+response
+ÌÌ 
+.
+ÌÌ 
+Errors
+ÌÌ 
+.
+ÌÌ  
+Add
+ÌÌ  #
+(
+ÌÌ# $#
+HotelUserServiceError
+ÌÌ$ 9
+.
+ÌÌ9 :%
 ForbiddenEditPermission
-ﬁﬁ: Q
+ÌÌ: Q
 )
-ﬁﬁQ R
+ÌÌQ R
 ;
-ﬁﬁR S
+ÌÌR S
 return
-ﬂﬂ 
+ÓÓ 
 response
-ﬂﬂ 
+ÓÓ 
 ;
-ﬂﬂ  
+ÓÓ  
 }
-‡‡ 
+ÔÔ 
 user
-‚‚ 
+ÒÒ 
 .
-‚‚ 
+ÒÒ 
 	GuestName
-‚‚ 
+ÒÒ 
 =
-‚‚ 
+ÒÒ 
 editUser
-‚‚ %
+ÒÒ %
 .
-‚‚% &
+ÒÒ% &
 	GuestName
-‚‚& /
+ÒÒ& /
 .
-‚‚/ 0
+ÒÒ/ 0
 ToUpper
-‚‚0 7
+ÒÒ0 7
 (
-‚‚7 8
+ÒÒ7 8
 )
-‚‚8 9
+ÒÒ8 9
 ;
-‚‚9 :
+ÒÒ9 :
 _userRepository
-‰‰ 
+ÛÛ 
 .
-‰‰ 
+ÛÛ 
 Update
-‰‰ "
+ÛÛ "
 (
-‰‰" #
+ÛÛ" #
 user
-‰‰# '
+ÛÛ# '
 )
-‰‰' (
+ÛÛ' (
 ;
-‰‰( )
+ÛÛ( )
 if
-ÊÊ 
+ıı 
 (
-ÊÊ 
+ıı 
 !
-ÊÊ 
+ıı 
 await
-ÊÊ 
+ıı 
 _userRepository
-ÊÊ &
+ıı &
 .
-ÊÊ& '
+ıı& '
 SaveAllAsync
-ÊÊ' 3
+ıı' 3
 (
-ÊÊ3 4
+ıı3 4
 )
-ÊÊ4 5
+ıı4 5
 )
-ÊÊ5 6
+ıı5 6
 {
-ÁÁ 
+ˆˆ 
 response
-ËË 
+˜˜ 
 .
-ËË 
-Errors
-ËË 
-.
-ËË  
-Add
-ËË  #
+˜˜ 
+
+StatusCode
+˜˜ #
+=
+˜˜$ %
 (
-ËË# $#
-HotelUserServiceError
-ËË$ 9
+˜˜& '
+int
+˜˜' *
+)
+˜˜* +
+HttpStatusCode
+˜˜+ 9
 .
-ËË9 :
+˜˜9 :!
+InternalServerError
+˜˜: M
+;
+˜˜M N
+response
+¯¯ 
+.
+¯¯ 
+Errors
+¯¯ 
+.
+¯¯  
+Add
+¯¯  #
+(
+¯¯# $#
+HotelUserServiceError
+¯¯$ 9
+.
+¯¯9 :
 ChangesUnsaved
-ËË: H
+¯¯: H
 )
-ËËH I
+¯¯H I
 ;
-ËËI J
+¯¯I J
 return
-ÈÈ 
+˘˘ 
 response
-ÈÈ 
+˘˘ 
 ;
-ÈÈ  
+˘˘  
 }
-ÍÍ 
-if
-ÏÏ 
-(
-ÏÏ 
-!
-ÏÏ 
-await
-ÏÏ 
-IsTheRoomUpdated
-ÏÏ '
-(
-ÏÏ' (
-_mapper
-ÏÏ( /
-.
-ÏÏ/ 0
-Map
-ÏÏ0 3
+˙˙ 
+ServiceResponse
+¸¸ 
 <
-ÏÏ3 4 
+¸¸ 
+bool
+¸¸  
+>
+¸¸  !
+isTheRoomUpdated
+¸¸" 2
+=
+¸¸3 4
+await
+¸¸5 :
+_roomService
+¸¸; G
+.
+¸¸G H
+
+UpdateRoom
+¸¸H R
+(
+¸¸R S
+_mapper
+¸¸S Z
+.
+¸¸Z [
+Map
+¸¸[ ^
+<
+¸¸^ _ 
 CreateHotelUserDto
-ÏÏ4 F
+¸¸_ q
 >
-ÏÏF G
+¸¸q r
 (
-ÏÏG H
+¸¸r s
 editUser
-ÏÏH P
+¸¸s {
 )
-ÏÏP Q
+¸¸{ |
 )
-ÏÏQ R
-)
-ÏÏR S
-{
-ÌÌ 
-response
-ÓÓ 
-.
-ÓÓ 
-Errors
-ÓÓ 
-.
-ÓÓ  
-Add
-ÓÓ  #
+¸¸| }
+;
+¸¸} ~
+if
+˛˛ 
 (
-ÓÓ# $#
-HotelUserServiceError
-ÓÓ$ 9
+˛˛ 
+!
+˛˛ 
+isTheRoomUpdated
+˛˛ !
 .
-ÓÓ9 :
+˛˛! "
+IsValid
+˛˛" )
+)
+˛˛) *
+{
+ˇˇ 
+response
+ÄÄ 
+.
+ÄÄ 
+
+StatusCode
+ÄÄ #
+=
+ÄÄ$ %
+isTheRoomUpdated
+ÄÄ& 6
+.
+ÄÄ6 7
+
+StatusCode
+ÄÄ7 A
+;
+ÄÄA B
+response
+ÅÅ 
+.
+ÅÅ 
+Errors
+ÅÅ 
+.
+ÅÅ  
+Add
+ÅÅ  #
+(
+ÅÅ# $#
+HotelUserServiceError
+ÅÅ$ 9
+.
+ÅÅ9 :
 RoomDatesUnsaved
-ÓÓ: J
+ÅÅ: J
 +
-ÓÓK L
+ÅÅK L
 editUser
-ÓÓM U
+ÅÅM U
 .
-ÓÓU V
+ÅÅU V
 
 RoomNumber
-ÓÓV `
+ÅÅV `
 )
-ÓÓ` a
+ÅÅ` a
 ;
-ÓÓa b
+ÅÅa b
 return
-ÔÔ 
+ÇÇ 
 response
-ÔÔ 
+ÇÇ 
 ;
-ÔÔ  
+ÇÇ  
 }
- 
+ÉÉ 
 response
-ÚÚ 
+ÖÖ 
 .
-ÚÚ 
+ÖÖ 
 IsValid
-ÚÚ 
+ÖÖ 
 =
-ÚÚ 
+ÖÖ 
 true
-ÚÚ #
+ÖÖ #
 ;
-ÚÚ# $
+ÖÖ# $
 response
-ÛÛ 
+ÜÜ 
 .
-ÛÛ 
+ÜÜ 
 Data
-ÛÛ 
+ÜÜ 
 =
-ÛÛ 
+ÜÜ 
 _mapper
-ÛÛ #
+ÜÜ #
 .
-ÛÛ# $
+ÜÜ# $
 Map
-ÛÛ$ '
+ÜÜ$ '
 <
-ÛÛ' (
+ÜÜ' (
 HotelUserDto
-ÛÛ( 4
+ÜÜ( 4
 >
-ÛÛ4 5
+ÜÜ4 5
 (
-ÛÛ5 6
+ÜÜ5 6
 user
-ÛÛ6 :
+ÜÜ6 :
 )
-ÛÛ: ;
+ÜÜ: ;
 ;
-ÛÛ; <
+ÜÜ; <
 return
-ÙÙ 
+áá 
 response
-ÙÙ 
+áá 
 ;
-ÙÙ 
+áá 
 }
-ıı 	
+àà 	
 public
-˜˜ 
+ää 
 async
-˜˜ 
+ää 
 Task
-˜˜ 
+ää 
 <
-˜˜ 
+ää 
 ServiceResponse
-˜˜ )
+ää )
 <
-˜˜) *
+ää) *
 LoggedUserDto
-˜˜* 7
+ää* 7
 >
-˜˜7 8
+ää7 8
 >
-˜˜8 9
+ää8 9
 LoginHotelUser
-˜˜: H
+ää: H
 (
-˜˜H I
+ääH I
 LoginHotelUserDto
-˜˜I Z
+ääI Z
 loginHotelUserDto
-˜˜[ l
+ää[ l
 )
-˜˜l m
+ääl m
 {
-¯¯ 	
+ãã 	
 ServiceResponse
-˘˘ 
+åå 
 <
-˘˘ 
+åå 
 LoggedUserDto
-˘˘ )
+åå )
 >
-˘˘) *
+åå) *
 response
-˘˘+ 3
+åå+ 3
 =
-˘˘4 5
+åå4 5
 new
-˘˘6 9
+åå6 9
 (
-˘˘9 :
+åå9 :
 )
-˘˘: ;
+åå: ;
 ;
-˘˘; <
+åå; <
 if
-˚˚ 
+éé 
 (
-˚˚ 
+éé 
 loginHotelUserDto
-˚˚ !
+éé !
 is
-˚˚" $
+éé" $
 null
-˚˚% )
+éé% )
 )
-˚˚) *
+éé) *
 {
-¸¸ 
+èè 
 response
-˝˝ 
+êê 
 .
-˝˝ 
-Errors
-˝˝ 
-.
-˝˝  
-Add
-˝˝  #
+êê 
+
+StatusCode
+êê #
+=
+êê$ %
 (
-˝˝# $#
-HotelUserServiceError
-˝˝$ 9
+êê& '
+int
+êê' *
+)
+êê* +
+HttpStatusCode
+êê+ 9
 .
-˝˝9 :%
+êê9 :
+
+BadRequest
+êê: D
+;
+êêD E
+response
+ëë 
+.
+ëë 
+Errors
+ëë 
+.
+ëë  
+Add
+ëë  #
+(
+ëë# $#
+HotelUserServiceError
+ëë$ 9
+.
+ëë9 :%
 NullPasswordAndUserName
-˝˝: Q
+ëë: Q
 )
-˝˝Q R
+ëëQ R
 ;
-˝˝R S
+ëëR S
 return
-˛˛ 
+íí 
 response
-˛˛ 
+íí 
 ;
-˛˛  
+íí  
 }
-ˇˇ 
+ìì 
 	HotelUser
-ÅÅ 
+ïï 
 user
-ÅÅ 
+ïï 
 =
-ÅÅ 
+ïï 
 await
-ÅÅ "
+ïï "
 _userManager
-ÅÅ# /
+ïï# /
 .
-ÅÅ/ 0
+ïï/ 0
 Users
-ÅÅ0 5
+ïï0 5
 .
-ÅÅ5 6
+ïï5 6
 Include
-ÅÅ6 =
+ïï6 =
 (
-ÅÅ= >
+ïï= >
 r
-ÅÅ> ?
+ïï> ?
 =>
-ÅÅ@ B
+ïï@ B
 r
-ÅÅC D
+ïïC D
 .
-ÅÅD E
+ïïD E
 Room
-ÅÅE I
+ïïE I
 )
-ÅÅI J
+ïïI J
 .
-ÇÇ "
+ññ "
 SingleOrDefaultAsync
-ÇÇ %
+ññ %
 (
-ÇÇ% &
+ññ% &
 x
-ÇÇ& '
+ññ& '
 =>
-ÇÇ( *
+ññ( *
 x
-ÇÇ+ ,
+ññ+ ,
 .
-ÇÇ, -
+ññ, -
 Room
-ÇÇ- 1
+ññ- 1
 .
-ÇÇ1 2
+ññ1 2
 
 RoomNumber
-ÇÇ2 <
+ññ2 <
 ==
-ÇÇ= ?
+ññ= ?
 loginHotelUserDto
-ÇÇ@ Q
+ññ@ Q
 .
-ÇÇQ R
+ññQ R
 
 RoomNumber
-ÇÇR \
+ññR \
 .
-ÇÇ\ ]
+ññ\ ]
 ToUpper
-ÇÇ] d
+ññ] d
 (
-ÇÇd e
+ññd e
 )
-ÇÇe f
+ññe f
 )
-ÇÇf g
+ññf g
 ;
-ÇÇg h
+ññg h
 if
-ÑÑ 
+òò 
 (
-ÑÑ 
+òò 
 user
-ÑÑ 
+òò 
 is
-ÑÑ 
+òò 
 null
-ÑÑ 
+òò 
 )
-ÑÑ 
+òò 
 {
-ÖÖ 
+ôô 
 response
-ÜÜ 
+öö 
 .
-ÜÜ 
-Errors
-ÜÜ 
-.
-ÜÜ  
-Add
-ÜÜ  #
+öö 
+
+StatusCode
+öö #
+=
+öö$ %
 (
-ÜÜ# $#
-HotelUserServiceError
-ÜÜ$ 9
+öö& '
+int
+öö' *
+)
+öö* +
+HttpStatusCode
+öö+ 9
 .
-ÜÜ9 :
+öö9 :
+
+BadRequest
+öö: D
+;
+ööD E
+response
+õõ 
+.
+õõ 
+Errors
+õõ 
+.
+õõ  
+Add
+õõ  #
+(
+õõ# $#
+HotelUserServiceError
+õõ$ 9
+.
+õõ9 :
 InvalidUserName
-ÜÜ: I
+õõ: I
 )
-ÜÜI J
+õõI J
 ;
-ÜÜJ K
+õõJ K
 return
-áá 
+úú 
 response
-áá 
+úú 
 ;
-áá  
+úú  
 }
-àà 
+ùù 
 SignInResult
-ää 
+üü 
 result
-ää 
+üü 
 =
-ää  !
+üü  !
 await
-ää" '
+üü" '
 _signInManager
-ää( 6
+üü( 6
 .
-ää6 7&
+üü6 7&
 CheckPasswordSignInAsync
-ää7 O
+üü7 O
 (
-ääO P
+üüO P
 user
-ääP T
+üüP T
 ,
-ääT U
+üüT U
 loginHotelUserDto
-ääV g
+üüV g
 .
-ääg h
+üüg h
 Password
-ääh p
+üüh p
 ,
-ääp q
+üüp q
 false
-äär w
+üür w
 )
-ääw x
+üüw x
 ;
-ääx y
+üüx y
 if
-åå 
+°° 
 (
-åå 
+°° 
 !
-åå 
+°° 
 result
-åå 
+°° 
 .
-åå 
+°° 
 	Succeeded
-åå !
+°° !
 )
-åå! "
+°°! "
 {
-çç 
+¢¢ 
 response
-éé 
+££ 
 .
-éé 
-Errors
-éé 
-.
-éé  
-Add
-éé  #
+££ 
+
+StatusCode
+££ #
+=
+££$ %
 (
-éé# $#
-HotelUserServiceError
-éé$ 9
+££& '
+int
+££' *
+)
+££* +
+HttpStatusCode
+££+ 9
 .
-éé9 :
+££9 :
+
+BadRequest
+££: D
+;
+££D E
+response
+§§ 
+.
+§§ 
+Errors
+§§ 
+.
+§§  
+Add
+§§  #
+(
+§§# $#
+HotelUserServiceError
+§§$ 9
+.
+§§9 :
 InvalidPassword
-éé: I
+§§: I
 )
-ééI J
+§§I J
 ;
-ééJ K
+§§J K
 return
-èè 
+•• 
 response
-èè 
+•• 
 ;
-èè  
+••  
 }
-êê 
+¶¶ 
 response
-íí 
+®® 
 .
-íí 
+®® 
 IsValid
-íí 
+®® 
 =
-íí 
+®® 
 true
-íí #
+®® #
 ;
-íí# $
+®®# $
 response
-ìì 
+©© 
 .
-ìì 
+©© 
 Data
-ìì 
+©© 
 =
-ìì 
+©© 
 new
-ìì 
+©© 
 LoggedUserDto
-ìì  -
+©©  -
 {
-îî 
+™™ 
 
 RoomNumber
-ïï 
+´´ 
 =
-ïï 
+´´ 
 user
-ïï !
+´´ !
 .
-ïï! "
+´´! "
 Room
-ïï" &
+´´" &
 .
-ïï& '
+´´& '
 
 RoomNumber
-ïï' 1
+´´' 1
 ,
-ïï1 2
+´´1 2
 	GuestName
-ññ 
+¨¨ 
 =
-ññ 
+¨¨ 
 user
-ññ  
+¨¨  
 .
-ññ  !
+¨¨  !
 	GuestName
-ññ! *
+¨¨! *
 ,
-ññ* +
+¨¨* +
 Token
-óó 
+≠≠ 
 =
-óó 
+≠≠ 
 await
-óó 
+≠≠ 
 _tokenService
-óó +
+≠≠ +
 .
-óó+ ,
+≠≠+ ,
 CreateToken
-óó, 7
+≠≠, 7
 (
-óó7 8
+≠≠7 8
 user
-óó8 <
+≠≠8 <
 )
-óó< =
+≠≠< =
 }
-òò 
+ÆÆ 
 ;
-òò 
+ÆÆ 
 return
-öö 
+∞∞ 
 response
-öö 
+∞∞ 
 ;
-öö 
+∞∞ 
 }
-õõ 	
+±± 	
 public
-ùù 
+≥≥ 
 async
-ùù 
+≥≥ 
 Task
-ùù 
+≥≥ 
 <
-ùù 
+≥≥ 
 ServiceResponse
-ùù )
+≥≥ )
 <
-ùù) *
+≥≥) *
 LoggedUserDto
-ùù* 7
+≥≥* 7
 >
-ùù7 8
+≥≥7 8
 >
-ùù8 9
+≥≥8 9
 ForgotPassword
-ùù: H
+≥≥: H
 (
-ùùH I)
+≥≥H I)
 HotelUserPasswordUpdatesDto
-ùùI d#
+≥≥I d#
 userPasswordForgotDto
-ùùe z
+≥≥e z
 )
-ùùz {
+≥≥z {
 {
-ûû 	
+¥¥ 	
 ServiceResponse
-üü 
+µµ 
 <
-üü 
+µµ 
 LoggedUserDto
-üü )
+µµ )
 >
-üü) *
+µµ) *
 response
-üü+ 3
+µµ+ 3
 =
-üü4 5
+µµ4 5
 new
-üü6 9
+µµ6 9
 (
-üü9 :
+µµ9 :
 )
-üü: ;
+µµ: ;
 ;
-üü; <
+µµ; <
 	HotelUser
-°° 
+∑∑ 
 user
-°° 
+∑∑ 
 =
-°° 
+∑∑ 
 await
-°° "
+∑∑ "
 _userManager
-°°# /
+∑∑# /
 .
-°°/ 0
+∑∑/ 0
 Users
-°°0 5
+∑∑0 5
 .
-°°5 6
+∑∑5 6
 Include
-°°6 =
+∑∑6 =
 (
-°°= >
+∑∑= >
 r
-°°> ?
+∑∑> ?
 =>
-°°@ B
+∑∑@ B
 r
-°°C D
+∑∑C D
 .
-°°D E
+∑∑D E
 Room
-°°E I
+∑∑E I
 )
-°°I J
+∑∑I J
 .
-°°J K!
+∑∑J K!
 FirstOrDefaultAsync
-°°K ^
+∑∑K ^
 (
-°°^ _
+∑∑^ _
 x
-°°_ `
+∑∑_ `
 =>
-°°a c
+∑∑a c
 x
-°°d e
+∑∑d e
 .
-°°e f
+∑∑e f
 Room
-°°f j
+∑∑f j
 .
-°°j k
+∑∑j k
 
 RoomNumber
-°°k u
+∑∑k u
 ==
-°°v x$
-userPasswordForgotDto°°y é
-.°°é è
+∑∑v x$
+userPasswordForgotDto∑∑y é
+.∑∑é è
 
-RoomNumber°°è ô
-)°°ô ö
-;°°ö õ
+RoomNumber∑∑è ô
+)∑∑ô ö
+;∑∑ö õ
 if
-££ 
+ππ 
 (
-££ 
+ππ 
 user
-££ 
+ππ 
 is
-££ 
+ππ 
 null
-££ 
+ππ 
 )
-££ 
+ππ 
 {
-§§ 
+∫∫ 
 response
-•• 
+ªª 
 .
-•• 
-Errors
-•• 
-.
-••  
-Add
-••  #
-(
-••# $#
-HotelUserServiceError
-••$ 9
-.
-••9 :
-UserNotFound
-••: F
-)
-••F G
-;
-••G H
-return
-¶¶ 
-response
-¶¶ 
-;
-¶¶  
-}
-ßß 
-IList
-©© 
-<
-©© 
-string
-©© 
->
-©© 
-roles
-©© 
+ªª 
+
+StatusCode
+ªª #
 =
-©©  !
-await
-©©" '
-_userManager
-©©( 4
-.
-©©4 5
-GetRolesAsync
-©©5 B
+ªª$ %
 (
-©©B C
-user
-©©C G
+ªª& '
+int
+ªª' *
 )
-©©G H
+ªª* +
+HttpStatusCode
+ªª+ 9
+.
+ªª9 :
+NotFound
+ªª: B
 ;
-©©H I
-if
-´´ 
-(
-´´ 
-!
-´´ 
-roles
-´´ 
-.
-´´ 
-Contains
-´´ 
-(
-´´  
-Roles
-´´  %
-.
-´´% &
-Guest
-´´& +
-)
-´´+ ,
-)
-´´, -
-{
-¨¨ 
-response
-≠≠ 
-.
-≠≠ 
-Errors
-≠≠ 
-.
-≠≠  
-Add
-≠≠  #
-(
-≠≠# $#
-HotelUserServiceError
-≠≠$ 9
-.
-≠≠9 :)
-ForbiddenPasswordChangeRole
-≠≠: U
-)
-≠≠U V
-;
-≠≠V W
-return
-ÆÆ 
-response
-ÆÆ 
-;
-ÆÆ  
-}
-ØØ 
-if
-±± 
-(
-±± 
-user
-±± 
-.
-±± 
-	GuestName
-±± 
-!=
-±± !#
-userPasswordForgotDto
-±±" 7
-.
-±±7 8
-	GuestName
-±±8 A
-.
-±±A B
-ToUpper
-±±B I
-(
-±±I J
-)
-±±J K
-)
-±±K L
-{
-≤≤ 
-response
-≥≥ 
-.
-≥≥ 
-Errors
-≥≥ 
-.
-≥≥  
-Add
-≥≥  #
-(
-≥≥# $#
-HotelUserServiceError
-≥≥$ 9
-.
-≥≥9 :
-WrongGuestName
-≥≥: H
-)
-≥≥H I
-;
-≥≥I J
-return
-¥¥ 
-response
-¥¥ 
-;
-¥¥  
-}
-µµ 
-string
-∑∑  
-passwordResetToken
-∑∑ %
-=
-∑∑& '
-await
-∑∑( -
-_userManager
-∑∑. :
-.
-∑∑: ;-
-GeneratePasswordResetTokenAsync
-∑∑; Z
-(
-∑∑Z [
-user
-∑∑[ _
-)
-∑∑_ `
-;
-∑∑` a
-IdentityResult
-∏∏ 
-result
-∏∏ !
-=
-∏∏" #
-await
-∏∏$ )
-_userManager
-∏∏* 6
-.
-∏∏6 7 
-ResetPasswordAsync
-∏∏7 I
-(
-∏∏I J
-user
-∏∏J N
-,
-∏∏N O 
-passwordResetToken
-∏∏P b
-,
-∏∏b c#
-userPasswordForgotDto
-∏∏d y
-.
-∏∏y z
-Password∏∏z Ç
-)∏∏Ç É
-;∏∏É Ñ
-if
-∫∫ 
-(
-∫∫ 
-!
-∫∫ 
-result
-∫∫ 
-.
-∫∫ 
-	Succeeded
-∫∫ !
-)
-∫∫! "
-{
-ªª 
+ªªB C
 response
 ºº 
 .
 ºº 
 Errors
 ºº 
-=
-ºº  !
-result
-ºº" (
 .
-ºº( )
-Errors
-ºº) /
-.
-ºº/ 0
-Select
-ºº0 6
+ºº  
+Add
+ºº  #
 (
-ºº6 7
-x
-ºº7 8
-=>
-ºº9 ;
-x
-ºº< =
+ºº# $#
+HotelUserServiceError
+ºº$ 9
 .
-ºº= >
-Description
-ºº> I
+ºº9 :
+UserNotFound
+ºº: F
 )
-ººI J
-.
-ººJ K
-ToList
-ººK Q
-(
-ººQ R
-)
-ººR S
+ººF G
 ;
-ººS T
+ººG H
 return
 ΩΩ 
 response
@@ -14918,1111 +17435,1232 @@ RoomNumber°°è ô
 ;
 ΩΩ  
 }
-ææ 
-response
-¡¡ 
-.
-¡¡ 
-IsValid
-¡¡ 
-=
-¡¡ 
-true
-¡¡ #
-;
-¡¡# $
-response
-¬¬ 
-.
-¬¬ 
-Data
-¬¬ 
-=
-¬¬ 
-new
-¬¬ 
-LoggedUserDto
-¬¬  -
-{
-√√ 
-
-RoomNumber
-ƒƒ 
-=
-ƒƒ 
-user
-ƒƒ !
-.
-ƒƒ! "
-Room
-ƒƒ" &
-.
-ƒƒ& '
-
-RoomNumber
-ƒƒ' 1
-,
-ƒƒ1 2
-	GuestName
-≈≈ 
-=
-≈≈ 
-user
-≈≈  
-.
-≈≈  !
-	GuestName
-≈≈! *
-,
-≈≈* +
-Token
-∆∆ 
-=
-∆∆ 
-await
-∆∆ 
-_tokenService
-∆∆ +
-.
-∆∆+ ,
-CreateToken
-∆∆, 7
-(
-∆∆7 8
-user
-∆∆8 <
-)
-∆∆< =
-}
-«« 
-;
-«« 
-return
-»» 
-response
-»» 
-;
-»» 
-}
-…… 	
-public
-ÀÀ 
-async
-ÀÀ 
-Task
-ÀÀ 
-<
-ÀÀ 
-ServiceResponse
-ÀÀ )
-<
-ÀÀ) **
-GenerateHotelUserPasswordDto
-ÀÀ* F
->
-ÀÀF G
->
-ÀÀG H"
-GenerateUserPassword
-ÀÀI ]
-(
-ÀÀ] ^
-string
-ÀÀ^ d
-
-roomNumber
-ÀÀe o
-)
-ÀÀo p
-{
-ÃÃ 	
-ServiceResponse
-ÕÕ 
-<
-ÕÕ *
-GenerateHotelUserPasswordDto
-ÕÕ 8
->
-ÕÕ8 9
-response
-ÕÕ: B
-=
-ÕÕC D
-new
-ÕÕE H
-(
-ÕÕH I
-)
-ÕÕI J
-;
-ÕÕJ K
-	HotelUser
-œœ 
-user
-œœ 
-=
-œœ 
-await
-œœ "
-_userManager
-œœ# /
-.
-œœ/ 0
-Users
-œœ0 5
-.
-œœ5 6
-Include
-œœ6 =
-(
-œœ= >
-r
-œœ> ?
-=>
-œœ@ B
-r
-œœC D
-.
-œœD E
-Room
-œœE I
-)
-œœI J
-.
-œœJ K!
-FirstOrDefaultAsync
-œœK ^
-(
-œœ^ _
-x
-œœ_ `
-=>
-œœa c
-x
-œœd e
-.
-œœe f
-Room
-œœf j
-.
-œœj k
-
-RoomNumber
-œœk u
-==
-œœv x
-
-roomNumberœœy É
-)œœÉ Ñ
-;œœÑ Ö
-if
-—— 
-(
-—— 
-user
-—— 
-is
-—— 
-null
-—— 
-)
-—— 
-{
-““ 
-response
-”” 
-.
-”” 
-Errors
-”” 
-.
-””  
-Add
-””  #
-(
-””# $#
-HotelUserServiceError
-””$ 9
-.
-””9 :
-UserNotFound
-””: F
-)
-””F G
-;
-””G H
-return
-‘‘ 
-response
-‘‘ 
-;
-‘‘  
-}
-’’ 
+ææ 
 IList
-◊◊ 
+¿¿ 
 <
-◊◊ 
+¿¿ 
 string
-◊◊ 
+¿¿ 
 >
-◊◊ 
-	userRoles
-◊◊ #
+¿¿ 
+roles
+¿¿ 
 =
-◊◊$ %
+¿¿  !
 await
-◊◊& +
+¿¿" '
 _userManager
-◊◊, 8
+¿¿( 4
 .
-◊◊8 9
+¿¿4 5
 GetRolesAsync
-◊◊9 F
+¿¿5 B
 (
-◊◊F G
+¿¿B C
 user
-◊◊G K
+¿¿C G
 )
-◊◊K L
+¿¿G H
 ;
-◊◊L M
+¿¿H I
 if
-ÿÿ 
+¬¬ 
 (
-ÿÿ 
-	userRoles
-ÿÿ 
+¬¬ 
+!
+¬¬ 
+roles
+¬¬ 
 .
-ÿÿ 
-Any
-ÿÿ 
+¬¬ 
+Contains
+¬¬ 
 (
-ÿÿ 
-x
-ÿÿ 
-=>
-ÿÿ  "
-x
-ÿÿ# $
+¬¬  
+Roles
+¬¬  %
+.
+¬¬% &
+Guest
+¬¬& +
+)
+¬¬+ ,
+)
+¬¬, -
+{
+√√ 
+response
+ƒƒ 
+.
+ƒƒ 
+
+StatusCode
+ƒƒ #
+=
+ƒƒ$ %
+(
+ƒƒ& '
+int
+ƒƒ' *
+)
+ƒƒ* +
+HttpStatusCode
+ƒƒ+ 9
+.
+ƒƒ9 :
+	Forbidden
+ƒƒ: C
+;
+ƒƒC D
+response
+≈≈ 
+.
+≈≈ 
+Errors
+≈≈ 
+.
+≈≈  
+Add
+≈≈  #
+(
+≈≈# $#
+HotelUserServiceError
+≈≈$ 9
+.
+≈≈9 :)
+ForbiddenPasswordChangeRole
+≈≈: U
+)
+≈≈U V
+;
+≈≈V W
+return
+∆∆ 
+response
+∆∆ 
+;
+∆∆  
+}
+«« 
+if
+…… 
+(
+…… 
+user
+…… 
+.
+…… 
+	GuestName
+…… 
 !=
-ÿÿ% '
-Roles
-ÿÿ( -
+…… !#
+userPasswordForgotDto
+……" 7
 .
-ÿÿ- .
-Guest
-ÿÿ. 3
+……7 8
+	GuestName
+……8 A
+.
+……A B
+ToUpper
+……B I
+(
+……I J
 )
-ÿÿ3 4
+……J K
 )
-ÿÿ4 5
+……K L
 {
-ŸŸ 
+   
 response
-⁄⁄ 
+ÀÀ 
 .
-⁄⁄ 
+ÀÀ 
+
+StatusCode
+ÀÀ #
+=
+ÀÀ$ %
+(
+ÀÀ& '
+int
+ÀÀ' *
+)
+ÀÀ* +
+HttpStatusCode
+ÀÀ+ 9
+.
+ÀÀ9 :
+
+BadRequest
+ÀÀ: D
+;
+ÀÀD E
+response
+ÃÃ 
+.
+ÃÃ 
 Errors
-⁄⁄ 
+ÃÃ 
 .
-⁄⁄  
+ÃÃ  
 Add
-⁄⁄  #
+ÃÃ  #
 (
-⁄⁄# $#
+ÃÃ# $#
 HotelUserServiceError
-⁄⁄$ 9
+ÃÃ$ 9
 .
-⁄⁄9 :%
-ForbiddenEditPermission
-⁄⁄: Q
+ÃÃ9 :
+WrongGuestName
+ÃÃ: H
 )
-⁄⁄Q R
+ÃÃH I
 ;
-⁄⁄R S
+ÃÃI J
 return
-€€ 
+ÕÕ 
 response
-€€ 
+ÕÕ 
 ;
-€€  
+ÕÕ  
 }
-‹‹ 
+ŒŒ 
 string
-ﬁﬁ 
-generatedPassword
-ﬁﬁ $
-=
-ﬁﬁ% &
-PasswordGenerator
-ﬁﬁ' 8
-.
-ﬁﬁ8 9
-GeneratePassword
-ﬁﬁ9 I
-(
-ﬁﬁI J
-)
-ﬁﬁJ K
-;
-ﬁﬁK L
-string
-‡‡  
+––  
 passwordResetToken
-‡‡ %
+–– %
 =
-‡‡& '
+––& '
 await
-‡‡( -
+––( -
 _userManager
-‡‡. :
+––. :
 .
-‡‡: ;-
+––: ;-
 GeneratePasswordResetTokenAsync
-‡‡; Z
+––; Z
 (
-‡‡Z [
+––Z [
 user
-‡‡[ _
+––[ _
 )
-‡‡_ `
+––_ `
 ;
-‡‡` a
+––` a
 IdentityResult
-·· 
+—— 
 result
-·· !
+—— !
 =
-··" #
+——" #
 await
-··$ )
+——$ )
 _userManager
-··* 6
+——* 6
 .
-··6 7 
+——6 7 
 ResetPasswordAsync
-··7 I
+——7 I
 (
-··I J
+——I J
 user
-··J N
+——J N
 ,
-··N O 
+——N O 
 passwordResetToken
-··P b
+——P b
 ,
-··b c
-generatedPassword
-··d u
-)
-··u v
-;
-··v w
+——b c#
+userPasswordForgotDto
+——d y
+.
+——y z
+Password——z Ç
+)——Ç É
+;——É Ñ
 if
-„„ 
+”” 
 (
-„„ 
+”” 
 !
-„„ 
+”” 
 result
-„„ 
+”” 
 .
-„„ 
+”” 
 	Succeeded
-„„ !
+”” !
 )
-„„! "
+””! "
 {
-‰‰ 
+‘‘ 
 response
-ÂÂ 
+’’ 
 .
-ÂÂ 
-Errors
-ÂÂ 
+’’ 
+
+StatusCode
+’’ #
 =
-ÂÂ  !
+’’$ %
+(
+’’& '
+int
+’’' *
+)
+’’* +
+HttpStatusCode
+’’+ 9
+.
+’’9 :!
+InternalServerError
+’’: M
+;
+’’M N
+response
+÷÷ 
+.
+÷÷ 
+Errors
+÷÷ 
+=
+÷÷  !
 result
-ÂÂ" (
+÷÷" (
 .
-ÂÂ( )
+÷÷( )
 Errors
-ÂÂ) /
+÷÷) /
 .
-ÂÂ/ 0
+÷÷/ 0
 Select
-ÂÂ0 6
+÷÷0 6
 (
-ÂÂ6 7
+÷÷6 7
 x
-ÂÂ7 8
+÷÷7 8
 =>
-ÂÂ9 ;
+÷÷9 ;
 x
-ÂÂ< =
+÷÷< =
 .
-ÂÂ= >
+÷÷= >
 Description
-ÂÂ> I
+÷÷> I
 )
-ÂÂI J
+÷÷I J
 .
-ÂÂJ K
+÷÷J K
 ToList
-ÂÂK Q
+÷÷K Q
 (
-ÂÂQ R
+÷÷Q R
 )
-ÂÂR S
+÷÷R S
 ;
-ÂÂS T
+÷÷S T
 return
-ÊÊ 
+◊◊ 
 response
-ÊÊ 
+◊◊ 
 ;
-ÊÊ  
+◊◊  
 }
-ÁÁ *
-GenerateHotelUserPasswordDto
-ÈÈ (#
-generatedPasswordUser
-ÈÈ) >
-=
-ÈÈ? @
-_mapper
-ÈÈA H
-.
-ÈÈH I
-Map
-ÈÈI L
-<
-ÈÈL M*
-GenerateHotelUserPasswordDto
-ÈÈM i
->
-ÈÈi j
-(
-ÈÈj k
-user
-ÈÈk o
-)
-ÈÈo p
-;
-ÈÈp q#
-generatedPasswordUser
-ÍÍ !
-.
-ÍÍ! "
-Password
-ÍÍ" *
-=
-ÍÍ+ ,
-generatedPassword
-ÍÍ- >
-;
-ÍÍ> ?
+ÿÿ 
 response
-ÏÏ 
+€€ 
 .
-ÏÏ 
+€€ 
 IsValid
-ÏÏ 
+€€ 
 =
-ÏÏ 
+€€ 
 true
-ÏÏ #
+€€ #
 ;
-ÏÏ# $
+€€# $
 response
-ÌÌ 
+‹‹ 
 .
-ÌÌ 
+‹‹ 
 Data
-ÌÌ 
+‹‹ 
 =
-ÌÌ #
-generatedPasswordUser
-ÌÌ 1
-;
-ÌÌ1 2
-return
-ÓÓ 
-response
-ÓÓ 
-;
-ÓÓ 
-}
-ÔÔ 	
-public
-ÒÒ 
-async
-ÒÒ 
-Task
-ÒÒ 
-<
-ÒÒ 
-ServiceResponse
-ÒÒ )
-<
-ÒÒ) *
-bool
-ÒÒ* .
->
-ÒÒ. /
->
-ÒÒ/ 0"
-ResetGuestsPasswords
-ÒÒ1 E
-(
-ÒÒE F
-string
-ÒÒF L
-password
-ÒÒM U
-)
-ÒÒU V
-{
-ÚÚ 	
-ServiceResponse
-ÛÛ 
-<
-ÛÛ 
-bool
-ÛÛ  
->
-ÛÛ  !
-response
-ÛÛ" *
-=
-ÛÛ+ ,
+‹‹ 
 new
-ÛÛ- 0
-(
-ÛÛ0 1
-)
-ÛÛ1 2
-;
-ÛÛ2 3
-List
-ÙÙ 
-<
-ÙÙ 
-string
-ÙÙ 
->
-ÙÙ 
-failedUserChanges
-ÙÙ *
-=
-ÙÙ+ ,
-new
-ÙÙ- 0
-(
-ÙÙ0 1
-)
-ÙÙ1 2
-;
-ÙÙ2 3
-List
-ˆˆ 
-<
-ˆˆ 
-	HotelUser
-ˆˆ 
->
-ˆˆ 
-users
-ˆˆ !
-=
-ˆˆ" #
-await
-ˆˆ$ )
-_userRepository
-ˆˆ* 9
-.
-ˆˆ9 :!
-GetHotelUsersByRole
-ˆˆ: M
-(
-ˆˆM N
-Roles
-ˆˆN S
-.
-ˆˆS T
-Guest
-ˆˆT Y
-)
-ˆˆY Z
-;
-ˆˆZ [
-foreach
-¯¯ 
-(
-¯¯ 
-var
-¯¯ 
-user
-¯¯ 
-in
-¯¯  
-users
-¯¯! &
-)
-¯¯& '
+‹‹ 
+LoggedUserDto
+‹‹  -
 {
-˘˘ 
-string
-˙˙  
-passwordResetToken
-˙˙ )
-=
-˙˙* +
-await
-˙˙, 1
-_userManager
-˙˙2 >
-.
-˙˙> ?-
-GeneratePasswordResetTokenAsync
-˙˙? ^
-(
-˙˙^ _
-user
-˙˙_ c
-)
-˙˙c d
-;
-˙˙d e
-IdentityResult
-˚˚ 
-result
-˚˚ %
-=
-˚˚& '
-await
-˚˚( -
-_userManager
-˚˚. :
-.
-˚˚: ; 
-ResetPasswordAsync
-˚˚; M
-(
-˚˚M N
-user
-˚˚N R
-,
-˚˚R S 
-passwordResetToken
-˚˚T f
-,
-˚˚f g
-password
-˚˚h p
-)
-˚˚p q
-;
-˚˚q r
-if
-¸¸ 
-(
-¸¸ 
-!
-¸¸ 
-result
-¸¸ 
-.
-¸¸ 
-	Succeeded
-¸¸ %
-)
-¸¸% &
-{
-˝˝ 
-failedUserChanges
-˛˛ %
-.
-˛˛% &
-Add
-˛˛& )
-(
-˛˛) *
-user
-˛˛* .
-.
-˛˛. /
-Room
-˛˛/ 3
-.
-˛˛3 4
+›› 
 
 RoomNumber
-˛˛4 >
-)
-˛˛> ?
-;
-˛˛? @
-}
-ˇˇ 
-}
-ÄÄ 
-if
-ÇÇ 
-(
-ÇÇ 
-failedUserChanges
-ÇÇ !
-.
-ÇÇ! "
-Count
-ÇÇ" '
->
-ÇÇ( )
-$num
-ÇÇ* +
-)
-ÇÇ+ ,
-{
-ÉÉ 
-response
-ÑÑ 
-.
-ÑÑ 
-Errors
-ÑÑ 
-.
-ÑÑ  
-AddRange
-ÑÑ  (
-(
-ÑÑ( )
-failedUserChanges
-ÑÑ) :
-)
-ÑÑ: ;
-;
-ÑÑ; <
-}
-ÖÖ 
-response
-áá 
-.
-áá 
-IsValid
-áá 
+ﬁﬁ 
 =
-áá 
-true
-áá #
-;
-áá# $
-return
-àà 
-response
-àà 
-;
-àà 
-}
-ââ 	
-public
-ãã 
-async
-ãã 
-Task
-ãã 
-<
-ãã 
-ServiceResponse
-ãã )
-<
-ãã) *
-bool
-ãã* .
->
-ãã. /
->
-ãã/ 0
-DeleteHotelUser
-ãã1 @
+ﬁﬁ 
+user
+ﬁﬁ !
+.
+ﬁﬁ! "
+Room
+ﬁﬁ" &
+.
+ﬁﬁ& '
+
+RoomNumber
+ﬁﬁ' 1
+,
+ﬁﬁ1 2
+	GuestName
+ﬂﬂ 
+=
+ﬂﬂ 
+user
+ﬂﬂ  
+.
+ﬂﬂ  !
+	GuestName
+ﬂﬂ! *
+,
+ﬂﬂ* +
+Token
+‡‡ 
+=
+‡‡ 
+await
+‡‡ 
+_tokenService
+‡‡ +
+.
+‡‡+ ,
+CreateToken
+‡‡, 7
 (
-ãã@ A
+‡‡7 8
+user
+‡‡8 <
+)
+‡‡< =
+}
+·· 
+;
+·· 
+return
+‚‚ 
+response
+‚‚ 
+;
+‚‚ 
+}
+„„ 	
+public
+ÂÂ 
+async
+ÂÂ 
+Task
+ÂÂ 
+<
+ÂÂ 
+ServiceResponse
+ÂÂ )
+<
+ÂÂ) **
+GenerateHotelUserPasswordDto
+ÂÂ* F
+>
+ÂÂF G
+>
+ÂÂG H"
+GenerateUserPassword
+ÂÂI ]
+(
+ÂÂ] ^
 string
-ããA G
+ÂÂ^ d
 
 roomNumber
-ããH R
+ÂÂe o
 )
-ããR S
+ÂÂo p
 {
-åå 	
+ÊÊ 	
 ServiceResponse
-çç 
+ÁÁ 
 <
-çç 
-bool
-çç  
+ÁÁ *
+GenerateHotelUserPasswordDto
+ÁÁ 8
 >
-çç  !
+ÁÁ8 9
 response
-çç" *
+ÁÁ: B
 =
-çç+ ,
+ÁÁC D
 new
-çç- 0
+ÁÁE H
 (
-çç0 1
+ÁÁH I
 )
-çç1 2
+ÁÁI J
 ;
-çç2 3
+ÁÁJ K
 	HotelUser
-èè 
+ÈÈ 
 user
-èè 
+ÈÈ 
 =
-èè 
+ÈÈ 
+await
+ÈÈ "
 _userManager
-èè )
+ÈÈ# /
 .
-èè) *
+ÈÈ/ 0
 Users
-èè* /
+ÈÈ0 5
 .
-èè/ 0
-FirstOrDefault
-èè0 >
+ÈÈ5 6
+Include
+ÈÈ6 =
 (
-èè> ?
-x
-èè? @
+ÈÈ= >
+r
+ÈÈ> ?
 =>
-èèA C
-x
-èèD E
+ÈÈ@ B
+r
+ÈÈC D
 .
-èèE F
+ÈÈD E
 Room
-èèF J
+ÈÈE I
+)
+ÈÈI J
 .
-èèJ K
+ÈÈJ K!
+FirstOrDefaultAsync
+ÈÈK ^
+(
+ÈÈ^ _
+x
+ÈÈ_ `
+=>
+ÈÈa c
+x
+ÈÈd e
+.
+ÈÈe f
+Room
+ÈÈf j
+.
+ÈÈj k
 
 RoomNumber
-èèK U
+ÈÈk u
 ==
-èèV X
+ÈÈv x
 
-roomNumber
-èèY c
-)
-èèc d
-;
-èèd e
+roomNumberÈÈy É
+)ÈÈÉ Ñ
+;ÈÈÑ Ö
 if
-ëë 
+ÎÎ 
 (
-ëë 
+ÎÎ 
 user
-ëë 
+ÎÎ 
 is
-ëë 
+ÎÎ 
 null
-ëë 
+ÎÎ 
 )
-ëë 
+ÎÎ 
 {
-íí 
+ÏÏ 
 response
-ìì 
+ÌÌ 
 .
-ìì 
-Errors
-ìì 
-.
-ìì  
-Add
-ìì  #
+ÌÌ 
+
+StatusCode
+ÌÌ #
+=
+ÌÌ$ %
 (
-ìì# $#
-HotelUserServiceError
-ìì$ 9
+ÌÌ& '
+int
+ÌÌ' *
+)
+ÌÌ* +
+HttpStatusCode
+ÌÌ+ 9
 .
-ìì9 :
+ÌÌ9 :
+
+BadRequest
+ÌÌ: D
+;
+ÌÌD E
+response
+ÓÓ 
+.
+ÓÓ 
+Errors
+ÓÓ 
+.
+ÓÓ  
+Add
+ÓÓ  #
+(
+ÓÓ# $#
+HotelUserServiceError
+ÓÓ$ 9
+.
+ÓÓ9 :
 UserNotFound
-ìì: F
+ÓÓ: F
 )
-ììF G
+ÓÓF G
 ;
-ììG H
+ÓÓG H
 return
-îî 
+ÔÔ 
 response
-îî 
+ÔÔ 
 ;
-îî  
+ÔÔ  
 }
-ïï 
-if
-óó 
-(
-óó 
-await
-óó 
-IsLastAdmin
-óó !
-(
-óó! "
-user
-óó" &
-)
-óó& '
-)
-óó' (
-{
-òò 
-response
-ôô 
-.
-ôô 
-Errors
-ôô 
-.
-ôô  
-Add
-ôô  #
-(
-ôô# $#
-HotelUserServiceError
-ôô$ 9
-.
-ôô9 :
-	LastAdmin
-ôô: C
-)
-ôôC D
-;
-ôôD E
-return
-öö 
-response
-öö 
-;
-öö  
-}
-õõ 
-IdentityResult
-ùù 
-result
-ùù !
+ 
+IList
+ÚÚ 
+<
+ÚÚ 
+string
+ÚÚ 
+>
+ÚÚ 
+	userRoles
+ÚÚ #
 =
-ùù" #
+ÚÚ$ %
 await
-ùù$ )
+ÚÚ& +
 _userManager
-ùù* 6
+ÚÚ, 8
 .
-ùù6 7
-DeleteAsync
-ùù7 B
+ÚÚ8 9
+GetRolesAsync
+ÚÚ9 F
 (
-ùùB C
+ÚÚF G
 user
-ùùC G
+ÚÚG K
 )
-ùùG H
+ÚÚK L
 ;
-ùùH I
+ÚÚL M
 if
-ûû 
+ÛÛ 
 (
-ûû 
-!
-ûû 
-result
-ûû 
+ÛÛ 
+	userRoles
+ÛÛ 
 .
-ûû 
-	Succeeded
-ûû !
-)
-ûû! "
-{
-üü 
-response
-†† 
-.
-†† 
-Errors
-†† 
-=
-††  !
-result
-††" (
-.
-††( )
-Errors
-††) /
-.
-††/ 0
-Select
-††0 6
+ÛÛ 
+Any
+ÛÛ 
 (
-††6 7
+ÛÛ 
 x
-††7 8
+ÛÛ 
 =>
-††9 ;
+ÛÛ  "
 x
-††< =
+ÛÛ# $
+!=
+ÛÛ% '
+Roles
+ÛÛ( -
 .
-††= >
-Description
-††> I
+ÛÛ- .
+Guest
+ÛÛ. 3
 )
-††I J
-.
-††J K
-ToList
-††K Q
-(
-††Q R
+ÛÛ3 4
 )
-††R S
-;
-††S T
-return
-°° 
+ÛÛ4 5
+{
+ÙÙ 
 response
-°° 
-;
-°°  
-}
-¢¢ 
-response
-§§ 
+ıı 
 .
-§§ 
-IsValid
-§§ 
+ıı 
+
+StatusCode
+ıı #
 =
-§§ 
-true
-§§ #
+ıı$ %
+(
+ıı& '
+int
+ıı' *
+)
+ıı* +
+HttpStatusCode
+ıı+ 9
+.
+ıı9 :
+	Forbidden
+ıı: C
 ;
-§§# $
+ııC D
+response
+ˆˆ 
+.
+ˆˆ 
+Errors
+ˆˆ 
+.
+ˆˆ  
+Add
+ˆˆ  #
+(
+ˆˆ# $#
+HotelUserServiceError
+ˆˆ$ 9
+.
+ˆˆ9 :%
+ForbiddenEditPermission
+ˆˆ: Q
+)
+ˆˆQ R
+;
+ˆˆR S
+return
+˜˜ 
+response
+˜˜ 
+;
+˜˜  
+}
+¯¯ 
+string
+˙˙ 
+generatedPassword
+˙˙ $
+=
+˙˙% &
+PasswordGenerator
+˙˙' 8
+.
+˙˙8 9
+GeneratePassword
+˙˙9 I
+(
+˙˙I J
+)
+˙˙J K
+;
+˙˙K L
+string
+¸¸  
+passwordResetToken
+¸¸ %
+=
+¸¸& '
+await
+¸¸( -
+_userManager
+¸¸. :
+.
+¸¸: ;-
+GeneratePasswordResetTokenAsync
+¸¸; Z
+(
+¸¸Z [
+user
+¸¸[ _
+)
+¸¸_ `
+;
+¸¸` a
+IdentityResult
+˝˝ 
+result
+˝˝ !
+=
+˝˝" #
+await
+˝˝$ )
+_userManager
+˝˝* 6
+.
+˝˝6 7 
+ResetPasswordAsync
+˝˝7 I
+(
+˝˝I J
+user
+˝˝J N
+,
+˝˝N O 
+passwordResetToken
+˝˝P b
+,
+˝˝b c
+generatedPassword
+˝˝d u
+)
+˝˝u v
+;
+˝˝v w
+if
+ˇˇ 
+(
+ˇˇ 
+!
+ˇˇ 
+result
+ˇˇ 
+.
+ˇˇ 
+	Succeeded
+ˇˇ !
+)
+ˇˇ! "
+{
+ÄÄ 
+response
+ÅÅ 
+.
+ÅÅ 
+
+StatusCode
+ÅÅ #
+=
+ÅÅ$ %
+(
+ÅÅ& '
+int
+ÅÅ' *
+)
+ÅÅ* +
+HttpStatusCode
+ÅÅ+ 9
+.
+ÅÅ9 :!
+InternalServerError
+ÅÅ: M
+;
+ÅÅM N
+response
+ÇÇ 
+.
+ÇÇ 
+Errors
+ÇÇ 
+=
+ÇÇ  !
+result
+ÇÇ" (
+.
+ÇÇ( )
+Errors
+ÇÇ) /
+.
+ÇÇ/ 0
+Select
+ÇÇ0 6
+(
+ÇÇ6 7
+x
+ÇÇ7 8
+=>
+ÇÇ9 ;
+x
+ÇÇ< =
+.
+ÇÇ= >
+Description
+ÇÇ> I
+)
+ÇÇI J
+.
+ÇÇJ K
+ToList
+ÇÇK Q
+(
+ÇÇQ R
+)
+ÇÇR S
+;
+ÇÇS T
+return
+ÉÉ 
+response
+ÉÉ 
+;
+ÉÉ  
+}
+ÑÑ *
+GenerateHotelUserPasswordDto
+ÜÜ (#
+generatedPasswordUser
+ÜÜ) >
+=
+ÜÜ? @
+_mapper
+ÜÜA H
+.
+ÜÜH I
+Map
+ÜÜI L
+<
+ÜÜL M*
+GenerateHotelUserPasswordDto
+ÜÜM i
+>
+ÜÜi j
+(
+ÜÜj k
+user
+ÜÜk o
+)
+ÜÜo p
+;
+ÜÜp q#
+generatedPasswordUser
+áá !
+.
+áá! "
+Password
+áá" *
+=
+áá+ ,
+generatedPassword
+áá- >
+;
+áá> ?
+response
+ââ 
+.
+ââ 
+IsValid
+ââ 
+=
+ââ 
+true
+ââ #
+;
+ââ# $
+response
+ää 
+.
+ää 
+Data
+ää 
+=
+ää #
+generatedPasswordUser
+ää 1
+;
+ää1 2
+return
+ãã 
+response
+ãã 
+;
+ãã 
+}
+åå 	
+public
+éé 
+async
+éé 
+Task
+éé 
+<
+éé 
+ServiceResponse
+éé )
+<
+éé) *
+bool
+éé* .
+>
+éé. /
+>
+éé/ 0"
+ResetGuestsPasswords
+éé1 E
+(
+ééE F
+string
+ééF L
+password
+ééM U
+)
+ééU V
+{
+èè 	
+ServiceResponse
+êê 
+<
+êê 
+bool
+êê  
+>
+êê  !
+response
+êê" *
+=
+êê+ ,
+new
+êê- 0
+(
+êê0 1
+)
+êê1 2
+;
+êê2 3
+List
+ëë 
+<
+ëë 
+string
+ëë 
+>
+ëë 
+failedUserChanges
+ëë *
+=
+ëë+ ,
+new
+ëë- 0
+(
+ëë0 1
+)
+ëë1 2
+;
+ëë2 3
+List
+ìì 
+<
+ìì 
+	HotelUser
+ìì 
+>
+ìì 
+users
+ìì !
+=
+ìì" #
+await
+ìì$ )
+_userRepository
+ìì* 9
+.
+ìì9 :!
+GetHotelUsersByRole
+ìì: M
+(
+ììM N
+Roles
+ììN S
+.
+ììS T
+Guest
+ììT Y
+)
+ììY Z
+;
+ììZ [
+foreach
+ïï 
+(
+ïï 
+var
+ïï 
+user
+ïï 
+in
+ïï  
+users
+ïï! &
+)
+ïï& '
+{
+ññ 
+string
+óó  
+passwordResetToken
+óó )
+=
+óó* +
+await
+óó, 1
+_userManager
+óó2 >
+.
+óó> ?-
+GeneratePasswordResetTokenAsync
+óó? ^
+(
+óó^ _
+user
+óó_ c
+)
+óóc d
+;
+óód e
+IdentityResult
+òò 
+result
+òò %
+=
+òò& '
+await
+òò( -
+_userManager
+òò. :
+.
+òò: ; 
+ResetPasswordAsync
+òò; M
+(
+òòM N
+user
+òòN R
+,
+òòR S 
+passwordResetToken
+òòT f
+,
+òòf g
+password
+òòh p
+)
+òòp q
+;
+òòq r
+if
+ôô 
+(
+ôô 
+!
+ôô 
+result
+ôô 
+.
+ôô 
+	Succeeded
+ôô %
+)
+ôô% &
+{
+öö 
+failedUserChanges
+õõ %
+.
+õõ% &
+Add
+õõ& )
+(
+õõ) *
+user
+õõ* .
+.
+õõ. /
+Room
+õõ/ 3
+.
+õõ3 4
+
+RoomNumber
+õõ4 >
+)
+õõ> ?
+;
+õõ? @
+}
+úú 
+}
+ùù 
+if
+üü 
+(
+üü 
+failedUserChanges
+üü !
+.
+üü! "
+Count
+üü" '
+>
+üü( )
+$num
+üü* +
+)
+üü+ ,
+{
+†† 
+response
+°° 
+.
+°° 
+
+StatusCode
+°° #
+=
+°°$ %
+(
+°°& '
+int
+°°' *
+)
+°°* +
+HttpStatusCode
+°°+ 9
+.
+°°9 :!
+InternalServerError
+°°: M
+;
+°°M N
+response
+¢¢ 
+.
+¢¢ 
+Errors
+¢¢ 
+.
+¢¢  
+AddRange
+¢¢  (
+(
+¢¢( )
+failedUserChanges
+¢¢) :
+)
+¢¢: ;
+;
+¢¢; <
+}
+££ 
 response
 •• 
 .
-•• 
-Data
-•• 
+•• 
+IsValid
+•• 
 =
-•• 
+•• 
 true
-••  
+•• #
 ;
-••  !
+••# $
 return
 ¶¶ 
 response
@@ -16030,319 +18668,347 @@ roomNumber
 ;
 ¶¶ 
 }
-ßß 	
-private
-´´ 
+ßß 	
+public
+©© 
 async
-´´ 
+©© 
 Task
-´´ 
+©© 
 <
-´´ 
+©© 
+ServiceResponse
+©© )
+<
+©©) *
 bool
-´´ 
+©©* .
 >
-´´  
-
-UserExists
-´´! +
+©©. /
+>
+©©/ 0
+DeleteHotelUser
+©©1 @
 (
-´´+ ,
+©©@ A
 string
-´´, 2
+©©A G
 
 roomNumber
-´´3 =
+©©H R
 )
-´´= >
+©©R S
 {
-¨¨ 	
-return
-≠≠ 
-await
-≠≠ 
-_userManager
-≠≠ %
-.
-≠≠% &
-Users
-≠≠& +
-.
-≠≠+ ,
-AnyAsync
-≠≠, 4
+™™ 	
+ServiceResponse
+´´ 
+<
+´´ 
+bool
+´´  
+>
+´´  !
+response
+´´" *
+=
+´´+ ,
+new
+´´- 0
 (
-≠≠4 5
+´´0 1
+)
+´´1 2
+;
+´´2 3
+	HotelUser
+≠≠ 
+user
+≠≠ 
+=
+≠≠ 
+_userManager
+≠≠ )
+.
+≠≠) *
+Users
+≠≠* /
+.
+≠≠/ 0
+FirstOrDefault
+≠≠0 >
+(
+≠≠> ?
 x
-≠≠5 6
+≠≠? @
 =>
-≠≠7 9
+≠≠A C
 x
-≠≠: ;
+≠≠D E
 .
-≠≠; <
+≠≠E F
 Room
-≠≠< @
+≠≠F J
 .
-≠≠@ A
+≠≠J K
 
 RoomNumber
-≠≠A K
+≠≠K U
 ==
-≠≠L N
+≠≠V X
 
 roomNumber
-≠≠O Y
-.
-≠≠Y Z
-ToUpper
-≠≠Z a
-(
-≠≠a b
-)
-≠≠b c
+≠≠Y c
 )
 ≠≠c d
 ;
-≠≠d e
-}
-ÆÆ 	
-private
-∞∞ 
-async
-∞∞ 
-Task
-∞∞ 
-<
-∞∞ 
-ServiceResponse
-∞∞ *
-<
-∞∞* +
-bool
-∞∞+ /
->
-∞∞/ 0
->
-∞∞0 1
-EditUserRoles
-∞∞2 ?
-(
-∞∞? @
-	HotelUser
-∞∞@ I
-user
-∞∞J N
-,
-∞∞N O
-List
-∞∞P T
-<
-∞∞T U
-string
-∞∞U [
->
-∞∞[ \
-selectedRoles
-∞∞] j
-)
-∞∞j k
-{
-±± 	
-ServiceResponse
-≤≤ 
-<
-≤≤ 
-bool
-≤≤  
->
-≤≤  !
-response
-≤≤" *
-=
-≤≤+ ,
-new
-≤≤- 0
-(
-≤≤0 1
-)
-≤≤1 2
-;
-≤≤2 3
-IList
-¥¥ 
-<
-¥¥ 
-string
-¥¥ 
->
-¥¥ 
-	userRoles
-¥¥ #
-=
-¥¥$ %
-await
-¥¥& +
-_userManager
-¥¥, 8
-.
-¥¥8 9
-GetRolesAsync
-¥¥9 F
-(
-¥¥F G
-user
-¥¥G K
-)
-¥¥K L
-;
-¥¥L M
-IdentityResult
-∂∂ 
-result
-∂∂ !
-=
-∂∂" #
-await
-∂∂$ )
-_userManager
-∂∂* 6
-.
-∂∂6 7
-AddToRolesAsync
-∂∂7 F
-(
-∂∂F G
-user
-∂∂G K
-,
-∂∂K L
-selectedRoles
-∂∂M Z
-.
-∂∂Z [
-Except
-∂∂[ a
-(
-∂∂a b
-	userRoles
-∂∂b k
-)
-∂∂k l
-)
-∂∂l m
-;
-∂∂m n
+≠≠d e
 if
-∏∏ 
+ØØ 
 (
-∏∏ 
-!
-∏∏ 
-result
-∏∏ 
-.
-∏∏ 
-	Succeeded
-∏∏ !
+ØØ 
+user
+ØØ 
+is
+ØØ 
+null
+ØØ 
 )
-∏∏! "
+ØØ 
 {
-ππ 
+∞∞ 
 response
-∫∫ 
+±± 
 .
-∫∫ 
-Errors
-∫∫ 
-.
-∫∫  
-Add
-∫∫  #
+±± 
+
+StatusCode
+±± #
+=
+±±$ %
 (
-∫∫# $
-$str
-∫∫$ <
+±±& '
+int
+±±' *
 )
-∫∫< =
+±±* +
+HttpStatusCode
+±±+ 9
+.
+±±9 :
+NotFound
+±±: B
 ;
-∫∫= >
+±±B C
+response
+≤≤ 
+.
+≤≤ 
+Errors
+≤≤ 
+.
+≤≤  
+Add
+≤≤  #
+(
+≤≤# $#
+HotelUserServiceError
+≤≤$ 9
+.
+≤≤9 :
+UserNotFound
+≤≤: F
+)
+≤≤F G
+;
+≤≤G H
 return
-ªª 
+≥≥ 
 response
-ªª 
+≥≥ 
 ;
-ªª  
+≥≥  
 }
-ºº 
-result
-ææ 
-=
-ææ 
-await
-ææ 
-_userManager
-ææ '
-.
-ææ' ("
-RemoveFromRolesAsync
-ææ( <
-(
-ææ< =
-user
-ææ= A
-,
-ææA B
-	userRoles
-ææC L
-.
-ææL M
-Except
-ææM S
-(
-ææS T
-selectedRoles
-ææT a
-)
-ææa b
-)
-ææb c
-;
-ææc d
+¥¥ 
 if
-¿¿ 
+∂∂ 
 (
-¿¿ 
-!
-¿¿ 
-result
-¿¿ 
-.
-¿¿ 
-	Succeeded
-¿¿ !
+∂∂ 
+await
+∂∂ 
+IsLastAdmin
+∂∂ !
+(
+∂∂! "
+user
+∂∂" &
 )
-¿¿! "
+∂∂& '
+)
+∂∂' (
 {
-¡¡ 
+∑∑ 
 response
-¬¬ 
+∏∏ 
 .
-¬¬ 
-Errors
-¬¬ 
-.
-¬¬  
-Add
-¬¬  #
+∏∏ 
+
+StatusCode
+∏∏ #
+=
+∏∏$ %
 (
-¬¬# $
-$str
-¬¬$ <
+∏∏& '
+int
+∏∏' *
 )
-¬¬< =
+∏∏* +
+HttpStatusCode
+∏∏+ 9
+.
+∏∏9 :
+Conflict
+∏∏: B
 ;
-¬¬= >
+∏∏B C
+response
+ππ 
+.
+ππ 
+Errors
+ππ 
+.
+ππ  
+Add
+ππ  #
+(
+ππ# $#
+HotelUserServiceError
+ππ$ 9
+.
+ππ9 :
+	LastAdmin
+ππ: C
+)
+ππC D
+;
+ππD E
+return
+∫∫ 
+response
+∫∫ 
+;
+∫∫  
+}
+ªª 
+IdentityResult
+ΩΩ 
+result
+ΩΩ !
+=
+ΩΩ" #
+await
+ΩΩ$ )
+_userManager
+ΩΩ* 6
+.
+ΩΩ6 7
+DeleteAsync
+ΩΩ7 B
+(
+ΩΩB C
+user
+ΩΩC G
+)
+ΩΩG H
+;
+ΩΩH I
+if
+ææ 
+(
+ææ 
+!
+ææ 
+result
+ææ 
+.
+ææ 
+	Succeeded
+ææ !
+)
+ææ! "
+{
+øø 
+response
+¿¿ 
+.
+¿¿ 
+
+StatusCode
+¿¿ #
+=
+¿¿$ %
+(
+¿¿& '
+int
+¿¿' *
+)
+¿¿* +
+HttpStatusCode
+¿¿+ 9
+.
+¿¿9 :!
+InternalServerError
+¿¿: M
+;
+¿¿M N
+response
+¡¡ 
+.
+¡¡ 
+Errors
+¡¡ 
+=
+¡¡  !
+result
+¡¡" (
+.
+¡¡( )
+Errors
+¡¡) /
+.
+¡¡/ 0
+Select
+¡¡0 6
+(
+¡¡6 7
+x
+¡¡7 8
+=>
+¡¡9 ;
+x
+¡¡< =
+.
+¡¡= >
+Description
+¡¡> I
+)
+¡¡I J
+.
+¡¡J K
+ToList
+¡¡K Q
+(
+¡¡Q R
+)
+¡¡R S
+;
+¡¡S T
+return
+¬¬ 
+response
+¬¬ 
+;
+¬¬  
 }
 √√ 
 response
@@ -16378,785 +19044,1160 @@ roomNumber
 }
 »» 	
 private
-   
+ÃÃ 
 async
-   
+ÃÃ 
 Task
-   
+ÃÃ 
 <
-   
+ÃÃ 
 bool
-   
+ÃÃ 
 >
-    
-IsTheRoomUpdated
-  ! 1
-(
-  1 2 
-CreateHotelUserDto
-  2 D
-editUser
-  E M
-)
-  M N
-{
-ÀÀ 	
-ServiceResponse
-ÃÃ 
-<
-ÃÃ 
-bool
-ÃÃ  
->
-ÃÃ  !
-IsTheRoomUpdated
-ÃÃ" 2
-=
-ÃÃ3 4
-await
-ÃÃ5 :
-_roomService
-ÃÃ; G
-.
-ÃÃG H
+ÃÃ  
 
-UpdateRoom
-ÃÃH R
+UserExists
+ÃÃ! +
 (
-ÃÃR S
-editUser
-ÃÃS [
-)
-ÃÃ[ \
-;
-ÃÃ\ ]
-if
-ŒŒ 
-(
-ŒŒ 
-!
-ŒŒ 
-IsTheRoomUpdated
-ŒŒ !
-.
-ŒŒ! "
-IsValid
-ŒŒ" )
-)
-ŒŒ) *
-{
-œœ 
-return
-–– 
-false
-–– 
-;
-–– 
-}
-—— 
-return
-”” 
-true
-”” 
-;
-”” 
-}
-‘‘ 	
-private
-÷÷ 
-async
-÷÷ 
-Task
-÷÷ 
-<
-÷÷ 
-bool
-÷÷ 
->
-÷÷  
-IsLastAdmin
-÷÷! ,
-(
-÷÷, -
-	HotelUser
-÷÷- 6
-user
-÷÷7 ;
-)
-÷÷; <
-{
-◊◊ 	
-IList
-ÿÿ 
-<
-ÿÿ 
+ÃÃ+ ,
 string
-ÿÿ 
->
-ÿÿ 
-roles
-ÿÿ 
-=
-ÿÿ  !
-await
-ÿÿ" '
-_userManager
-ÿÿ( 4
-.
-ÿÿ4 5
-GetRolesAsync
-ÿÿ5 B
-(
-ÿÿB C
-user
-ÿÿC G
+ÃÃ, 2
+
+roomNumber
+ÃÃ3 =
 )
-ÿÿG H
-;
-ÿÿH I
-if
-⁄⁄ 
-(
-⁄⁄ 
-!
-⁄⁄ 
-roles
-⁄⁄ 
-.
-⁄⁄ 
-Contains
-⁄⁄ 
-(
-⁄⁄  
-Roles
-⁄⁄  %
-.
-⁄⁄% &
-Admin
-⁄⁄& +
-)
-⁄⁄+ ,
-)
-⁄⁄, -
+ÃÃ= >
 {
-€€ 
+ÕÕ 	
 return
-‹‹ 
-false
-‹‹ 
+ŒŒ 
+await
+ŒŒ 
+_userManager
+ŒŒ %
+.
+ŒŒ% &
+Users
+ŒŒ& +
+.
+ŒŒ+ ,
+AnyAsync
+ŒŒ, 4
+(
+ŒŒ4 5
+x
+ŒŒ5 6
+=>
+ŒŒ7 9
+x
+ŒŒ: ;
+.
+ŒŒ; <
+Room
+ŒŒ< @
+.
+ŒŒ@ A
+
+RoomNumber
+ŒŒA K
+==
+ŒŒL N
+
+roomNumber
+ŒŒO Y
+.
+ŒŒY Z
+ToUpper
+ŒŒZ a
+(
+ŒŒa b
+)
+ŒŒb c
+)
+ŒŒc d
 ;
-‹‹ 
+ŒŒd e
 }
-›› 
-IList
-ﬂﬂ 
+œœ 	
+private
+—— 
+async
+—— 
+Task
+—— 
 <
-ﬂﬂ 
+—— 
+ServiceResponse
+—— *
+<
+——* +
+bool
+——+ /
+>
+——/ 0
+>
+——0 1
+EditUserRoles
+——2 ?
+(
+——? @
 	HotelUser
-ﬂﬂ 
+——@ I
+user
+——J N
+,
+——N O
+List
+——P T
+<
+——T U
+string
+——U [
 >
-ﬂﬂ 
-
-adminUsers
-ﬂﬂ '
-=
-ﬂﬂ( )
-await
-ﬂﬂ* /
-_userManager
-ﬂﬂ0 <
-.
-ﬂﬂ< =!
-GetUsersInRoleAsync
-ﬂﬂ= P
-(
-ﬂﬂP Q
-Roles
-ﬂﬂQ V
-.
-ﬂﬂV W
-Admin
-ﬂﬂW \
+——[ \
+selectedRoles
+——] j
 )
-ﬂﬂ\ ]
-;
-ﬂﬂ] ^
-if
-·· 
-(
-·· 
-
-adminUsers
-·· 
-.
-·· 
-Count
-··  
->
-··! "
-$num
-··# $
-)
-··$ %
+——j k
 {
-‚‚ 
-return
-„„ 
-false
-„„ 
-;
-„„ 
-}
-‰‰ 
-return
-ÊÊ 
-true
-ÊÊ 
-;
-ÊÊ 
-}
-ÁÁ 	
-}
-ÈÈ 
-}ÍÍ ïÈ
-dC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\RoomRequestService.cs
-	namespace 	
-SoleusHotelApi
- 
-. 
-Services !
-{ 
-public 
-
-class 
-RoomRequestService #
-:$ %
-IRoomRequestService& 9
-{ 
-private 
-readonly  
-IHotelUserRepository - 
-_hotelUserRepository. B
-;B C
-private 
-readonly "
-IRoomRequestRepository /"
-_roomRequestRepository0 F
-;F G
-private 
-readonly 
-IMapper  
-_mapper! (
-;( )
-public 
-RoomRequestService !
-(! " 
-IHotelUserRepository" 6
-hotelUserRepository7 J
-,J K"
-IRoomRequestRepositoryL b!
-roomRequestRepositoryc x
-,x y
-IMapper	z Å
-mapper
-Ç à
+““ 	
+ServiceResponse
+”” 
+<
+”” 
+bool
+””  
+>
+””  !
+response
+””" *
+=
+””+ ,
+new
+””- 0
+(
+””0 1
 )
-à â
-{ 	 
-_hotelUserRepository  
-=! "
-hotelUserRepository# 6
-;6 7"
-_roomRequestRepository "
-=# $!
-roomRequestRepository% :
-;: ;
-_mapper 
-= 
-mapper 
-; 
-} 	
-public 
-async 
-Task 
-< 
-ServiceResponse )
-<) *
-bool* .
->. /
->/ 0
-CreateRoomRequest1 B
-(B C 
-CreateRoomRequestDtoC W 
-createRoomRequestDtoX l
-,l m
-stringn t
-userRoomNumber	u É
-)
-É Ñ
-{ 	
-ServiceResponse 
-< 
-bool  
->  !
-response" *
-=+ ,
-new- 0
-(0 1
-)1 2
-;2 3
-	HotelUser 
-user 
-= 
-await " 
-_hotelUserRepository# 7
-.7 8,
- GetHotelUserWithRoomByRoomNumber8 X
-(X Y
-userRoomNumberY g
-)g h
-;h i
-if!! 
-(!! 
-user!! 
-is!! 
-null!! 
-)!! 
-{"" 
-response## 
-.## 
-Errors## 
-.##  
-Add##  #
-(### $#
-RoomRequestServiceError##$ ;
-.##; <
-UserNotFound##< H
-)##H I
-;##I J
-return$$ 
-response$$ 
-;$$  
-}%% 
-RoomRequest'' 
-request'' 
-=''  !
-_mapper''" )
-.'') *
-Map''* -
-<''- .
-RoomRequest''. 9
->''9 :
-('': ; 
-createRoomRequestDto''; O
-)''O P
-;''P Q
-request)) 
-.)) 
-RequestStatus)) !
-=))" #
-RoomRequestStatus))$ 5
-.))5 6
-New))6 9
-;))9 :
-request** 
-.** 
-Room** 
-=** 
-user** 
-.**  
-Room**  $
-;**$ %
-await,, "
-_roomRequestRepository,, (
-.,,( )
-AddRoomRequest,,) 7
-(,,7 8
-request,,8 ?
-),,? @
-;,,@ A
-if.. 
-(.. 
-!.. 
-await.. "
-_roomRequestRepository.. -
-...- .
-SaveAllAsync... :
-(..: ;
-)..; <
-)..< =
-{// 
-response00 
-.00 
-Errors00 
-.00  
-Add00  #
-(00# $#
-RoomRequestServiceError00$ ;
-.00; <
-UnableToSaveRequest00< O
-)00O P
-;00P Q
-return11 
-response11 
-;11  
-}22 
-response44 
-.44 
-IsValid44 
-=44 
-true44 #
-;44# $
-return55 
-response55 
-;55 
-}66 	
-public88 
-async88 
-Task88 
-<88 
-ServiceResponse88 )
-<88) *
-List88* .
-<88. /
-BaseRoomRequestDto88/ A
->88A B
->88B C
->88C D 
-GetTodayRoomRequests88E Y
-(88Y Z
-)88Z [
-{99 	
-return:: 
-new:: 
-ServiceResponse:: &
-<::& '
-List::' +
-<::+ ,
-BaseRoomRequestDto::, >
->::> ?
->::? @
-(::@ A
-)::A B
-{;; 
-Data<< 
-=<< 
-await<< "
-_roomRequestRepository<< 3
-.<<3 4#
-GetTodayRoomRequestsDto<<4 K
-(<<K L
-)<<L M
-,<<M N
-IsValid== 
-=== 
-true== 
-}>> 
-;>> 
-}?? 	
-publicAA 
-asyncAA 
-TaskAA 
-<AA 
-ServiceResponseAA )
-<AA) *
-ListAA* .
-<AA. /
-BaseRoomRequestDtoAA/ A
->AAA B
->AAB C
->AAC D
-GetMyRoomRequestsAAE V
-(AAV W
-stringAAW ]
-userRoomNumberAA^ l
-)AAl m
-{BB 	
-ServiceResponseCC 
-<CC 
-ListCC  
-<CC  !
-BaseRoomRequestDtoCC! 3
->CC3 4
->CC4 5
-responseCC6 >
-=CC? @
-newCCA D
-(CCD E
-)CCE F
-;CCF G
-	HotelUserDD 
-userDD 
-=DD 
-awaitDD " 
-_hotelUserRepositoryDD# 7
-.DD7 8,
- GetHotelUserWithRoomByRoomNumberDD8 X
-(DDX Y
-userRoomNumberDDY g
-)DDg h
-;DDh i
-ifFF 
-(FF 
-userFF 
-isFF 
-nullFF 
-)FF 
-{GG 
-responseHH 
-.HH 
-ErrorsHH 
-.HH  
-AddHH  #
-(HH# $#
-RoomRequestServiceErrorHH$ ;
-.HH; <
-UserNotFoundHH< H
-)HHH I
-;HHI J
-returnII 
-responseII 
-;II  
-}JJ 
-responseLL 
-.LL 
-IsValidLL 
-=LL 
-trueLL #
-;LL# $
-responseMM 
-.MM 
-DataMM 
-=MM 
-awaitMM !"
-_roomRequestRepositoryMM" 8
-.MM8 9/
-#GetGuestRoomRequestsDtoByRoomNumberMM9 \
-(MM\ ]
-userMM] a
-.MMa b
-RoomMMb f
-.MMf g
-
-RoomNumberMMg q
-)MMq r
-;MMr s
-returnNN 
-responseNN 
-;NN 
-}OO 	
-publicQQ 
-asyncQQ 
-TaskQQ 
-<QQ 
-ServiceResponseQQ )
-<QQ) *
-ListQQ* .
-<QQ. /
-BaseRoomRequestDtoQQ/ A
->QQA B
->QQB C
->QQC D!
-GetMyAssignedRequestsQQE Z
-(QQZ [
-stringQQ[ a
-userRoomNumberQQb p
-)QQp q
-{RR 	
-ServiceResponseSS 
-<SS 
-ListSS  
-<SS  !
-BaseRoomRequestDtoSS! 3
->SS3 4
->SS4 5
-responseSS6 >
-=SS? @
-newSSA D
-(SSD E
-)SSE F
-;SSF G
-	HotelUserTT 
-userTT 
-=TT 
-awaitTT " 
-_hotelUserRepositoryTT# 7
-.TT7 8,
- GetHotelUserWithRoomByRoomNumberTT8 X
-(TTX Y
-userRoomNumberTTY g
-)TTg h
-;TTh i
-ifVV 
-(VV 
-userVV 
-isVV 
-nullVV 
-)VV 
-{WW 
-responseXX 
-.XX 
-ErrorsXX 
-.XX  
-AddXX  #
-(XX# $#
-RoomRequestServiceErrorXX$ ;
-.XX; <
-UserNotFoundXX< H
-)XXH I
-;XXI J
-returnYY 
-responseYY 
-;YY  
-}ZZ 
-response\\ 
-.\\ 
-IsValid\\ 
-=\\ 
-true\\ #
-;\\# $
-response]] 
-.]] 
-Data]] 
-=]] 
-await]] !"
-_roomRequestRepository]]" 8
-.]]8 9%
-GetRoomRequestsByAssigned]]9 R
-(]]R S
-user]]S W
-)]]W X
-;]]X Y
-return^^ 
-response^^ 
-;^^ 
-}__ 	
-publicaa 
-asyncaa 
-Taskaa 
-<aa 
-ServiceResponseaa )
-<aa) *
-RoomRequestDtoaa* 8
->aa8 9
->aa9 :
-GetRoomRequestaa; I
-(aaI J
-intaaJ M
-roomRequestIdaaN [
-,aa[ \
-stringaa] c
-userRoomNumberaad r
-,aar s
-Listaat x
-<aax y
-stringaay 
->	aa Ä
+””1 2
+;
+””2 3
+IList
+’’ 
+<
+’’ 
+string
+’’ 
+>
+’’ 
 	userRoles
-aaÅ ä
+’’ #
+=
+’’$ %
+await
+’’& +
+_userManager
+’’, 8
+.
+’’8 9
+GetRolesAsync
+’’9 F
+(
+’’F G
+user
+’’G K
 )
-aaä ã
-{bb 	
-ServiceResponsecc 
-<cc 
-RoomRequestDtocc *
->cc* +
-responsecc, 4
-=cc5 6
-newcc7 :
-(cc: ;
-)cc; <
-;cc< =
-RoomRequestee 
-roomRequestee #
-=ee$ %
-awaitee& +"
-_roomRequestRepositoryee, B
-.eeB C
-GetRoomRequestByIdeeC U
-(eeU V
-roomRequestIdeeV c
-)eec d
-;eed e
-ifgg 
-(gg 
-roomRequestgg 
-isgg 
-nullgg #
-)gg# $
-{hh 
-responseii 
-.ii 
-Errorsii 
-.ii  
-Addii  #
-(ii# $#
-RoomRequestServiceErrorii$ ;
-.ii; <
-RoomRequestNotFoundii< O
-)iiO P
-;iiP Q
-returnjj 
-responsejj 
-;jj  
-}kk 
-	HotelUsermm 
-usermm 
-=mm 
-awaitmm " 
-_hotelUserRepositorymm# 7
-.mm7 8,
- GetHotelUserWithRoomByRoomNumbermm8 X
-(mmX Y
-userRoomNumbermmY g
-)mmg h
-;mmh i
-ifoo 
-(oo 
-useroo 
-isoo 
-nulloo 
-)oo 
-{pp 
-responseqq 
-.qq 
-Errorsqq 
-.qq  
-Addqq  #
-(qq# $#
-RoomRequestServiceErrorqq$ ;
-.qq; <
-UserNotFoundqq< H
-)qqH I
-;qqI J
-returnrr 
-responserr 
-;rr  
-}ss 
-ifuu 
-(uu 
-roomRequestuu 
-.uu 
-Roomuu  
-.uu  !
+’’K L
+;
+’’L M
+IdentityResult
+◊◊ 
+result
+◊◊ !
+=
+◊◊" #
+await
+◊◊$ )
+_userManager
+◊◊* 6
+.
+◊◊6 7
+AddToRolesAsync
+◊◊7 F
+(
+◊◊F G
+user
+◊◊G K
+,
+◊◊K L
+selectedRoles
+◊◊M Z
+.
+◊◊Z [
+Except
+◊◊[ a
+(
+◊◊a b
+	userRoles
+◊◊b k
+)
+◊◊k l
+)
+◊◊l m
+;
+◊◊m n
+if
+ŸŸ 
+(
+ŸŸ 
+!
+ŸŸ 
+result
+ŸŸ 
+.
+ŸŸ 
+	Succeeded
+ŸŸ !
+)
+ŸŸ! "
+{
+⁄⁄ 
+response
+€€ 
+.
+€€ 
 
-RoomNumberuu! +
-!=uu, .
-useruu/ 3
-.uu3 4
-Roomuu4 8
-.uu8 9
+StatusCode
+€€ #
+=
+€€$ %
+(
+€€& '
+int
+€€' *
+)
+€€* +
+HttpStatusCode
+€€+ 9
+.
+€€9 :!
+InternalServerError
+€€: M
+;
+€€M N
+response
+‹‹ 
+.
+‹‹ 
+Errors
+‹‹ 
+.
+‹‹  
+Add
+‹‹  #
+(
+‹‹# $
+$str
+‹‹$ <
+)
+‹‹< =
+;
+‹‹= >
+return
+›› 
+response
+›› 
+;
+››  
+}
+ﬁﬁ 
+result
+‡‡ 
+=
+‡‡ 
+await
+‡‡ 
+_userManager
+‡‡ '
+.
+‡‡' ("
+RemoveFromRolesAsync
+‡‡( <
+(
+‡‡< =
+user
+‡‡= A
+,
+‡‡A B
+	userRoles
+‡‡C L
+.
+‡‡L M
+Except
+‡‡M S
+(
+‡‡S T
+selectedRoles
+‡‡T a
+)
+‡‡a b
+)
+‡‡b c
+;
+‡‡c d
+if
+‚‚ 
+(
+‚‚ 
+!
+‚‚ 
+result
+‚‚ 
+.
+‚‚ 
+	Succeeded
+‚‚ !
+)
+‚‚! "
+{
+„„ 
+response
+‰‰ 
+.
+‰‰ 
 
-RoomNumberuu9 C
-&&uuD F
-!uuG H
+StatusCode
+‰‰ #
+=
+‰‰$ %
+(
+‰‰& '
+int
+‰‰' *
+)
+‰‰* +
+HttpStatusCode
+‰‰+ 9
+.
+‰‰9 :!
+InternalServerError
+‰‰: M
+;
+‰‰M N
+response
+ÂÂ 
+.
+ÂÂ 
+Errors
+ÂÂ 
+.
+ÂÂ  
+Add
+ÂÂ  #
+(
+ÂÂ# $
+$str
+ÂÂ$ <
+)
+ÂÂ< =
+;
+ÂÂ= >
+}
+ÊÊ 
+response
+ËË 
+.
+ËË 
+IsValid
+ËË 
+=
+ËË 
+true
+ËË #
+;
+ËË# $
+response
+ÈÈ 
+.
+ÈÈ 
+Data
+ÈÈ 
+=
+ÈÈ 
+true
+ÈÈ  
+;
+ÈÈ  !
+return
+ÍÍ 
+response
+ÍÍ 
+;
+ÍÍ 
+}
+ÎÎ 	
+private
+ÌÌ 
+async
+ÌÌ 
+Task
+ÌÌ 
+<
+ÌÌ 
+bool
+ÌÌ 
+>
+ÌÌ  
+IsLastAdmin
+ÌÌ! ,
+(
+ÌÌ, -
+	HotelUser
+ÌÌ- 6
+user
+ÌÌ7 ;
+)
+ÌÌ; <
+{
+ÓÓ 	
+IList
+ÔÔ 
+<
+ÔÔ 
+string
+ÔÔ 
+>
+ÔÔ 
+roles
+ÔÔ 
+=
+ÔÔ  !
+await
+ÔÔ" '
+_userManager
+ÔÔ( 4
+.
+ÔÔ4 5
+GetRolesAsync
+ÔÔ5 B
+(
+ÔÔB C
+user
+ÔÔC G
+)
+ÔÔG H
+;
+ÔÔH I
+if
+ÒÒ 
+(
+ÒÒ 
+!
+ÒÒ 
+roles
+ÒÒ 
+.
+ÒÒ 
+Contains
+ÒÒ 
+(
+ÒÒ  
+Roles
+ÒÒ  %
+.
+ÒÒ% &
+Admin
+ÒÒ& +
+)
+ÒÒ+ ,
+)
+ÒÒ, -
+{
+ÚÚ 
+return
+ÛÛ 
+false
+ÛÛ 
+;
+ÛÛ 
+}
+ÙÙ 
+IList
+ˆˆ 
+<
+ˆˆ 
+	HotelUser
+ˆˆ 
+>
+ˆˆ 
 
-IsEmployeeuuH R
-(uuR S
-	userRolesuuS \
-)uu\ ]
-)uu] ^
-{vv 
+adminUsers
+ˆˆ '
+=
+ˆˆ( )
+await
+ˆˆ* /
+_userManager
+ˆˆ0 <
+.
+ˆˆ< =!
+GetUsersInRoleAsync
+ˆˆ= P
+(
+ˆˆP Q
+Roles
+ˆˆQ V
+.
+ˆˆV W
+Admin
+ˆˆW \
+)
+ˆˆ\ ]
+;
+ˆˆ] ^
+if
+¯¯ 
+(
+¯¯ 
+
+adminUsers
+¯¯ 
+.
+¯¯ 
+Count
+¯¯  
+>
+¯¯! "
+$num
+¯¯# $
+)
+¯¯$ %
+{
+˘˘ 
+return
+˙˙ 
+false
+˙˙ 
+;
+˙˙ 
+}
+˚˚ 
+return
+˝˝ 
+true
+˝˝ 
+;
+˝˝ 
+}
+˛˛ 	
+}
+ÄÄ 
+}ÅÅ ¸õ
+dC:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\RoomRequestService.cs
+	namespace 	
+SoleusHotelApi
+ 
+. 
+Services !
+{ 
+public 
+
+class 
+RoomRequestService #
+:$ %
+IRoomRequestService& 9
+{ 
+private 
+readonly  
+IHotelUserRepository - 
+_hotelUserRepository. B
+;B C
+private 
+readonly "
+IRoomRequestRepository /"
+_roomRequestRepository0 F
+;F G
+private 
+readonly 
+IMapper  
+_mapper! (
+;( )
+public 
+RoomRequestService !
+(! " 
+IHotelUserRepository" 6
+hotelUserRepository7 J
+,J K"
+IRoomRequestRepositoryL b!
+roomRequestRepositoryc x
+,x y
+IMapper	z Å
+mapper
+Ç à
+)
+à â
+{ 	 
+_hotelUserRepository  
+=! "
+hotelUserRepository# 6
+;6 7"
+_roomRequestRepository "
+=# $!
+roomRequestRepository% :
+;: ;
+_mapper 
+= 
+mapper 
+; 
+} 	
+public 
+async 
+Task 
+< 
+ServiceResponse )
+<) *
+bool* .
+>. /
+>/ 0
+CreateRoomRequest1 B
+(B C 
+CreateRoomRequestDtoC W 
+createRoomRequestDtoX l
+,l m
+stringn t
+userRoomNumber	u É
+)
+É Ñ
+{ 	
+ServiceResponse   
+<   
+bool    
+>    !
+response  " *
+=  + ,
+new  - 0
+(  0 1
+)  1 2
+;  2 3
+	HotelUser!! 
+user!! 
+=!! 
+await!! " 
+_hotelUserRepository!!# 7
+.!!7 8,
+ GetHotelUserWithRoomByRoomNumber!!8 X
+(!!X Y
+userRoomNumber!!Y g
+)!!g h
+;!!h i
+if## 
+(## 
+user## 
+is## 
+null## 
+)## 
+{$$ 
+response%% 
+.%% 
+
+StatusCode%% #
+=%%$ %
+(%%& '
+int%%' *
+)%%* +
+HttpStatusCode%%+ 9
+.%%9 :
+NotFound%%: B
+;%%B C
+response&& 
+.&& 
+Errors&& 
+.&&  
+Add&&  #
+(&&# $#
+RoomRequestServiceError&&$ ;
+.&&; <
+UserNotFound&&< H
+)&&H I
+;&&I J
+return'' 
+response'' 
+;''  
+}(( 
+RoomRequest** 
+request** 
+=**  !
+_mapper**" )
+.**) *
+Map*** -
+<**- .
+RoomRequest**. 9
+>**9 :
+(**: ; 
+createRoomRequestDto**; O
+)**O P
+;**P Q
+request,, 
+.,, 
+RequestStatus,, !
+=,," #
+RoomRequestStatus,,$ 5
+.,,5 6
+New,,6 9
+;,,9 :
+request-- 
+.-- 
+Room-- 
+=-- 
+user-- 
+.--  
+Room--  $
+;--$ %
+await// "
+_roomRequestRepository// (
+.//( )
+AddRoomRequest//) 7
+(//7 8
+request//8 ?
+)//? @
+;//@ A
+if11 
+(11 
+!11 
+await11 "
+_roomRequestRepository11 -
+.11- .
+SaveAllAsync11. :
+(11: ;
+)11; <
+)11< =
+{22 
+response33 
+.33 
+
+StatusCode33 #
+=33$ %
+(33& '
+int33' *
+)33* +
+HttpStatusCode33+ 9
+.339 :
+InternalServerError33: M
+;33M N
+response44 
+.44 
+Errors44 
+.44  
+Add44  #
+(44# $#
+RoomRequestServiceError44$ ;
+.44; <
+UnableToSaveRequest44< O
+)44O P
+;44P Q
+return55 
+response55 
+;55  
+}66 
+response88 
+.88 
+IsValid88 
+=88 
+true88 #
+;88# $
+return99 
+response99 
+;99 
+}:: 	
+public<< 
+async<< 
+Task<< 
+<<< 
+ServiceResponse<< )
+<<<) *
+	PagedList<<* 3
+<<<3 4
+BaseRoomRequestDto<<4 F
+><<F G
+><<G H
+><<H I#
+GetFilteredRoomRequests<<J a
+(<<a b
+RoomRequestParams<<b s
+roomRequestFilter	<<t Ö
+)
+<<Ö Ü
+{== 	
+return>> 
+new>> 
+ServiceResponse>> &
+<>>& '
+	PagedList>>' 0
+<>>0 1
+BaseRoomRequestDto>>1 C
+>>>C D
+>>>D E
+(>>E F
+)>>F G
+{?? 
+Data@@ 
+=@@ 
+await@@ "
+_roomRequestRepository@@ 3
+.@@3 4#
+GetFilteredRoomRequests@@4 K
+(@@K L
+roomRequestFilter@@L ]
+)@@] ^
+,@@^ _
+IsValidAA 
+=AA 
+trueAA 
+}BB 
+;BB 
+}CC 	
+publicEE 
+asyncEE 
+TaskEE 
+<EE 
+ServiceResponseEE )
+<EE) *
+	PagedListEE* 3
+<EE3 4
+BaseRoomRequestDtoEE4 F
+>EEF G
+>EEG H
+>EEH I
+GetMyRoomRequestsEEJ [
+(EE[ \
+stringEE\ b
+userRoomNumberEEc q
+,EEq r
+RoomRequestParams	EEs Ñ
+roomRequestFilter
+EEÖ ñ
+)
+EEñ ó
+{FF 	
+ServiceResponseGG 
+<GG 
+	PagedListGG %
+<GG% &
+BaseRoomRequestDtoGG& 8
+>GG8 9
+>GG9 :
+responseGG; C
+=GGD E
+newGGF I
+(GGI J
+)GGJ K
+;GGK L
+	HotelUserHH 
+userHH 
+=HH 
+awaitHH " 
+_hotelUserRepositoryHH# 7
+.HH7 8,
+ GetHotelUserWithRoomByRoomNumberHH8 X
+(HHX Y
+userRoomNumberHHY g
+)HHg h
+;HHh i
+ifJJ 
+(JJ 
+userJJ 
+isJJ 
+nullJJ 
+)JJ 
+{KK 
+responseLL 
+.LL 
+
+StatusCodeLL #
+=LL$ %
+(LL& '
+intLL' *
+)LL* +
+HttpStatusCodeLL+ 9
+.LL9 :
+NotFoundLL: B
+;LLB C
+responseMM 
+.MM 
+ErrorsMM 
+.MM  
+AddMM  #
+(MM# $#
+RoomRequestServiceErrorMM$ ;
+.MM; <
+UserNotFoundMM< H
+)MMH I
+;MMI J
+returnNN 
+responseNN 
+;NN  
+}OO 
+roomRequestFilterQQ 
+.QQ 
+RoomQQ "
+=QQ# $
+userQQ% )
+.QQ) *
+RoomQQ* .
+.QQ. /
+
+RoomNumberQQ/ 9
+;QQ9 :
+roomRequestFilterRR 
+.RR 
+MinRequestDateRR ,
+=RR- .
+userRR/ 3
+.RR3 4
+RoomRR4 8
+.RR8 9
+CheckInDateRR9 D
+;RRD E
+roomRequestFilterSS 
+.SS 
+MaxRequestDateSS ,
+=SS- .
+userSS/ 3
+.SS3 4
+RoomSS4 8
+.SS8 9
+CheckOutDateSS9 E
+;SSE F
+responseUU 
+.UU 
+IsValidUU 
+=UU 
+trueUU #
+;UU# $
+responseVV 
+.VV 
+DataVV 
+=VV 
+awaitVV !"
+_roomRequestRepositoryVV" 8
+.VV8 9#
+GetFilteredRoomRequestsVV9 P
+(VVP Q
+roomRequestFilterVVQ b
+)VVb c
+;VVc d
+returnWW 
+responseWW 
+;WW 
+}XX 	
+publicZZ 
+asyncZZ 
+TaskZZ 
+<ZZ 
+ServiceResponseZZ )
+<ZZ) *
+	PagedListZZ* 3
+<ZZ3 4
+BaseRoomRequestDtoZZ4 F
+>ZZF G
+>ZZG H
+>ZZH I!
+GetMyAssignedRequestsZZJ _
+(ZZ_ `
+stringZZ` f
+userRoomNumberZZg u
+,ZZu v
+RoomRequestParams	ZZw à
+roomRequestFilter
+ZZâ ö
+)
+ZZö õ
+{[[ 	
+ServiceResponse\\ 
+<\\ 
+	PagedList\\ %
+<\\% &
+BaseRoomRequestDto\\& 8
+>\\8 9
+>\\9 :
+response\\; C
+=\\D E
+new\\F I
+(\\I J
+)\\J K
+;\\K L
+	HotelUser]] 
+user]] 
+=]] 
+await]] " 
+_hotelUserRepository]]# 7
+.]]7 8,
+ GetHotelUserWithRoomByRoomNumber]]8 X
+(]]X Y
+userRoomNumber]]Y g
+)]]g h
+;]]h i
+if__ 
+(__ 
+user__ 
+is__ 
+null__ 
+)__ 
+{`` 
+responseaa 
+.aa 
+
+StatusCodeaa #
+=aa$ %
+(aa& '
+intaa' *
+)aa* +
+HttpStatusCodeaa+ 9
+.aa9 :
+NotFoundaa: B
+;aaB C
+responsebb 
+.bb 
+Errorsbb 
+.bb  
+Addbb  #
+(bb# $#
+RoomRequestServiceErrorbb$ ;
+.bb; <
+UserNotFoundbb< H
+)bbH I
+;bbI J
+returncc 
+responsecc 
+;cc  
+}dd 
+roomRequestFilterff 
+.ff 
+
+AssignedToff (
+=ff) *
+userff+ /
+.ff/ 0
+Roomff0 4
+.ff4 5
+
+RoomNumberff5 ?
+;ff? @
+roomRequestFiltergg 
+.gg 
+RequestStatusgg +
+=gg, -
+newgg. 1
+Listgg2 6
+<gg6 7
+intgg7 :
+>gg: ;
+{gg< =
+(gg> ?
+intgg? B
+)ggB C
+RoomRequestStatusggD U
+.ggU V
+
+InProgressggV `
+,gg` a
+(ggb c
+intggc f
+)ggf g
+RoomRequestStatusggh y
+.ggy z
+Paused	ggz Ä
+}
+ggÄ Å
+;
+ggÅ Ç
+responseii 
+.ii 
+IsValidii 
+=ii 
+trueii #
+;ii# $
+responsejj 
+.jj 
+Datajj 
+=jj 
+awaitjj !"
+_roomRequestRepositoryjj" 8
+.jj8 9#
+GetFilteredRoomRequestsjj9 P
+(jjP Q
+roomRequestFilterjjQ b
+)jjb c
+;jjc d
+returnkk 
+responsekk 
+;kk 
+}ll 	
+publicnn 
+asyncnn 
+Tasknn 
+<nn 
+ServiceResponsenn )
+<nn) *
+RoomRequestDtonn* 8
+>nn8 9
+>nn9 :
+GetRoomRequestnn; I
+(nnI J
+intnnJ M
+roomRequestIdnnN [
+,nn[ \
+stringnn] c
+userRoomNumbernnd r
+,nnr s
+Listnnt x
+<nnx y
+stringnny 
+>	nn Ä
+	userRoles
+nnÅ ä
+)
+nnä ã
+{oo 	
+ServiceResponsepp 
+<pp 
+RoomRequestDtopp *
+>pp* +
+responsepp, 4
+=pp5 6
+newpp7 :
+(pp: ;
+)pp; <
+;pp< =
+RoomRequestrr 
+roomRequestrr #
+=rr$ %
+awaitrr& +"
+_roomRequestRepositoryrr, B
+.rrB C
+GetRoomRequestByIdrrC U
+(rrU V
+roomRequestIdrrV c
+)rrc d
+;rrd e
+iftt 
+(tt 
+roomRequesttt 
+istt 
+nulltt #
+)tt# $
+{uu 
+responsevv 
+.vv 
+
+StatusCodevv #
+=vv$ %
+(vv& '
+intvv' *
+)vv* +
+HttpStatusCodevv+ 9
+.vv9 :
+NotFoundvv: B
+;vvB C
 responseww 
 .ww 
 Errorsww 
@@ -17171,1324 +20212,1526 @@ IsEmployeeuuH R
 returnxx 
 responsexx 
 ;xx  
-}yy 
-response{{ 
-.{{ 
-IsValid{{ 
-={{ 
-true{{ #
-;{{# $
-response|| 
-.|| 
-Data|| 
-=|| 
-_mapper|| #
-.||# $
-Map||$ '
-<||' (
-RoomRequestDto||( 6
->||6 7
-(||7 8
-roomRequest||8 C
-)||C D
-;||D E
-return}} 
-response}} 
-;}} 
-}~~ 	
-public
-ÄÄ 
-async
-ÄÄ 
-Task
-ÄÄ 
-<
-ÄÄ 
-ServiceResponse
-ÄÄ )
-<
-ÄÄ) *
-bool
-ÄÄ* .
->
-ÄÄ. /
->
-ÄÄ/ 0
-StartRoomRequest
-ÄÄ1 A
-(
-ÄÄA B
-int
-ÄÄB E
-roomRequestId
-ÄÄF S
-,
-ÄÄS T
-string
-ÄÄU [
-userRoomNumber
-ÄÄ\ j
-,
-ÄÄj k
-List
-ÄÄl p
-<
-ÄÄp q
-string
-ÄÄq w
->
-ÄÄw x
-	userRolesÄÄy Ç
-)ÄÄÇ É
-{
-ÅÅ 	
-ServiceResponse
-ÇÇ 
-<
-ÇÇ 
-bool
-ÇÇ  
->
-ÇÇ  !
+}yy 
+	HotelUser{{ 
+user{{ 
+={{ 
+await{{ " 
+_hotelUserRepository{{# 7
+.{{7 8,
+ GetHotelUserWithRoomByRoomNumber{{8 X
+({{X Y
+userRoomNumber{{Y g
+){{g h
+;{{h i
+if}} 
+(}} 
+user}} 
+is}} 
+null}} 
+)}} 
+{~~ 
+response 
+. 
+
+StatusCode #
+=$ %
+(& '
+int' *
+)* +
+HttpStatusCode+ 9
+.9 :
+NotFound: B
+;B C
 response
-ÇÇ" *
-=
-ÇÇ+ ,
-new
-ÇÇ- 0
-(
-ÇÇ0 1
-)
-ÇÇ1 2
-;
-ÇÇ2 3
-RoomRequest
-ÑÑ 
-roomRequest
-ÑÑ #
-=
-ÑÑ$ %
-await
-ÑÑ& +$
-_roomRequestRepository
-ÑÑ, B
+ÄÄ 
 .
-ÑÑB C 
-GetRoomRequestById
-ÑÑC U
-(
-ÑÑU V
-roomRequestId
-ÑÑV c
-)
-ÑÑc d
-;
-ÑÑd e
-if
-ÜÜ 
-(
-ÜÜ 
-roomRequest
-ÜÜ 
-is
-ÜÜ 
-null
-ÜÜ #
-)
-ÜÜ# $
-{
-áá 
-response
-àà 
-.
-àà 
+ÄÄ 
 Errors
-àà 
+ÄÄ 
 .
-àà  
+ÄÄ  
 Add
-àà  #
+ÄÄ  #
 (
-àà# $%
+ÄÄ# $%
 RoomRequestServiceError
-àà$ ;
+ÄÄ$ ;
 .
-àà; <!
-RoomRequestNotFound
-àà< O
-)
-ààO P
-;
-ààP Q
-return
-ââ 
-response
-ââ 
-;
-ââ  
-}
-ää 
-	HotelUser
-åå 
-user
-åå 
-=
-åå 
-await
-åå ""
-_hotelUserRepository
-åå# 7
-.
-åå7 8.
- GetHotelUserWithRoomByRoomNumber
-åå8 X
-(
-ååX Y
-userRoomNumber
-ååY g
-)
-ååg h
-;
-ååh i
-if
-éé 
-(
-éé 
-user
-éé 
-is
-éé 
-null
-éé 
-)
-éé 
-{
-èè 
-response
-êê 
-.
-êê 
-Errors
-êê 
-.
-êê  
-Add
-êê  #
-(
-êê# $%
-RoomRequestServiceError
-êê$ ;
-.
-êê; <
+ÄÄ; <
 UserNotFound
-êê< H
+ÄÄ< H
 )
-êêH I
+ÄÄH I
 ;
-êêI J
+ÄÄI J
 return
-ëë 
+ÅÅ 
 response
-ëë 
+ÅÅ 
 ;
-ëë  
+ÅÅ  
 }
-íí 
+ÇÇ 
 if
-îî 
+ÑÑ 
 (
-îî 
-!
-îî 
-IsCorrectRole
-îî 
-(
-îî 
-	userRoles
-îî (
-,
-îî( )
+ÑÑ 
 roomRequest
-îî* 5
+ÑÑ 
 .
-îî5 6
+ÑÑ 
+Room
+ÑÑ  
+.
+ÑÑ  !
 
-Department
-îî6 @
-)
-îî@ A
-)
-îîA B
-{
-ïï 
-response
-ññ 
-.
-ññ 
-Errors
-ññ 
-.
-ññ  
-Add
-ññ  #
-(
-ññ# $%
-RoomRequestServiceError
-ññ$ ;
-.
-ññ; <-
-StartDifferentDepartmentRequest
-ññ< [
-)
-ññ[ \
-;
-ññ\ ]
-return
-óó 
-response
-óó 
-;
-óó  
-}
-òò 
-if
-öö 
-(
-öö 
-roomRequest
-öö 
-.
-öö 
-RequestStatus
-öö )
+RoomNumber
+ÑÑ! +
 !=
-öö* ,
-RoomRequestStatus
-öö- >
-.
-öö> ?
-Paused
-öö? E
-&&
-ööF H
-roomRequest
-ööI T
-.
-ööT U
-RequestStatus
-ööU b
-!=
-ööc e
-RoomRequestStatus
-ööf w
-.
-ööw x
-New
-ööx {
-)
-öö{ |
-{
-õõ 
-response
-úú 
-.
-úú 
-Errors
-úú 
-.
-úú  
-Add
-úú  #
-(
-úú# $%
-RoomRequestServiceError
-úú$ ;
-.
-úú; <
-UnableToInitiate
-úú< L
-)
-úúL M
-;
-úúM N
-return
-ùù 
-response
-ùù 
-;
-ùù  
-}
-ûû 
-roomRequest
-†† 
-.
-†† 
-
-AssignedTo
-†† "
-=
-††# $
+ÑÑ, .
 user
-††% )
-;
-††) *
-roomRequest
-°° 
+ÑÑ/ 3
 .
-°° 
-RequestStatus
-°° %
-=
-°°& '
-RoomRequestStatus
-°°( 9
+ÑÑ3 4
+Room
+ÑÑ4 8
 .
-°°9 :
+ÑÑ8 9
 
-InProgress
-°°: D
-;
-°°D E
-roomRequest
-¢¢ 
-.
-¢¢ 
-	DateStart
-¢¢ !
-=
-¢¢" #
-DateTime
-¢¢$ ,
-.
-¢¢, -
-Now
-¢¢- 0
-;
-¢¢0 1$
-_roomRequestRepository
-§§ "
-.
-§§" #
-Update
-§§# )
+RoomNumber
+ÑÑ9 C
+&&
+ÑÑD F
+!
+ÑÑG H
+	CheckRole
+ÑÑH Q
 (
-§§) *
-roomRequest
-§§* 5
+ÑÑQ R
+	userRoles
+ÑÑR [
+,
+ÑÑ[ \
+Roles
+ÑÑ] b
+.
+ÑÑb c
+Employee
+ÑÑc k
+.
+ÑÑk l
+ToList
+ÑÑl r
+(
+ÑÑr s
 )
-§§5 6
+ÑÑs t
+)
+ÑÑt u
+)
+ÑÑu v
+{
+ÖÖ 
+response
+ÜÜ 
+.
+ÜÜ 
+
+StatusCode
+ÜÜ #
+=
+ÜÜ$ %
+(
+ÜÜ& '
+int
+ÜÜ' *
+)
+ÜÜ* +
+HttpStatusCode
+ÜÜ+ 9
+.
+ÜÜ9 :
+	Forbidden
+ÜÜ: C
 ;
-§§6 7
+ÜÜC D
+response
+áá 
+.
+áá 
+Errors
+áá 
+.
+áá  
+Add
+áá  #
+(
+áá# $%
+RoomRequestServiceError
+áá$ ;
+.
+áá; <!
+RoomRequestNotFound
+áá< O
+)
+ááO P
+;
+ááP Q
+return
+àà 
+response
+àà 
+;
+àà  
+}
+ââ 
+response
+ãã 
+.
+ãã 
+IsValid
+ãã 
+=
+ãã 
+true
+ãã #
+;
+ãã# $
+response
+åå 
+.
+åå 
+Data
+åå 
+=
+åå 
+_mapper
+åå #
+.
+åå# $
+Map
+åå$ '
+<
+åå' (
+RoomRequestDto
+åå( 6
+>
+åå6 7
+(
+åå7 8
+roomRequest
+åå8 C
+)
+ååC D
+;
+ååD E
+return
+çç 
+response
+çç 
+;
+çç 
+}
+éé 	
+public
+êê 
+async
+êê 
+Task
+êê 
+<
+êê 
+ServiceResponse
+êê )
+<
+êê) *
+bool
+êê* .
+>
+êê. /
+>
+êê/ 0
+StartRoomRequest
+êê1 A
+(
+êêA B
+int
+êêB E
+roomRequestId
+êêF S
+,
+êêS T
+string
+êêU [
+userRoomNumber
+êê\ j
+,
+êêj k
+List
+êêl p
+<
+êêp q
+string
+êêq w
+>
+êêw x
+	userRolesêêy Ç
+)êêÇ É
+{
+ëë 	
+ServiceResponse
+íí 
+<
+íí 
+bool
+íí  
+>
+íí  !
+response
+íí" *
+=
+íí+ ,
+new
+íí- 0
+(
+íí0 1
+)
+íí1 2
+;
+íí2 3
+RoomRequest
+îî 
+roomRequest
+îî #
+=
+îî$ %
+await
+îî& +$
+_roomRequestRepository
+îî, B
+.
+îîB C 
+GetRoomRequestById
+îîC U
+(
+îîU V
+roomRequestId
+îîV c
+)
+îîc d
+;
+îîd e
+if
+ññ 
+(
+ññ 
+roomRequest
+ññ 
+is
+ññ 
+null
+ññ #
+)
+ññ# $
+{
+óó 
+response
+òò 
+.
+òò 
+
+StatusCode
+òò #
+=
+òò$ %
+(
+òò& '
+int
+òò' *
+)
+òò* +
+HttpStatusCode
+òò+ 9
+.
+òò9 :
+NotFound
+òò: B
+;
+òòB C
+response
+ôô 
+.
+ôô 
+Errors
+ôô 
+.
+ôô  
+Add
+ôô  #
+(
+ôô# $%
+RoomRequestServiceError
+ôô$ ;
+.
+ôô; <!
+RoomRequestNotFound
+ôô< O
+)
+ôôO P
+;
+ôôP Q
+return
+öö 
+response
+öö 
+;
+öö  
+}
+õõ 
+	HotelUser
+ùù 
+user
+ùù 
+=
+ùù 
+await
+ùù ""
+_hotelUserRepository
+ùù# 7
+.
+ùù7 8.
+ GetHotelUserWithRoomByRoomNumber
+ùù8 X
+(
+ùùX Y
+userRoomNumber
+ùùY g
+)
+ùùg h
+;
+ùùh i
+if
+üü 
+(
+üü 
+user
+üü 
+is
+üü 
+null
+üü 
+)
+üü 
+{
+†† 
+response
+°° 
+.
+°° 
+
+StatusCode
+°° #
+=
+°°$ %
+(
+°°& '
+int
+°°' *
+)
+°°* +
+HttpStatusCode
+°°+ 9
+.
+°°9 :
+NotFound
+°°: B
+;
+°°B C
+response
+¢¢ 
+.
+¢¢ 
+Errors
+¢¢ 
+.
+¢¢  
+Add
+¢¢  #
+(
+¢¢# $%
+RoomRequestServiceError
+¢¢$ ;
+.
+¢¢; <
+UserNotFound
+¢¢< H
+)
+¢¢H I
+;
+¢¢I J
+return
+££ 
+response
+££ 
+;
+££  
+}
+§§ 
 if
 ¶¶ 
 (
 ¶¶ 
 !
-¶¶ 
-await
-¶¶ $
-_roomRequestRepository
-¶¶ -
-.
-¶¶- .
-SaveAllAsync
-¶¶. :
+¶¶ 
+	CheckRole
+¶¶ 
 (
-¶¶: ;
+¶¶ 
+	userRoles
+¶¶ $
+,
+¶¶$ %
+new
+¶¶& )
+List
+¶¶* .
+<
+¶¶. /
+string
+¶¶/ 5
+>
+¶¶5 6
+(
+¶¶6 7
 )
-¶¶; <
+¶¶7 8
+{
+¶¶9 :
+roomRequest
+¶¶; F
+.
+¶¶F G
+
+Department
+¶¶G Q
+}
+¶¶R S
 )
-¶¶< =
+¶¶S T
+)
+¶¶T U
 {
 ßß 
 response
 ®® 
 .
-®® 
-Errors
-®® 
-.
-®®  
-Add
-®®  #
-(
-®®# $%
-RoomRequestServiceError
-®®$ ;
-.
-®®; <
-UnableToInitiate
-®®< L
-)
-®®L M
-;
-®®M N
-return
-©© 
-response
-©© 
-;
-©©  
-}
-™™ 
-response
-¨¨ 
-.
-¨¨ 
-IsValid
-¨¨ 
+®® 
+
+StatusCode
+®® #
 =
-¨¨ 
-response
-¨¨ '
-.
-¨¨' (
-Data
-¨¨( ,
-=
-¨¨- .
-true
-¨¨/ 3
-;
-¨¨3 4
-return
-ÆÆ 
-response
-ÆÆ 
-;
-ÆÆ 
-}
-ØØ 	
-public
-±± 
-async
-±± 
-Task
-±± 
-<
-±± 
-ServiceResponse
-±± )
-<
-±±) *
-bool
-±±* .
->
-±±. /
->
-±±/ 0
-EndRoomRequest
-±±1 ?
+®®$ %
 (
-±±? @
+®®& '
 int
-±±@ C
-roomRequestId
-±±D Q
-,
-±±Q R
-string
-±±S Y
-userRoomNumber
-±±Z h
-,
-±±h i
-List
-±±j n
-<
-±±n o
-string
-±±o u
->
-±±u v
-	userRoles±±w Ä
-)±±Ä Å
-{
-≤≤ 	
-ServiceResponse
-≥≥ 
-<
-≥≥ 
-bool
-≥≥  
->
-≥≥  !
-response
-≥≥" *
-=
-≥≥+ ,
-new
-≥≥- 0
-(
-≥≥0 1
+®®' *
 )
-≥≥1 2
-;
-≥≥2 3
-RoomRequest
-µµ 
-roomRequest
-µµ #
-=
-µµ$ %
-await
-µµ& +$
-_roomRequestRepository
-µµ, B
+®®* +
+HttpStatusCode
+®®+ 9
 .
-µµB C 
-GetRoomRequestById
-µµC U
-(
-µµU V
-roomRequestId
-µµV c
-)
-µµc d
+®®9 :
+	Forbidden
+®®: C
 ;
-µµd e
-if
-∑∑ 
-(
-∑∑ 
-roomRequest
-∑∑ 
-is
-∑∑ 
-null
-∑∑ #
-)
-∑∑# $
-{
-∏∏ 
+®®C D
 response
-ππ 
+©© 
 .
-ππ 
+©© 
 Errors
-ππ 
+©© 
 .
-ππ  
+©©  
 Add
-ππ  #
+©©  #
 (
-ππ# $%
+©©# $%
 RoomRequestServiceError
-ππ$ ;
+©©$ ;
 .
-ππ; <!
-RoomRequestNotFound
-ππ< O
+©©; <-
+StartDifferentDepartmentRequest
+©©< [
 )
-ππO P
+©©[ \
 ;
-ππP Q
+©©\ ]
 return
-∫∫ 
+™™ 
 response
-∫∫ 
+™™ 
 ;
-∫∫  
+™™  
 }
-ªª 
-	HotelUser
-ΩΩ 
-user
-ΩΩ 
-=
-ΩΩ 
-await
-ΩΩ ""
-_hotelUserRepository
-ΩΩ# 7
-.
-ΩΩ7 8.
- GetHotelUserWithRoomByRoomNumber
-ΩΩ8 X
-(
-ΩΩX Y
-userRoomNumber
-ΩΩY g
-)
-ΩΩg h
-;
-ΩΩh i
+´´ 
 if
-øø 
+≠≠ 
 (
-øø 
-user
-øø 
-is
-øø 
-null
-øø 
-)
-øø 
-{
-¿¿ 
-response
-¡¡ 
+≠≠ 
+roomRequest
+≠≠ 
 .
-¡¡ 
-Errors
-¡¡ 
-.
-¡¡  
-Add
-¡¡  #
-(
-¡¡# $%
-RoomRequestServiceError
-¡¡$ ;
-.
-¡¡; <
-UserNotFound
-¡¡< H
-)
-¡¡H I
-;
-¡¡I J
-return
-¬¬ 
-response
-¬¬ 
-;
-¬¬  
-}
-√√ 
-if
-≈≈ 
-(
-≈≈ 
-user
-≈≈ 
-.
-≈≈ 
-Id
-≈≈ 
+≠≠ 
+RequestStatus
+≠≠ )
 !=
-≈≈ 
-roomRequest
-≈≈ &
+≠≠* ,
+RoomRequestStatus
+≠≠- >
 .
-≈≈& '
+≠≠> ?
+Paused
+≠≠? E
+&&
+≠≠F H
+roomRequest
+≠≠I T
+.
+≠≠T U
+RequestStatus
+≠≠U b
+!=
+≠≠c e
+RoomRequestStatus
+≠≠f w
+.
+≠≠w x
+New
+≠≠x {
+)
+≠≠{ |
+{
+ÆÆ 
+response
+ØØ 
+.
+ØØ 
+
+StatusCode
+ØØ #
+=
+ØØ$ %
+(
+ØØ& '
+int
+ØØ' *
+)
+ØØ* +
+HttpStatusCode
+ØØ+ 9
+.
+ØØ9 :
+Conflict
+ØØ: B
+;
+ØØB C
+response
+∞∞ 
+.
+∞∞ 
+Errors
+∞∞ 
+.
+∞∞  
+Add
+∞∞  #
+(
+∞∞# $%
+RoomRequestServiceError
+∞∞$ ;
+.
+∞∞; <
+UnableToInitiate
+∞∞< L
+)
+∞∞L M
+;
+∞∞M N
+return
+±± 
+response
+±± 
+;
+±±  
+}
+≤≤ 
+roomRequest
+¥¥ 
+.
+¥¥ 
 
 AssignedTo
-≈≈' 1
-.
-≈≈1 2
-Id
-≈≈2 4
-&&
-≈≈5 7
-!
-≈≈8 9
-	userRoles
-≈≈9 B
-.
-≈≈B C
-Contains
-≈≈C K
-(
-≈≈K L
-Roles
-≈≈L Q
-.
-≈≈Q R
-Admin
-≈≈R W
-)
-≈≈W X
-)
-≈≈X Y
-{
-∆∆ 
-response
-«« 
-.
-«« 
-Errors
-«« 
-.
-««  
-Add
-««  #
-(
-««# $%
-RoomRequestServiceError
-««$ ;
-.
-««; <+
-EndDifferentDepartmentRequest
-««< Y
-)
-««Y Z
+¥¥ "
+=
+¥¥# $
+user
+¥¥% )
 ;
-««Z [
-return
-»» 
-response
-»» 
-;
-»»  
-}
-…… 
-if
-ÀÀ 
-(
-ÀÀ 
+¥¥) *
 roomRequest
-ÀÀ 
+µµ 
 .
-ÀÀ 
+µµ 
 RequestStatus
-ÀÀ )
-!=
-ÀÀ* ,
+µµ %
+=
+µµ& '
 RoomRequestStatus
-ÀÀ- >
+µµ( 9
 .
-ÀÀ> ?
+µµ9 :
 
 InProgress
-ÀÀ? I
-)
-ÀÀI J
-{
-ÃÃ 
-response
-ÕÕ 
-.
-ÕÕ 
-Errors
-ÕÕ 
-.
-ÕÕ  
-Add
-ÕÕ  #
-(
-ÕÕ# $%
-RoomRequestServiceError
-ÕÕ$ ;
-.
-ÕÕ; <
-UnableToEnd
-ÕÕ< G
-)
-ÕÕG H
+µµ: D
 ;
-ÕÕH I
-return
-ŒŒ 
-response
-ŒŒ 
-;
-ŒŒ  
-}
-œœ 
+µµD E
 roomRequest
-—— 
+∂∂ 
 .
-—— 
-RequestStatus
-—— %
-=
-——& '
-RoomRequestStatus
-——( 9
-.
-——9 :
-Ended
-——: ?
-;
-——? @
-roomRequest
-““ 
-.
-““ 
-DateEnd
-““ 
-=
-““  !
-DateTime
-““" *
-.
-““* +
-Now
-““+ .
-;
-““. /
-roomRequest
-”” 
-.
-”” 
-Duration
-””  
-=
-””! "
-roomRequest
-””# .
-.
-””. /
-DateEnd
-””/ 6
--
-””7 8
-roomRequest
-””9 D
-.
-””D E
+∂∂ 
 	DateStart
-””E N
-;
-””N O$
-_roomRequestRepository
-’’ "
+∂∂ !
+=
+∂∂" #
+DateTime
+∂∂$ ,
 .
-’’" #
+∂∂, -
+Now
+∂∂- 0
+;
+∂∂0 1$
+_roomRequestRepository
+∏∏ "
+.
+∏∏" #
 Update
-’’# )
+∏∏# )
 (
-’’) *
+∏∏) *
 roomRequest
-’’* 5
+∏∏* 5
 )
-’’5 6
+∏∏5 6
 ;
-’’6 7
+∏∏6 7
 if
-◊◊ 
+∫∫ 
 (
-◊◊ 
+∫∫ 
 !
-◊◊ 
+∫∫ 
 await
-◊◊ $
+∫∫ $
 _roomRequestRepository
-◊◊ -
+∫∫ -
 .
-◊◊- .
+∫∫- .
 SaveAllAsync
-◊◊. :
+∫∫. :
 (
-◊◊: ;
+∫∫: ;
 )
-◊◊; <
+∫∫; <
 )
-◊◊< =
+∫∫< =
 {
-ÿÿ 
+ªª 
 response
-ŸŸ 
+ºº 
 .
-ŸŸ 
-Errors
-ŸŸ 
-.
-ŸŸ  
-Add
-ŸŸ  #
-(
-ŸŸ# $%
-RoomRequestServiceError
-ŸŸ$ ;
-.
-ŸŸ; <
-UnableToEnd
-ŸŸ< G
-)
-ŸŸG H
-;
-ŸŸH I
-return
-⁄⁄ 
-response
-⁄⁄ 
-;
-⁄⁄  
-}
-€€ 
-response
-›› 
-.
-›› 
-IsValid
-›› 
+ºº 
+
+StatusCode
+ºº #
 =
-›› 
-response
-›› '
-.
-››' (
-Data
-››( ,
-=
-››- .
-true
-››/ 3
-;
-››3 4
-return
-ﬂﬂ 
-response
-ﬂﬂ 
-;
-ﬂﬂ 
-}
-‡‡ 	
-public
-‚‚ 
-async
-‚‚ 
-Task
-‚‚ 
-<
-‚‚ 
-ServiceResponse
-‚‚ )
-<
-‚‚) *
-TimeSpan
-‚‚* 2
->
-‚‚2 3
->
-‚‚3 4-
-AverageTimeAssignedRoomRequests
-‚‚5 T
+ºº$ %
 (
-‚‚T U
-string
-‚‚U [
-userRoomNumber
-‚‚\ j
-)
-‚‚j k
-{
-„„ 	
-ServiceResponse
-‰‰ 
-<
-‰‰ 
-TimeSpan
-‰‰ $
->
-‰‰$ %
-response
-‰‰& .
-=
-‰‰/ 0
-new
-‰‰1 4
-(
-‰‰4 5
-)
-‰‰5 6
-;
-‰‰6 7
-	HotelUser
-ÊÊ 
-user
-ÊÊ 
-=
-ÊÊ 
-await
-ÊÊ ""
-_hotelUserRepository
-ÊÊ# 7
-.
-ÊÊ7 8.
- GetHotelUserWithRoomByRoomNumber
-ÊÊ8 X
-(
-ÊÊX Y
-userRoomNumber
-ÊÊY g
-)
-ÊÊg h
-;
-ÊÊh i
-if
-ËË 
-(
-ËË 
-user
-ËË 
-is
-ËË 
-null
-ËË 
-)
-ËË 
-{
-ÈÈ 
-response
-ÍÍ 
-.
-ÍÍ 
-Errors
-ÍÍ 
-.
-ÍÍ  
-Add
-ÍÍ  #
-(
-ÍÍ# $%
-RoomRequestServiceError
-ÍÍ$ ;
-.
-ÍÍ; <
-UserNotFound
-ÍÍ< H
-)
-ÍÍH I
-;
-ÍÍI J
-return
-ÎÎ 
-response
-ÎÎ 
-;
-ÎÎ  
-}
-ÏÏ 
-List
-ÓÓ 
-<
-ÓÓ 
-TimeSpan
-ÓÓ 
->
-ÓÓ 
-	durations
-ÓÓ $
-=
-ÓÓ% &
-await
-ÓÓ' ,$
-_roomRequestRepository
-ÓÓ- C
-.
-ÓÓC D%
-GetRoomRequestsDuration
-ÓÓD [
-(
-ÓÓ[ \
-user
-ÓÓ\ `
-)
-ÓÓ` a
-;
-ÓÓa b
-response
- 
-.
- 
-IsValid
- 
-=
- 
-true
- #
-;
-# $
-response
-ÒÒ 
-.
-ÒÒ 
-Data
-ÒÒ 
-=
-ÒÒ 
-	durations
-ÒÒ %
-.
-ÒÒ% &
-Mean
-ÒÒ& *
-(
-ÒÒ* +
-)
-ÒÒ+ ,
-;
-ÒÒ, -
-return
-ÚÚ 
-response
-ÚÚ 
-;
-ÚÚ 
-}
-ÛÛ 	
-public
-ıı 
-async
-ıı 
-Task
-ıı 
-<
-ıı 
-ServiceResponse
-ıı )
-<
-ıı) *
-bool
-ıı* .
->
-ıı. /
->
-ıı/ 0#
-SafeDeleteRoomRequest
-ıı1 F
-(
-ııF G
+ºº& '
 int
-ııG J
-roomRequestId
-ııK X
-,
-ııX Y
-string
-ııZ `
-userRoomNumber
-ııa o
-,
-ııo p
-List
-ııq u
-<
-ııu v
-string
-ııv |
->
-ıı| }
-	userRolesıı~ á
-)ııá à
-{
-ˆˆ 	
-ServiceResponse
-˜˜ 
-<
-˜˜ 
-bool
-˜˜  
->
-˜˜  !
-response
-˜˜" *
-=
-˜˜+ ,
-new
-˜˜- 0
-(
-˜˜0 1
+ºº' *
 )
-˜˜1 2
-;
-˜˜2 3
-RoomRequest
-˘˘ 
-roomRequest
-˘˘ #
-=
-˘˘$ %
-await
-˘˘& +$
-_roomRequestRepository
-˘˘, B
+ºº* +
+HttpStatusCode
+ºº+ 9
 .
-˘˘B C 
-GetRoomRequestById
-˘˘C U
-(
-˘˘U V
-roomRequestId
-˘˘V c
-)
-˘˘c d
+ºº9 :!
+InternalServerError
+ºº: M
 ;
-˘˘d e
-if
-˚˚ 
-(
-˚˚ 
-roomRequest
-˚˚ 
-is
-˚˚ 
-null
-˚˚ #
-)
-˚˚# $
-{
-¸¸ 
+ººM N
 response
-˝˝ 
+ΩΩ 
 .
-˝˝ 
+ΩΩ 
 Errors
-˝˝ 
+ΩΩ 
 .
-˝˝  
+ΩΩ  
 Add
-˝˝  #
+ΩΩ  #
 (
-˝˝# $%
+ΩΩ# $%
 RoomRequestServiceError
-˝˝$ ;
+ΩΩ$ ;
 .
-˝˝; <!
-RoomRequestNotFound
-˝˝< O
+ΩΩ; <
+UnableToInitiate
+ΩΩ< L
 )
-˝˝O P
+ΩΩL M
 ;
-˝˝P Q
+ΩΩM N
 return
-˛˛ 
+ææ 
 response
-˛˛ 
+ææ 
 ;
-˛˛  
+ææ  
 }
-ˇˇ 
-	HotelUser
-ÅÅ 
-user
-ÅÅ 
-=
-ÅÅ 
-await
-ÅÅ ""
-_hotelUserRepository
-ÅÅ# 7
+øø 
+response
+¡¡ 
 .
-ÅÅ7 8.
- GetHotelUserWithRoomByRoomNumber
-ÅÅ8 X
-(
-ÅÅX Y
-userRoomNumber
-ÅÅY g
-)
-ÅÅg h
+¡¡ 
+IsValid
+¡¡ 
+=
+¡¡ 
+response
+¡¡ '
+.
+¡¡' (
+Data
+¡¡( ,
+=
+¡¡- .
+true
+¡¡/ 3
 ;
-ÅÅh i
-if
-ÉÉ 
+¡¡3 4
+return
+√√ 
+response
+√√ 
+;
+√√ 
+}
+ƒƒ 	
+public
+∆∆ 
+async
+∆∆ 
+Task
+∆∆ 
+<
+∆∆ 
+ServiceResponse
+∆∆ )
+<
+∆∆) *
+bool
+∆∆* .
+>
+∆∆. /
+>
+∆∆/ 0
+EndRoomRequest
+∆∆1 ?
 (
-ÉÉ 
-user
-ÉÉ 
-is
-ÉÉ 
-null
-ÉÉ 
-)
-ÉÉ 
+∆∆? @
+int
+∆∆@ C
+roomRequestId
+∆∆D Q
+,
+∆∆Q R
+string
+∆∆S Y
+userRoomNumber
+∆∆Z h
+,
+∆∆h i
+List
+∆∆j n
+<
+∆∆n o
+string
+∆∆o u
+>
+∆∆u v
+	userRoles∆∆w Ä
+)∆∆Ä Å
 {
-ÑÑ 
+«« 	
+ServiceResponse
+»» 
+<
+»» 
+bool
+»»  
+>
+»»  !
+response
+»»" *
+=
+»»+ ,
+new
+»»- 0
+(
+»»0 1
+)
+»»1 2
+;
+»»2 3
+RoomRequest
+   
+roomRequest
+   #
+=
+  $ %
+await
+  & +$
+_roomRequestRepository
+  , B
+.
+  B C 
+GetRoomRequestById
+  C U
+(
+  U V
+roomRequestId
+  V c
+)
+  c d
+;
+  d e
+if
+ÃÃ 
+(
+ÃÃ 
+roomRequest
+ÃÃ 
+is
+ÃÃ 
+null
+ÃÃ #
+)
+ÃÃ# $
+{
+ÕÕ 
+response
+ŒŒ 
+.
+ŒŒ 
+
+StatusCode
+ŒŒ #
+=
+ŒŒ$ %
+(
+ŒŒ& '
+int
+ŒŒ' *
+)
+ŒŒ* +
+HttpStatusCode
+ŒŒ+ 9
+.
+ŒŒ9 :
+NotFound
+ŒŒ: B
+;
+ŒŒB C
+response
+œœ 
+.
+œœ 
+Errors
+œœ 
+.
+œœ  
+Add
+œœ  #
+(
+œœ# $%
+RoomRequestServiceError
+œœ$ ;
+.
+œœ; <!
+RoomRequestNotFound
+œœ< O
+)
+œœO P
+;
+œœP Q
+return
+–– 
+response
+–– 
+;
+––  
+}
+—— 
+	HotelUser
+”” 
+user
+”” 
+=
+”” 
+await
+”” ""
+_hotelUserRepository
+””# 7
+.
+””7 8.
+ GetHotelUserWithRoomByRoomNumber
+””8 X
+(
+””X Y
+userRoomNumber
+””Y g
+)
+””g h
+;
+””h i
+if
+’’ 
+(
+’’ 
+user
+’’ 
+is
+’’ 
+null
+’’ 
+)
+’’ 
+{
+÷÷ 
+response
+◊◊ 
+.
+◊◊ 
+
+StatusCode
+◊◊ #
+=
+◊◊$ %
+(
+◊◊& '
+int
+◊◊' *
+)
+◊◊* +
+HttpStatusCode
+◊◊+ 9
+.
+◊◊9 :
+NotFound
+◊◊: B
+;
+◊◊B C
+response
+ÿÿ 
+.
+ÿÿ 
+Errors
+ÿÿ 
+.
+ÿÿ  
+Add
+ÿÿ  #
+(
+ÿÿ# $%
+RoomRequestServiceError
+ÿÿ$ ;
+.
+ÿÿ; <
+UserNotFound
+ÿÿ< H
+)
+ÿÿH I
+;
+ÿÿI J
+return
+ŸŸ 
+response
+ŸŸ 
+;
+ŸŸ  
+}
+⁄⁄ 
+if
+‹‹ 
+(
+‹‹ 
+roomRequest
+‹‹ 
+.
+‹‹ 
+RequestStatus
+‹‹ )
+!=
+‹‹* ,
+RoomRequestStatus
+‹‹- >
+.
+‹‹> ?
+
+InProgress
+‹‹? I
+)
+‹‹I J
+{
+›› 
+response
+ﬁﬁ 
+.
+ﬁﬁ 
+
+StatusCode
+ﬁﬁ #
+=
+ﬁﬁ$ %
+(
+ﬁﬁ& '
+int
+ﬁﬁ' *
+)
+ﬁﬁ* +
+HttpStatusCode
+ﬁﬁ+ 9
+.
+ﬁﬁ9 :
+Conflict
+ﬁﬁ: B
+;
+ﬁﬁB C
+response
+ﬂﬂ 
+.
+ﬂﬂ 
+Errors
+ﬂﬂ 
+.
+ﬂﬂ  
+Add
+ﬂﬂ  #
+(
+ﬂﬂ# $%
+RoomRequestServiceError
+ﬂﬂ$ ;
+.
+ﬂﬂ; <
+UnableToEnd
+ﬂﬂ< G
+)
+ﬂﬂG H
+;
+ﬂﬂH I
+return
+‡‡ 
+response
+‡‡ 
+;
+‡‡  
+}
+·· 
+if
+„„ 
+(
+„„ 
+user
+„„ 
+.
+„„ 
+Id
+„„ 
+!=
+„„ 
+roomRequest
+„„ &
+.
+„„& '
+
+AssignedTo
+„„' 1
+.
+„„1 2
+Id
+„„2 4
+&&
+„„5 7
+!
+„„8 9
+	userRoles
+„„9 B
+.
+„„B C
+Contains
+„„C K
+(
+„„K L
+Roles
+„„L Q
+.
+„„Q R
+Admin
+„„R W
+)
+„„W X
+)
+„„X Y
+{
+‰‰ 
+response
+ÂÂ 
+.
+ÂÂ 
+
+StatusCode
+ÂÂ #
+=
+ÂÂ$ %
+(
+ÂÂ& '
+int
+ÂÂ' *
+)
+ÂÂ* +
+HttpStatusCode
+ÂÂ+ 9
+.
+ÂÂ9 :
+	Forbidden
+ÂÂ: C
+;
+ÂÂC D
+response
+ÊÊ 
+.
+ÊÊ 
+Errors
+ÊÊ 
+.
+ÊÊ  
+Add
+ÊÊ  #
+(
+ÊÊ# $%
+RoomRequestServiceError
+ÊÊ$ ;
+.
+ÊÊ; <+
+EndDifferentDepartmentRequest
+ÊÊ< Y
+)
+ÊÊY Z
+;
+ÊÊZ [
+return
+ÁÁ 
+response
+ÁÁ 
+;
+ÁÁ  
+}
+ËË 
+roomRequest
+ÍÍ 
+.
+ÍÍ 
+RequestStatus
+ÍÍ %
+=
+ÍÍ& '
+RoomRequestStatus
+ÍÍ( 9
+.
+ÍÍ9 :
+Ended
+ÍÍ: ?
+;
+ÍÍ? @
+roomRequest
+ÎÎ 
+.
+ÎÎ 
+DateEnd
+ÎÎ 
+=
+ÎÎ  !
+DateTime
+ÎÎ" *
+.
+ÎÎ* +
+Now
+ÎÎ+ .
+;
+ÎÎ. /
+roomRequest
+ÏÏ 
+.
+ÏÏ 
+Duration
+ÏÏ  
+=
+ÏÏ! "
+roomRequest
+ÏÏ# .
+.
+ÏÏ. /
+DateEnd
+ÏÏ/ 6
+-
+ÏÏ7 8
+roomRequest
+ÏÏ9 D
+.
+ÏÏD E
+	DateStart
+ÏÏE N
+;
+ÏÏN O$
+_roomRequestRepository
+ÓÓ "
+.
+ÓÓ" #
+Update
+ÓÓ# )
+(
+ÓÓ) *
+roomRequest
+ÓÓ* 5
+)
+ÓÓ5 6
+;
+ÓÓ6 7
+if
+ 
+(
+ 
+!
+ 
+await
+ $
+_roomRequestRepository
+ -
+.
+- .
+SaveAllAsync
+. :
+(
+: ;
+)
+; <
+)
+< =
+{
+ÒÒ 
+response
+ÚÚ 
+.
+ÚÚ 
+
+StatusCode
+ÚÚ #
+=
+ÚÚ$ %
+(
+ÚÚ& '
+int
+ÚÚ' *
+)
+ÚÚ* +
+HttpStatusCode
+ÚÚ+ 9
+.
+ÚÚ9 :!
+InternalServerError
+ÚÚ: M
+;
+ÚÚM N
+response
+ÛÛ 
+.
+ÛÛ 
+Errors
+ÛÛ 
+.
+ÛÛ  
+Add
+ÛÛ  #
+(
+ÛÛ# $%
+RoomRequestServiceError
+ÛÛ$ ;
+.
+ÛÛ; <
+UnableToEnd
+ÛÛ< G
+)
+ÛÛG H
+;
+ÛÛH I
+return
+ÙÙ 
+response
+ÙÙ 
+;
+ÙÙ  
+}
+ıı 
+response
+˜˜ 
+.
+˜˜ 
+IsValid
+˜˜ 
+=
+˜˜ 
+response
+˜˜ '
+.
+˜˜' (
+Data
+˜˜( ,
+=
+˜˜- .
+true
+˜˜/ 3
+;
+˜˜3 4
+return
+˘˘ 
+response
+˘˘ 
+;
+˘˘ 
+}
+˙˙ 	
+public
+¸¸ 
+async
+¸¸ 
+Task
+¸¸ 
+<
+¸¸ 
+ServiceResponse
+¸¸ )
+<
+¸¸) *
+TimeSpan
+¸¸* 2
+>
+¸¸2 3
+>
+¸¸3 4-
+AverageTimeAssignedRoomRequests
+¸¸5 T
+(
+¸¸T U
+string
+¸¸U [
+userRoomNumber
+¸¸\ j
+)
+¸¸j k
+{
+˝˝ 	
+ServiceResponse
+˛˛ 
+<
+˛˛ 
+TimeSpan
+˛˛ $
+>
+˛˛$ %
+response
+˛˛& .
+=
+˛˛/ 0
+new
+˛˛1 4
+(
+˛˛4 5
+)
+˛˛5 6
+;
+˛˛6 7
+	HotelUser
+ÄÄ 
+user
+ÄÄ 
+=
+ÄÄ 
+await
+ÄÄ ""
+_hotelUserRepository
+ÄÄ# 7
+.
+ÄÄ7 8.
+ GetHotelUserWithRoomByRoomNumber
+ÄÄ8 X
+(
+ÄÄX Y
+userRoomNumber
+ÄÄY g
+)
+ÄÄg h
+;
+ÄÄh i
+if
+ÇÇ 
+(
+ÇÇ 
+user
+ÇÇ 
+is
+ÇÇ 
+null
+ÇÇ 
+)
+ÇÇ 
+{
+ÉÉ 
+response
+ÑÑ 
+.
+ÑÑ 
+
+StatusCode
+ÑÑ #
+=
+ÑÑ$ %
+(
+ÑÑ& '
+int
+ÑÑ' *
+)
+ÑÑ* +
+HttpStatusCode
+ÑÑ+ 9
+.
+ÑÑ9 :
+NotFound
+ÑÑ: B
+;
+ÑÑB C
 response
 ÖÖ 
 .
@@ -18518,797 +21761,1154 @@ InProgress
 ;
 ÜÜ  
 }
-áá 
-if
-ââ 
-(
-ââ 
-roomRequest
-ââ 
-.
-ââ 
-Room
-ââ  
-.
-ââ  !
-
-RoomNumber
-ââ! +
-!=
-ââ, .
-user
-ââ/ 3
-.
-ââ3 4
-Room
-ââ4 8
-.
-ââ8 9
-
-RoomNumber
-ââ9 C
-&&
-ââD F
-!
-ââG H
-
-IsEmployee
-ââH R
-(
-ââR S
-	userRoles
-ââS \
-)
-ââ\ ]
-)
-ââ] ^
-{
-ää 
-response
-ãã 
-.
-ãã 
-Errors
-ãã 
-.
-ãã  
-Add
-ãã  #
-(
-ãã# $%
-RoomRequestServiceError
-ãã$ ;
-.
-ãã; <#
-UnableToDeleteRequest
-ãã< Q
-)
-ããQ R
-;
-ããR S
-return
-åå 
-response
-åå 
-;
-åå  
-}
-çç 
-if
-èè 
-(
-èè 
-roomRequest
-èè 
-.
-èè 
-RequestStatus
-èè )
-!=
-èè* ,
-RoomRequestStatus
-èè- >
-.
-èè> ?
-New
-èè? B
-&&
-èèC E
-!
-èèF G
-IsAdmin
-èèG N
-(
-èèN O
-	userRoles
-èèO X
-)
-èèX Y
-)
-èèY Z
-{
-êê 
-response
-ëë 
-.
-ëë 
-Errors
-ëë 
-.
-ëë  
-Add
-ëë  #
-(
-ëë# $%
-RoomRequestServiceError
-ëë$ ;
-.
-ëë; <)
-UnableToDeleteRequestStatus
-ëë< W
-+
-ëëX Y
-roomRequest
-ëëZ e
-.
-ëëe f
-RequestStatus
-ëëf s
-.
-ëës t
-ToString
-ëët |
-(
-ëë| }
-)
-ëë} ~
-)
-ëë~ 
-;ëë Ä
-return
-íí 
-response
-íí 
-;
-íí  
-}
-ìì 
-roomRequest
-ïï 
-.
-ïï 
-RequestStatus
-ïï %
-=
-ïï& '
-RoomRequestStatus
-ïï( 9
-.
-ïï9 :
-Deleted
-ïï: A
-;
-ïïA B$
-_roomRequestRepository
-ññ "
-.
-ññ" #
-Update
-ññ# )
-(
-ññ) *
-roomRequest
-ññ* 5
-)
-ññ5 6
-;
-ññ6 7
-if
-òò 
-(
-òò 
-!
-òò 
-await
-òò $
-_roomRequestRepository
-òò -
-.
-òò- .
-SaveAllAsync
-òò. :
-(
-òò: ;
-)
-òò; <
-)
-òò< =
-{
-ôô 
-response
-öö 
-.
-öö 
-Errors
-öö 
-.
-öö  
-Add
-öö  #
-(
-öö# $%
-RoomRequestServiceError
-öö$ ;
-.
-öö; <#
-UnableToDeleteRequest
-öö< Q
-)
-ööQ R
-;
-ööR S
-return
-õõ 
-response
-õõ 
-;
-õõ  
-}
-úú 
-response
-ûû 
-.
-ûû 
-IsValid
-ûû 
-=
-ûû 
-response
-ûû '
-.
-ûû' (
-Data
-ûû( ,
-=
-ûû- .
-true
-ûû/ 3
-;
-ûû3 4
-return
-üü 
-response
-üü 
-;
-üü 
-}
-†† 	
-private
-§§ 
-static
-§§ 
-bool
-§§ 
-IsCorrectRole
-§§ )
-(
-§§) *
+áá 
 List
-§§* .
+ââ 
 <
-§§. /
-string
-§§/ 5
+ââ 
+TimeSpan
+ââ 
 >
-§§5 6
-	userRoles
-§§7 @
-,
-§§@ A
-string
-§§B H
-
-department
-§§I S
+ââ 
+	durations
+ââ $
+=
+ââ% &
+await
+ââ' ,$
+_roomRequestRepository
+ââ- C
+.
+ââC D%
+GetRoomRequestsDuration
+ââD [
+(
+ââ[ \
+user
+ââ\ `
 )
-§§S T
+ââ` a
+;
+ââa b
+response
+ãã 
+.
+ãã 
+IsValid
+ãã 
+=
+ãã 
+true
+ãã #
+;
+ãã# $
+response
+åå 
+.
+åå 
+Data
+åå 
+=
+åå 
+	durations
+åå %
+.
+åå% &
+Mean
+åå& *
+(
+åå* +
+)
+åå+ ,
+;
+åå, -
+return
+çç 
+response
+çç 
+;
+çç 
+}
+éé 	
+public
+êê 
+async
+êê 
+Task
+êê 
+<
+êê 
+ServiceResponse
+êê )
+<
+êê) *
+bool
+êê* .
+>
+êê. /
+>
+êê/ 0#
+SafeDeleteRoomRequest
+êê1 F
+(
+êêF G
+int
+êêG J
+roomRequestId
+êêK X
+,
+êêX Y
+string
+êêZ `
+userRoomNumber
+êêa o
+,
+êêo p
+List
+êêq u
+<
+êêu v
+string
+êêv |
+>
+êê| }
+	userRolesêê~ á
+)êêá à
 {
-•• 	
+ëë 	
+ServiceResponse
+íí 
+<
+íí 
+bool
+íí  
+>
+íí  !
+response
+íí" *
+=
+íí+ ,
+new
+íí- 0
+(
+íí0 1
+)
+íí1 2
+;
+íí2 3
+RoomRequest
+îî 
+roomRequest
+îî #
+=
+îî$ %
+await
+îî& +$
+_roomRequestRepository
+îî, B
+.
+îîB C 
+GetRoomRequestById
+îîC U
+(
+îîU V
+roomRequestId
+îîV c
+)
+îîc d
+;
+îîd e
+if
+ññ 
+(
+ññ 
+roomRequest
+ññ 
+is
+ññ 
+null
+ññ #
+)
+ññ# $
+{
+óó 
+response
+òò 
+.
+òò 
+
+StatusCode
+òò #
+=
+òò$ %
+(
+òò& '
+int
+òò' *
+)
+òò* +
+HttpStatusCode
+òò+ 9
+.
+òò9 :
+NotFound
+òò: B
+;
+òòB C
+response
+ôô 
+.
+ôô 
+Errors
+ôô 
+.
+ôô  
+Add
+ôô  #
+(
+ôô# $%
+RoomRequestServiceError
+ôô$ ;
+.
+ôô; <!
+RoomRequestNotFound
+ôô< O
+)
+ôôO P
+;
+ôôP Q
+return
+öö 
+response
+öö 
+;
+öö  
+}
+õõ 
+	HotelUser
+ùù 
+user
+ùù 
+=
+ùù 
+await
+ùù ""
+_hotelUserRepository
+ùù# 7
+.
+ùù7 8.
+ GetHotelUserWithRoomByRoomNumber
+ùù8 X
+(
+ùùX Y
+userRoomNumber
+ùùY g
+)
+ùùg h
+;
+ùùh i
+if
+üü 
+(
+üü 
+user
+üü 
+is
+üü 
+null
+üü 
+)
+üü 
+{
+†† 
+response
+°° 
+.
+°° 
+
+StatusCode
+°° #
+=
+°°$ %
+(
+°°& '
+int
+°°' *
+)
+°°* +
+HttpStatusCode
+°°+ 9
+.
+°°9 :
+NotFound
+°°: B
+;
+°°B C
+response
+¢¢ 
+.
+¢¢ 
+Errors
+¢¢ 
+.
+¢¢  
+Add
+¢¢  #
+(
+¢¢# $%
+RoomRequestServiceError
+¢¢$ ;
+.
+¢¢; <
+UserNotFound
+¢¢< H
+)
+¢¢H I
+;
+¢¢I J
+return
+££ 
+response
+££ 
+;
+££  
+}
+§§ 
 if
 ¶¶ 
 (
-¶¶ 
-	userRoles
-¶¶ 
+¶¶ 
+roomRequest
+¶¶ 
 .
-¶¶ 
-Contains
-¶¶ "
-(
-¶¶" #
+¶¶ 
+Room
+¶¶  
+.
+¶¶  !
 
-department
-¶¶# -
-)
-¶¶- .
-||
-¶¶/ 1
-	userRoles
-¶¶2 ;
-.
-¶¶; <
-Contains
-¶¶< D
-(
-¶¶D E
-Roles
-¶¶E J
-.
-¶¶J K
-Admin
-¶¶K P
-)
-¶¶P Q
-)
-¶¶Q R
-{
-ßß 
-return
-®® 
-true
-®® 
-;
-®® 
-}
-©© 
-return
-´´ 
-false
-´´ 
-;
-´´ 
-}
-¨¨ 	
-private
-ÆÆ 
-static
-ÆÆ 
-bool
-ÆÆ 
-
-IsEmployee
-ÆÆ &
-(
-ÆÆ& '
-List
-ÆÆ' +
-<
-ÆÆ+ ,
-string
-ÆÆ, 2
->
-ÆÆ2 3
-	userRoles
-ÆÆ4 =
-)
-ÆÆ= >
-{
-ØØ 	
-return
-∞∞ 
-	userRoles
-∞∞ 
-.
-∞∞ 
-Any
-∞∞  
-(
-∞∞  !
-role
-∞∞! %
-=>
-∞∞& (
-Roles
-∞∞) .
-.
-∞∞. /
-Employee
-∞∞/ 7
-.
-∞∞7 8
-Contains
-∞∞8 @
-(
-∞∞@ A
-role
-∞∞A E
-)
-∞∞E F
-)
-∞∞F G
-;
-∞∞G H
-}
-±± 	
-private
-≥≥ 
-static
-≥≥ 
-bool
-≥≥ 
-IsAdmin
-≥≥ #
-(
-≥≥# $
-List
-≥≥$ (
-<
-≥≥( )
-string
-≥≥) /
->
-≥≥/ 0
-	userRoles
-≥≥1 :
-)
-≥≥: ;
-{
-¥¥ 	
-return
-µµ 
-	userRoles
-µµ 
-.
-µµ 
-FirstOrDefault
-µµ +
-(
-µµ+ ,
-r
-µµ, -
-=>
-µµ. 0
-r
-µµ1 2
-.
-µµ2 3
-Contains
-µµ3 ;
-(
-µµ; <
-Roles
-µµ< A
-.
-µµA B
-Admin
-µµB G
-)
-µµG H
-)
-µµH I
+RoomNumber
+¶¶! +
 !=
-µµJ L
-null
-µµM Q
+¶¶, .
+user
+¶¶/ 3
+.
+¶¶3 4
+Room
+¶¶4 8
+.
+¶¶8 9
+
+RoomNumber
+¶¶9 C
+&&
+¶¶D F
+!
+¶¶G H
+	CheckRole
+¶¶H Q
+(
+¶¶Q R
+	userRoles
+¶¶R [
+,
+¶¶[ \
+Roles
+¶¶] b
+.
+¶¶b c
+Employee
+¶¶c k
+.
+¶¶k l
+ToList
+¶¶l r
+(
+¶¶r s
+)
+¶¶s t
+)
+¶¶t u
+)
+¶¶u v
+{
+ßß 
+response
+®® 
+.
+®® 
+
+StatusCode
+®® #
+=
+®®$ %
+(
+®®& '
+int
+®®' *
+)
+®®* +
+HttpStatusCode
+®®+ 9
+.
+®®9 :
+	Forbidden
+®®: C
 ;
-µµQ R
+®®C D
+response
+©© 
+.
+©© 
+Errors
+©© 
+.
+©©  
+Add
+©©  #
+(
+©©# $%
+RoomRequestServiceError
+©©$ ;
+.
+©©; <#
+UnableToDeleteRequest
+©©< Q
+)
+©©Q R
+;
+©©R S
+return
+™™ 
+response
+™™ 
+;
+™™  
 }
-∂∂ 	
+´´ 
+if
+≠≠ 
+(
+≠≠ 
+roomRequest
+≠≠ 
+.
+≠≠ 
+RequestStatus
+≠≠ )
+!=
+≠≠* ,
+RoomRequestStatus
+≠≠- >
+.
+≠≠> ?
+New
+≠≠? B
+&&
+≠≠C E
+!
+≠≠F G
+	CheckRole
+≠≠G P
+(
+≠≠P Q
+	userRoles
+≠≠Q Z
+,
+≠≠Z [
+new
+≠≠\ _
+List
+≠≠` d
+<
+≠≠d e
+string
+≠≠e k
+>
+≠≠k l
+{
+≠≠m n
+Roles
+≠≠o t
+.
+≠≠t u
+Admin
+≠≠u z
 }
-∏∏ 
-}ππ ÿ+
+≠≠z {
+)
+≠≠{ |
+)
+≠≠| }
+{
+ÆÆ 
+response
+ØØ 
+.
+ØØ 
+
+StatusCode
+ØØ #
+=
+ØØ$ %
+(
+ØØ& '
+int
+ØØ' *
+)
+ØØ* +
+HttpStatusCode
+ØØ+ 9
+.
+ØØ9 :
+Conflict
+ØØ: B
+;
+ØØB C
+response
+∞∞ 
+.
+∞∞ 
+Errors
+∞∞ 
+.
+∞∞  
+Add
+∞∞  #
+(
+∞∞# $%
+RoomRequestServiceError
+∞∞$ ;
+.
+∞∞; <)
+UnableToDeleteRequestStatus
+∞∞< W
++
+∞∞X Y
+roomRequest
+∞∞Z e
+.
+∞∞e f
+RequestStatus
+∞∞f s
+.
+∞∞s t
+ToString
+∞∞t |
+(
+∞∞| }
+)
+∞∞} ~
+)
+∞∞~ 
+;∞∞ Ä
+return
+±± 
+response
+±± 
+;
+±±  
+}
+≤≤ 
+roomRequest
+¥¥ 
+.
+¥¥ 
+RequestStatus
+¥¥ %
+=
+¥¥& '
+RoomRequestStatus
+¥¥( 9
+.
+¥¥9 :
+Deleted
+¥¥: A
+;
+¥¥A B$
+_roomRequestRepository
+µµ "
+.
+µµ" #
+Update
+µµ# )
+(
+µµ) *
+roomRequest
+µµ* 5
+)
+µµ5 6
+;
+µµ6 7
+if
+∑∑ 
+(
+∑∑ 
+!
+∑∑ 
+await
+∑∑ $
+_roomRequestRepository
+∑∑ -
+.
+∑∑- .
+SaveAllAsync
+∑∑. :
+(
+∑∑: ;
+)
+∑∑; <
+)
+∑∑< =
+{
+∏∏ 
+response
+ππ 
+.
+ππ 
+
+StatusCode
+ππ #
+=
+ππ$ %
+(
+ππ& '
+int
+ππ' *
+)
+ππ* +
+HttpStatusCode
+ππ+ 9
+.
+ππ9 :!
+InternalServerError
+ππ: M
+;
+ππM N
+response
+∫∫ 
+.
+∫∫ 
+Errors
+∫∫ 
+.
+∫∫  
+Add
+∫∫  #
+(
+∫∫# $%
+RoomRequestServiceError
+∫∫$ ;
+.
+∫∫; <#
+UnableToDeleteRequest
+∫∫< Q
+)
+∫∫Q R
+;
+∫∫R S
+return
+ªª 
+response
+ªª 
+;
+ªª  
+}
+ºº 
+response
+ææ 
+.
+ææ 
+IsValid
+ææ 
+=
+ææ 
+response
+ææ '
+.
+ææ' (
+Data
+ææ( ,
+=
+ææ- .
+true
+ææ/ 3
+;
+ææ3 4
+return
+øø 
+response
+øø 
+;
+øø 
+}
+¿¿ 	
+private
+ƒƒ 
+static
+ƒƒ 
+bool
+ƒƒ 
+	CheckRole
+ƒƒ %
+(
+ƒƒ% &
+List
+ƒƒ& *
+<
+ƒƒ* +
+string
+ƒƒ+ 1
+>
+ƒƒ1 2
+	userRoles
+ƒƒ3 <
+,
+ƒƒ< =
+List
+ƒƒ> B
+<
+ƒƒB C
+string
+ƒƒC I
+>
+ƒƒI J
+requiredRoles
+ƒƒK X
+)
+ƒƒX Y
+{
+≈≈ 	
+if
+∆∆ 
+(
+∆∆ 
+!
+∆∆ 
+	userRoles
+∆∆ 
+.
+∆∆ 
+Any
+∆∆ 
+(
+∆∆ 
+role
+∆∆ #
+=>
+∆∆$ &
+requiredRoles
+∆∆' 4
+.
+∆∆4 5
+Contains
+∆∆5 =
+(
+∆∆= >
+role
+∆∆> B
+)
+∆∆B C
+)
+∆∆C D
+&&
+∆∆E G
+!
+∆∆H I
+	userRoles
+∆∆I R
+.
+∆∆R S
+Any
+∆∆S V
+(
+∆∆V W
+role
+∆∆W [
+=>
+∆∆\ ^
+Roles
+∆∆_ d
+.
+∆∆d e
+Admin
+∆∆e j
+.
+∆∆j k
+Contains
+∆∆k s
+(
+∆∆s t
+role
+∆∆t x
+)
+∆∆x y
+)
+∆∆y z
+)
+∆∆z {
+{
+«« 
+return
+»» 
+false
+»» 
+;
+»» 
+}
+…… 
+return
+ÀÀ 
+true
+ÀÀ 
+;
+ÀÀ 
+}
+ÃÃ 	
+}
+ŒŒ 
+}œœ œ0
 ]C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\RoomService.cs
-	namespace 	
-SoleusHotelApi
+	namespace		 	
+SoleusHotelApi		
  
-. 
-Services !
-{		 
-public
+.		 
+Services		 !
+{
 
- 
+ 
+public 
 
-class
-
- 
-RoomService
-
- 
-:
-
- 
-IRoomService
-
- +
-{ 
-private 
-readonly 
-IRoomRepository (
-_roomRepository) 8
-;8 9
-public 
-RoomService 
-( 
-IRoomRepository *
-roomRepository+ 9
-)9 :
-{ 	
-_roomRepository 
-= 
-roomRepository ,
-;, -
-} 	
-public 
-async 
-Task 
-< 
-ServiceResponse )
-<) *
-bool* .
->. /
->/ 0
+class 
+RoomService 
+: 
+IRoomService +
+{ 
+private 
+readonly 
+IRoomRepository (
+_roomRepository) 8
+;8 9
+public 
+RoomService 
+( 
+IRoomRepository *
+roomRepository+ 9
+)9 :
+{ 	
+_roomRepository 
+= 
+roomRepository ,
+;, -
+} 	
+public 
+async 
+Task 
+< 
+ServiceResponse )
+<) *
+bool* .
+>. /
+>/ 0
 
-UpdateRoom1 ;
-(; <
-CreateHotelUserDto< N
-createHotelUserDtoO a
-)a b
-{ 	
-ServiceResponse 
-< 
-bool  
->  !
-response" *
-=+ ,
-new- 0
-(0 1
-)1 2
-;2 3
-Room 
-room 
-= 
-await 
-_roomRepository -
-.- .
-GetRoomByRoomNumber. A
-(A B
-createHotelUserDtoB T
-.T U
+UpdateRoom1 ;
+(; <
+CreateHotelUserDto< N
+createHotelUserDtoO a
+)a b
+{ 	
+ServiceResponse 
+< 
+bool  
+>  !
+response" *
+=+ ,
+new- 0
+(0 1
+)1 2
+;2 3
+Room 
+room 
+= 
+await 
+_roomRepository -
+.- .
+GetRoomByRoomNumber. A
+(A B
+createHotelUserDtoB T
+.T U
 
-RoomNumberU _
-)_ `
-;` a
-if 
-( 
-room 
-is 
-null 
-) 
-{ 
-response 
-. 
-Errors 
-.  
-Add  #
-(# $
-RoomServiceError$ 4
-.4 5
-RoomNotFound5 A
-)A B
-;B C
-return 
-response 
-;  
-} 
-room 
-. 
-CheckInDate 
-= 
-createHotelUserDto 1
-.1 2
-CheckInDate2 =
-;= >
-room 
-. 
-CheckOutDate 
-= 
-createHotelUserDto  2
-.2 3
-CheckOutDate3 ?
-;? @
-_roomRepository!! 
-.!! 
-Update!! "
-(!!" #
-room!!# '
-)!!' (
-;!!( )
-if## 
-(## 
-!## 
-await## 
-_roomRepository## &
-.##& '
-SaveAllAsync##' 3
-(##3 4
-)##4 5
-)##5 6
-{$$ 
-response%% 
-.%% 
-Errors%% 
-.%%  
-Add%%  #
-(%%# $
-RoomServiceError%%$ 4
-.%%4 5
-UnableToChangeDates%%5 H
-+%%I J
-room%%K O
-.%%O P
+RoomNumberU _
+)_ `
+;` a
+if 
+( 
+room 
+is 
+null 
+) 
+{ 
+response 
+. 
 
-RoomNumber%%P Z
-)%%Z [
-;%%[ \
-return&& 
-response&& 
-;&&  
-}'' 
-response)) 
-.)) 
-IsValid)) 
-=)) 
-response)) '
-.))' (
-Data))( ,
-=))- .
-true))/ 3
-;))3 4
-return** 
-response** 
-;** 
-}++ 	
-public-- 
-async-- 
-Task-- 
-<-- 
-ServiceResponse-- )
-<--) *
-bool--* .
->--. /
->--/ 0
-AddUserToRoom--1 >
-(--> ?
-	HotelUser--? H
-user--I M
-,--M N
-CreateHotelUserDto--O a
-createdHotelUserDto--b u
-)--u v
-{.. 	
-ServiceResponse// 
-<// 
-bool//  
->//  !
-response//" *
-=//+ ,
-new//- 0
-(//0 1
-)//1 2
-;//2 3
-Room11 
-room11 
-=11 
-await11 
-_roomRepository11 -
-.11- .
-GetRoomByRoomNumber11. A
-(11A B
-createdHotelUserDto11B U
-.11U V
+StatusCode #
+=$ %
+(& '
+int' *
+)* +
+HttpStatusCode+ 9
+.9 :
+NotFound: B
+;B C
+response 
+. 
+Errors 
+.  
+Add  #
+(# $
+RoomServiceError$ 4
+.4 5
+RoomNotFound5 A
+)A B
+;B C
+return 
+response 
+;  
+} 
+room   
+.   
+CheckInDate   
+=   
+createHotelUserDto   1
+.  1 2
+CheckInDate  2 =
+;  = >
+room!! 
+.!! 
+CheckOutDate!! 
+=!! 
+createHotelUserDto!!  2
+.!!2 3
+CheckOutDate!!3 ?
+;!!? @
+_roomRepository## 
+.## 
+Update## "
+(##" #
+room### '
+)##' (
+;##( )
+if%% 
+(%% 
+!%% 
+await%% 
+_roomRepository%% &
+.%%& '
+SaveAllAsync%%' 3
+(%%3 4
+)%%4 5
+)%%5 6
+{&& 
+response'' 
+.'' 
 
-RoomNumber11V `
-)11` a
-;11a b
-if33 
-(33 
-room33 
-is33 
-null33 
-)33 
-{44 
-room55 
-=55 
-new55 
-Room55 
-(55  
-)55  !
-{66 
+StatusCode'' #
+=''$ %
+(''& '
+int''' *
+)''* +
+HttpStatusCode''+ 9
+.''9 :
+InternalServerError'': M
+;''M N
+response(( 
+.(( 
+Errors(( 
+.((  
+Add((  #
+(((# $
+RoomServiceError(($ 4
+.((4 5
+UnableToChangeDates((5 H
++((I J
+room((K O
+.((O P
 
-RoomNumber77 
-=77  
-createdHotelUserDto77! 4
-.774 5
+RoomNumber((P Z
+)((Z [
+;(([ \
+return)) 
+response)) 
+;))  
+}** 
+response,, 
+.,, 
+IsValid,, 
+=,, 
+response,, '
+.,,' (
+Data,,( ,
+=,,- .
+true,,/ 3
+;,,3 4
+return-- 
+response-- 
+;-- 
+}.. 	
+public00 
+async00 
+Task00 
+<00 
+ServiceResponse00 )
+<00) *
+bool00* .
+>00. /
+>00/ 0
+AddUserToRoom001 >
+(00> ?
+	HotelUser00? H
+user00I M
+,00M N
+CreateHotelUserDto00O a
+createdHotelUserDto00b u
+)00u v
+{11 	
+ServiceResponse22 
+<22 
+bool22  
+>22  !
+response22" *
+=22+ ,
+new22- 0
+(220 1
+)221 2
+;222 3
+Room44 
+room44 
+=44 
+await44 
+_roomRepository44 -
+.44- .
+GetRoomByRoomNumber44. A
+(44A B
+createdHotelUserDto44B U
+.44U V
 
-RoomNumber775 ?
-,77? @
-CheckInDate88 
-=88  !
-createdHotelUserDto88" 5
-.885 6
-CheckInDate886 A
-,88A B
-CheckOutDate99  
-=99! "
-createdHotelUserDto99# 6
-.996 7
-CheckOutDate997 C
-}:: 
-;:: 
-await;; 
-_roomRepository;; %
-.;;% &
-AddRoom;;& -
-(;;- .
-room;;. 2
-);;2 3
-;;;3 4
-}<< 
-room>> 
-.>> 
-UserId>> 
-=>> 
-user>> 
-.>> 
-Id>> !
-;>>! "
-if@@ 
-(@@ 
-!@@ 
-await@@ 
-_roomRepository@@ &
-.@@& '
-SaveAllAsync@@' 3
-(@@3 4
-)@@4 5
-)@@5 6
-{AA 
-responseBB 
-.BB 
-ErrorsBB 
-.BB  
-AddBB  #
-(BB# $
-RoomServiceErrorBB$ 4
-.BB4 5
-UnableToAddUserBB5 D
-+BBE F
-roomBBG K
-.BBK L
+RoomNumber44V `
+)44` a
+;44a b
+if66 
+(66 
+room66 
+is66 
+null66 
+)66 
+{77 
+room88 
+=88 
+new88 
+Room88 
+(88  
+)88  !
+{99 
 
-RoomNumberBBL V
-)BBV W
-;BBW X
-returnCC 
-responseCC 
-;CC  
-}DD 
-responseFF 
-.FF 
-IsValidFF 
-=FF 
-responseFF '
-.FF' (
-DataFF( ,
-=FF- .
-trueFF/ 3
-;FF3 4
-returnGG 
-responseGG 
-;GG 
-}HH 	
-}II 
-}JJ ¢ 
+RoomNumber:: 
+=::  
+createdHotelUserDto::! 4
+.::4 5
+
+RoomNumber::5 ?
+,::? @
+CheckInDate;; 
+=;;  !
+createdHotelUserDto;;" 5
+.;;5 6
+CheckInDate;;6 A
+,;;A B
+CheckOutDate<<  
+=<<! "
+createdHotelUserDto<<# 6
+.<<6 7
+CheckOutDate<<7 C
+}== 
+;== 
+await>> 
+_roomRepository>> %
+.>>% &
+AddRoom>>& -
+(>>- .
+room>>. 2
+)>>2 3
+;>>3 4
+}?? 
+roomAA 
+.AA 
+UserIdAA 
+=AA 
+userAA 
+.AA 
+IdAA !
+;AA! "
+ifCC 
+(CC 
+!CC 
+awaitCC 
+_roomRepositoryCC &
+.CC& '
+SaveAllAsyncCC' 3
+(CC3 4
+)CC4 5
+)CC5 6
+{DD 
+responseEE 
+.EE 
+
+StatusCodeEE #
+=EE$ %
+(EE& '
+intEE' *
+)EE* +
+HttpStatusCodeEE+ 9
+.EE9 :
+InternalServerErrorEE: M
+;EEM N
+responseFF 
+.FF 
+ErrorsFF 
+.FF  
+AddFF  #
+(FF# $
+RoomServiceErrorFF$ 4
+.FF4 5
+UnableToAddUserFF5 D
++FFE F
+roomFFG K
+.FFK L
+
+RoomNumberFFL V
+)FFV W
+;FFW X
+returnGG 
+responseGG 
+;GG  
+}HH 
+responseJJ 
+.JJ 
+IsValidJJ 
+=JJ 
+responseJJ '
+.JJ' (
+DataJJ( ,
+=JJ- .
+trueJJ/ 3
+;JJ3 4
+returnKK 
+responseKK 
+;KK 
+}LL 	
+}MM 
+}NN ¢ 
 ^C:\Users\34626\source\repos\SoleusHotel\SoleusHotelApi\SoleusHotelApi\Services\TokenService.cs
 	namespace		 	
 SoleusHotelApi		

@@ -11,6 +11,8 @@ namespace SoleusHotelApi.DTOs.RoomRequestDtos
         public string Subject { get; set; }
         public string Description { get; set; }
         public DateTime RequestDate { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
         public RoomRequestStatus RequestStatus { get; set; }
     }
 }

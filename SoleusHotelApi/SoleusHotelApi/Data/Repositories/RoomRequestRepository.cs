@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.RoomRequestDtos;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Helpers;
 
 namespace SoleusHotelApi.Data.Repositories
 {
@@ -18,6 +19,7 @@ namespace SoleusHotelApi.Data.Repositories
             _mapper = mapper;
         }
 
+        #region Public Methods
         public async Task AddRoomRequest(RoomRequest roomRequest)
         {
             await _dataContext.RoomRequests.AddAsync(roomRequest);
@@ -28,26 +30,13 @@ namespace SoleusHotelApi.Data.Repositories
             _dataContext.Entry(roomRequest).State = EntityState.Modified;
         }
 
-        public async Task<List<BaseRoomRequestDto>> GetTodayRoomRequestsDto()
+        public async Task<PagedList<BaseRoomRequestDto>> GetFilteredRoomRequests(RoomRequestParams roomRequestParams)
         {
-            return await _dataContext.RoomRequests
-               .Where(d => d.RequestDate.Day == DateTime.Today.Day)
-               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
-        }
-
-        public async Task<List<BaseRoomRequestDto>> GetGuestRoomRequestsDtoByRoomNumber(string roomNumber)
-        {
-            return await _dataContext.RoomRequests
-               .Where(r => r.Room.RoomNumber.Equals(roomNumber))
-               .Where(d => d.RequestDate >= d.Room.CheckInDate && d.RequestDate <= d.Room.CheckOutDate)
-               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
-        }
-
-        public async Task<List<BaseRoomRequestDto>> GetRoomRequestsByAssigned(HotelUser assignedUser)
-        {
-            return await _dataContext.RoomRequests
-               .Where(u => u.AssignedTo == assignedUser)
-               .ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).ToListAsync();
+            IQueryable<RoomRequest> query = _dataContext.RoomRequests
+                .Include(r => r.Room).ThenInclude(u => u.User).AsQueryable();
+            
+            return await PagedList<BaseRoomRequestDto>.CreateAsync(FilterRoomRequests(query, roomRequestParams).ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).AsNoTracking(),
+                roomRequestParams.PageNumber, roomRequestParams.PageSize);
         }
 
         public async Task<RoomRequest> GetRoomRequestById(int id)
@@ -77,5 +66,88 @@ namespace SoleusHotelApi.Data.Repositories
         {
             return await _dataContext.SaveChangesAsync() > 0;
         }
+        #endregion
+
+        #region Private Methods
+        private static IQueryable<RoomRequest> FilterRoomRequests(IQueryable<RoomRequest> initialQuery, RoomRequestParams roomRequestParams)
+        {
+            if (roomRequestParams.Room is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.Room.RoomNumber == roomRequestParams.Room);
+            }
+
+            if (roomRequestParams.AssignedTo is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.AssignedTo.Room.RoomNumber == roomRequestParams.AssignedTo);
+            }
+
+            if (roomRequestParams.MinRequestDate is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.RequestDate.Day >= roomRequestParams.MinRequestDate.Value.Day);
+            }
+
+            if (roomRequestParams.MaxRequestDate is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.RequestDate.Day <= roomRequestParams.MaxRequestDate.Value.Day);
+            }
+
+            if (roomRequestParams.MinDateStart is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.DateStart.Value.Day >= roomRequestParams.MinDateStart.Value.Day);
+            }
+
+            if (roomRequestParams.MaxDateStart is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.DateStart.Value.Day <= roomRequestParams.MaxDateStart.Value.Day);
+            }
+
+            if (roomRequestParams.MinDateEnd is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.DateEnd.Value.Day >= roomRequestParams.MinDateEnd.Value.Day);
+            }
+
+            if (roomRequestParams.MaxDateEnd is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.DateEnd.Value.Day <= roomRequestParams.MaxDateEnd.Value.Day);
+            }
+
+            if (roomRequestParams.Department is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.Department == roomRequestParams.Department);
+            }
+
+            if (roomRequestParams.Topic is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.Topic == roomRequestParams.Topic);
+            }
+
+            if (roomRequestParams.Subject is not null)
+            {
+                initialQuery = initialQuery.Where(r => r.Subject == roomRequestParams.Subject);
+            }
+
+            if (roomRequestParams.RequestStatus is not null)
+            {                
+                initialQuery = initialQuery.Where(s => roomRequestParams.RequestStatus.Contains((int) s.RequestStatus));
+            }
+
+            initialQuery = OrderRoomRequests(initialQuery, roomRequestParams);
+
+            return initialQuery;
+        }
+
+        private static IQueryable<RoomRequest> OrderRoomRequests(IQueryable<RoomRequest> initialQuery, RoomRequestParams roomRequestParams)
+        {            
+            initialQuery = roomRequestParams.OrderBy switch
+            {
+                "date" => initialQuery.OrderByDescending(x => x.RequestDate),
+                "department" => initialQuery.OrderByDescending(x => x.Department),
+                "assigned" => initialQuery.OrderBy(x => x.AssignedTo),
+                _ => initialQuery.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
+            };
+
+            return initialQuery;
+        }
+        #endregion
     }
 }

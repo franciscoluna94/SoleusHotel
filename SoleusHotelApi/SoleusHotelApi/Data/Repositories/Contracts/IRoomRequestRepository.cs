@@ -1,5 +1,6 @@
 ﻿using SoleusHotelApi.DTOs.RoomRequestDtos;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Helpers;
 
 namespace SoleusHotelApi.Data.Repositories.Contracts
 {
@@ -7,9 +8,7 @@ namespace SoleusHotelApi.Data.Repositories.Contracts
     {
         Task AddRoomRequest(RoomRequest roomRequest);
         void Update(RoomRequest roomRequest);
-        Task<List<BaseRoomRequestDto>> GetTodayRoomRequestsDto();
-        Task<List<BaseRoomRequestDto>> GetGuestRoomRequestsDtoByRoomNumber(string roomNumber);
-        Task<List<BaseRoomRequestDto>> GetRoomRequestsByAssigned(HotelUser assignedUser);
+        Task<PagedList<BaseRoomRequestDto>> GetFilteredRoomRequests(RoomRequestParams roomRequestParams);
         Task<RoomRequest> GetRoomRequestById(int id);
         Task<RoomRequestDto> GetRoomRequestDtoById(int id);
         Task<List<TimeSpan>> GetRoomRequestsDuration(HotelUser assignedUser);

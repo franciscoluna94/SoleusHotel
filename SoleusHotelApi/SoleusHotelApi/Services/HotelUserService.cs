@@ -9,6 +9,7 @@ using SoleusHotelApi.Entities;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
+using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -77,6 +78,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int) HttpStatusCode.NotFound;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
@@ -96,6 +98,7 @@ namespace SoleusHotelApi.Services
 
             if (await UserExists(createHotelUserDto.RoomNumber))
             {
+                response.StatusCode = (int)HttpStatusCode.Conflict;
                 response.Errors.Add(HotelUserServiceError.UserAlreadyExists);
                 return response;
             }
@@ -110,6 +113,7 @@ namespace SoleusHotelApi.Services
 
             if (!createUserResult.Succeeded)
             {
+                response.StatusCode = (int) HttpStatusCode.InternalServerError;
                 response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
                 return response;
             }
@@ -120,6 +124,7 @@ namespace SoleusHotelApi.Services
 
                 if (!roleResult.Succeeded)
                 {
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
                     return response;
                 }
@@ -129,6 +134,7 @@ namespace SoleusHotelApi.Services
 
             if (!userAddedToRoom.IsValid)
             {
+                response.StatusCode = userAddedToRoom.StatusCode;
                 response.Errors.Add(userAddedToRoom.Errors.First() + HotelUserServiceError.UserCreated);
             }
 
@@ -154,6 +160,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
@@ -164,6 +171,7 @@ namespace SoleusHotelApi.Services
 
             if (!editRolesResponse.IsValid)
             {
+                response.StatusCode = editRolesResponse.StatusCode;
                 response.Errors = editRolesResponse.Errors;
                 return response;
             }
@@ -174,6 +182,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
                 return response;
             }
@@ -185,13 +194,17 @@ namespace SoleusHotelApi.Services
 
                 if (!result.Succeeded)
                 {
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     response.Errors.Add(HotelUserServiceError.UserEditedButPassword);
                     return response;
                 }
             }
 
-            if (!await IsTheRoomUpdated(editUser))
+            ServiceResponse<bool> isTheRoomUpdated = await _roomService.UpdateRoom(editUser);
+
+            if (!isTheRoomUpdated.IsValid)
             {
+                response.StatusCode = isTheRoomUpdated.StatusCode;
                 response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
                 return response;
             }
@@ -212,6 +225,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
@@ -219,6 +233,7 @@ namespace SoleusHotelApi.Services
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
                 return response;
             }
@@ -229,12 +244,16 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
                 return response;
             }
 
-            if (!await IsTheRoomUpdated(_mapper.Map<CreateHotelUserDto>(editUser)))
+            ServiceResponse<bool> isTheRoomUpdated = await _roomService.UpdateRoom(_mapper.Map<CreateHotelUserDto>(editUser));
+
+            if (!isTheRoomUpdated.IsValid)
             {
+                response.StatusCode = isTheRoomUpdated.StatusCode;
                 response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
                 return response;
             }
@@ -250,6 +269,7 @@ namespace SoleusHotelApi.Services
 
             if (loginHotelUserDto is null)
             {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 response.Errors.Add(HotelUserServiceError.NullPasswordAndUserName);
                 return response;
             }
@@ -259,6 +279,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 response.Errors.Add(HotelUserServiceError.InvalidUserName);
                 return response;
             }
@@ -267,6 +288,7 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 response.Errors.Add(HotelUserServiceError.InvalidPassword);
                 return response;
             }
@@ -290,6 +312,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
@@ -298,12 +321,14 @@ namespace SoleusHotelApi.Services
 
             if (!roles.Contains(Roles.Guest))
             {
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeRole);
                 return response;
             }
 
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 response.Errors.Add(HotelUserServiceError.WrongGuestName);
                 return response;
             }
@@ -313,6 +338,7 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors = result.Errors.Select(x => x.Description).ToList();
                 return response;
             }
@@ -336,6 +362,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
@@ -343,6 +370,7 @@ namespace SoleusHotelApi.Services
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
+                response.StatusCode = (int)HttpStatusCode.Forbidden;
                 response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
                 return response;
             }
@@ -354,6 +382,7 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors = result.Errors.Select(x => x.Description).ToList();
                 return response;
             }
@@ -385,6 +414,7 @@ namespace SoleusHotelApi.Services
 
             if (failedUserChanges.Count > 0)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.AddRange(failedUserChanges);
             }
 
@@ -400,12 +430,14 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 response.Errors.Add(HotelUserServiceError.UserNotFound);
                 return response;
             }
 
             if (await IsLastAdmin(user))
             {
+                response.StatusCode = (int)HttpStatusCode.Conflict;
                 response.Errors.Add(HotelUserServiceError.LastAdmin);
                 return response;
             }
@@ -413,6 +445,7 @@ namespace SoleusHotelApi.Services
             IdentityResult result = await _userManager.DeleteAsync(user);
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors = result.Errors.Select(x => x.Description).ToList();
                 return response;
             }
@@ -439,6 +472,7 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add("Unable to modify roles");
                 return response;
             }
@@ -447,24 +481,13 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add("Failed to remove roles");
             }
 
             response.IsValid = true;
             response.Data = true;
             return response;
-        }
-
-        private async Task<bool> IsTheRoomUpdated(CreateHotelUserDto editUser)
-        {
-            ServiceResponse<bool> IsTheRoomUpdated = await _roomService.UpdateRoom(editUser);
-
-            if (!IsTheRoomUpdated.IsValid)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         private async Task<bool> IsLastAdmin(HotelUser user)

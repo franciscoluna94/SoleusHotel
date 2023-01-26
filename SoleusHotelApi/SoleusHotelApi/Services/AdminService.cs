@@ -6,6 +6,7 @@ using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
+using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -30,6 +31,7 @@ namespace SoleusHotelApi.Services
 
             if (await _userManager.Users.AnyAsync(x => x.Room.RoomNumber == _configuration["SuperUser:RoomNumber"]))
             {
+                response.StatusCode = (int) HttpStatusCode.Conflict;
                 response.Errors.Add(AdminServiceError.ConfigurationDone);
                 return response;
             }

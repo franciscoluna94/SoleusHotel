@@ -21,4 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="UnitTests\Controllers\" />
+    <Folder Include="UnitTests\Services\" />
+  </ItemGroup>
+
 </Project>

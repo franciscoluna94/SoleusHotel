@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SoleusHotelApi.Constants.SwaggerDescriptions;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace SoleusHotelApi.Controllers
 {
@@ -21,26 +24,29 @@ namespace SoleusHotelApi.Controllers
         }
 
         [HttpPost("users")]
+        [SwaggerResponse(StatusCodes.Status200OK, AdminControllerDescriptions.CreateUser200Ok, typeof(CreatedHotelUserDto))]
+        [SwaggerResponse(StatusCodes.Status409Conflict, AdminControllerDescriptions.CreateUser409Conflict)]
         public async Task<ActionResult<CreatedHotelUserDto>> CreateUser([FromBody] CreateHotelUserDto createHotelUserDto)
         {
-            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.CreateHotelUser(createHotelUserDto);
+            ServiceResponse<CreatedHotelUserDto> serviceResponse = await _hotelUserService.CreateHotelUser(createHotelUserDto);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
-            return Ok(response.Data);
+            return Ok(serviceResponse.Data);
         }
 
         [HttpGet("users")]
+        [SwaggerResponse(StatusCodes.Status200OK, AdminControllerDescriptions.GetHotelUsers200Ok, typeof(PagedList<HotelUserWithRolesDto>))]
         public async Task<ActionResult<PagedList<HotelUserWithRolesDto>>> GetHotelUsers([FromQuery] HotelUserParams hotelUserParams1)
         {
             ServiceResponse<PagedList<HotelUserWithRolesDto>> serviceResponse = await _hotelUserService.GetHotelUsers(hotelUserParams1);
 
             if (!serviceResponse.IsValid)
             {
-                return BadRequest(serviceResponse.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
             Response.AddPaginationHeader(serviceResponse.Data.CurrentPage, serviceResponse.Data.PageSize,
@@ -50,69 +56,79 @@ namespace SoleusHotelApi.Controllers
         }
 
         [HttpGet("users/{roomNumber}")]
-        public async Task<ActionResult<HotelUserWithRolesDto>> GetHotelUsers(string roomNumber)
+        [SwaggerResponse(StatusCodes.Status200OK, AdminControllerDescriptions.GetHotelUser200Ok, typeof(HotelUserWithRolesDto))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, AdminControllerDescriptions.UserNotFound400BadRequest)]
+        public async Task<ActionResult<HotelUserWithRolesDto>> GetHotelUser(string roomNumber)
         {
-            ServiceResponse<HotelUserWithRolesDto> response = await _hotelUserService.GetHotelUserWithRoles(roomNumber);
+            ServiceResponse<HotelUserWithRolesDto> serviceResponse = await _hotelUserService.GetHotelUserWithRoles(roomNumber);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
-            return Ok(response.Data);
+            return Ok(serviceResponse.Data);
         }
 
         [HttpPut("users")]
+        [SwaggerResponse(StatusCodes.Status200OK, AdminControllerDescriptions.EditHotelUser200Ok, typeof(CreatedHotelUserDto))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, AdminControllerDescriptions.UserNotFound400BadRequest)]
         public async Task<ActionResult<CreatedHotelUserDto>> EditUser([FromBody] CreateHotelUserDto editHotelUser)
         {
-            ServiceResponse<CreatedHotelUserDto> response = await _hotelUserService.EditUser(editHotelUser);
+            ServiceResponse<CreatedHotelUserDto> serviceResponse = await _hotelUserService.EditUser(editHotelUser);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
-            return Ok(response.Data);
+            return Ok(serviceResponse.Data);
         }
 
         [HttpPost("passwords")]
+        [SwaggerResponse(StatusCodes.Status204NoContent, AdminControllerDescriptions.ResetGuestPasswords204NoContent)]
         public async Task<ActionResult> ResetGuestPasswords([FromBody] string password)
         {
-            ServiceResponse<bool> response = await _hotelUserService.ResetGuestsPasswords(password);
+            ServiceResponse<bool> serviceResponse = await _hotelUserService.ResetGuestsPasswords(password);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
             return NoContent();
         }
 
         [HttpDelete("users/{roomNumber}")]
+        [SwaggerResponse(StatusCodes.Status204NoContent, AdminControllerDescriptions.DeleteUser204NoContent)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, AdminControllerDescriptions.UserNotFound400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status409Conflict, AdminControllerDescriptions.DeleteUser409NoContent)]
         public async Task<ActionResult> DeleteUser(string roomNumber)
         {
-            ServiceResponse<bool> response = await _hotelUserService.DeleteHotelUser(roomNumber);
+            ServiceResponse<bool> serviceResponse = await _hotelUserService.DeleteHotelUser(roomNumber);
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
-            return Ok();
+            return NoContent();
         }     
 
         [AllowAnonymous]
         [HttpGet("initial-setup")]
+        [SwaggerResponse(StatusCodes.Status200OK, AdminControllerDescriptions.InitialSetup200Ok)]
+        [SwaggerResponse(StatusCodes.Status409Conflict, AdminControllerDescriptions.InitialSetup409Conflict)]
         public async Task<ActionResult<string>> InitialSetup()
         {
-            ServiceResponse<string> response = await _adminService.InitialSetup();
+            ServiceResponse<string> serviceResponse = await _adminService.InitialSetup();
 
-            if (!response.IsValid)
+            if (!serviceResponse.IsValid)
             {
-                return BadRequest(response.Errors);
+                return StatusCode(serviceResponse.StatusCode, serviceResponse.Errors);
             }
 
-            return Ok(response.Data);
+            return Ok(serviceResponse.Data);
         }
     }
 

@@ -4,6 +4,7 @@ using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
+using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -23,6 +24,7 @@ namespace SoleusHotelApi.Services
 
             if (room is null)
             {
+                response.StatusCode = (int)HttpStatusCode.NotFound;
                 response.Errors.Add(RoomServiceError.RoomNotFound);
                 return response;
             }
@@ -34,6 +36,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add(RoomServiceError.UnableToChangeDates + room.RoomNumber);
                 return response;
             }
@@ -63,6 +66,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
+                response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 response.Errors.Add(RoomServiceError.UnableToAddUser + room.RoomNumber);
                 return response;
             }
