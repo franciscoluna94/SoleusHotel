@@ -22,34 +22,19 @@ namespace SoleusHotelApi.Data.Repositories
 
         public async Task<PagedList<HotelUserWithRolesDto>> GetAllHotelUsers(HotelUserParams hotelUserParams)
         {
-            var query = _dataContext.Users.Include(r => r.Room).AsQueryable();
+            IQueryable<HotelUser> query = _dataContext.Users.Include(r => r.Room).AsQueryable();
 
-            query = hotelUserParams.OrderBy switch
-            {
-                "checkin" => query.OrderByDescending(x => x.Room.CheckInDate),
-                "checkout" => query.OrderByDescending(x => x.Room.CheckOutDate),
-                "name" => query.OrderBy(x => x.GuestName),
-                _ => query.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
-            };
-
-            return await PagedList<HotelUserWithRolesDto>.CreateAsync(query.ProjectTo<HotelUserWithRolesDto>(_mapper.ConfigurationProvider).AsNoTracking(),
+            return await PagedList<HotelUserWithRolesDto>
+                .CreateAsync(OrderHotelUsers(query, hotelUserParams).ProjectTo<HotelUserWithRolesDto>(_mapper.ConfigurationProvider).AsNoTracking(),
                 hotelUserParams.PageNumber, hotelUserParams.PageSize);
         }
 
         public async Task<PagedList<HotelUserWithRequestsDto>> GetAllGuestsWithRoomRequests(HotelUserParams hotelUserParams)
         {
-            var query = _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).AsQueryable();
-
-            query = hotelUserParams.OrderBy switch
-            {
-                "checkin" => query.OrderByDescending(x => x.Room.CheckInDate),
-                "checkout" => query.OrderByDescending(x => x.Room.CheckOutDate),
-                "requests" => query.OrderByDescending(x => x.Room.RoomRequests.Count),
-                "name" => query.OrderBy(x => x.GuestName),
-                _ => query.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
-            };
-
-            return await PagedList<HotelUserWithRequestsDto>.CreateAsync(query.ProjectTo<HotelUserWithRequestsDto>(_mapper.ConfigurationProvider).AsNoTracking(),
+            IQueryable<HotelUser> query = _dataContext.Users.Include(r => r.Room).Where(x => x.UserRoles.Any(x => x.Role.Name == Roles.Guest)).AsQueryable();
+          
+            return await PagedList<HotelUserWithRequestsDto>
+                .CreateAsync(OrderHotelUsers(query, hotelUserParams).ProjectTo<HotelUserWithRequestsDto>(_mapper.ConfigurationProvider).AsNoTracking(), 
                 hotelUserParams.PageNumber, hotelUserParams.PageSize);
         }
 
@@ -81,6 +66,20 @@ namespace SoleusHotelApi.Data.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        private static IQueryable<HotelUser> OrderHotelUsers(IQueryable<HotelUser> initialQuery, HotelUserParams hotelUserParams)
+        {
+            initialQuery = hotelUserParams.OrderBy switch
+            {
+                "checkin" => initialQuery.OrderByDescending(x => x.Room.CheckInDate),
+                "checkout" => initialQuery.OrderByDescending(x => x.Room.CheckOutDate),
+                "requests" => initialQuery.OrderByDescending(x => x.Room.RoomRequests.Count),
+                "name" => initialQuery.OrderBy(x => x.GuestName),
+                _ => initialQuery.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
+            };
+
+            return initialQuery;
         }
     }
 }

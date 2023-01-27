@@ -2,5 +2,5 @@ projectKey=SoleusApi
 serverUrl=http://localhost:9000
 serverVersion=9.8.0.63668
 dashboardUrl=http://localhost:9000/dashboard?id=SoleusApi
-ceTaskId=AYXvrCge2ReztEzYTB7A
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYXvrCge2ReztEzYTB7A
+ceTaskId=AYXypUHIHaYRIeovVHR6
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYXypUHIHaYRIeovVHR6
