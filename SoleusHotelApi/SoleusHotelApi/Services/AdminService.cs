@@ -4,9 +4,9 @@ using SoleusHotelApi.Constants;
 using SoleusHotelApi.Constants.ErrorMessages;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
-using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -31,9 +31,7 @@ namespace SoleusHotelApi.Services
 
             if (await _userManager.Users.AnyAsync(x => x.Room.RoomNumber == _configuration["SuperUser:RoomNumber"]))
             {
-                response.StatusCode = (int) HttpStatusCode.Conflict;
-                response.Errors.Add(AdminServiceError.ConfigurationDone);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status409Conflict, AdminServiceError.ConfigurationDone);
             }
 
             List<string> rolesList = new() { Roles.Admin, Roles.Housekeeping, Roles.Maintenance, Roles.Reception, Roles.Guest };
@@ -77,9 +75,7 @@ namespace SoleusHotelApi.Services
 
             await _roomRepository.SaveAllAsync();
 
-            response.IsValid = true;            
-            response.Data = "Your setup has been completed";
-            return response;
+            return response.GetValidServiceResponse("Your setup has been completed");
         }
     }
 }

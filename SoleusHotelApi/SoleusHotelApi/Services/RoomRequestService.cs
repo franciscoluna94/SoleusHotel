@@ -9,7 +9,6 @@ using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
-using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -34,9 +33,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             RoomRequest request = _mapper.Map<RoomRequest>(createRoomRequestDto);
@@ -48,13 +45,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRequestRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomRequestServiceError.UnableToSaveRequest);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomRequestServiceError.UnableToSaveRequest);
             }
 
-            response.IsValid = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         public async Task<ServiceResponse<PagedList<BaseRoomRequestDto>>> GetFilteredRoomRequests(RoomRequestParams roomRequestFilter)
@@ -73,18 +67,14 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             roomRequestFilter.Room = user.Room.RoomNumber;
             roomRequestFilter.MinRequestDate = user.Room.CheckInDate;
             roomRequestFilter.MaxRequestDate = user.Room.CheckOutDate;
 
-            response.IsValid = true;
-            response.Data = await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter);
-            return response;
+            return response.GetValidServiceResponse(await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter));
         }
 
         public async Task<ServiceResponse<PagedList<BaseRoomRequestDto>>> GetMyAssignedRequests(string userRoomNumber, RoomRequestParams roomRequestFilter)
@@ -94,17 +84,13 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             roomRequestFilter.AssignedTo = user.Room.RoomNumber;
             roomRequestFilter.RequestStatus = new List<int> { (int) RoomRequestStatus.InProgress, (int) RoomRequestStatus.Paused};
 
-            response.IsValid = true;
-            response.Data = await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter);
-            return response;
+            return response.GetValidServiceResponse(await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter));
         }
 
         public async Task<ServiceResponse<RoomRequestDto>> GetRoomRequest(int roomRequestId, string userRoomNumber, List<string> userRoles)
@@ -115,30 +101,22 @@ namespace SoleusHotelApi.Services
 
             if (roomRequest is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.RoomRequestNotFound);
             }
 
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             if (roomRequest.Room.RoomNumber != user.Room.RoomNumber && !CheckRole(userRoles, Roles.Employee.ToList()))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, RoomRequestServiceError.RoomRequestNotFound);
             }
 
-            response.IsValid = true;
-            response.Data = _mapper.Map<RoomRequestDto>(roomRequest);
-            return response;
+            return response.GetValidServiceResponse(_mapper.Map<RoomRequestDto>(roomRequest));
         }
 
         public async Task<ServiceResponse<bool>> StartRoomRequest(int roomRequestId, string userRoomNumber, List<string> userRoles)
@@ -149,32 +127,24 @@ namespace SoleusHotelApi.Services
 
             if (roomRequest is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.RoomRequestNotFound);
             }
 
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             if (!CheckRole(userRoles, new List<string>() { roomRequest.Department }))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(RoomRequestServiceError.StartDifferentDepartmentRequest);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, RoomRequestServiceError.StartDifferentDepartmentRequest);
             }
 
             if (roomRequest.RequestStatus != RoomRequestStatus.Paused && roomRequest.RequestStatus != RoomRequestStatus.New)
             {
-                response.StatusCode = (int)HttpStatusCode.Conflict;
-                response.Errors.Add(RoomRequestServiceError.UnableToInitiate);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status409Conflict, RoomRequestServiceError.UnableToInitiate);
             }
 
             roomRequest.AssignedTo = user;
@@ -185,14 +155,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRequestRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomRequestServiceError.UnableToInitiate);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomRequestServiceError.UnableToInitiate);
             }
 
-            response.IsValid = response.Data = true;
-
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         public async Task<ServiceResponse<bool>> EndRoomRequest(int roomRequestId, string userRoomNumber, List<string> userRoles)
@@ -203,32 +169,25 @@ namespace SoleusHotelApi.Services
 
             if (roomRequest is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.RoomRequestNotFound);
             }
 
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             if (roomRequest.RequestStatus != RoomRequestStatus.InProgress)
             {
-                response.StatusCode = (int)HttpStatusCode.Conflict;
-                response.Errors.Add(RoomRequestServiceError.UnableToEnd);
+                response.GetFailedServiceResponse(StatusCodes.Status409Conflict, RoomRequestServiceError.UnableToEnd);
                 return response;
             }
 
             if (user.Id != roomRequest.AssignedTo.Id && !userRoles.Contains(Roles.Admin))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(RoomRequestServiceError.EndDifferentDepartmentRequest);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, RoomRequestServiceError.EndDifferentDepartmentRequest);
             }
 
             roomRequest.RequestStatus = RoomRequestStatus.Ended;
@@ -239,14 +198,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRequestRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomRequestServiceError.UnableToEnd);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomRequestServiceError.UnableToEnd);
             }
 
-            response.IsValid = response.Data = true;
-
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         public async Task<ServiceResponse<TimeSpan>> AverageTimeAssignedRoomRequests(string userRoomNumber)
@@ -257,16 +212,12 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             List<TimeSpan> durations = await _roomRequestRepository.GetRoomRequestsDuration(user);
             
-            response.IsValid = true;
-            response.Data = durations.Mean();
-            return response;
+            return response.GetValidServiceResponse(durations.Mean());
         }
 
         public async Task<ServiceResponse<bool>> SafeDeleteRoomRequest(int roomRequestId, string userRoomNumber, List<string> userRoles)
@@ -277,32 +228,25 @@ namespace SoleusHotelApi.Services
 
             if (roomRequest is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.RoomRequestNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.RoomRequestNotFound);
             }
 
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomRequestServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomRequestServiceError.UserNotFound);
             }
 
             if (roomRequest.Room.RoomNumber != user.Room.RoomNumber && !CheckRole(userRoles, Roles.Employee.ToList()))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(RoomRequestServiceError.UnableToDeleteRequest);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, RoomRequestServiceError.UnableToDeleteRequest);
             }
 
             if (roomRequest.RequestStatus != RoomRequestStatus.New && !CheckRole(userRoles, new List<string> { Roles.Admin}))
             {
-                response.StatusCode = (int)HttpStatusCode.Conflict;
-                response.Errors.Add(RoomRequestServiceError.UnableToDeleteRequestStatus + roomRequest.RequestStatus.ToString());
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status409Conflict, 
+                    RoomRequestServiceError.UnableToDeleteRequestStatus + roomRequest.RequestStatus.ToString());
             }
 
             roomRequest.RequestStatus = RoomRequestStatus.Deleted;
@@ -310,13 +254,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRequestRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomRequestServiceError.UnableToDeleteRequest);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomRequestServiceError.UnableToDeleteRequest);
             }
 
-            response.IsValid = response.Data = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
         #endregion
 

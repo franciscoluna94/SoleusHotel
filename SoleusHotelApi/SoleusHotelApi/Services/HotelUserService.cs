@@ -6,10 +6,10 @@ using SoleusHotelApi.Constants.ErrorMessages;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Helpers;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
-using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -47,9 +47,7 @@ namespace SoleusHotelApi.Services
                 user.UserRoles = await _userManager.GetRolesAsync(userInDb);
             }
 
-            response.IsValid = true;
-            response.Data = userList;
-            return response;
+            return response.GetValidServiceResponse(userList);
         }
 
         public async Task<ServiceResponse<PagedList<HotelUserWithRequestsDto>>> GetHotelUsersWithCreatedRoomRequests(HotelUserParams hotelUserParams)
@@ -78,18 +76,13 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int) HttpStatusCode.NotFound;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, HotelUserServiceError.UserNotFound);
             }
 
             HotelUserWithRolesDto userWithRolesDto = _mapper.Map<HotelUserWithRolesDto>(user);
             userWithRolesDto.UserRoles = await _userManager.GetRolesAsync(user);
 
-            response.IsValid = true;
-            response.Data = userWithRolesDto;
-
-            return response;
+            return response.GetValidServiceResponse(userWithRolesDto);
         }
 
         public async Task<ServiceResponse<CreatedHotelUserDto>> CreateHotelUser(CreateHotelUserDto createHotelUserDto)
@@ -98,9 +91,7 @@ namespace SoleusHotelApi.Services
 
             if (await UserExists(createHotelUserDto.RoomNumber))
             {
-                response.StatusCode = (int)HttpStatusCode.Conflict;
-                response.Errors.Add(HotelUserServiceError.UserAlreadyExists);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status409Conflict, HotelUserServiceError.UserAlreadyExists);
             }
 
             createHotelUserDto.RoomNumber = createHotelUserDto.RoomNumber.ToUpper();
@@ -113,9 +104,8 @@ namespace SoleusHotelApi.Services
 
             if (!createUserResult.Succeeded)
             {
-                response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError,
+                    createUserResult.Errors.Select(x => x.Description).First());
             }
 
             foreach (var role in createHotelUserDto.Roles)
@@ -124,9 +114,8 @@ namespace SoleusHotelApi.Services
 
                 if (!roleResult.Succeeded)
                 {
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    response.Errors = createUserResult.Errors.Select(x => x.Description).ToList();
-                    return response;
+                    return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError,
+                    createUserResult.Errors.Select(x => x.Description).First());
                 }
             }
 
@@ -134,8 +123,7 @@ namespace SoleusHotelApi.Services
 
             if (!userAddedToRoom.IsValid)
             {
-                response.StatusCode = userAddedToRoom.StatusCode;
-                response.Errors.Add(userAddedToRoom.Errors.First() + HotelUserServiceError.UserCreated);
+                return response.GetFailedServiceResponse(userAddedToRoom.StatusCode, userAddedToRoom.Errors.First());
             }
 
             Room userRoom = await _roomRepository.GetRoomByRoomNumber(createHotelUserDto.RoomNumber);
@@ -146,10 +134,7 @@ namespace SoleusHotelApi.Services
             CreatedHotelUserDto createdHotelUserDto = _mapper.Map<CreatedHotelUserDto>(hotelUser);
             createdHotelUserDto.UserRoles = await _userManager.GetRolesAsync(hotelUser);
 
-            response.IsValid = true;
-            response.Data = createdHotelUserDto;
-
-            return response;
+            return response.GetValidServiceResponse(createdHotelUserDto);
         }
 
         public async Task<ServiceResponse<CreatedHotelUserDto>> EditUser(CreateHotelUserDto editUser)
@@ -160,9 +145,7 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, HotelUserServiceError.UserNotFound);
             }
 
             editUser.GuestName = editUser.GuestName.ToUpper();
@@ -171,9 +154,7 @@ namespace SoleusHotelApi.Services
 
             if (!editRolesResponse.IsValid)
             {
-                response.StatusCode = editRolesResponse.StatusCode;
-                response.Errors = editRolesResponse.Errors;
-                return response;
+                return response.GetFailedServiceResponse(editRolesResponse.StatusCode, editRolesResponse.Errors.First());
             }
 
             _mapper.Map(editUser, user);
@@ -182,9 +163,7 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, HotelUserServiceError.ChangesUnsaved);
             }
 
             if (!String.IsNullOrEmpty(editUser.Password))
@@ -194,9 +173,7 @@ namespace SoleusHotelApi.Services
 
                 if (!result.Succeeded)
                 {
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    response.Errors.Add(HotelUserServiceError.UserEditedButPassword);
-                    return response;
+                    return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, HotelUserServiceError.UserEditedButPassword);
                 }
             }
 
@@ -204,17 +181,13 @@ namespace SoleusHotelApi.Services
 
             if (!isTheRoomUpdated.IsValid)
             {
-                response.StatusCode = isTheRoomUpdated.StatusCode;
-                response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
-                return response;
+                return response.GetFailedServiceResponse(isTheRoomUpdated.StatusCode, isTheRoomUpdated.Errors.First());
             }
 
             CreatedHotelUserDto updatedUser = _mapper.Map<CreatedHotelUserDto>(user);
             updatedUser.UserRoles = await _userManager.GetRolesAsync(user);
 
-            response.IsValid = true;
-            response.Data = updatedUser;
-            return response;
+            return response.GetValidServiceResponse(updatedUser);
         }
 
         public async Task<ServiceResponse<HotelUserDto>> EditGuestUser(HotelUserDto editUser)
@@ -225,17 +198,13 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, HotelUserServiceError.UserNotFound);
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, HotelUserServiceError.ForbiddenEditPermission);
             }
 
             user.GuestName = editUser.GuestName.ToUpper();
@@ -244,23 +213,17 @@ namespace SoleusHotelApi.Services
 
             if (!await _userRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(HotelUserServiceError.ChangesUnsaved);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, HotelUserServiceError.ChangesUnsaved);
             }
 
             ServiceResponse<bool> isTheRoomUpdated = await _roomService.UpdateRoom(_mapper.Map<CreateHotelUserDto>(editUser));
 
             if (!isTheRoomUpdated.IsValid)
             {
-                response.StatusCode = isTheRoomUpdated.StatusCode;
-                response.Errors.Add(HotelUserServiceError.RoomDatesUnsaved + editUser.RoomNumber);
-                return response;
+                return response.GetFailedServiceResponse(isTheRoomUpdated.StatusCode, isTheRoomUpdated.Errors.First());
             }
 
-            response.IsValid = true;
-            response.Data = _mapper.Map<HotelUserDto>(user);
-            return response;
+            return response.GetValidServiceResponse(_mapper.Map<HotelUserDto>(user));
         }
 
         public async Task<ServiceResponse<LoggedUserDto>> LoginHotelUser(LoginHotelUserDto loginHotelUserDto)
@@ -269,9 +232,7 @@ namespace SoleusHotelApi.Services
 
             if (loginHotelUserDto is null)
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.Errors.Add(HotelUserServiceError.NullPasswordAndUserName);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status400BadRequest, HotelUserServiceError.NullPasswordAndUserName);
             }
 
             HotelUser user = await _userManager.Users.Include(r => r.Room)
@@ -279,29 +240,22 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.Errors.Add(HotelUserServiceError.InvalidUserName);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status400BadRequest, HotelUserServiceError.InvalidUserName);
             }
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, loginHotelUserDto.Password, false);
 
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.Errors.Add(HotelUserServiceError.InvalidPassword);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status400BadRequest, HotelUserServiceError.InvalidPassword);
             }
 
-            response.IsValid = true;
-            response.Data = new LoggedUserDto
+            return response.GetValidServiceResponse(new LoggedUserDto
             {
                 RoomNumber = user.Room.RoomNumber,
                 GuestName = user.GuestName,
                 Token = await _tokenService.CreateToken(user)
-            };
-
-            return response;
+            });
         }
 
         public async Task<ServiceResponse<LoggedUserDto>> ForgotPassword(HotelUserPasswordUpdatesDto userPasswordForgotDto)
@@ -312,25 +266,19 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, HotelUserServiceError.UserNotFound);
             }
 
             IList<string> roles = await _userManager.GetRolesAsync(user);
 
             if (!roles.Contains(Roles.Guest))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(HotelUserServiceError.ForbiddenPasswordChangeRole);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, HotelUserServiceError.ForbiddenPasswordChangeRole);
             }
 
             if (user.GuestName != userPasswordForgotDto.GuestName.ToUpper())
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.Errors.Add(HotelUserServiceError.WrongGuestName);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status400BadRequest, HotelUserServiceError.WrongGuestName);
             }
 
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -338,20 +286,15 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors = result.Errors.Select(x => x.Description).ToList();
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, result.Errors.Select(x => x.Description).First());
             }
 
-
-            response.IsValid = true;
-            response.Data = new LoggedUserDto
+            return response.GetValidServiceResponse(new LoggedUserDto
             {
                 RoomNumber = user.Room.RoomNumber,
                 GuestName = user.GuestName,
                 Token = await _tokenService.CreateToken(user)
-            };
-            return response;
+            });
         }
 
         public async Task<ServiceResponse<GenerateHotelUserPasswordDto>> GenerateUserPassword(string roomNumber)
@@ -362,17 +305,13 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.BadRequest;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status400BadRequest, HotelUserServiceError.UserNotFound);
             }
 
             IList<string> userRoles = await _userManager.GetRolesAsync(user);
             if (userRoles.Any(x => x != Roles.Guest))
             {
-                response.StatusCode = (int)HttpStatusCode.Forbidden;
-                response.Errors.Add(HotelUserServiceError.ForbiddenEditPermission);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status403Forbidden, HotelUserServiceError.ForbiddenEditPermission);
             }
 
             string generatedPassword = PasswordGenerator.GeneratePassword();
@@ -382,17 +321,13 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors = result.Errors.Select(x => x.Description).ToList();
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, result.Errors.Select(x => x.Description).First());
             }
 
             GenerateHotelUserPasswordDto generatedPasswordUser = _mapper.Map<GenerateHotelUserPasswordDto>(user);
             generatedPasswordUser.Password = generatedPassword;
 
-            response.IsValid = true;
-            response.Data = generatedPasswordUser;
-            return response;
+            return response.GetValidServiceResponse(generatedPasswordUser);
         }
 
         public async Task<ServiceResponse<bool>> ResetGuestsPasswords(string password)
@@ -414,12 +349,12 @@ namespace SoleusHotelApi.Services
 
             if (failedUserChanges.Count > 0)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                response.StatusCode = StatusCodes.Status500InternalServerError;
                 response.Errors.AddRange(failedUserChanges);
+                return response;
             }
 
-            response.IsValid = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         public async Task<ServiceResponse<bool>> DeleteHotelUser(string roomNumber)
@@ -430,29 +365,21 @@ namespace SoleusHotelApi.Services
 
             if (user is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(HotelUserServiceError.UserNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, HotelUserServiceError.UserNotFound);
             }
 
             if (await IsLastAdmin(user))
             {
-                response.StatusCode = (int)HttpStatusCode.Conflict;
-                response.Errors.Add(HotelUserServiceError.LastAdmin);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status409Conflict, HotelUserServiceError.LastAdmin);
             }
 
             IdentityResult result = await _userManager.DeleteAsync(user);
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors = result.Errors.Select(x => x.Description).ToList();
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, result.Errors.Select(x => x.Description).First());
             }
 
-            response.IsValid = true;
-            response.Data = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
         #endregion
 
@@ -472,22 +399,17 @@ namespace SoleusHotelApi.Services
 
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add("Unable to modify roles");
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, HotelUserServiceError.UnableToChangeRoles);
             }
 
             result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
 
             if (!result.Succeeded)
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add("Failed to remove roles");
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, HotelUserServiceError.RemoveRolesFailed);
             }
 
-            response.IsValid = true;
-            response.Data = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         private async Task<bool> IsLastAdmin(HotelUser user)

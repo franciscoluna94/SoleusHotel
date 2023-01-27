@@ -16,5 +16,8 @@
         public const string ForbiddenPasswordChangeWrongRoom = "Unable to modify other room password";
         public const string WrongGuestName = "The guest name provided is not correct";
         public const string LastAdmin = "Unable to delete the last admin user";
+        public const string UnableToChangeRoles = "Unable to modify roles";
+        public const string RemoveRolesFailed = "Failed to remove roles";
+
     }
 }

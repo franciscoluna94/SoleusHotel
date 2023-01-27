@@ -2,9 +2,9 @@
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.HotelUserDtos;
 using SoleusHotelApi.Entities;
+using SoleusHotelApi.Extensions;
 using SoleusHotelApi.Models;
 using SoleusHotelApi.Services.Contracts;
-using System.Net;
 
 namespace SoleusHotelApi.Services
 {
@@ -24,9 +24,7 @@ namespace SoleusHotelApi.Services
 
             if (room is null)
             {
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                response.Errors.Add(RoomServiceError.RoomNotFound);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status404NotFound, RoomServiceError.RoomNotFound);
             }
 
             room.CheckInDate = createHotelUserDto.CheckInDate;
@@ -36,13 +34,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomServiceError.UnableToChangeDates + room.RoomNumber);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomServiceError.UnableToChangeDates + room.RoomNumber);
             }
 
-            response.IsValid = response.Data = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
 
         public async Task<ServiceResponse<bool>> AddUserToRoom(HotelUser user, CreateHotelUserDto createdHotelUserDto)
@@ -66,13 +61,10 @@ namespace SoleusHotelApi.Services
 
             if (!await _roomRepository.SaveAllAsync())
             {
-                response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                response.Errors.Add(RoomServiceError.UnableToAddUser + room.RoomNumber);
-                return response;
+                return response.GetFailedServiceResponse(StatusCodes.Status500InternalServerError, RoomServiceError.UnableToAddUser + room.RoomNumber);
             }
 
-            response.IsValid = response.Data = true;
-            return response;
+            return response.GetValidServiceResponse(true);
         }
     }
 }
