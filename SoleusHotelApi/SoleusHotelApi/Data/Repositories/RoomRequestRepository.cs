@@ -83,32 +83,32 @@ namespace SoleusHotelApi.Data.Repositories
 
             if (roomRequestParams.MinRequestDate is not null)
             {
-                initialQuery = initialQuery.Where(r => r.RequestDate.Day >= roomRequestParams.MinRequestDate.Value.Day);
+                initialQuery = initialQuery.Where(r => r.RequestDate >= roomRequestParams.MinRequestDate);
             }
 
             if (roomRequestParams.MaxRequestDate is not null)
             {
-                initialQuery = initialQuery.Where(r => r.RequestDate.Day <= roomRequestParams.MaxRequestDate.Value.Day);
+                initialQuery = initialQuery.Where(r => r.RequestDate <= roomRequestParams.MaxRequestDate.Value);
             }
 
             if (roomRequestParams.MinDateStart is not null)
             {
-                initialQuery = initialQuery.Where(r => r.DateStart.Value.Day >= roomRequestParams.MinDateStart.Value.Day);
+                initialQuery = initialQuery.Where(r => r.DateStart >= roomRequestParams.MinDateStart);
             }
 
             if (roomRequestParams.MaxDateStart is not null)
             {
-                initialQuery = initialQuery.Where(r => r.DateStart.Value.Day <= roomRequestParams.MaxDateStart.Value.Day);
+                initialQuery = initialQuery.Where(r => r.DateStart <= roomRequestParams.MaxDateStart);
             }
 
             if (roomRequestParams.MinDateEnd is not null)
             {
-                initialQuery = initialQuery.Where(r => r.DateEnd.Value.Day >= roomRequestParams.MinDateEnd.Value.Day);
+                initialQuery = initialQuery.Where(r => r.DateEnd >= roomRequestParams.MinDateEnd);
             }
 
             if (roomRequestParams.MaxDateEnd is not null)
             {
-                initialQuery = initialQuery.Where(r => r.DateEnd.Value.Day <= roomRequestParams.MaxDateEnd.Value.Day);
+                initialQuery = initialQuery.Where(r => r.DateEnd <= roomRequestParams.MaxDateEnd);
             }
 
             if (roomRequestParams.Department is not null)

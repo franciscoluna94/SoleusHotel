@@ -56,6 +56,7 @@ dlldata.c
 
 # Sonar
 .sonarqube/
+coverageresults/
 
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
