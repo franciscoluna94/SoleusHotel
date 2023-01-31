@@ -17,16 +17,19 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
 
         public AdminControllerTests()
         {
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: true);
-            _mockAdminService = GetMockedService.GetAdminServiceMock(isValid: true);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: true);
+            _mockAdminService = GetMockedService.GetAdminServiceMock(responseIsValid: true);
         }
 
 
         private AdminController CreateAdminController()
         {
-            return new AdminController(
-                _mockHotelUserService.Object,
-                _mockAdminService.Object);
+            AdminController adminController = new (_mockHotelUserService.Object, _mockAdminService.Object);
+
+            adminController.ControllerContext = new ControllerContext();
+            adminController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            return adminController;
         }
 
         [Fact]
@@ -51,7 +54,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task CreateUser_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
             CreateHotelUserDto createHotelUserDto = new();
 
@@ -72,8 +75,6 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         {
             // Arrange
             var adminController = CreateAdminController();
-            adminController.ControllerContext = new ControllerContext();
-            adminController.ControllerContext.HttpContext = new DefaultHttpContext();
             HotelUserParams hotelUserParams = new();
 
             // Act
@@ -91,7 +92,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task GetHotelUsers_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
             HotelUserParams hotelUserParams = new();
 
@@ -127,7 +128,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task GetHotelUser_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
 
             // Act
@@ -162,7 +163,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task EditUser_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
             CreateHotelUserDto createHotelUserDto = new();
 
@@ -197,7 +198,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task ResetGuestPasswords_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
 
             // Act
@@ -231,7 +232,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task DeleteUser_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(isValid: false);
+            _mockHotelUserService = GetMockedService.GetHotelUserServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
 
             // Act
@@ -265,7 +266,7 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
         public async Task InitialSetup_ServiceResponseIsValid_False()
         {
             // Arrange
-            _mockAdminService = GetMockedService.GetAdminServiceMock(isValid: false);
+            _mockAdminService = GetMockedService.GetAdminServiceMock(responseIsValid: false);
             var adminController = CreateAdminController();
 
             // Act

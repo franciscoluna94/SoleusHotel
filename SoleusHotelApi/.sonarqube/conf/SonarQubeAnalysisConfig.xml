@@ -116,10 +116,11 @@
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://update.sonarsource.org/update-center.properties</Property>
     <Property Name="sonar.core.id">147B411E-AYXJPrAUSVJuZ50IkKgh</Property>
-    <Property Name="sonar.core.startTime">30/01/2023 11:04:04</Property>
+    <Property Name="sonar.core.startTime">31/01/2023 10:22:50</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9000</Property>
+    <Property Name="sonar.cs.opencover.reportsPaths">SoleusHotelApi.UnitTests\coverage.opencover.xml</Property>
   </LocalSettings>
   <AnalyzersSettings>
     <AnalyzerSettings>
