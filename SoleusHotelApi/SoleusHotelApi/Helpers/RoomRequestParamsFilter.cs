@@ -10,14 +10,14 @@ namespace SoleusHotelApi.Helpers
         public string Subject { get; set; }
         public DateTime? MinRequestDate { get; set; }
         public DateTime? MaxRequestDate { get; set; }
-        public List<int> RequestStatus { get; set; }
+        public string RequestStatus { get; set; }
         public DateTime? MinDateStart { get; set; }
         public DateTime? MaxDateStart { get; set; }
         public DateTime? MinDateEnd { get; set; }
         public DateTime? MaxDateEnd { get; set; }
         public string AssignedTo { get; set; }
 
-        public string OrderBy { get; set; } = "room";
+        public string OrderBy { get; set; } = "date";
 
     }
 }

@@ -5,4 +5,5 @@ export class ApiRoutesConstant {
     public static readonly passwords = 'hoteluser/passwords';
     public static readonly rooms = 'hoteluser/rooms';
     public static readonly login = 'hoteluser/login';
+    public static readonly filteredRoomRequests = 'roomRequest';
 }

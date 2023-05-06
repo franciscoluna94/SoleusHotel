@@ -88,7 +88,7 @@ namespace SoleusHotelApi.Services
             }
 
             roomRequestFilter.AssignedTo = user.Room.RoomNumber;
-            roomRequestFilter.RequestStatus = new List<int> { (int) RoomRequestStatus.InProgress, (int) RoomRequestStatus.Paused};
+            roomRequestFilter.RequestStatus = $"{RoomRequestStatus.InProgress}, {RoomRequestStatus.Paused}";
 
             return response.GetValidServiceResponse(await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter));
         }

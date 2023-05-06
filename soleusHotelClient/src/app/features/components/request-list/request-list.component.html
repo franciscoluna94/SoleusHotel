@@ -1,1 +1,29 @@
-<p>request-list works!</p>
+<div class="bg-white ">
+    <h2 class="ms-3 pt-2">Room Requests</h2>
+</div>
+
+<div class="container-fluid mt-5">
+    <table class="table  bg-white">
+      <thead>
+        <tr>
+          <th scope="col" class="tableFilter" (click)="setSort(0)">Id</th>
+          <th scope="col" class="tableFilter" (click)="setSort(1)">Room</th>
+          <th scope="col" class="tableFilter" (click)="setSort(2)">Department</th>
+          <th scope="col" class="tableFilter" (click)="setSort(3)">Topic</th>
+          <th scope="col" class="tableFilter" (click)="setSort(4)">Subject</th>
+          <th scope="col" class="tableFilter" (click)="setSort(5)">Request Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roomrequest of roomRequests">
+          <td>{{roomrequest.id}}</td>
+          <td>{{roomrequest.room}}</td>
+          <td>{{roomrequest.department}}</td>
+          <td>{{roomrequest.topic}}</td>
+          <td>{{roomrequest.subject}}</td>
+          <td>{{roomrequest.requestDate | date: 'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    

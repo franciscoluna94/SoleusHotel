@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using SoleusHotelApi.Constants;
 using SoleusHotelApi.Data.Repositories.Contracts;
 using SoleusHotelApi.DTOs.RoomRequestDtos;
 using SoleusHotelApi.Entities;
@@ -34,7 +35,7 @@ namespace SoleusHotelApi.Data.Repositories
         {
             IQueryable<RoomRequest> query = _dataContext.RoomRequests
                 .Include(r => r.Room).ThenInclude(u => u.User).AsQueryable();
-            
+
             return await PagedList<BaseRoomRequestDto>.CreateAsync(FilterRoomRequests(query, roomRequestParams).ProjectTo<BaseRoomRequestDto>(_mapper.ConfigurationProvider).AsNoTracking(),
                 roomRequestParams.PageNumber, roomRequestParams.PageSize);
         }
@@ -71,14 +72,41 @@ namespace SoleusHotelApi.Data.Repositories
         #region Private Methods
         private static IQueryable<RoomRequest> FilterRoomRequests(IQueryable<RoomRequest> initialQuery, RoomRequestParams roomRequestParams)
         {
-            if (roomRequestParams.Room is not null)
+            if (!string.IsNullOrEmpty(roomRequestParams.Room))
             {
-                initialQuery = initialQuery.Where(r => r.Room.RoomNumber == roomRequestParams.Room);
+                List<string> rooms = roomRequestParams.Room.Split(",").ToList();
+                initialQuery = initialQuery.Where(r => rooms.Contains(r.Room.RoomNumber));
             }
 
-            if (roomRequestParams.AssignedTo is not null)
+            if (!string.IsNullOrEmpty(roomRequestParams.AssignedTo))
             {
-                initialQuery = initialQuery.Where(r => r.AssignedTo.Room.RoomNumber == roomRequestParams.AssignedTo);
+                List<string> assignations = roomRequestParams.AssignedTo.Split(",").ToList();
+                initialQuery = initialQuery.Where(r => assignations.Contains(r.AssignedTo.UserName));
+            }
+
+            if (!string.IsNullOrEmpty(roomRequestParams.Department))
+            {
+                List<string> departments = roomRequestParams.Department.Split(",").ToList();
+                initialQuery = initialQuery.Where(r => departments.Contains(r.Department));
+            }
+
+            if (!string.IsNullOrEmpty(roomRequestParams.Topic))
+            {
+                List<string> topics = roomRequestParams.Topic.Split(",").ToList();
+                initialQuery = initialQuery.Where(r => topics.Contains(r.Topic));
+            }
+
+            if (!string.IsNullOrEmpty(roomRequestParams.Subject))
+            {
+                List<string> subjects = roomRequestParams.Subject.Split(",").ToList();
+                initialQuery = initialQuery.Where(r => subjects.Contains(r.Subject));
+            }
+
+            if (!string.IsNullOrEmpty(roomRequestParams.RequestStatus))
+            {
+                List<string> status = roomRequestParams.RequestStatus.Split(",").ToList();
+                List<int> statusNumbers = status.ConvertAll(int.Parse);
+                initialQuery = initialQuery.Where(s => statusNumbers.Contains((int)s.RequestStatus));
             }
 
             if (roomRequestParams.MinRequestDate is not null)
@@ -111,37 +139,21 @@ namespace SoleusHotelApi.Data.Repositories
                 initialQuery = initialQuery.Where(r => r.DateEnd <= roomRequestParams.MaxDateEnd);
             }
 
-            if (roomRequestParams.Department is not null)
-            {
-                initialQuery = initialQuery.Where(r => r.Department == roomRequestParams.Department);
-            }
-
-            if (roomRequestParams.Topic is not null)
-            {
-                initialQuery = initialQuery.Where(r => r.Topic == roomRequestParams.Topic);
-            }
-
-            if (roomRequestParams.Subject is not null)
-            {
-                initialQuery = initialQuery.Where(r => r.Subject == roomRequestParams.Subject);
-            }
-
-            if (roomRequestParams.RequestStatus is not null)
-            {                
-                initialQuery = initialQuery.Where(s => roomRequestParams.RequestStatus.Contains((int) s.RequestStatus));
-            }
-
             initialQuery = OrderRoomRequests(initialQuery, roomRequestParams);
 
             return initialQuery;
         }
 
         private static IQueryable<RoomRequest> OrderRoomRequests(IQueryable<RoomRequest> initialQuery, RoomRequestParams roomRequestParams)
-        {            
+        {
             initialQuery = roomRequestParams.OrderBy switch
             {
-                "date" => initialQuery.OrderByDescending(x => x.RequestDate),
-                "department" => initialQuery.OrderByDescending(x => x.Department),
+                "id" => initialQuery.OrderBy(x => x.Id),
+                "room" => initialQuery.OrderBy(x => x.Room.RoomNumber),
+                "department" => initialQuery.OrderBy(x => x.Department),
+                "topic" => initialQuery.OrderBy(x => x.Topic),
+                "subject" => initialQuery.OrderBy(x => x.Subject),
+                "date" => initialQuery.OrderBy(x => x.RequestDate),
                 "assigned" => initialQuery.OrderBy(x => x.AssignedTo),
                 _ => initialQuery.OrderByDescending(x => x.Room.RoomNumber.Length).ThenBy(x => x.Room.RoomNumber)
             };
