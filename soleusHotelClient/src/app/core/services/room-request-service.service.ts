@@ -9,7 +9,7 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 @Injectable({
   providedIn: 'root',
 })
-export class RoomRequestServiceService {
+export class RoomRequestService {
   baseUrl = environment.apiUrl;
   romRequestParams: RoomRequestParams;
 
@@ -24,12 +24,28 @@ export class RoomRequestServiceService {
     );
 
     params = this.addRoomRequestParams(romRequestParams, params);
-
     return getPaginatedResult<RoomRequest[]>(
       this.baseUrl + ApiRoutesConstant.filteredRoomRequests,
       params,
       this.http
     );
+  }
+
+  getAssignedRoomRequests(romRequestParams: RoomRequestParams) {
+    let params = getPaginationHeaders(
+      romRequestParams.pageNumber,
+      romRequestParams.pageSize
+    );
+
+    return getPaginatedResult<RoomRequest[]>(
+      this.baseUrl + ApiRoutesConstant.ownRequests,
+      params,
+      this.http
+    );
+  }
+
+  getAverageTimePerRequest() {
+    return this.http.get<number>(this.baseUrl + ApiRoutesConstant.averageTimePerRequest)
   }
 
   addRoomRequestParams(

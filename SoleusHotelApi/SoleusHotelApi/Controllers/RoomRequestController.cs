@@ -110,9 +110,9 @@ namespace SoleusHotelApi.Controllers
         [HttpGet("average")]
         [SwaggerResponse(StatusCodes.Status200OK, RoomRequestControllerDescriptions.EndedRoomRequestsAverageDuration200Ok, typeof(TimeSpan))]
         [SwaggerResponse(StatusCodes.Status404NotFound, RoomRequestControllerDescriptions.UserOrRoomRequestNotFound404BadRequest)]
-        public async Task<ActionResult<TimeSpan>> EndedRoomRequestsAverageDuration()
+        public async Task<ActionResult<long>> EndedRoomRequestsAverageDuration()
         {
-            ServiceResponse<TimeSpan> serviceResponse = await _roomRequestService.AverageTimeAssignedRoomRequests(User.GetRoomNumber());
+            ServiceResponse<long> serviceResponse = await _roomRequestService.AverageTimeAssignedRoomRequests(User.GetRoomNumber());
 
             if (!serviceResponse.IsValid)
             {

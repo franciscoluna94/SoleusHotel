@@ -88,7 +88,7 @@ namespace SoleusHotelApi.Services
             }
 
             roomRequestFilter.AssignedTo = user.Room.RoomNumber;
-            roomRequestFilter.RequestStatus = $"{RoomRequestStatus.InProgress}, {RoomRequestStatus.Paused}";
+            roomRequestFilter.RequestStatus = string.Join(",", new[] { ((int)RoomRequestStatus.InProgress).ToString(), ((int)RoomRequestStatus.Paused).ToString() });
 
             return response.GetValidServiceResponse(await _roomRequestRepository.GetFilteredRoomRequests(roomRequestFilter));
         }
@@ -204,9 +204,9 @@ namespace SoleusHotelApi.Services
             return response.GetValidServiceResponse(true);
         }
 
-        public async Task<ServiceResponse<TimeSpan>> AverageTimeAssignedRoomRequests(string userRoomNumber)
+        public async Task<ServiceResponse<long>> AverageTimeAssignedRoomRequests(string userRoomNumber)
         {
-            ServiceResponse<TimeSpan> response = new();
+            ServiceResponse<long> response = new();
 
             HotelUser user = await _hotelUserRepository.GetHotelUserWithRoomByRoomNumber(userRoomNumber);
 
@@ -216,7 +216,11 @@ namespace SoleusHotelApi.Services
             }
 
             List<TimeSpan> durations = await _roomRequestRepository.GetRoomRequestsDuration(user);
-            
+            if (durations.Count == 0)
+            {
+                return response.GetValidServiceResponse(0);
+            }
+
             return response.GetValidServiceResponse(durations.Mean());
         }
 
