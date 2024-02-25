@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './features/components/forgot-password/forgot-password.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { WorkerNavComponent } from './core/components/worker-nav/worker-nav.component';
-import { RequestListComponent } from './features/components/request-list/request-list.component';
+import { PendingRequestListComponent } from './features/components/pending-request-list/request-list.component';
 import { RoomCardComponent } from './features/components/room-card/room-card.component';
 import { GuestDashboardComponent } from './features/components/guest-dashboard/guest-dashboard.component';
 import { UserListComponent } from './features/components/user-list/user-list.component';
@@ -18,6 +18,7 @@ import { UserCreateComponent } from './features/components/user-create/user-crea
 import { AdminGuard } from './core/guards/admin.guard';
 import { UserCardComponent } from './features/components/user-card/user-card.component';
 import { UserResolver } from './core/resolvers/user.resolver';
+import { EndedRequestListComponent } from './features/components/ended-request-list/ended-request-list.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
     {path: 'hotel', component: WorkerNavComponent, canActivate: [EmployeeGuard], children: [
       {path: '', redirectTo:'hotel/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: WorkerDashboardComponent},
-      {path: 'roomrequests', component: RequestListComponent},
+      {path: 'roomrequests/pending', component: PendingRequestListComponent},
+      {path: 'roomrequests/ended', component: EndedRequestListComponent},
       {path: 'rooms', component: RoomListComponent},
       {path: 'rooms/:roomNumber', component: RoomCardComponent,  resolve: {hotelUser: RoomResolver}},        
       {path: 'users', component: UserListComponent, canActivate: [AdminGuard]},

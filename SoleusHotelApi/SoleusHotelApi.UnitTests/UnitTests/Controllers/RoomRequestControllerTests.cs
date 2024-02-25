@@ -213,12 +213,12 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
             var roomRequestController = CreateRoomRequestController();
 
             // Act
-            ActionResult<TimeSpan> result = await roomRequestController.EndedRoomRequestsAverageDuration();
+            ActionResult<long> result = await roomRequestController.EndedRoomRequestsAverageDuration();
 
             // Assert
             var resultValue = result.Result as ObjectResult;
             result.Should().NotBeNull();
-            result.Should().BeOfType<ActionResult<TimeSpan>>();
+            result.Should().BeOfType<ActionResult<long>>();
             resultValue.StatusCode.Should().Be(200);
         }
 
@@ -230,13 +230,13 @@ namespace SoleusHotelApi.UnitTests.UnitTests.Controllers
             var roomRequestController = CreateRoomRequestController();
 
             // Act
-            ActionResult<TimeSpan> result = await roomRequestController.EndedRoomRequestsAverageDuration();
+            ActionResult<long> result = await roomRequestController.EndedRoomRequestsAverageDuration();
 
             // Assert
             var resultValue = result.Result as ObjectResult;
             var errors = resultValue.Value as List<string>;
             result.Should().NotBeNull();
-            result.Should().BeOfType<ActionResult<TimeSpan>>();
+            result.Should().BeOfType<ActionResult<long>>();
             errors.First().Should().Be("Test error");
         }
 

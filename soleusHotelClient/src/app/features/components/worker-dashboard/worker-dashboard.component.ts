@@ -38,7 +38,7 @@ export class WorkerDashboardComponent implements OnInit {
 
     this.getFilteredRoomRequests(RoomRequestStatusConstants.ended.split(','), this.user.roomNumber)
       .subscribe((length) => (this.completedRequests = length));
-    this. getAverageTimePerRequest();
+    this.getAverageTimePerRequest();
   }
 
   getFilteredRoomRequests(roomrequestStatus: string[], assignedTo?: string) {

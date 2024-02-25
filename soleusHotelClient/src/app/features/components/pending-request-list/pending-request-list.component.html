@@ -1,0 +1,31 @@
+<div class="bg-white ">
+    <h2 class="ms-3 pt-2">Room Requests</h2>
+</div>
+
+<div class="container-fluid mt-5">
+    <table class="table  bg-white">
+      <thead>
+        <tr>
+          <th scope="col" class="tableFilter" (click)="setSort(0)">Room</th>
+          <th scope="col" class="tableFilter" (click)="setSort(1)">Department</th>
+          <th scope="col" class="tableFilter" (click)="setSort(2)">Topic</th>
+          <th scope="col" class="tableFilter" (click)="setSort(3)">Subject</th>
+          <th scope="col" class="tableFilter">Description</th>
+          <th scope="col" class="tableFilter" (click)="setSort(4)">Request Date</th>
+          <th scope="col" class="tableFilter"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roomrequest of roomRequests">
+          <td>{{roomrequest.room}}</td>
+          <td>{{roomrequest.department}}</td>
+          <td>{{roomrequest.topic}}</td>
+          <td>{{roomrequest.subject}}</td>
+          <td>{{roomrequest.description}}</td>
+          <td>{{roomrequest.requestDate | date: 'dd/MM/yyyy'}}</td>
+          <td><button class="btn btn-info"><i class="fa-solid fa-play"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    

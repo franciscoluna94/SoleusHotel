@@ -11,10 +11,10 @@ import { RoomRequestService } from 'src/app/core/services/room-request-service.s
 
 @Component({
   selector: 'app-request-list',
-  templateUrl: './request-list.component.html',
-  styleUrls: ['./request-list.component.css']
+  templateUrl: './pending-request-list.component.html',
+  styleUrls: ['./pending-request-list.component.css']
 })
-export class RequestListComponent implements OnInit {
+export class PendingRequestListComponent implements OnInit {
   user: User;
   roomRequests: RoomRequest[];
   isReceptionOrAdmin: boolean = false;

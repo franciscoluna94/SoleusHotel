@@ -116,7 +116,7 @@ namespace SoleusHotelApi.UnitTests.Helpers.Mocks
                       .ReturnsAsync(GetServiceResponse<RoomRequestDto>.GetServiceResponseIsValidFalse());
 
                 mock.Setup(x => x.AverageTimeAssignedRoomRequests(It.IsAny<string>()))
-                     .ReturnsAsync(GetServiceResponse<TimeSpan>.GetServiceResponseIsValidFalse());
+                     .ReturnsAsync(GetServiceResponse<long>.GetServiceResponseIsValidFalse());
 
                 mock.Setup(x => x.StartRoomRequest(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                   .ReturnsAsync(GetServiceResponse<bool>.GetServiceResponseIsValidFalse());
@@ -149,7 +149,7 @@ namespace SoleusHotelApi.UnitTests.Helpers.Mocks
                       .ReturnsAsync(GetServiceResponse<RoomRequestDto>.GetServiceResponseIsValid(new RoomRequestDto()));
 
             mock.Setup(x => x.AverageTimeAssignedRoomRequests(It.IsAny<string>()))
-                      .ReturnsAsync(GetServiceResponse<TimeSpan>.GetServiceResponseIsValid(new TimeSpan()));
+                      .ReturnsAsync(GetServiceResponse<long>.GetServiceResponseIsValid(200));
 
             mock.Setup(x => x.StartRoomRequest(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<List<string>>()))
                   .ReturnsAsync(GetServiceResponse<bool>.GetServiceResponseIsValid(true));

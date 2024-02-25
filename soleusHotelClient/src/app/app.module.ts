@@ -11,7 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { GuestDashboardComponent} from './features/components/guest-dashboard/guest-dashboard.component';
 import { UserListComponent } from './features/components/user-list/user-list.component';
-import { RequestListComponent } from './features/components/request-list/request-list.component';
+import { PendingRequestListComponent } from './features/components/pending-request-list/request-list.component';
 import { ForgotPasswordComponent } from './features/components/forgot-password/forgot-password.component';
 import { WorkerDashboardComponent } from './features/components/worker-dashboard/worker-dashboard.component';
 import { RoomCardComponent } from './features/components/room-card/room-card.component';
@@ -24,6 +24,7 @@ import { DateInputComponent } from './shared/components/date-input/date-input.co
 import { RoleDirective } from './core/directives/role.directive';
 import { UserCreateComponent } from './features/components/user-create/user-create.component';
 import { UserCardComponent } from './features/components/user-card/user-card.component';
+import { EndedRequestListComponent } from './features/components/ended-request-list/ended-request-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { UserCardComponent } from './features/components/user-card/user-card.com
     HomeComponent,
     GuestDashboardComponent,
     UserListComponent,
-    RequestListComponent,
+    PendingRequestListComponent,
     ForgotPasswordComponent,
     WorkerDashboardComponent,
     RoomCardComponent,
@@ -42,7 +43,8 @@ import { UserCardComponent } from './features/components/user-card/user-card.com
     DateInputComponent,
     RoleDirective,
     UserCreateComponent,
-    UserCardComponent
+    UserCardComponent,
+    EndedRequestListComponent
   ],
   imports: [
     BrowserModule,

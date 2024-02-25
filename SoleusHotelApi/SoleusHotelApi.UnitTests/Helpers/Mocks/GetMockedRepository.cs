@@ -18,7 +18,7 @@ namespace SoleusHotelApi.UnitTests.Helpers.Mocks
             mgr.Setup(x => x.DeleteAsync(It.IsAny<TUser>())).ReturnsAsync(IdentityResult.Success);
             mgr.Setup(x => x.CreateAsync(It.IsAny<TUser>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Success).Callback<TUser, string>((x, y) => ls.Add(x));
             mgr.Setup(x => x.UpdateAsync(It.IsAny<TUser>())).ReturnsAsync(IdentityResult.Success);
-            mgr.Setup(x => x.Users.AnyAsync(It.IsAny<CancellationToken>())).ReturnsAsync(false);
+            //mgr.Setup(x => x.Users.AnyAsync(It.IsAny<CancellationToken>())).ReturnsAsync(false);
             return mgr;
         }
 
