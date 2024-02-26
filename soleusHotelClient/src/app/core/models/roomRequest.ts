@@ -8,5 +8,7 @@ export interface RoomRequest {
     requestDate: string;
     dateStart: string;
     dateEnd: string;
+    duration: number;
+    durationString: string;
     requestStatus: number;
 }

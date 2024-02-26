@@ -5,6 +5,7 @@ import { RoomRequestStatusConstants } from 'src/app/core/constants/roomRequestSt
 import { RoomRequestParams } from 'src/app/core/models/roomRequestParams';
 import { User } from 'src/app/core/models/user';
 import { AccountService } from 'src/app/core/services/account.service';
+import { DurationService } from 'src/app/core/services/duration-service.service';
 import { RoomRequestService } from 'src/app/core/services/room-request-service.service';
 
 @Component({
@@ -22,7 +23,8 @@ export class WorkerDashboardComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private roomRequestService: RoomRequestService
+    private roomRequestService: RoomRequestService,
+    private durationService: DurationService
   ) {
     this.accountService.currentUser$
       .pipe(take(1))
@@ -65,22 +67,10 @@ export class WorkerDashboardComponent implements OnInit {
 
   getAverageTimePerRequest() {
     return this.roomRequestService.getAverageTimePerRequest().subscribe(response => {
-      this.averageTimePerRequest = this.formatDuration(response);
+      this.averageTimePerRequest = this.durationService.formatDurationMilliseconds(response);
     });
   }
   
-  formatDuration(milliseconds: number): string {
-    if (milliseconds === 0) {
-      return '';
-    }
-    const seconds = Math.floor(milliseconds / 1000);
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
-  
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  }
-
   getClassByTimestamp(timestamp: string): string {
 
     if (timestamp ==='') {

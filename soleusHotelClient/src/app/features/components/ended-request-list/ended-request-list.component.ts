@@ -6,6 +6,7 @@ import { RoomRequest } from 'src/app/core/models/roomRequest';
 import { RoomRequestParams } from 'src/app/core/models/roomRequestParams';
 import { User } from 'src/app/core/models/user';
 import { AccountService } from 'src/app/core/services/account.service';
+import { DurationService } from 'src/app/core/services/duration-service.service';
 import { RoomRequestService } from 'src/app/core/services/room-request-service.service';
 
 
@@ -20,7 +21,8 @@ export class EndedRequestListComponent implements OnInit {
   isReceptionOrAdmin: boolean = false;
   roomRequestParams: RoomRequestParams;
 
-  constructor(private accountService: AccountService, private roomRequestService: RoomRequestService) {
+  constructor(private accountService: AccountService, private roomRequestService: RoomRequestService, 
+    private durationService: DurationService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
     this.roomRequestParams = this.roomRequestService.resetRoomRequestParams();
    }
@@ -36,7 +38,11 @@ export class EndedRequestListComponent implements OnInit {
     
     this.roomRequestService.getFilteredRoomRequests(this.roomRequestParams).subscribe(response => {
       this.roomRequests = response.result;
-    })
+      this.roomRequests.forEach(roomrequest => {
+        console.log(roomrequest.duration)
+        roomrequest.durationString = this.durationService.formatDurationTicks(roomrequest.duration); 
+      });
+    })    
   }
 
   setSort(filter: number){

@@ -12,7 +12,7 @@
           <th scope="col" class="tableFilter" (click)="setSort(3)">Subject</th>
           <th scope="col" class="tableFilter">Description</th>
           <th scope="col" class="tableFilter" (click)="setSort(4)">Request Date</th>
-          <th scope="col" class="tableFilter"></th>
+          <th scope="col" class="tableFilter">Duration</th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +23,7 @@
           <td>{{roomrequest.subject}}</td>
           <td>{{roomrequest.description}}</td>
           <td>{{roomrequest.requestDate | date: 'dd/MM/yyyy'}}</td>
-          <td><button class="btn btn-info"><i class="fa-solid fa-play"></i></button></td>
+          <td>{{roomrequest.durationString}}</td>
         </tr>
       </tbody>
     </table>

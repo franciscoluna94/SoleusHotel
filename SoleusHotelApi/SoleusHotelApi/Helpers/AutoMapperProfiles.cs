@@ -42,7 +42,8 @@ namespace SoleusHotelApi.Helpers
             #region RoomRequest
             CreateMap<CreateRoomRequestDto, RoomRequest>();
             CreateMap<RoomRequest, BaseRoomRequestDto>()
-                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.RoomNumber));
+                .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.RoomNumber))
+                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration.HasValue ? src.Duration.Value.Ticks : 0));
             CreateMap<RoomRequest, RoomRequestDto>()
                 .ForMember(dest => dest.Room, opt => opt.MapFrom(src => src.Room.RoomNumber));
 
